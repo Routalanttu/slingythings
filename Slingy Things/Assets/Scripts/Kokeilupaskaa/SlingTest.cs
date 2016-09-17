@@ -16,6 +16,7 @@ public class SlingTest : MonoBehaviour {
 
 	private GameObject _idleTail;
 	private GameObject _stretchTail;
+	private GameObject _upperBody;
 
 	void Awake(){
 
@@ -28,6 +29,7 @@ public class SlingTest : MonoBehaviour {
 
 		_idleTail = transform.parent.FindChild ("LieroLowerBody").gameObject;
 		_stretchTail = transform.parent.FindChild ("LieroStretch4").gameObject;
+		_upperBody = transform.parent.FindChild ("LieroUpperBody").gameObject;
 	}
 
 	// Update is called once per frame
@@ -78,6 +80,16 @@ public class SlingTest : MonoBehaviour {
 		_stretchTail.transform.rotation = q;
 
 		_stretchTail.transform.localScale = new Vector3 (vectorToTarget.magnitude / 1.25f, 1f, 1f);
+
+
+		if (transform.localPosition.x > 0f) {
+			_upperBody.GetComponent<SpriteRenderer> ().flipX = true;
+		} else if (transform.localPosition.x < 0f) {
+			_upperBody.GetComponent<SpriteRenderer> ().flipX = false;
+		}
+
+
+
 
 	}
 
