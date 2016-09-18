@@ -5,7 +5,7 @@ public class SinCosTest : MonoBehaviour {
 
 	private Transform _transform;
 
-	[SerializeField]private Transform _otherObject;
+	//[SerializeField]private Transform _otherObject;
 
 	private float _angle;
 	[SerializeField]private float _speed;
@@ -20,7 +20,7 @@ public class SinCosTest : MonoBehaviour {
 	void Update () {
 		Vector3 cubePos = new Vector3 (Mathf.Sin (_angle) * _distance, Mathf.Cos (_angle)*_distance, 0.0f);
 		_transform.localPosition = cubePos;
-		_otherObject.localPosition = cubePos * -1f;
+		//_otherObject.localPosition = cubePos * -1f;
 
 		Vector3 wutNigga = _transform.position - _transform.parent.position;
 
