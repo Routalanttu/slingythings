@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SlingTest : MonoBehaviour {
+public class Sling2 : MonoBehaviour {
 
 	public float _maxStretch = 2.0f; 
-	public float _testNumber; 
-	public Vector3 _slingVector; 
-	public Sling _sling; 
 
 	//private SpringJoint2D _spring;
 	[SerializeField]private Transform _stretchPoint;
@@ -23,13 +20,13 @@ public class SlingTest : MonoBehaviour {
 
 	private Transform _counterPiece;
 
-	[SerializeField]private Transform _blackEye1;
-	[SerializeField]private Transform _blackEye2;
-	[SerializeField]private Transform _eye1JumpPoint;
-	[SerializeField]private Transform _eye2JumpPoint;
+	//[SerializeField]private Transform _blackEye1;
+	//[SerializeField]private Transform _blackEye2;
+	//[SerializeField]private Transform _eye1JumpPoint;
+	//[SerializeField]private Transform _eye2JumpPoint;
 
-	private Vector3 _eye1OrigPos;
-	private Vector3 _eye2OrigPos;
+	//private Vector3 _eye1OrigPos;
+	//private Vector3 _eye2OrigPos;
 
 
 	void Awake(){
@@ -38,27 +35,22 @@ public class SlingTest : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-		_sling = _sling.GetComponent<Sling> (); 
-
 		_rayToMouse = new Ray (_stretchPoint.position, Vector3.zero); 
 		_maxStretchSqr = _maxStretch * _maxStretch;  //comparing squared magnitudes is faster 
 
-		_idleTail = transform.parent.FindChild ("LieroLowerBody").gameObject;
-		_stretchTail = transform.parent.FindChild ("LieroStretch4").gameObject;
-		_upperBody = transform.parent.FindChild ("LieroUpperBody").gameObject;
-		_counterPiece = transform.parent.FindChild ("LieroCounterPiece");
+		_idleTail = transform.parent.FindChild ("slugTailIdle").gameObject;
+		_stretchTail = transform.parent.FindChild ("slugTailStretch2").gameObject;
+		_upperBody = transform.parent.FindChild ("slugHead").gameObject;
+		_counterPiece = transform.parent.FindChild ("slugCounterPiece2");
 		//_blackEye1 = transform.parent.FindChild ("BlackEye1");
 		//_blackEye2 = transform.parent.FindChild ("BlackEye2");
 
-		_eye1OrigPos = _blackEye1.parent.position;
-		_eye2OrigPos = _blackEye2.parent.position;
+		//_eye1OrigPos = _blackEye1.parent.position;
+		//_eye2OrigPos = _blackEye2.parent.position;
 	}
 
 	// Update is called once per frame
 	void Update () {
-
-		_testNumber += Time.deltaTime; 
 
 		if (clickedOn) {
 			Dragging (); 
@@ -79,7 +71,6 @@ public class SlingTest : MonoBehaviour {
 
 	void OnMouseUp(){
 		clickedOn = false; 
-		SetSling (); 
 	}
 
 	void Dragging(){
@@ -101,22 +92,19 @@ public class SlingTest : MonoBehaviour {
 
 
 		Vector3 vectorToTarget = transform.parent.position - transform.position;
-
-		_slingVector = vectorToTarget; //for sling script to use 
-
 		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 		float angleInRad = Mathf.Atan2 (vectorToTarget.y, vectorToTarget.x);
 		Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 		_stretchTail.transform.rotation = q;
 		_counterPiece.transform.rotation = q;
 
-		_blackEye1.localPosition = new Vector3 (Mathf.Sin (angleInRad+1.5708f) * 0.02f, Mathf.Cos (angleInRad+1.5708f)*-0.02f, 0.0f);
-		_blackEye2.localPosition = new Vector3 (Mathf.Sin (angleInRad+1.5708f) * 0.02f, Mathf.Cos (angleInRad+1.5708f)*-0.02f, 0.0f);
+		//_blackEye1.localPosition = new Vector3 (Mathf.Sin (angleInRad+1.5708f) * 0.02f, Mathf.Cos (angleInRad+1.5708f)*-0.02f, 0.0f);
+		//_blackEye2.localPosition = new Vector3 (Mathf.Sin (angleInRad+1.5708f) * 0.02f, Mathf.Cos (angleInRad+1.5708f)*-0.02f, 0.0f);
 
-		if (vectorToTarget.magnitude > 0.15f) {
+		if (vectorToTarget.magnitude > 0.8f) {
 			_stretchTail.transform.localScale = new Vector3 (vectorToTarget.magnitude / 1.25f, 1f, 1f);
 		} else {
-			_stretchTail.transform.localScale = new Vector3 (0.15f / 1.25f, 1f, 1f);
+			_stretchTail.transform.localScale = new Vector3 (0.8f / 1.25f, 1f, 1f);
 		}
 
 		Debug.Log (vectorToTarget.magnitude);
@@ -126,20 +114,16 @@ public class SlingTest : MonoBehaviour {
 			_upperBody.GetComponent<SpriteRenderer> ().flipX = true;
 			_idleTail.GetComponent<SpriteRenderer> ().flipX = true;
 
-			_blackEye1.parent.position = _eye1JumpPoint.position;
-			_blackEye2.parent.position = _eye2JumpPoint.position;
+			//_blackEye1.parent.position = _eye1JumpPoint.position;
+			//_blackEye2.parent.position = _eye2JumpPoint.position;
 		} else if (transform.localPosition.x < 0f) {
 			_upperBody.GetComponent<SpriteRenderer> ().flipX = false;
 			_idleTail.GetComponent<SpriteRenderer> ().flipX = false;
 
-			_blackEye1.parent.position = _eye1OrigPos;
-			_blackEye2.parent.position = _eye2OrigPos;
+			//_blackEye1.parent.position = _eye1OrigPos;
+			//_blackEye2.parent.position = _eye2OrigPos;
 		}
 
-	}
-
-	void SetSling(){
-		_sling.SetSling (_slingVector, true); 
 	}
 
 
