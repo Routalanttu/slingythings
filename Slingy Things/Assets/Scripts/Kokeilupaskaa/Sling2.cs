@@ -56,10 +56,12 @@ public class Sling2 : MonoBehaviour {
 			Dragging (); 
 			_idleTail.GetComponent<SpriteRenderer> ().enabled = false;
 			_stretchTail.GetComponent<SpriteRenderer> ().enabled = true;
+			_counterPiece.GetComponent<SpriteRenderer> ().enabled = true;
 		} else {
 			transform.localPosition = new Vector3 (0f, 0f, 0f);
 			_idleTail.GetComponent<SpriteRenderer> ().enabled = true;
 			_stretchTail.GetComponent<SpriteRenderer> ().enabled = false;
+			_counterPiece.GetComponent<SpriteRenderer> ().enabled = false;
 		}
 
 
