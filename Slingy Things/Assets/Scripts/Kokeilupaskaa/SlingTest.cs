@@ -101,7 +101,13 @@ public class SlingTest : MonoBehaviour {
 		_blackEye1.localPosition = new Vector3 (Mathf.Sin (angleInRad+1.5708f) * 0.02f, Mathf.Cos (angleInRad+1.5708f)*-0.02f, 0.0f);
 		_blackEye2.localPosition = new Vector3 (Mathf.Sin (angleInRad+1.5708f) * 0.02f, Mathf.Cos (angleInRad+1.5708f)*-0.02f, 0.0f);
 
-		_stretchTail.transform.localScale = new Vector3 (vectorToTarget.magnitude / 1.25f, 1f, 1f);
+		if (vectorToTarget.magnitude > 0.15f) {
+			_stretchTail.transform.localScale = new Vector3 (vectorToTarget.magnitude / 1.25f, 1f, 1f);
+		} else {
+			_stretchTail.transform.localScale = new Vector3 (0.15f / 1.25f, 1f, 1f);
+		}
+
+		Debug.Log (vectorToTarget.magnitude);
 
 
 		if (transform.localPosition.x > 0f) {
