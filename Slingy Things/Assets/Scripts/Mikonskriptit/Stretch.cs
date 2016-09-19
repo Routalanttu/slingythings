@@ -93,8 +93,9 @@ public class Stretch : MonoBehaviour {
 		Debug.Log ("mouseworldpointbefore " + mouseWorldPoint); 
 
 
-		if (stretchPointToMouse.magnitude > _maxStretch) {
-		 
+		if (stretchPointToMouse.sqrMagnitude > (_maxStretch*_maxStretch)) {
+			_rayToMouse.direction = stretchPointToMouse;
+			mouseWorldPoint = _rayToMouse.GetPoint (_maxStretch);
 		}
 
 		Debug.Log ("mouseworldpointafter " + mouseWorldPoint); 
