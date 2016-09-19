@@ -14,11 +14,17 @@ public class Sling2 : MonoBehaviour {
 	private float _maxStretchSqr;
 	private bool clickedOn;
 
+	private bool justLetGo = false;
+
 	private GameObject _idleTail;
 	private GameObject _stretchTail;
 	private GameObject _upperBody;
 
 	private Transform _counterPiece;
+
+	[SerializeField]private AudioClip squish;
+
+	private AudioSource audio;
 
 	//[SerializeField]private Transform _blackEye1;
 	//[SerializeField]private Transform _blackEye2;
@@ -30,7 +36,7 @@ public class Sling2 : MonoBehaviour {
 
 
 	void Awake(){
-
+		audio = GetComponent<AudioSource> ();
 	}
 
 	// Use this for initialization
@@ -56,10 +62,12 @@ public class Sling2 : MonoBehaviour {
 			Dragging (); 
 			_idleTail.GetComponent<SpriteRenderer> ().enabled = false;
 			_stretchTail.GetComponent<SpriteRenderer> ().enabled = true;
+			_counterPiece.GetComponent<SpriteRenderer> ().enabled = true;
 		} else {
 			transform.localPosition = new Vector3 (0f, 0f, 0f);
 			_idleTail.GetComponent<SpriteRenderer> ().enabled = true;
 			_stretchTail.GetComponent<SpriteRenderer> ().enabled = false;
+			_counterPiece.GetComponent<SpriteRenderer> ().enabled = false;
 		}
 
 
@@ -67,10 +75,17 @@ public class Sling2 : MonoBehaviour {
 
 	void OnMouseDown(){
 		clickedOn = true; 
+		justLetGo = true;
 	}
 
 	void OnMouseUp(){
 		clickedOn = false; 
+		//audio.Play ();
+		if (justLetGo) {
+			audio.PlayOneShot (squish, 0.5f);
+			Debug.Log ("Fuck you");
+		}
+		justLetGo = false;
 	}
 
 	void Dragging(){
