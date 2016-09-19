@@ -4,6 +4,9 @@ using System.Collections;
 public class SlingTest : MonoBehaviour {
 
 	public float _maxStretch = 2.0f; 
+	public float _testNumber; 
+	public Vector3 _slingVector; 
+	public Sling _sling; 
 
 	//private SpringJoint2D _spring;
 	[SerializeField]private Transform _stretchPoint;
@@ -35,6 +38,9 @@ public class SlingTest : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		_sling = _sling.GetComponent<Sling> (); 
+
 		_rayToMouse = new Ray (_stretchPoint.position, Vector3.zero); 
 		_maxStretchSqr = _maxStretch * _maxStretch;  //comparing squared magnitudes is faster 
 
@@ -51,6 +57,8 @@ public class SlingTest : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+		_testNumber += Time.deltaTime; 
 
 		if (clickedOn) {
 			Dragging (); 
@@ -71,6 +79,7 @@ public class SlingTest : MonoBehaviour {
 
 	void OnMouseUp(){
 		clickedOn = false; 
+		SetSling (); 
 	}
 
 	void Dragging(){
@@ -92,6 +101,9 @@ public class SlingTest : MonoBehaviour {
 
 
 		Vector3 vectorToTarget = transform.parent.position - transform.position;
+
+		_slingVector = vectorToTarget; //for sling script to use 
+
 		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 		float angleInRad = Mathf.Atan2 (vectorToTarget.y, vectorToTarget.x);
 		Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -124,6 +136,10 @@ public class SlingTest : MonoBehaviour {
 			_blackEye2.parent.position = _eye2OrigPos;
 		}
 
+	}
+
+	void SetSling(){
+		_sling.SetSling (_slingVector, true); 
 	}
 
 
