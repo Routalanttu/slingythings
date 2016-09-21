@@ -26,6 +26,13 @@ public class Sling2 : MonoBehaviour {
 
 	private AudioSource audio;
 
+
+	[SerializeField]private SpriteRenderer _arrowOne;
+	[SerializeField]private SpriteRenderer _arrowTwo;
+	[SerializeField]private SpriteRenderer _arrowThree;
+	[SerializeField]private SpriteRenderer _arrowFour;
+	[SerializeField]private SpriteRenderer _arrowFive;
+
 	//[SerializeField]private Transform _blackEye1;
 	//[SerializeField]private Transform _blackEye2;
 	//[SerializeField]private Transform _eye1JumpPoint;
@@ -86,6 +93,7 @@ public class Sling2 : MonoBehaviour {
 			Debug.Log ("Fuck you");
 		}
 		justLetGo = false;
+		HideAllArrows ();
 	}
 
 	void Dragging(){
@@ -118,8 +126,49 @@ public class Sling2 : MonoBehaviour {
 
 		if (vectorToTarget.magnitude > 0.8f) {
 			_stretchTail.transform.localScale = new Vector3 (vectorToTarget.magnitude / 1.25f, 1f, 1f);
+			if (vectorToTarget.magnitude > 1f) {
+				_arrowOne.enabled = true;
+				Color tmp = _arrowOne.color;
+				tmp.a = (vectorToTarget.magnitude - 1f)*5f;
+				_arrowOne.color = tmp;
+			} else {
+				_arrowOne.enabled = false;
+			}
+			if (vectorToTarget.magnitude > 1.2f) {
+				_arrowTwo.enabled = true;
+				Color tmp = _arrowTwo.color;
+				tmp.a = (vectorToTarget.magnitude - 1.2f)*5f;
+				_arrowTwo.color = tmp;
+			} else {
+				_arrowTwo.enabled = false;
+			}
+			if (vectorToTarget.magnitude > 1.4f) {
+				_arrowThree.enabled = true;
+				Color tmp = _arrowThree.color;
+				tmp.a = (vectorToTarget.magnitude - 1.4f)*5f;
+				_arrowThree.color = tmp;
+			} else {
+				_arrowThree.enabled = false;
+			}
+			if (vectorToTarget.magnitude > 1.6f) {
+				_arrowFour.enabled = true;
+				Color tmp = _arrowFour.color;
+				tmp.a = (vectorToTarget.magnitude - 1.6f)*5f;
+				_arrowFour.color = tmp;
+			} else {
+				_arrowFour.enabled = false;
+			}
+			if (vectorToTarget.magnitude > 1.8f) {
+				_arrowFive.enabled = true;
+				Color tmp = _arrowFive.color;
+				tmp.a = (vectorToTarget.magnitude - 1.8f)*5f;
+				_arrowFive.color = tmp;
+			} else {
+				_arrowFive.enabled = false;
+			}
 		} else {
 			_stretchTail.transform.localScale = new Vector3 (0.8f / 1.25f, 1f, 1f);
+			HideAllArrows ();
 		}
 
 		Debug.Log (vectorToTarget.magnitude);
@@ -139,6 +188,14 @@ public class Sling2 : MonoBehaviour {
 			//_blackEye2.parent.position = _eye2OrigPos;
 		}
 
+	}
+
+	private void HideAllArrows() {
+		_arrowOne.enabled = false;
+		_arrowTwo.enabled = false;
+		_arrowThree.enabled = false;
+		_arrowFour.enabled = false;
+		_arrowFive.enabled = false;
 	}
 
 
