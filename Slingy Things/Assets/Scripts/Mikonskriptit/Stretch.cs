@@ -82,39 +82,26 @@ public class Stretch : MonoBehaviour {
 		//calculate mouse position in the world 
 		Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition); 
 
-		//Debug.Log (Input.mousePosition);
 		//mobile: 
 		//Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);﻿
 
 		//calculate the difference between mousepoint and stretchpoint 
 		Vector2 stretchPointToMouse = mouseWorldPoint - _stretchPoint.position;
 
-		Debug.Log ("stretchPoint.position" + _stretchPoint.position);
+		Debug.Log ("stretchpointtomouse " + stretchPointToMouse.magnitude); 
 
-//		Debug.Log ("stretchpointtomouse " + stretchPointToMouse.magnitude); 
-//
-//		Debug.Log ("mouseworldpointbefore " + mouseWorldPoint); 
+		Debug.Log ("mouseworldpointbefore " + mouseWorldPoint); 
 
 
-		if (stretchPointToMouse.magnitude > _maxStretch) {
-
-			//Vector2 offset = new Vector2(0,1.42f);
-		 	//_rayToMouse.direction = stretchPointToMouse;
-
-			Vector2 clampedStretchPointToMouse = Vector2.ClampMagnitude(stretchPointToMouse, _maxStretch);
-
-//			Debug.Log ("clampattu" + clampedStretchPointToMouse); 
-//			Debug.Log ("normi" + stretchPointToMouse); 
-
-			mouseWorldPoint = stretchPointToMouse + clampedStretchPointToMouse; 
-
+		if (stretchPointToMouse.sqrMagnitude > (_maxStretch*_maxStretch)) {
+			_rayToMouse.direction = stretchPointToMouse;
+			mouseWorldPoint = _rayToMouse.GetPoint (_maxStretch);
 		}
 
-//		Debug.Log ("mouseworldpointafter " + mouseWorldPoint); 
+		Debug.Log ("mouseworldpointafter " + mouseWorldPoint); 
 
 
 		mouseWorldPoint.z = 0f; 
-
 		transform.position = mouseWorldPoint; 
 
 		//_vectorToTarget = transform.parent.position - transform.position;
