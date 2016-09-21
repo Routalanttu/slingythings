@@ -96,7 +96,7 @@ public class Sling2 : MonoBehaviour {
 		if (justLetGo) {
 			audio.PlayOneShot (squish, 0.5f);
 			Debug.Log ("Fuck you");
-			ThrowTheFucker ();
+			//ThrowTheFucker ();
 		}
 		justLetGo = false;
 		HideAllArrows ();
