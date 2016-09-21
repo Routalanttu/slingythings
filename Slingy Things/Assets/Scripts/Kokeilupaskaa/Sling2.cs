@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Sling2 : MonoBehaviour {
 
+
+	// BTW: kaikesta puuttuu deltaTime :D
+
+
 	public float _maxStretch = 2.0f; 
 
 	//private SpringJoint2D _spring;
@@ -33,10 +37,11 @@ public class Sling2 : MonoBehaviour {
 
 	private float _currentVelocityX = 0f;
 	private float _currentVelocityY = 0f;
-	[SerializeField]private float _throwPower = 100f;
+	[SerializeField]private float _throwPowerMultiplier = 0.7f;
 
 	private float _projectedXPower;
 	private float _projectedYPower;
+	private float _throwPower;
 
 
 	[SerializeField]private SpriteRenderer _arrowOne;
@@ -106,7 +111,7 @@ public class Sling2 : MonoBehaviour {
 		if (justLetGo) {
 			audio.PlayOneShot (squish, 0.5f);
 			Debug.Log ("Fuck you");
-			ThrowTheFucker (_projectedXPower,_projectedYPower);
+			ThrowTheFucker (_projectedXPower,_projectedYPower, _throwPower);
 		}
 		justLetGo = false;
 		HideAllArrows ();
@@ -152,7 +157,11 @@ public class Sling2 : MonoBehaviour {
 			}
 			_projectedXPower = Mathf.Sin (angleInRad + Mathf.PI / 2);
 			_projectedYPower = Mathf.Cos (angleInRad + Mathf.PI / 2) * -1;
-			Debug.Log ("Olis lähdössä suuntaan " + _projectedXPower + " ja " + _projectedYPower);
+			_throwPower = vectorToTarget.magnitude;
+			if (_throwPower > _maxStretch) {
+				_throwPower = _maxStretch;
+			}
+			Debug.Log ("Olis lähdössä suuntaan " + _projectedXPower + " ja " + _projectedYPower + " voimalla " + _throwPower);
 			if (vectorToTarget.magnitude > 1f) {
 				_arrowOne.enabled = true;
 				Color tmp = _arrowOne.color;
@@ -227,15 +236,15 @@ public class Sling2 : MonoBehaviour {
 		_arrowFive.enabled = false;
 	}
 
-	private void ThrowTheFucker(float xPower, float yPower) {
+	private void ThrowTheFucker(float xPower, float yPower, float _stretchPower) {
 		Debug.Log ("Throw");
 		if (xPower < 0f) {
 			_drag = Mathf.Abs (_drag) * -1;
 		} else if (xPower > 0f) {
 			_drag = Mathf.Abs (_drag);
 		}
-		_currentVelocityX = xPower*_throwPower;
-		_currentVelocityY = yPower*_throwPower;
+		_currentVelocityX = xPower*_throwPowerMultiplier*_stretchPower;
+		_currentVelocityY = yPower*_throwPowerMultiplier*_stretchPower;
 		_thrown = true;
 	}
 
