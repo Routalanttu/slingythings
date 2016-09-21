@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Sling2 : MonoBehaviour {
 
+
+	// BTW: kaikesta puuttuu deltaTime :D
+
+
 	public float _maxStretch = 2.0f; 
 
 	//private SpringJoint2D _spring;
@@ -25,6 +29,26 @@ public class Sling2 : MonoBehaviour {
 	[SerializeField]private AudioClip squish;
 
 	private AudioSource audio;
+
+	private bool _thrown;
+
+	private float _gravity = 0.1f;
+	private float _drag = 0.01f;
+
+	private float _currentVelocityX = 0f;
+	private float _currentVelocityY = 0f;
+	[SerializeField]private float _throwPowerMultiplier = 0.7f;
+
+	private float _projectedXPower;
+	private float _projectedYPower;
+	private float _throwPower;
+
+
+	[SerializeField]private SpriteRenderer _arrowOne;
+	[SerializeField]private SpriteRenderer _arrowTwo;
+	[SerializeField]private SpriteRenderer _arrowThree;
+	[SerializeField]private SpriteRenderer _arrowFour;
+	[SerializeField]private SpriteRenderer _arrowFive;
 
 	//[SerializeField]private Transform _blackEye1;
 	//[SerializeField]private Transform _blackEye2;
@@ -58,7 +82,7 @@ public class Sling2 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (clickedOn) {
+		if (clickedOn && !_thrown) {
 			Dragging (); 
 			_idleTail.GetComponent<SpriteRenderer> ().enabled = false;
 			_stretchTail.GetComponent<SpriteRenderer> ().enabled = true;
@@ -68,6 +92,9 @@ public class Sling2 : MonoBehaviour {
 			_idleTail.GetComponent<SpriteRenderer> ().enabled = true;
 			_stretchTail.GetComponent<SpriteRenderer> ().enabled = false;
 			_counterPiece.GetComponent<SpriteRenderer> ().enabled = false;
+			if (_thrown) {
+				beMidAir ();
+			}
 		}
 
 
@@ -84,8 +111,10 @@ public class Sling2 : MonoBehaviour {
 		if (justLetGo) {
 			audio.PlayOneShot (squish, 0.5f);
 			Debug.Log ("Fuck you");
+			ThrowTheFucker (_projectedXPower,_projectedYPower, _throwPower);
 		}
 		justLetGo = false;
+		HideAllArrows ();
 	}
 
 	void Dragging(){
@@ -97,10 +126,14 @@ public class Sling2 : MonoBehaviour {
 
 		Vector2 stretchPointToMouse = mouseWorldPoint - _stretchPoint.position;
 
+
+		// Mikko, mitä tän oli tarkoitus tehdä?
+		/*
 		if (stretchPointToMouse.sqrMagnitude > _maxStretchSqr) {
 			_rayToMouse.direction = stretchPointToMouse;
 			mouseWorldPoint = _rayToMouse.GetPoint (_maxStretch);
 		}
+		*/
 
 		mouseWorldPoint.z = 0f; 
 		transform.position = mouseWorldPoint; 
@@ -117,9 +150,63 @@ public class Sling2 : MonoBehaviour {
 		//_blackEye2.localPosition = new Vector3 (Mathf.Sin (angleInRad+1.5708f) * 0.02f, Mathf.Cos (angleInRad+1.5708f)*-0.02f, 0.0f);
 
 		if (vectorToTarget.magnitude > 0.8f) {
-			_stretchTail.transform.localScale = new Vector3 (vectorToTarget.magnitude / 1.25f, 1f, 1f);
+			if (vectorToTarget.magnitude < _maxStretch) {
+				_stretchTail.transform.localScale = new Vector3 (vectorToTarget.magnitude / 1.25f, 1f, 1f);
+			} else {
+				_stretchTail.transform.localScale = new Vector3 (_maxStretch / 1.25f, 1f, 1f);
+			}
+			_projectedXPower = Mathf.Sin (angleInRad + Mathf.PI / 2);
+			_projectedYPower = Mathf.Cos (angleInRad + Mathf.PI / 2) * -1;
+			_throwPower = vectorToTarget.magnitude;
+			if (_throwPower > _maxStretch) {
+				_throwPower = _maxStretch;
+			}
+			Debug.Log ("Olis lähdössä suuntaan " + _projectedXPower + " ja " + _projectedYPower + " voimalla " + _throwPower);
+			if (vectorToTarget.magnitude > 1f) {
+				_arrowOne.enabled = true;
+				Color tmp = _arrowOne.color;
+				tmp.a = (vectorToTarget.magnitude - 1f)*5f;
+				_arrowOne.color = tmp;
+			} else {
+				_arrowOne.enabled = false;
+			}
+			if (vectorToTarget.magnitude > 1.2f) {
+				_arrowTwo.enabled = true;
+				Color tmp = _arrowTwo.color;
+				tmp.a = (vectorToTarget.magnitude - 1.2f)*5f;
+				_arrowTwo.color = tmp;
+			} else {
+				_arrowTwo.enabled = false;
+			}
+			if (vectorToTarget.magnitude > 1.4f) {
+				_arrowThree.enabled = true;
+				Color tmp = _arrowThree.color;
+				tmp.a = (vectorToTarget.magnitude - 1.4f)*5f;
+				_arrowThree.color = tmp;
+			} else {
+				_arrowThree.enabled = false;
+			}
+			if (vectorToTarget.magnitude > 1.6f) {
+				_arrowFour.enabled = true;
+				Color tmp = _arrowFour.color;
+				tmp.a = (vectorToTarget.magnitude - 1.6f)*5f;
+				_arrowFour.color = tmp;
+			} else {
+				_arrowFour.enabled = false;
+			}
+			if (vectorToTarget.magnitude > 1.8f) {
+				_arrowFive.enabled = true;
+				Color tmp = _arrowFive.color;
+				tmp.a = (vectorToTarget.magnitude - 1.8f)*5f;
+				_arrowFive.color = tmp;
+			} else {
+				_arrowFive.enabled = false;
+			}
 		} else {
 			_stretchTail.transform.localScale = new Vector3 (0.8f / 1.25f, 1f, 1f);
+			HideAllArrows ();
+			_projectedXPower = 0f;
+			_projectedYPower = 0f;
 		}
 
 		Debug.Log (vectorToTarget.magnitude);
@@ -139,6 +226,43 @@ public class Sling2 : MonoBehaviour {
 			//_blackEye2.parent.position = _eye2OrigPos;
 		}
 
+	}
+
+	private void HideAllArrows() {
+		_arrowOne.enabled = false;
+		_arrowTwo.enabled = false;
+		_arrowThree.enabled = false;
+		_arrowFour.enabled = false;
+		_arrowFive.enabled = false;
+	}
+
+	private void ThrowTheFucker(float xPower, float yPower, float _stretchPower) {
+		Debug.Log ("Throw");
+		if (xPower < 0f) {
+			_drag = Mathf.Abs (_drag) * -1;
+		} else if (xPower > 0f) {
+			_drag = Mathf.Abs (_drag);
+		}
+		_currentVelocityX = xPower*_throwPowerMultiplier*_stretchPower;
+		_currentVelocityY = yPower*_throwPowerMultiplier*_stretchPower;
+		_thrown = true;
+	}
+
+	private void beMidAir() {
+		if (transform.parent.position.y + _currentVelocityY > 0) {
+			transform.parent.position += new Vector3(_currentVelocityX,_currentVelocityY,0f);
+			_currentVelocityY = _currentVelocityY - _gravity;
+			if (transform.parent.position.x + _currentVelocityX > 0) {
+				_currentVelocityX = _currentVelocityX - _drag;
+			}
+		} else {
+			Debug.Log ("Hit the ground");
+
+			transform.parent.position = new Vector3 (transform.parent.position.x, 0f, transform.parent.position.z);
+			_currentVelocityX = 0f;
+			_currentVelocityY = 0f;
+			_thrown = false;
+		}
 	}
 
 
