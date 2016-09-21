@@ -26,6 +26,8 @@ public class Sling2 : MonoBehaviour {
 
 	private AudioSource audio;
 
+	private bool _thrown;
+
 
 	[SerializeField]private SpriteRenderer _arrowOne;
 	[SerializeField]private SpriteRenderer _arrowTwo;
@@ -75,6 +77,9 @@ public class Sling2 : MonoBehaviour {
 			_idleTail.GetComponent<SpriteRenderer> ().enabled = true;
 			_stretchTail.GetComponent<SpriteRenderer> ().enabled = false;
 			_counterPiece.GetComponent<SpriteRenderer> ().enabled = false;
+			if (_thrown) {
+				
+			}
 		}
 
 
@@ -91,6 +96,7 @@ public class Sling2 : MonoBehaviour {
 		if (justLetGo) {
 			audio.PlayOneShot (squish, 0.5f);
 			Debug.Log ("Fuck you");
+			ThrowTheFucker ();
 		}
 		justLetGo = false;
 		HideAllArrows ();
@@ -196,6 +202,15 @@ public class Sling2 : MonoBehaviour {
 		_arrowThree.enabled = false;
 		_arrowFour.enabled = false;
 		_arrowFive.enabled = false;
+	}
+
+	private void ThrowTheFucker(float xPower, float yPower) {
+		Debug.Log ("Throw");
+		_thrown = true;
+	}
+
+	private void beMidAir() {
+
 	}
 
 
