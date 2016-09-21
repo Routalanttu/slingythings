@@ -1,20 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SlingTest : MonoBehaviour {
+public class Stretch : MonoBehaviour {
 
-	public float _maxStretch = 2.0f; 
-	public float _testNumber; 
+	public float _maxStretch;
 	public Vector3 _slingVector; 
 	public Sling _sling; 
 
-	//private SpringJoint2D _spring;
+	private Vector3 _vectorToTarget; 
+
 	[SerializeField]private Transform _stretchPoint;
-	//private Rigidbody2D _rigidBody;
+
 	private Camera _camera;
-	private Ray _rayToMouse;
+	private Ray2D _rayToMouse;
 	private Vector2 _prevVelocity;
-	private float _maxStretchSqr;
 	private bool clickedOn;
 
 	private GameObject _idleTail;
@@ -41,8 +40,7 @@ public class SlingTest : MonoBehaviour {
 
 		_sling = _sling.GetComponent<Sling> (); 
 
-		_rayToMouse = new Ray (_stretchPoint.position, Vector3.zero); 
-		_maxStretchSqr = _maxStretch * _maxStretch;  //comparing squared magnitudes is faster 
+		_rayToMouse = new Ray2D (_stretchPoint.position, Vector3.zero); 
 
 		_idleTail = transform.parent.FindChild ("LieroLowerBody").gameObject;
 		_stretchTail = transform.parent.FindChild ("LieroStretch4").gameObject;
@@ -57,8 +55,6 @@ public class SlingTest : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-		_testNumber += Time.deltaTime; 
 
 		if (clickedOn) {
 			Dragging (); 
@@ -83,29 +79,48 @@ public class SlingTest : MonoBehaviour {
 	}
 
 	void Dragging(){
+		//calculate mouse position in the world 
 		Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint (Input.mousePosition); 
 
-		//When used for mobile: 
+		//mobile: 
 		//Vector3 mouseWorldPoint = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);﻿
 
-
+		//calculate the difference between mousepoint and stretchpoint 
 		Vector2 stretchPointToMouse = mouseWorldPoint - _stretchPoint.position;
 
-		if (stretchPointToMouse.sqrMagnitude > _maxStretchSqr) {
+		Debug.Log ("stretchpointtomouse " + stretchPointToMouse.magnitude); 
+
+		Debug.Log ("mouseworldpointbefore " + mouseWorldPoint); 
+
+
+		if (stretchPointToMouse.sqrMagnitude > (_maxStretch*_maxStretch)) {
 			_rayToMouse.direction = stretchPointToMouse;
 			mouseWorldPoint = _rayToMouse.GetPoint (_maxStretch);
 		}
 
+		Debug.Log ("mouseworldpointafter " + mouseWorldPoint); 
+
+
 		mouseWorldPoint.z = 0f; 
 		transform.position = mouseWorldPoint; 
 
+		//_vectorToTarget = transform.parent.position - transform.position;
+		_vectorToTarget = _stretchPoint.position - transform.position;
 
-		Vector3 vectorToTarget = transform.parent.position - transform.position;
+		_slingVector = _vectorToTarget; //for sling script to use 
 
-		_slingVector = vectorToTarget; //for sling script to use 
+		Stretching (); 
 
-		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-		float angleInRad = Mathf.Atan2 (vectorToTarget.y, vectorToTarget.x);
+	}
+
+	void SetSling(){
+		_sling.SetSling (_slingVector, true); 
+	}
+
+	void Stretching(){
+
+		float angle = Mathf.Atan2(_vectorToTarget.y, _vectorToTarget.x) * Mathf.Rad2Deg;
+		float angleInRad = Mathf.Atan2 (_vectorToTarget.y, _vectorToTarget.x);
 		Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 		_stretchTail.transform.rotation = q;
 		_counterPiece.transform.rotation = q;
@@ -113,21 +128,20 @@ public class SlingTest : MonoBehaviour {
 		_blackEye1.localPosition = new Vector3 (Mathf.Sin (angleInRad+1.5708f) * 0.02f, Mathf.Cos (angleInRad+1.5708f)*-0.02f, 0.0f);
 		_blackEye2.localPosition = new Vector3 (Mathf.Sin (angleInRad+1.5708f) * 0.02f, Mathf.Cos (angleInRad+1.5708f)*-0.02f, 0.0f);
 
-		if (vectorToTarget.magnitude > 0.15f) {
-			_stretchTail.transform.localScale = new Vector3 (vectorToTarget.magnitude / 1.25f, 1f, 1f);
+		if (_vectorToTarget.magnitude > 0.15f) {
+			_stretchTail.transform.localScale = new Vector3 (_vectorToTarget.magnitude / 1.25f, 1f, 1f);
 		} else {
 			_stretchTail.transform.localScale = new Vector3 (0.15f / 1.25f, 1f, 1f);
 		}
 
-		Debug.Log (vectorToTarget.magnitude);
 
 
 		if (transform.localPosition.x > 0f) {
 			_upperBody.GetComponent<SpriteRenderer> ().flipX = true;
 			_idleTail.GetComponent<SpriteRenderer> ().flipX = true;
 
-			_blackEye1.parent.position = _eye1JumpPoint.position;
-			_blackEye2.parent.position = _eye2JumpPoint.position;
+		//	_blackEye1.parent.position = _eye1JumpPoint.position;
+		//	_blackEye2.parent.position = _eye2JumpPoint.position;
 		} else if (transform.localPosition.x < 0f) {
 			_upperBody.GetComponent<SpriteRenderer> ().flipX = false;
 			_idleTail.GetComponent<SpriteRenderer> ().flipX = false;
@@ -135,11 +149,8 @@ public class SlingTest : MonoBehaviour {
 			_blackEye1.parent.position = _eye1OrigPos;
 			_blackEye2.parent.position = _eye2OrigPos;
 		}
+			
 
-	}
-
-	void SetSling(){
-		_sling.SetSling (_slingVector, true); 
 	}
 
 

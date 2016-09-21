@@ -57,7 +57,6 @@ public class Sling : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col){
 
 		if (col.gameObject.tag == "Ground") {
-			Debug.Log ("hit ground"); 
 			_isInAir = false; 
 			_sling = false; 
 			_flyDir = new Vector3 (1, 1); 
