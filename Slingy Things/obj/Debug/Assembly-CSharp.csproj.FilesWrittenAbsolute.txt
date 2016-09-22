@@ -1,0 +1,13 @@
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/UnityEngine.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/UnityEditor.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/Mono.Cecil.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/Unity.DataContract.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/mikkomcmenamin/Documents/Unity/SlingyThings/Slingy Things/Temp/bin/Debug/Mono.Cecil.Mdb.dll
