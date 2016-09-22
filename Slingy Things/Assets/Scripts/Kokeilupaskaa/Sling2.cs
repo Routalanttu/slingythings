@@ -34,6 +34,7 @@ public class Sling2 : MonoBehaviour {
 
 	private float _gravity = 0.1f;
 	private float _drag = 0.01f;
+	private bool goingRight;
 
 	private float _currentVelocityX = 0f;
 	private float _currentVelocityY = 0f;
@@ -111,6 +112,11 @@ public class Sling2 : MonoBehaviour {
 		if (justLetGo) {
 			audio.PlayOneShot (squish, 0.5f);
 			Debug.Log ("Fuck you");
+			if (_projectedXPower > 0f) {
+				goingRight = true;
+			} else if (_projectedXPower < 0f) {
+				goingRight = false;
+			}
 			ThrowTheFucker (_projectedXPower,_projectedYPower, _throwPower);
 		}
 		justLetGo = false;
@@ -238,11 +244,6 @@ public class Sling2 : MonoBehaviour {
 
 	private void ThrowTheFucker(float xPower, float yPower, float _stretchPower) {
 		Debug.Log ("Throw");
-		if (xPower < 0f) {
-			_drag = Mathf.Abs (_drag) * -1;
-		} else if (xPower > 0f) {
-			_drag = Mathf.Abs (_drag);
-		}
 		_currentVelocityX = xPower*_throwPowerMultiplier*_stretchPower;
 		_currentVelocityY = yPower*_throwPowerMultiplier*_stretchPower;
 		_thrown = true;
@@ -252,9 +253,17 @@ public class Sling2 : MonoBehaviour {
 		if (transform.parent.position.y + _currentVelocityY > 0) {
 			transform.parent.position += new Vector3(_currentVelocityX,_currentVelocityY,0f);
 			_currentVelocityY = _currentVelocityY - _gravity;
-			if (transform.parent.position.x + _currentVelocityX > 0) {
+			if (_currentVelocityX > 0f && goingRight) {
 				_currentVelocityX = _currentVelocityX - _drag;
+			} else {
+				_currentVelocityX = Mathf.Lerp (_currentVelocityX, 0f, 0.01f);
 			}
+			if (_currentVelocityX < 0f && !goingRight) {
+				_currentVelocityX = _currentVelocityX - _drag;
+			} else {
+				_currentVelocityX = Mathf.Lerp (_currentVelocityX, 0f, 0.01f);
+			}
+			Debug.Log (_currentVelocityX);
 		} else {
 			Debug.Log ("Hit the ground");
 
@@ -262,6 +271,7 @@ public class Sling2 : MonoBehaviour {
 			_currentVelocityX = 0f;
 			_currentVelocityY = 0f;
 			_thrown = false;
+			goingRight = false;
 		}
 	}
 

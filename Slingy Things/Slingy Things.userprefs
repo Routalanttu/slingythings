@@ -4,9 +4,8 @@
     <Files>
       <File FileName="Assets\Scripts\Kokeilupaskaa\SlingTest.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Kokeilupaskaa\SinCosTest.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Kokeilupaskaa\Sling2.cs" Line="99" Column="12" />
+      <File FileName="Assets\Scripts\Kokeilupaskaa\Sling2.cs" Line="264" Column="64" />
       <File FileName="Assets\Scripts\Mikonskriptit\Stretch.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Mikonskriptit\Sling.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
