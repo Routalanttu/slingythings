@@ -19,10 +19,24 @@ public class ExplosionTest : MonoBehaviour {
 	void Update () {
 	    for (int i = 0; i < objects.Length; i++)
         {
-            distance = Vector3.Distance(explosion.transform.position, objects[i].transform.position);
-            if (distance < explosionRadius)
-            {
+            distance = (explosion.transform.position - objects[i].transform.position).magnitude;
+            if (distance < explosionRadius) {
                 Debug.Log("Close enough");
+            }
+            if (distance < explosionRadius - 10f) {
+                Debug.Log("Close enough - 10f");
+            }
+            if (distance < explosionRadius - 20f) {
+                Debug.Log("Close enough - 20f");
+            }
+            if (distance < explosionRadius - 30f) {
+                Debug.Log("Close enough - 30f");
+            }
+            if (distance < explosionRadius - 40f) {
+                Debug.Log("Close enough - 40f");
+            }
+            if (distance < explosionRadius - 50f) {
+                Debug.Log("Close enough - 50f");
             }
         }
 	}
