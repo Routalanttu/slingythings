@@ -1,26 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Stretch2 : MonoBehaviour {
+public class RBStretch: MonoBehaviour {
 
 	public float _maxStretch = 2.0f; 
-
-	[SerializeField]private Transform _stretchPoint;
 
 	private bool clickedOn;
 
 	private GameObject _idleTail;
 	private GameObject _stretchTail;
 	private GameObject _upperBody;
+	private GameObject _counterPiece; 
 
-	Vector2 _vectorToMouse;
-	Vector2 _clampedVectorToMouse; 
 	Vector2 _slugPosition;
-	Vector2 _stretchPointPosition; 
 	Vector2 _mousePos;
-	Transform _gcTransform; 
-
-	private Transform _counterPiece;
+	Transform _gcTransform;
 
 	[SerializeField]private AudioClip squish;
 
@@ -43,17 +37,15 @@ public class Stretch2 : MonoBehaviour {
 
 		_gcTransform = GetComponent<Transform> (); 
 
-		_idleTail = transform.parent.FindChild ("slugTailIdle").gameObject;
-		_stretchTail = transform.parent.FindChild ("slugTailStretch2").gameObject;
-		_upperBody = transform.parent.FindChild ("slugHead").gameObject;
-		_counterPiece = transform.parent.FindChild ("slugCounterPiece2");
+		_idleTail = this.gameObject.transform.GetChild(0).gameObject; 
+		_stretchTail= this.gameObject.transform.GetChild(1).gameObject; 
+		_upperBody= this.gameObject.transform.GetChild(2).gameObject; 
+		_counterPiece= this.gameObject.transform.GetChild(3).gameObject;  
 	
 	}
 
 	// Update is called once per frame
 	void Update () {
-
-		_mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition); 
 
 		if (clickedOn) {
 			Dragging ();
@@ -61,7 +53,6 @@ public class Stretch2 : MonoBehaviour {
 			_stretchTail.GetComponent<SpriteRenderer> ().enabled = true;
 			_counterPiece.GetComponent<SpriteRenderer> ().enabled = true;
 		} else {
-			//transform.localPosition = new Vector3 (0f, 0f, 0f);
 			_idleTail.GetComponent<SpriteRenderer> ().enabled = true;
 			_stretchTail.GetComponent<SpriteRenderer> ().enabled = false;
 			_counterPiece.GetComponent<SpriteRenderer> ().enabled = false;
@@ -84,16 +75,10 @@ public class Stretch2 : MonoBehaviour {
 
 	void Dragging(){
 
+		_mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition); 
 		_slugPosition = _gcTransform.position; //have to use the vector2 form for below
-		_stretchPointPosition = _stretchPoint.position; 
 
-		_vectorToMouse = _mousePos - _slugPosition; 
-
-		//transform.position = mouseWorldPoint;
-	
-		Vector2 vectorToTarget = _slugPosition - _stretchPointPosition; 
-
-
+		Vector2 vectorToTarget = _slugPosition - _mousePos; 
 
 		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 		float angleInRad = Mathf.Atan2 (vectorToTarget.y, vectorToTarget.x);
@@ -103,7 +88,12 @@ public class Stretch2 : MonoBehaviour {
 
 
 		if (vectorToTarget.magnitude > 0.8f) {
-			_stretchTail.transform.localScale = new Vector3 (vectorToTarget.magnitude / 1.25f, 1f, 1f);
+			if (vectorToTarget.magnitude < _maxStretch) {
+				_stretchTail.transform.localScale = new Vector3 (vectorToTarget.magnitude / 1.25f, 1f, 1f);
+			} else {
+				_stretchTail.transform.localScale = new Vector3 (_maxStretch / 1.25f, 1f, 1f);
+			}
+			
 			if (vectorToTarget.magnitude > 1f) {
 				_arrowOne.enabled = true;
 				Color tmp = _arrowOne.color;
@@ -149,12 +139,11 @@ public class Stretch2 : MonoBehaviour {
 			HideAllArrows ();
 		}
 
-
-		if (transform.localPosition.x > 0f) {
+		if (vectorToTarget.x < 0f) {
 			_upperBody.GetComponent<SpriteRenderer> ().flipX = true;
 			_idleTail.GetComponent<SpriteRenderer> ().flipX = true;
 
-		} else if (transform.localPosition.x < 0f) {
+		} else if (vectorToTarget.x > 0f) {
 			_upperBody.GetComponent<SpriteRenderer> ().flipX = false;
 			_idleTail.GetComponent<SpriteRenderer> ().flipX = false;
 		

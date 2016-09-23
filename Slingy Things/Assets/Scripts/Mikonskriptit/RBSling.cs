@@ -63,12 +63,7 @@ public class RBSling : MonoBehaviour {
 		}
 
 		if (_fire) {
-
 			_slingDir = _mousePos - _slugPosition; 
-
-			//_rigidBody.AddForce (_slingDir * _forceAmount, ForceMode2D.Impulse); 
-			Debug.Log ("Fire"); 
-			Debug.Log (_mousePos); 
 		}
 			
 	
