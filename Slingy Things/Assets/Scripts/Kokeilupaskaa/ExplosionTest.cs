@@ -17,7 +17,7 @@ public class ExplosionTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    for (int i = 0; i < objects.Length; i++)
+	    /*for (int i = 0; i < objects.Length; i++)
         {
             distance = (explosion.transform.position - objects[i].transform.position).magnitude;
             if (distance < explosionRadius) {
@@ -38,6 +38,6 @@ public class ExplosionTest : MonoBehaviour {
             if (distance < explosionRadius - 50f) {
                 Debug.Log("Close enough - 50f");
             }
-        }
+        }*/
 	}
 }
