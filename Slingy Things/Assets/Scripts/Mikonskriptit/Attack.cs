@@ -42,9 +42,12 @@ public class Attack : MonoBehaviour {
             Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
 			Vector2 hitPosition = hit.GetComponent<Transform>().position;
 			Vector2 explosionDir = hitPosition- explosionPos;
-            if (rb != null){
+			float explosionDamage = explosionDir.magnitude; 
+			if (rb != null && hit.gameObject.tag == "Player"){
 				rb.AddForce (explosionDir * _explosionForce, ForceMode2D.Impulse); 
+				hit.GetComponent<SlugHealth> ().DecreaseHealth (explosionDamage); 
 				Debug.Log("PUMM"); 
+
 			}
                 
 		}
