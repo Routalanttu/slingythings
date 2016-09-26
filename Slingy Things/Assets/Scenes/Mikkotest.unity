@@ -437,6 +437,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!1 &510510365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 510510368}
+  - 114: {fileID: 510510367}
+  - 114: {fileID: 510510366}
+  m_Layer: 0
+  m_Name: _GAME CONTROLLERS_
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &510510366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510510365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0b97dc8dfff4960ab97277900f1426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: 7148737ef865a4ca583e0e29ee7566b0, type: 3}
+  loopMusic: 1
+--- !u!114 &510510367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510510365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea8023e6d5074c379189580248d188d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameSounds:
+  - {fileID: 8300000, guid: 5cc22f8bce23e4a089e8668ad318a421, type: 3}
+  - {fileID: 8300000, guid: b177cd7c6d49e8d419734b5a5eb7a9f3, type: 3}
+--- !u!4 &510510368
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510510365}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.870682, y: 6.4760847, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1 &578139369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,7 +1079,8 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 82000012149367874, guid: f8208925361f342f6b7de349400458cb, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f8208925361f342f6b7de349400458cb, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1036201716

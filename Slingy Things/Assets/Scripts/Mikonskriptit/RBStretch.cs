@@ -18,8 +18,6 @@ public class RBStretch: MonoBehaviour {
 
 	[SerializeField]private AudioClip squish;
 
-	private AudioSource audio;
-
 	private bool _thrown;
 
 	[SerializeField]private SpriteRenderer _arrowOne;
@@ -29,7 +27,7 @@ public class RBStretch: MonoBehaviour {
 	[SerializeField]private SpriteRenderer _arrowFive;
 
 	void Awake(){
-		audio = GetComponent<AudioSource> ();
+		
 	}
 
 	// Use this for initialization
@@ -69,7 +67,7 @@ public class RBStretch: MonoBehaviour {
 
 	void OnMouseUp(){
 		clickedOn = false;
-		audio.PlayOneShot (squish, 0.5f);
+		SoundController.instance.PlaySoundByIndex (1, _gcTransform.position); 
 		HideAllArrows ();
 	}
 

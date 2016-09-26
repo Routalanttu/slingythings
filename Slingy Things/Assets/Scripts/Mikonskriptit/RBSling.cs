@@ -13,7 +13,6 @@ public class RBSling : MonoBehaviour {
 	Vector2 _clampedVectorToMouse; 
 	Vector2 _slugPosition;
 
-
 	bool _up;
 	bool _down;
 	bool _left;
