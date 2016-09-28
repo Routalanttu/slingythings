@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
 	private static GameManager _instance; 
 	private static bool _isQuitting = false;
 
+	private int slugAmount = 4; 
+
 	public static GameManager Instance {
 		get {
 			if (_instance == null && !_isQuitting) {
@@ -81,7 +83,15 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void GameOver(){
-		GUIManager.GameOver (); 
 		Pause (); 
+		GUIManager.GameOver (); 
+	}
+
+	public void KillSlug(){
+		slugAmount--; 
+
+		if (slugAmount <= 0) {
+			GameOver();
+		}
 	}
 }

@@ -38,6 +38,6 @@ public class SlugHealth : MonoBehaviour {
 
 	public void Die(){
 		Destroy (gameObject); 
-		GameManager.Instance.GameOver (); 
+		GameManager.Instance.KillSlug (); 
 	}
 }

@@ -6,6 +6,8 @@ public class RBSling : MonoBehaviour {
 	public float _forceAmount; 
 	public float _maxPower; 
 
+	public Attack _attack; 
+
 	Vector2 _slingDir; 
 	Vector2 _vectorToMouse;
 	Vector2 _clampedVectorToMouse; 
@@ -33,13 +35,8 @@ public class RBSling : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		_fire = Input.GetKeyDown (KeyCode.Mouse0); 
+
 		_mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition); 
-
-
-		if (_fire) {
-			_slingDir = _mousePos - _slugPosition; 
-		}
 			
 	
 	}

@@ -7,9 +7,9 @@ public class Attack : MonoBehaviour {
 	public float _explosionForce = 10F;
 	public int _explosionDamageMultiplier = 2; 
 	public ParticleSystem _explosionPrefab; 
-
 	private Transform _gcTransform; 
 	private bool _fire; 
+	private bool _armed; 
 
 	// Use this for initialization
 	void Start () {
@@ -49,11 +49,20 @@ public class Attack : MonoBehaviour {
 			if (rb != null && hit.gameObject.tag == "Slug"){
 				rb.AddForce (explosionDir * _explosionForce, ForceMode2D.Impulse);  
 				hit.GetComponent<SlugHealth> ().DecreaseHealth (explosionDamage); 
-				Debug.Log("explosion damage:" + explosionDamage + "when radius: " + radius + "and explosiondelta magnitude: " + explosionDelta.magnitude); 
 
 			}
-                
+		}
+
+		_armed = false; 
+	}
+
+	void OnCollisionEnter2D(Collision2D coll){
+
+		if (_armed) {
+			Fire(); 
 		}
 
 	}
+
+
 }
