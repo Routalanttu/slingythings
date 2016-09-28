@@ -18,7 +18,7 @@ public class camFollow : MonoBehaviour {
 	void Update () {
 	
 
-		m_transform.position = Vector3.Lerp (m_transform.position, target.position, dampingSpeed) + new Vector3(0,0.2f,-10); 
+		m_transform.position = Vector3.Lerp (m_transform.position, target.position, dampingSpeed) + new Vector3(0,1.5f,-10); 
 
 	}
 }
