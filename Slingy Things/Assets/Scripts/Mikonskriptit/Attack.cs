@@ -5,6 +5,7 @@ public class Attack : MonoBehaviour {
 
 	public float radius = 5.0F;
 	public float _explosionForce = 10F;
+	public int _explosionDamageMultiplier = 2; 
 	public ParticleSystem _explosionPrefab; 
 
 	private Transform _gcTransform; 
@@ -31,23 +32,24 @@ public class Attack : MonoBehaviour {
 
 	void Fire(){
 
-		Debug.Log("Nyt Rajaytellaan!!"); 
-
 		Vector2 explosionPos = _gcTransform.position; 
 		ParticleSystem explosion; 
 		explosion = Instantiate(_explosionPrefab, _gcTransform.position, Quaternion.identity) as ParticleSystem; 
 		explosion.Play(); 
-		SoundController.instance.PlaySoundByIndex (0, _gcTransform.position); 
+		SoundController.Instance.PlaySoundByIndex (0, _gcTransform.position); 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, radius);
         foreach (Collider2D hit in colliders) {
             Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
 			Vector2 hitPosition = hit.GetComponent<Transform>().position;
-			Vector2 explosionDir = hitPosition- explosionPos;
-			float explosionDamage = explosionDir.magnitude; 
-			if (rb != null && hit.gameObject.tag == "Player"){
-				rb.AddForce (explosionDir * _explosionForce, ForceMode2D.Impulse); 
+			Vector2 explosionDelta = hitPosition- explosionPos; //Get vector between explosion and hit 
+			Vector2 explosionDir = Vector3.Normalize (explosionDelta); //normalize the vector to get direction only 
+			float deltaDistance = radius - explosionDelta.magnitude; //get the effective blast magnitude
+			int explosionDamage = (int)deltaDistance * _explosionDamageMultiplier; 
+
+			if (rb != null && hit.gameObject.tag == "Slug"){
+				rb.AddForce (explosionDir * _explosionForce, ForceMode2D.Impulse);  
 				hit.GetComponent<SlugHealth> ().DecreaseHealth (explosionDamage); 
-				Debug.Log("PUMM"); 
+				Debug.Log("explosion damage:" + explosionDamage + "when radius: " + radius + "and explosiondelta magnitude: " + explosionDelta.magnitude); 
 
 			}
                 

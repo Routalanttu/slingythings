@@ -5,18 +5,12 @@ public class RBSling : MonoBehaviour {
 
 	public float _forceAmount; 
 	public float _maxPower; 
-	float _vert; 
-	float _horz; 
 
 	Vector2 _slingDir; 
 	Vector2 _vectorToMouse;
 	Vector2 _clampedVectorToMouse; 
 	Vector2 _slugPosition;
 
-	bool _up;
-	bool _down;
-	bool _left;
-	bool _right;
 	bool _fire; 
 
 	private Vector2 _mousePos;
@@ -39,27 +33,9 @@ public class RBSling : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		_vert= Input.GetAxis( "Vertical" );
-		_horz= Input.GetAxis( "Horizontal" );
 		_fire = Input.GetKeyDown (KeyCode.Mouse0); 
 		_mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition); 
 
-		_up		= ( _vert>0 );
-		_down	= ( _vert<0 );
-		_left	= ( _horz<0 );
-		_right	= ( _horz>0 );	
-
-		if (_up) {
-			_rigidBody.AddForce (Vector2.up * _forceAmount, ForceMode2D.Impulse); 
-		}
-
-		if (_right) {
-			_rigidBody.AddForce (Vector2.right * _forceAmount, ForceMode2D.Impulse); 
-		}
-
-		if (_left) {
-			_rigidBody.AddForce (Vector2.left * _forceAmount, ForceMode2D.Impulse); 
-		}
 
 		if (_fire) {
 			_slingDir = _mousePos - _slugPosition; 
