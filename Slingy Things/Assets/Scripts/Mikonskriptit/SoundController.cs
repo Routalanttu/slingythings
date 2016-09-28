@@ -40,29 +40,34 @@ public class SoundObject {
 
 public class SoundController : MonoBehaviour {
 
-	public static SoundController instance; 
+	private static SoundController _instance; 
+
+	public static SoundController Instance{
+		get {
+			return _instance; 
+		}
+	}
 
 	public AudioClip[] GameSounds; 
-
 	private int totalSounds; 
 	private ArrayList soundObjectList; 
 	private SoundObject tempSoundObj; 
-
 	private float volume;  
 
 	public void Awake(){
 
-		instance = this; 
-	}
-
-	void Start () {
+		if (_instance == null) {
+			_instance = this; 
+		}else if (_instance != this) {
+			 Destroy (this); 
+		}
 
 		if(PlayerPrefs.HasKey("soundvolume")){
 			volume = PlayerPrefs.GetFloat ("soundvolume"); 
 		}else{
 			volume = 1; 
 		}
-			
+
 		soundObjectList = new ArrayList(); 
 
 		foreach (AudioClip theSound in GameSounds) {
@@ -71,7 +76,7 @@ public class SoundController : MonoBehaviour {
 			soundObjectList.Add (tempSoundObj); 
 			totalSounds++; 
 		}
-	
+
 	}
 
 	public void PlaySoundByIndex(int anIndexNumber, Vector3 aPosition) {
