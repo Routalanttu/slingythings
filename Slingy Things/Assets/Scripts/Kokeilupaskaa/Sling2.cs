@@ -98,6 +98,10 @@ public class Sling2 : MonoBehaviour {
 			}
 		}
 
+		if (_thrown) {
+			//transform.parent.rotation = Quaternion.LookRotation(rigidbody.velocity);
+		}
+
 
 	}
 
