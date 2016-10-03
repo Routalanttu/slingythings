@@ -42,11 +42,11 @@ public class SplashScreen : MonoBehaviour {
 
 
         if (delayTime < 0f) {
-            SceneManager.LoadScene("Pyrytest");
+            SceneManager.LoadScene("Menu");
         }
 
         if (Input.GetButtonDown("Jump")) {
-            SceneManager.LoadScene("Pyrytest");
+            SceneManager.LoadScene("Menu");
         }
     }
 }
