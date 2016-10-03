@@ -3,20 +3,15 @@ using System.Collections;
 
 public class SlugHealth : MonoBehaviour {
 
-	public GameObject healthBarContainer;
 	public int _slugHealth = 100;
 	private Vector3 slugPos;
-
+	private Slug _slug; 
 
 	// Use this for initialization
 	void Start () {
 
-		slugPos = transform.position;
-		slugPos.x -= 1.0f;
-		slugPos.y += 1.3f;
-		healthBarContainer.transform.position = slugPos;
+		_slug = GetComponent<Slug> (); 
 
-	
 	}
 	
 	// Update is called once per frame
@@ -27,9 +22,9 @@ public class SlugHealth : MonoBehaviour {
 	public void DecreaseHealth(int damageAmount) {
 
 		_slugHealth -= damageAmount; 
+		GameManager.Instance.DecreaseHealth ((int)_slug.teamSelect, damageAmount); 
 
 		float hpQuotient = (float)damageAmount / 100; 
-		healthBarContainer.transform.localScale -= new Vector3(hpQuotient/3, 0, 0);  //kolmonen jakajana purkkaa vielä!!
 
 		if(_slugHealth <= 0) {
 			Die (); 
@@ -37,7 +32,8 @@ public class SlugHealth : MonoBehaviour {
 	}
 
 	public void Die(){
+		int teamNumber = (int) GetComponent<Slug> ().teamSelect; //get the enum as int 
+		GameManager.Instance.KillSlug (teamNumber, gameObject); 
 		Destroy (gameObject); 
-		GameManager.Instance.KillSlug (); 
 	}
 }

@@ -16,15 +16,20 @@ public class RBSling : MonoBehaviour {
 	bool _fire; 
 
 	private Vector2 _mousePos;
+	private Slug _slug; 
 
 	Rigidbody2D _rigidBody; 
 	Transform _gcTransform; 
+
+
 
 	// Use this for initialization
 	void Start () {
 	
 		_rigidBody = GetComponent<Rigidbody2D> (); 
 		_gcTransform = GetComponent<Transform> (); 
+		_attack = GetComponent<Attack> (); 
+		_slug = GetComponent<Slug> (); 
 
 		if (_maxPower == 0) {
 			_maxPower = 2.5f; 
@@ -35,9 +40,7 @@ public class RBSling : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
 		_mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition); 
-			
 	
 	}
 
@@ -48,15 +51,23 @@ public class RBSling : MonoBehaviour {
 
 	void OnMouseUp(){
 
-		_slugPosition = _gcTransform.position; //have to use the vector2 form for below
-		_vectorToMouse = _mousePos - _slugPosition; 
+		if (_slug.IsActive) {
 
-		if (_vectorToMouse.magnitude > _maxPower) {
-			_vectorToMouse = Vector2.ClampMagnitude (_vectorToMouse, _maxPower);
-		} 
+			_slugPosition = _gcTransform.position; //have to use the vector2 form for below
+			_vectorToMouse = _mousePos - _slugPosition; 
 
-		_rigidBody.AddForce (-_vectorToMouse * _forceAmount, ForceMode2D.Impulse);
+			if (_vectorToMouse.magnitude > _maxPower) {
+				_vectorToMouse = Vector2.ClampMagnitude (_vectorToMouse, _maxPower);
+			} 
 
+			_rigidBody.AddForce (-_vectorToMouse * _forceAmount, ForceMode2D.Impulse);
+
+			_attack.ArmSlug (); 
+
+
+
+		}
+			
 	}
 
 

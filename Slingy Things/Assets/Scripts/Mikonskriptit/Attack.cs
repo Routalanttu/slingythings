@@ -9,13 +9,15 @@ public class Attack : MonoBehaviour {
 	public ParticleSystem _explosionPrefab; 
 	private Transform _gcTransform; 
 	private bool _fire; 
-	private bool _armed; 
+	private bool _armed = true; 
+	private Slug _slug; 
 
 	// Use this for initialization
 	void Start () {
 
 		_gcTransform = GetComponent<Transform>(); 
-	
+		_slug = GetComponent<Slug> (); 
+
 	}
 	
 	// Update is called once per frame
@@ -24,10 +26,18 @@ public class Attack : MonoBehaviour {
 		
 		_fire = Input.GetKeyDown (KeyCode.Space); 
 
-		if(_fire){
+		if(_fire && _armed){
 			Fire(); 
 		}
 	
+	}
+
+	void OnCollisionEnter2D(Collision2D coll){
+
+		if (_armed && _slug.IsActive) {
+			Fire(); 
+		}
+
 	}
 
 	void Fire(){
@@ -52,16 +62,20 @@ public class Attack : MonoBehaviour {
 
 			}
 		}
-
+			
 		_armed = false; 
+		_fire = false; 
+
+		Invoke ("NextPlayerMove", 1); 
+
 	}
 
-	void OnCollisionEnter2D(Collision2D coll){
+	public void ArmSlug(){
+		_armed = true; 
+	}
 
-		if (_armed) {
-			Fire(); 
-		}
-
+	public void NextPlayerMove(){
+		GameManager.Instance.NextPlayerMove (); 
 	}
 
 

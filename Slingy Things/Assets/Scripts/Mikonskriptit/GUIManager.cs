@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class GUIManager : MonoBehaviour {
 
 	public Text _message; 
-	public Text _blueTeamMessage; 
-	public Text _redTeamMessage; 
+	public Text _team1HealthText; 
+	public Text _team2HealthText; 
 
 	void Awake(){
 
@@ -14,15 +14,13 @@ public class GUIManager : MonoBehaviour {
 			Debug.LogError ("GUIManager - _message missing"); 
 		}
 
-		if (_message == null) {
+		if (_team1HealthText == null) {
 			Debug.LogError ("GUIManager - _blueTeamMessage missing"); 
 		}
 
-		if (_message == null) {
+		if (_team2HealthText == null) {
 			Debug.LogError ("GUIManager - _redTeamMessage missing"); 
 		}
-
-		HideMessage (); 
 
 	}
 
@@ -45,8 +43,19 @@ public class GUIManager : MonoBehaviour {
 		_message.gameObject.SetActive (false); 
 	}
 
-	public void GameOver(){
-		ShowMessage ("Game Over"); 
+	public void GameOver(int winningTeamNumber){
+
+		if (winningTeamNumber == 1) {
+			ShowMessage ("Team 1 wins!!"); 
+		} else if (winningTeamNumber == 2) {
+			ShowMessage ("Team 2 wins!!"); 
+		}
+
+	}
+
+	public void UpdateHealth(int team1health, int team2health){
+		_team1HealthText.text = "Team 1 health: " + team1health; 
+		_team2HealthText.text = "Team 2 health: " + team2health; 
 	}
 
 	public void Paused(){

@@ -19,12 +19,14 @@ public class RBStretch: MonoBehaviour {
 	[SerializeField]private AudioClip squish;
 
 	private bool _thrown;
+	private Slug _slug; 
 
 	[SerializeField]private SpriteRenderer _arrowOne;
 	[SerializeField]private SpriteRenderer _arrowTwo;
 	[SerializeField]private SpriteRenderer _arrowThree;
 	[SerializeField]private SpriteRenderer _arrowFour;
 	[SerializeField]private SpriteRenderer _arrowFive;
+
 
 	void Awake(){
 		
@@ -39,6 +41,7 @@ public class RBStretch: MonoBehaviour {
 		_stretchTail= this.gameObject.transform.GetChild(1).gameObject; 
 		_upperBody= this.gameObject.transform.GetChild(2).gameObject; 
 		_counterPiece= this.gameObject.transform.GetChild(3).gameObject;  
+		_slug = GetComponent<Slug> (); 
 	
 	}
 
@@ -62,7 +65,10 @@ public class RBStretch: MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		clickedOn = true;
+		if (_slug.IsActive) {
+			clickedOn = true;
+		}
+
 	}
 
 	void OnMouseUp(){
