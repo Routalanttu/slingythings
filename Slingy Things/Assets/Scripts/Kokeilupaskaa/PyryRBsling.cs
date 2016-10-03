@@ -6,7 +6,7 @@ public class PyryRBsling : MonoBehaviour {
 	public float _forceAmount; 
 	public float _maxPower; 
 
-	public Attack _attack; 
+	public PyryAttack _attack; 
 
 	Vector2 _slingDir; 
 	Vector2 _vectorToMouse;
@@ -57,6 +57,12 @@ public class PyryRBsling : MonoBehaviour {
 			_flyTrans.localRotation = Quaternion.AngleAxis (angle, Vector3.forward);
 		}
 
+		if (_rigidBody.velocity.x < 0f) {
+			_flyAnim.flipY = true;
+		} else if (_rigidBody.velocity.x > 0f) {
+			_flyAnim.flipY = false;
+		}
+
 
 	}
 
@@ -76,11 +82,21 @@ public class PyryRBsling : MonoBehaviour {
 
 		_rigidBody.AddForce (-_vectorToMouse * _forceAmount, ForceMode2D.Impulse);
 
-		_flyAnim.enabled = true;
-		_idleAnim.enabled = false;
-		_idleTail.enabled = false;
+		SetFlyAnimVisibility (true);
 		_flung = true;
 
+	}
+
+	void OnCollisionEnter2D(Collision2D coll) {
+		_flung = false;
+		SetFlyAnimVisibility (false);
+		_attack.Fire ();
+	}
+
+	private void SetFlyAnimVisibility (bool flyvis) {
+		_flyAnim.enabled = flyvis;
+		_idleAnim.enabled = !flyvis;
+		_idleTail.enabled = !flyvis;
 	}
 
 
