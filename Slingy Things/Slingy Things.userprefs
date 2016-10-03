@@ -1,12 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Mikonskriptit/RBStretch.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Kokeilupaskaa\Sling2.cs">
     <Files>
-      <File FileName="Assets/Scripts/Mikonskriptit/Attack.cs" Line="41" Column="83" />
-      <File FileName="Assets/Scripts/Mikonskriptit/SlugHealth.cs" Line="18" Column="64" />
-      <File FileName="Assets/Scripts/Mikonskriptit/SoundController.cs" Line="21" Column="28" />
-      <File FileName="Assets/Scripts/Mikonskriptit/RBSling.cs" Line="14" Column="24" />
-      <File FileName="Assets/Scripts/Mikonskriptit/RBStretch.cs" Line="70" Column="73" />
+      <File FileName="Assets\Scripts\Kokeilupaskaa\SinCosTest.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Kokeilupaskaa\Sling2.cs" Line="164" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
