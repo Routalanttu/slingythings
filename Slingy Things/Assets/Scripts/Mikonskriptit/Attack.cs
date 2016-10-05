@@ -9,7 +9,7 @@ public class Attack : MonoBehaviour {
 	public ParticleSystem _explosionPrefab; 
 	private Transform _gcTransform; 
 	private bool _fire; 
-	private bool _armed = true; 
+	private bool _armed; 
 	private Slug _slug; 
 
 	// Use this for initialization
@@ -23,12 +23,6 @@ public class Attack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		
-		_fire = Input.GetKeyDown (KeyCode.Space); 
-
-		if(_fire && _armed){
-			Fire(); 
-		}
 	
 	}
 
@@ -67,6 +61,7 @@ public class Attack : MonoBehaviour {
 		_fire = false; 
 
 		Invoke ("NextPlayerMove", 1); 
+
 
 	}
 
