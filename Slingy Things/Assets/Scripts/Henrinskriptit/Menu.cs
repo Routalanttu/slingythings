@@ -26,7 +26,7 @@ public class Menu : MonoBehaviour {
     }
 
     public void OnLevelSelection() {
-        SceneManager.LoadScene("Henritest");
+        SceneManager.LoadScene("Mikkotest");
     }
 
     public void OnQuit() {
