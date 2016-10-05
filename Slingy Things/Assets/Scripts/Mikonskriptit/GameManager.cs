@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
 
 	public int activePlayers = 2; 
+	public camFollow _camFollow; 
 
 	//TEAM VALUES 
 	public List<GameObject> _team1Slugs; 
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	private GUIManager _guiManager; 
+	private GUIManager _guiManager;
 
 	public GUIManager GUIManager
 	{
@@ -87,9 +88,6 @@ public class GameManager : MonoBehaviour {
 
 		_team1SlugAmount = _team1Slugs.Count; 
 		_team2SlugAmount = _team2Slugs.Count; 
-
-		Debug.Log ("team 1 slugs: " + _team1SlugAmount); 
-		Debug.Log ("team 2 slugs: " + _team2SlugAmount); 
 	
 	}
 
@@ -135,6 +133,10 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+	public void SetCameraTarget(Transform target){
+		_camFollow.SetCameraTarget (target); 
+	}
+
 	public void KillSlug(int teamNumber, GameObject go){
 
 		if (teamNumber== 1) {
@@ -153,8 +155,8 @@ public class GameManager : MonoBehaviour {
 			GameOver (1); 
 		}
 
-		Debug.Log ("Team Red Slug amount: " + _team1SlugAmount + "  and Team Blue Slug Amount: " + _team2SlugAmount); 
 	}
+		
 
 	public void DecreaseHealth(int teamNumber, int decreaseAmount){
 
@@ -165,6 +167,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		GUIManager.UpdateHealth(_team1Health, _team2Health); 
+
 	}
 
 
@@ -180,8 +183,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void ActivateTeam(){
-
-		Debug.Log (currentPlayer); 
 
 		if (currentPlayer == 1) {
 

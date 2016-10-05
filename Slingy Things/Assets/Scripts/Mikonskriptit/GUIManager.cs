@@ -7,6 +7,14 @@ public class GUIManager : MonoBehaviour {
 	public Text _message; 
 	public Text _team1HealthText; 
 	public Text _team2HealthText; 
+	public Slider _team1HealthSlider; 
+	public Slider _team2HealthSlider; 
+
+	//FOR DEBUG:
+	public Text _debug1Text;
+	public Text _debug2Text;
+	public Text _debug3Text;
+	public Text _debug4Text;
 
 	void Awake(){
 
@@ -54,11 +62,35 @@ public class GUIManager : MonoBehaviour {
 	}
 
 	public void UpdateHealth(int team1health, int team2health){
+
 		_team1HealthText.text = "Team 1 health: " + team1health; 
 		_team2HealthText.text = "Team 2 health: " + team2health; 
+
+		_team1HealthSlider.value = (float)team1health / 1000; 
+		_team2HealthSlider.value = (float)team2health / 1000; 
 	}
 
 	public void Paused(){
 		ShowMessage ("Paused"); 
+	}
+
+	public void SetDebugText(int textNumber, string text){
+
+		switch(textNumber){
+		case 1:
+			_debug1Text.text = text; 
+			break; 
+		case 2:
+			_debug2Text.text = text; 
+			break;
+		case 3: 
+			_debug3Text.text = text; 
+			break;
+		case 4:
+			_debug4Text.text = text; 
+			break;
+		default: 
+			break; 
+		}
 	}
 }

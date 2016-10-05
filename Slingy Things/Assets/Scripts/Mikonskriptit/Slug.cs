@@ -25,4 +25,9 @@ public class Slug : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void OnDestroy(){
+
+
+	}
 }

@@ -46,7 +46,8 @@ public class RBSling : MonoBehaviour {
 
 	void OnMouseDown(){
 
-		//Do we need this?
+		//Set camera target
+		GameManager.Instance.SetCameraTarget(gameObject.transform); 
 	}
 
 	void OnMouseUp(){
@@ -63,8 +64,6 @@ public class RBSling : MonoBehaviour {
 			_rigidBody.AddForce (-_vectorToMouse * _forceAmount, ForceMode2D.Impulse);
 
 			_attack.ArmSlug (); 
-
-
 
 		}
 			
