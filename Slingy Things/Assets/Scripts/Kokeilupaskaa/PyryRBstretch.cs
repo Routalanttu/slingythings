@@ -20,18 +20,15 @@ namespace SlingySlugs {
 		private void Awake(){
 			_gcTransform = GetComponent<Transform> ();
 			_charAnim = GetComponent<CharacterAnimator> ();
+			_charAnim.SetToIdle ();
 		}
 
 		// Update is called once per frame
 		void Update () {
-
 			if (clickedOn) {
 				Dragging ();
-				_charAnim.SetStretchMode (true);
-			} else {
-				_charAnim.SetStretchMode (true);
+				_charAnim.SetToStretch ();
 			}
-
 		}
 
 		void OnMouseDown(){
@@ -40,7 +37,8 @@ namespace SlingySlugs {
 
 		void OnMouseUp(){
 			clickedOn = false;
-			//SoundController.Instance.PlaySoundByIndex (1, _gcTransform.position); 
+			//SoundController.Instance.PlaySoundByIndex (0, _gcTransform.position); 
+			SoundController.Instance.PlaySoundByIndex (1, _gcTransform.position); 
 			_arrowAnim.HideAll ();
 		}
 

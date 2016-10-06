@@ -16,34 +16,30 @@ namespace SlingySlugs {
 		[SerializeField] private Transform _counterPieceTransform;
 		[SerializeField] private Transform _stretchTailTransform;
 
-		public void SetIdleTailVisibility (bool state) {
-			_idleTail.enabled = state;
+		public void SetToIdle () {
+			_head.enabled = true;
+			_idleTail.enabled = true;
+			_stretchTail.enabled = false;
+			_counterPiece.enabled = false;
+			_flight.enabled = false;
 		}
 
-		public void SetHeadVisibility (bool state) {
-			_head.enabled = state;
+		public void SetToStretch () {
+			_head.enabled = true;
+			_idleTail.enabled = false;
+			_stretchTail.enabled = true;
+			_counterPiece.enabled = true;
+			_flight.enabled = false;
 		}
 
-		public void SetFlightVisibility (bool state) {
-			_flight.enabled = state;
-			_head.enabled = !state;
-			_idleTail.enabled = !state;
+		public void SetToFlight () {
+			_head.enabled = false;
+			_idleTail.enabled = false;
+			_stretchTail.enabled = false;
+			_counterPiece.enabled = false;
+			_flight.enabled = true;
 		}
-
-		public void SetStretchMode (bool state) {
-			SetIdleTailVisibility (!state);
-			_stretchTail.enabled = state;
-			_counterPiece.enabled = state;
-		}
-
-		public void GetDamaged () {
-			_head.sprite = _damagedIdle;
-		}
-
-		public void GetFucked () {
-			_head.sprite = _fuckedIdle;
-		}
-
+			
 		public void RotateTail (Quaternion q) {
 			_counterPieceTransform.rotation = q;
 			//_stretchTailTransorm.rotation = q;
@@ -62,6 +58,13 @@ namespace SlingySlugs {
 			_flight.flipY = state;
 		}
 
+		public void GetDamaged () {
+			_head.sprite = _damagedIdle;
+		}
+
+		public void GetFucked () {
+			_head.sprite = _fuckedIdle;
+		}
 
 
 

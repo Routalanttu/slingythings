@@ -44,7 +44,7 @@ namespace SlingySlugs {
 
 			// Pyry
 			_charAnim = GetComponent<CharacterAnimator> ();
-			_charAnim.SetFlightVisibility (false);
+			_charAnim.SetToIdle ();
 
 		}
 
@@ -87,14 +87,14 @@ namespace SlingySlugs {
 
 			_rigidBody.AddForce (-_vectorToMouse * _forceAmount, ForceMode2D.Impulse);
 
-			_charAnim.SetFlightVisibility (true);
+			_charAnim.SetToFlight ();
 			_flung = true;
 
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			_flung = false;
-			_charAnim.SetFlightVisibility (false);
+			_charAnim.SetToIdle ();
 			_attack.Fire ();
 		}
 

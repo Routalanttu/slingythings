@@ -1,23 +1,11 @@
-<<<<<<< HEAD
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Mikonskriptit/GUIManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Kokeilupaskaa\PyryRBsling.cs">
     <Files>
-      <File FileName="Assets/Scripts/Mikonskriptit/GUIManager.cs" Line="65" Column="55" />
-      <File FileName="Assets/Scripts/Mikonskriptit/GameManager.cs" Line="164" Column="36" />
-=======
-﻿<Properties StartupItem="Slingy Things.CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Henrinskriptit\Menu.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Kokeilupaskaa\PyryRBsling.cs" Line="100" Column="3" />
-      <File FileName="Assets\Scripts\Kokeilupaskaa\PyryRBstretch.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Mikonskriptit\RBSling.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Mikonskriptit\RBStretch.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Kokeilupaskaa\Sling2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Kokeilupaskaa\PyryCamFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Henrinskriptit\Menu.cs" Line="1" Column="1" />
->>>>>>> 4b0962fae4c485956bb94401fdbf804807ea33b3
+      <File FileName="Assets\Scripts\Kokeilupaskaa\PyryRBsling.cs" Line="97" Column="42" />
+      <File FileName="Assets\Scripts\Kokeilupaskaa\PyryRBstretch.cs" Line="14" Column="3" />
+      <File FileName="Assets\Scripts\CharacterAnimator.cs" Line="30" Column="31" />
+      <File FileName="Assets\Scripts\ArrowAnimator.cs" Line="62" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
