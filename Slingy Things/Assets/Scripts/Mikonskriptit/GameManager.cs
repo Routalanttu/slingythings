@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -214,9 +215,15 @@ public class GameManager : MonoBehaviour {
 
 	public void GameOver(int winningTeamNumber){
 		Pause (); 
-		GUIManager.GameOver (winningTeamNumber); 
+		GUIManager.GameOver (winningTeamNumber);
+        // Didn't want the TeamsAndAnimals scene loading immediately after the game ends so I decided to use a coroutine
+        StartCoroutine(SceneLoad());
+    }
 
-	}
+    IEnumerator SceneLoad () {
+        yield return new WaitForSecondsRealtime(3.0f);
+        SceneManager.LoadScene("TeamsAndAnimals");
+    }
 
 
 		
