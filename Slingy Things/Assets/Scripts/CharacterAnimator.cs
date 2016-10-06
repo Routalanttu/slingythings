@@ -4,6 +4,7 @@ using System.Collections;
 namespace SlingySlugs {
 	public class CharacterAnimator : MonoBehaviour {
 
+		[SerializeField] private Animator _headAnimator;
 		[SerializeField] private SpriteRenderer _head;
 		[SerializeField] private SpriteRenderer _idleTail;
 		[SerializeField] private SpriteRenderer _stretchTail;
@@ -15,6 +16,7 @@ namespace SlingySlugs {
 		[SerializeField] private Sprite _stretchedIdle;
 		[SerializeField] private Transform _counterPieceTransform;
 		[SerializeField] private Transform _stretchTailTransform;
+		[SerializeField] private SlugHealth _health;
 
 		public void SetToIdle () {
 			_head.enabled = true;
@@ -58,17 +60,17 @@ namespace SlingySlugs {
 			_flight.flipY = state;
 		}
 
-		public void GetDamaged () {
-			_head.sprite = _damagedIdle;
+		public void SetFaceToStretched () {
+			_headAnimator.SetBool ("isStretched", true);
 		}
 
-		public void GetFucked () {
-			_head.sprite = _fuckedIdle;
+		public void SetHealthFace (int health) {
+			_headAnimator.SetInteger ("slugHealth", health);
 		}
-
-
-
-
-
+			
+		// Temp
+		private void Update() {
+			SetHealthFace (_health.GetHealth ());
+		}
 	}
 }

@@ -36,4 +36,8 @@ public class SlugHealth : MonoBehaviour {
 		GameManager.Instance.KillSlug (teamNumber, gameObject); 
 		Destroy (gameObject); 
 	}
+
+	public int GetHealth () {
+		return _slugHealth;
+	}
 }
