@@ -1,5 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Mikonskriptit/camFollow.cs">
     <Files>
       <File FileName="Assets/Scripts/Mikonskriptit/GUIManager.cs" Line="81" Column="29" />
@@ -10,6 +11,14 @@
       <File FileName="Assets/WaterTrigger.cs" Line="15" Column="3" />
       <File FileName="Assets/Scripts/Mikonskriptit/Slug.cs" Line="31" Column="3" />
       <File FileName="Assets/Scripts/Mikonskriptit/camFollow.cs" Line="27" Column="22" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Kokeilupaskaa\PyryRBsling.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Kokeilupaskaa\PyryRBsling.cs" Line="97" Column="42" />
+      <File FileName="Assets\Scripts\Kokeilupaskaa\PyryRBstretch.cs" Line="14" Column="3" />
+      <File FileName="Assets\Scripts\CharacterAnimator.cs" Line="30" Column="31" />
+      <File FileName="Assets\Scripts\ArrowAnimator.cs" Line="62" Column="4" />
+>>>>>>> 1f3b9afbfeb076cf46817de9df9a0fa13ffe161c
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
