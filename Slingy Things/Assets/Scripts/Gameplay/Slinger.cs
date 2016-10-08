@@ -2,9 +2,9 @@
 using System.Collections;
 
 namespace SlingySlugs {
-	public class PyryRBsling : MonoBehaviour {
+	public class Slinger : MonoBehaviour {
 
-		[SerializeField] private float _forceAmount; 
+		[SerializeField] private float _forceMultiplier; 
 		[SerializeField] private float _maxPower; 
 		[SerializeField] private float _minPower;
 
@@ -22,7 +22,7 @@ namespace SlingySlugs {
 		private Rigidbody2D _rigidBody; 
 		private Transform _gcTransform; 
 
-		private bool _flung;
+		private bool _isSlung;
 
 		//Pyry
 		[SerializeField] private Transform _flyTrans;
@@ -52,7 +52,7 @@ namespace SlingySlugs {
 
 
 			//Pyry
-			if (_flung) {
+			if (_isSlung) {
 				Vector2 curVelo = _rigidBody.velocity;
 				float angle = Mathf.Atan2 (curVelo.y, curVelo.x) * Mathf.Rad2Deg;
 				_flyTrans.localRotation = Quaternion.AngleAxis (angle, Vector3.forward);
@@ -67,32 +67,15 @@ namespace SlingySlugs {
 
 		}
 
-		void OnMouseDown() {
-			//Do we need this?
-		}
+		public void Sling (Vector2 stretchVector) {
+			_rigidBody.AddForce (stretchVector * _forceMultiplier, ForceMode2D.Impulse);
 
-		void OnMouseUp(){
-
-			_slugPosition = _gcTransform.position; //have to use the vector2 form for below
-			_vectorToMouse = _mousePos - _slugPosition; 
-
-			// If stretch is over maximum, make it be at the maximum and no more.
-			if (_vectorToMouse.magnitude > _maxPower) {
-				_vectorToMouse = Vector2.ClampMagnitude (_vectorToMouse, _maxPower);
-			} 
-
-			// Sling only if stretch is over the minimum.
-			if (_vectorToMouse.magnitude > _minPower) {
-				_rigidBody.AddForce (-_vectorToMouse * _forceAmount, ForceMode2D.Impulse);
-
-				_charAnim.SetToFlight ();
-				_flung = true;
-			}
-
+			_charAnim.SetToFlight ();
+			_isSlung = true;
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {
-			_flung = false;
+			_isSlung = false;
 			_charAnim.SetToIdle ();
 			_attack.Fire ();
 		}

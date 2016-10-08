@@ -12,15 +12,18 @@ namespace SlingySlugs {
 		Vector2 _mousePos;
 		Transform _gcTransform;
 
-		[SerializeField]private AudioClip squish;
+		[SerializeField] private AudioClip squish;
 
 		private CharacterAnimator _charAnim;
 		[SerializeField] private ArrowAnimator _arrowAnim;
+
+		//private PyryRBsling _slinger;
 
 		private void Awake(){
 			_gcTransform = GetComponent<Transform> ();
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_charAnim.SetToIdle ();
+			//_slinger = GetComponent<PyryRBsling> ();
 		}
 
 		// Update is called once per frame
@@ -33,6 +36,7 @@ namespace SlingySlugs {
 
 		void OnMouseDown(){
 			clickedOn = true;
+			SoundController.Instance.PlaySoundByIndex (0, _gcTransform.position); 
 		}
 
 		void OnMouseUp(){

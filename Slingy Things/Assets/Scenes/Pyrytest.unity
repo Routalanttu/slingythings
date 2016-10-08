@@ -1527,6 +1527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _forceAmount: 20
   _maxPower: 3
+  _minPower: 0.8
   _attack: {fileID: 815302532}
   _flyTrans: {fileID: 1094836884}
 --- !u!114 &966840017
