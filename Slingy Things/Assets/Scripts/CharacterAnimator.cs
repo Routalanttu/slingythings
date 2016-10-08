@@ -24,6 +24,8 @@ namespace SlingySlugs {
 			_stretchTail.enabled = false;
 			_counterPiece.enabled = false;
 			_flight.enabled = false;
+
+			SetFaceToStretched (false);
 		}
 
 		public void SetToStretch () {
@@ -32,6 +34,8 @@ namespace SlingySlugs {
 			_stretchTail.enabled = true;
 			_counterPiece.enabled = true;
 			_flight.enabled = false;
+
+			SetFaceToStretched (true);
 		}
 
 		public void SetToFlight () {
@@ -40,6 +44,8 @@ namespace SlingySlugs {
 			_stretchTail.enabled = false;
 			_counterPiece.enabled = false;
 			_flight.enabled = true;
+
+			SetFaceToStretched (false);
 		}
 			
 		public void RotateTail (Quaternion q) {
@@ -60,8 +66,8 @@ namespace SlingySlugs {
 			_flight.flipY = state;
 		}
 
-		public void SetFaceToStretched () {
-			_headAnimator.SetBool ("isStretched", true);
+		public void SetFaceToStretched (bool stretched) {
+			_headAnimator.SetBool ("isStretched", stretched);
 		}
 
 		public void SetHealthFace (int health) {

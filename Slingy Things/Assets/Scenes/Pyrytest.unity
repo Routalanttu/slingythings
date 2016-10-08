@@ -1593,9 +1593,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.15, y: 0.16}
+  m_Offset: {x: 0.015106201, y: -0.08176422}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.55185413, y: 0.44571435}
 --- !u!50 &966840021
 Rigidbody2D:
   serializedVersion: 2
@@ -1767,7 +1767,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.31
+  orthographic size: 1.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
