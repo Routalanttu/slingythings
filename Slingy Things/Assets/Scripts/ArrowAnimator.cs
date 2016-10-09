@@ -21,6 +21,7 @@ namespace SlingySlugs {
 		private SpriteRenderer _arrowThreeSprite;
 		private SpriteRenderer _arrowFourSprite;
 		private SpriteRenderer _arrowFiveSprite;
+		private SpriteRenderer[] _arrowSprites;
 
 		private void Awake() {
 			_myTransform = GetComponent<Transform> ();
@@ -35,96 +36,29 @@ namespace SlingySlugs {
 			_arrows [2] = _arrowThree;
 			_arrows [3] = _arrowFour;
 			_arrows [4] = _arrowFive;
-		}
+			_arrowSprites = new SpriteRenderer[5];
+			_arrowSprites [0] = _arrowOneSprite;
+			_arrowSprites [1] = _arrowTwoSprite;
+			_arrowSprites [2] = _arrowThreeSprite;
+			_arrowSprites [3] = _arrowFourSprite;
+			_arrowSprites [4] = _arrowFiveSprite;
 
-		/*
-		public void SetArrowVisibility (float magnitude) {
-			if (magnitude > 1f) {
-				_arrowOneSprite.enabled = true;
-				Color tmp = _arrowOneSprite.color;
-				tmp.a = (magnitude - 1f)*5f;
-				_arrowOneSprite.color = tmp;
-			} else {
-				_arrowOneSprite.enabled = false;
-			}
-			if (magnitude > 1.2f) {
-				_arrowTwoSprite.enabled = true;
-				Color tmp = _arrowTwoSprite.color;
-				tmp.a = (magnitude - 1.2f)*5f;
-				_arrowTwoSprite.color = tmp;
-			} else {
-				_arrowTwoSprite.enabled = false;
-			}
-			if (magnitude > 1.4f) {
-				_arrowThreeSprite.enabled = true;
-				Color tmp = _arrowThreeSprite.color;
-				tmp.a = (magnitude - 1.4f)*5f;
-				_arrowThreeSprite.color = tmp;
-			} else {
-				_arrowThreeSprite.enabled = false;
-			}
-			if (magnitude > 1.6f) {
-				_arrowFourSprite.enabled = true;
-				Color tmp = _arrowFourSprite.color;
-				tmp.a = (magnitude - 1.6f)*5f;
-				_arrowFourSprite.color = tmp;
-			} else {
-				_arrowFourSprite.enabled = false;
-			}
-			if (magnitude > 1.8f) {
-				_arrowFiveSprite.enabled = true;
-				Color tmp = _arrowFiveSprite.color;
-				tmp.a = (magnitude - 1.8f)*5f;
-				_arrowFiveSprite.color = tmp;
-			} else {
-				_arrowFiveSprite.enabled = false;
-			}
 		}
-		*/
 
 		public void SetArrowVisibility (float magnitude, float min, float max) {
-			if (magnitude > min) {
-				_arrowOneSprite.enabled = true;
-				Color tmp = _arrowOneSprite.color;
-				tmp.a = (magnitude - min)*5f;
-				_arrowOneSprite.color = tmp;
-			} else {
-				_arrowOneSprite.enabled = false;
-			}
-			if (magnitude > (min+((max-min)/5f))) {
-				_arrowTwoSprite.enabled = true;
-				Color tmp = _arrowTwoSprite.color;
-				tmp.a = (magnitude - (min+((max-min)/5f)))*5f;
-				_arrowTwoSprite.color = tmp;
-			} else {
-				_arrowTwoSprite.enabled = false;
-			}
-			if (magnitude > (min+(2f*(max-min)/5f))) {
-				_arrowThreeSprite.enabled = true;
-				Color tmp = _arrowThreeSprite.color;
-				tmp.a = (magnitude - (min+(2f*(max-min)/5f)))*5f;
-				_arrowThreeSprite.color = tmp;
-			} else {
-				_arrowThreeSprite.enabled = false;
-			}
-			if (magnitude > (min+(3f*(max-min)/5f))) {
-				_arrowFourSprite.enabled = true;
-				Color tmp = _arrowFourSprite.color;
-				tmp.a = (magnitude - (min+(3f*(max-min)/5f)))*5f;
-				_arrowFourSprite.color = tmp;
-			} else {
-				_arrowFourSprite.enabled = false;
-			}
-			if (magnitude > (min+(4f*(max-min)/5f))) {
-				_arrowFiveSprite.enabled = true;
-				Color tmp = _arrowFiveSprite.color;
-				tmp.a = (magnitude - (min+(4f*(max-min)/5f)))*5f;
-				_arrowFiveSprite.color = tmp;
-			} else {
-				_arrowFiveSprite.enabled = false;
-			}
 
-			Expand (magnitude);
+			for (int i = 0; i < _arrowSprites.Length; i++) {
+				if (magnitude > (min+(i*(max-min)/5f))) {
+					_arrowSprites[i].enabled = true;
+					Color tmp = _arrowSprites[i].color;
+					tmp.a = (magnitude - (min+(i*(max-min)/5f)))*5f;
+					_arrowSprites[i].color = tmp;
+				} else {
+					_arrowSprites[i].enabled = false;
+				}
+
+				Expand (i, magnitude);
+			}
 		}
 
 		public void HideAll () {
@@ -140,24 +74,21 @@ namespace SlingySlugs {
 			_myTransform.rotation = rotation;
 		}
 
-		private void Expand (float magnitude) {
+		private void Expand (int i, float magnitude) {
 
-			for (int i = 0; i < _arrows.Length; i++) {
-				_arrows [i].localScale = new Vector3 (
-					magnitude*(i+1)*0.6f,
-					magnitude*(i+1)*0.6f,
-					1f
-				);
-			}
+			// Scale the arrow to match stretch volume:
+			_arrows [i].localScale = new Vector3 (
+				magnitude*(i+1)*0.6f,
+				magnitude*(i+1)*0.6f,
+				1f
+			);
 
-			for (int i = 0; i < _arrows.Length; i++) {
-				_arrows [i].localPosition = new Vector3 (
-					0.5f + magnitude*(i+1)*0.6f,
-					_arrows[i].localPosition.y,
-					_arrows[i].localPosition.z
-				);
-			}
-
+			// Increase distance from center:
+			_arrows [i].localPosition = new Vector3 (
+				0.5f + magnitude*(i+1)*0.6f,
+				_arrows[i].localPosition.y,
+				_arrows[i].localPosition.z
+			);
 		}
 	}
 }

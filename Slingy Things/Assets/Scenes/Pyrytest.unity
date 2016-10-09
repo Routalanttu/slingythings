@@ -1314,53 +1314,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &815302531
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1000011139777316, guid: cc5c43ba70ad27548a4cebfedc45d807,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 815302533}
-  - 114: {fileID: 815302532}
-  m_Layer: 0
-  m_Name: AttackContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &815302532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012564617900, guid: cc5c43ba70ad27548a4cebfedc45d807,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 815302531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07de2375f7bd694c93d6768884d824e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 5
-  _explosionForce: 10
-  _explosionDamageMultiplier: 2
-  _explosionPrefab: {fileID: 19800000, guid: 092aeef3857c50f41ada30e877c781cd, type: 2}
---- !u!4 &815302533
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4000010116603886, guid: cc5c43ba70ad27548a4cebfedc45d807,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 815302531}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1636499269}
-  m_RootOrder: 5
 --- !u!1 &856264460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,13 +1471,14 @@ GameObject:
   m_Component:
   - 4: {fileID: 1636499269}
   - 50: {fileID: 966840021}
-  - 61: {fileID: 966840020}
   - 114: {fileID: 966840018}
   - 114: {fileID: 966840019}
+  - 61: {fileID: 966840020}
   - 61: {fileID: 966840022}
   - 114: {fileID: 966840024}
   - 114: {fileID: 966840023}
   - 114: {fileID: 966840025}
+  - 114: {fileID: 966840016}
   m_Layer: 0
   m_Name: ExplodingSlug
   m_TagString: Player
@@ -1532,6 +1486,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &966840016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 966840015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07de2375f7bd694c93d6768884d824e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  _explosionForce: 10
+  _explosionDamageMultiplier: 2
+  _explosionPrefab: {fileID: 19800000, guid: 092aeef3857c50f41ada30e877c781cd, type: 2}
 --- !u!114 &966840018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1561,13 +1530,14 @@ MonoBehaviour:
   _idleTail: {fileID: 1864455632}
   _stretchTail: {fileID: 1187278211}
   _counterPiece: {fileID: 1611820693}
-  _flight: {fileID: 1094836886}
   _healthyIdle: {fileID: 21300000, guid: cf95c86597d2bd0428d61c6fce8eb20d, type: 3}
   _damagedIdle: {fileID: 21300000, guid: d833d065f19186243ad1b55fb63e24bb, type: 3}
   _fuckedIdle: {fileID: 21300000, guid: 7f03d9143f950b74ea6461a8b5d89f1f, type: 3}
   _stretchedIdle: {fileID: 21300000, guid: ea44ec8ef5c33744aaaf255556c12ba0, type: 3}
   _counterPieceTransform: {fileID: 1611820692}
   _stretchTailTransform: {fileID: 1187278210}
+  _flightTransform: {fileID: 1094836884}
+  _flight: {fileID: 1094836886}
   _health: {fileID: 966840018}
 --- !u!61 &966840020
 BoxCollider2D:
@@ -1581,9 +1551,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.015106201, y: -0.08176422}
+  m_Offset: {x: 0.02, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.55185413, y: 0.44571435}
+  m_Size: {x: 0.55, y: 0.45}
 --- !u!50 &966840021
 Rigidbody2D:
   serializedVersion: 2
@@ -1613,9 +1583,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0.053070188, y: 0.18279648}
+  m_Offset: {x: 0.014, y: 0.18}
   serializedVersion: 2
-  m_Size: {x: 1.5071126, y: 1.3655916}
+  m_Size: {x: 1.5, y: 1.4}
 --- !u!114 &966840023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,10 +1611,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceMultiplier: 20
-  _maxPower: 3
-  _minPower: 0.8
-  _attack: {fileID: 815302532}
-  _flyTrans: {fileID: 1094836884}
 --- !u!114 &966840025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2958,7 +2924,6 @@ Transform:
   - {fileID: 1094836884}
   - {fileID: 1611820692}
   - {fileID: 357275957}
-  - {fileID: 815302533}
   m_Father: {fileID: 0}
   m_RootOrder: 9
 --- !u!1 &1648789507

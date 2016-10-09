@@ -5,11 +5,9 @@ namespace SlingySlugs {
 	public class Stretcher: MonoBehaviour {
 
 		// Puuttuvia toiminnallisuuksia (poista kun done):
-		// _stretchVectorin lähetys Slingerille
-		// Minimin alituksesta heiton cancelointi ja muutenkin täysin eri toiminto
 		// Stretchin sallinta vain kun on maassa
 		// Stretchin sallinta vain kun on aktiivi
-		// Vuoron heitto eteenpäin sitten kun sallittu heitto tehty
+		// Vuoron heitto eteenpäin sitten kun sallittu heitto tehty (vasta Slingerissä?)
 
 		private Transform _gcTransform;
 		private Vector2 _slugPosition;
@@ -65,11 +63,7 @@ namespace SlingySlugs {
 				_clickedOn = false;
 				_arrowAnim.HideAll ();
 
-
-				//Play slingshot sound:
-				//SoundController.Instance.PlaySoundByIndex (SOMETHING, _gcTransform.position); 
-				//Play animal shout sound, determined by character type (!!!):
-
+				// Sling if stretch is over minimum, otherwise cancel:
 				if (_stretchVector.magnitude >= _minStretch) {
 					_slinger.Sling (_stretchVector);
 					SoundController.Instance.PlaySoundByIndex (1, _gcTransform.position);
@@ -77,7 +71,6 @@ namespace SlingySlugs {
 					_charAnim.SetToIdle ();
 					SoundController.Instance.PlaySoundByIndex (0, _gcTransform.position);
 				}
-
 			}
 
 		}

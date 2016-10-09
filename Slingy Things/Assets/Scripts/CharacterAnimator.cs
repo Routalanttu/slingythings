@@ -9,13 +9,14 @@ namespace SlingySlugs {
 		[SerializeField] private SpriteRenderer _idleTail;
 		[SerializeField] private SpriteRenderer _stretchTail;
 		[SerializeField] private SpriteRenderer _counterPiece;
-		[SerializeField] private SpriteRenderer _flight;
 		[SerializeField] private Sprite _healthyIdle;
 		[SerializeField] private Sprite _damagedIdle;
 		[SerializeField] private Sprite _fuckedIdle;
 		[SerializeField] private Sprite _stretchedIdle;
 		[SerializeField] private Transform _counterPieceTransform;
 		[SerializeField] private Transform _stretchTailTransform;
+		[SerializeField] private Transform _flightTransform;
+		[SerializeField] private SpriteRenderer _flight;
 		[SerializeField] private SlugHealth _health;
 
 		public void SetToIdle () {
@@ -48,9 +49,21 @@ namespace SlingySlugs {
 			SetFaceToStretched (false);
 		}
 			
-		public void RotateTail (Quaternion q) {
-			_counterPieceTransform.rotation = q;
+		public void RotateTail (Quaternion rotation) {
+			_counterPieceTransform.rotation = rotation;
+			// If StretchTail wouldn't be parented to CounterPiece:
 			//_stretchTailTransorm.rotation = q;
+		}
+
+		public void RotateFlight (Vector2 curVelo) {
+			float flightAngle = Mathf.Atan2 (curVelo.y, curVelo.x) * Mathf.Rad2Deg;
+			_flightTransform.localRotation = Quaternion.AngleAxis (flightAngle, Vector3.forward);
+
+			if (curVelo.x < 0f) {
+				FlightFlip (true);
+			} else if (curVelo.x > 0f) {
+				FlightFlip (false);
+			}
 		}
 
 		public void ScaleTail (float stretch) {
@@ -62,7 +75,7 @@ namespace SlingySlugs {
 			_idleTail.flipX = state;
 		}
 
-		public void FlightFlip (bool state) {
+		private void FlightFlip (bool state) {
 			_flight.flipY = state;
 		}
 

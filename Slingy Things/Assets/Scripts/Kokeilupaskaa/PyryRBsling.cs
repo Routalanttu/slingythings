@@ -8,7 +8,7 @@ namespace SlingySlugs {
 		[SerializeField] private float _maxPower; 
 		[SerializeField] private float _minPower;
 
-		[SerializeField] private PyryAttack _attack; 
+//		[SerializeField] private PyryAttack _attack; 
 
 		private Vector2 _slingDir; 
 		private Vector2 _vectorToMouse;
@@ -59,9 +59,9 @@ namespace SlingySlugs {
 			}
 
 			if (_rigidBody.velocity.x < 0f) {
-				_charAnim.FlightFlip (true);
+//				_charAnim.FlightFlip (true);
 			} else if (_rigidBody.velocity.x > 0f) {
-				_charAnim.FlightFlip (false);
+//				_charAnim.FlightFlip (false);
 			}
 
 
@@ -94,7 +94,7 @@ namespace SlingySlugs {
 		void OnCollisionEnter2D(Collision2D coll) {
 			_flung = false;
 			_charAnim.SetToIdle ();
-			_attack.Fire ();
+//			_attack.Fire ();
 		}
 
 
