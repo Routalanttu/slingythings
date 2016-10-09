@@ -66,10 +66,10 @@ namespace SlingySlugs {
 					_charAnim.ScaleTail (_maxStretch);
 				}
 
-				_arrowAnim.SetArrowVisibility (vectorToTarget.magnitude);
+				//_arrowAnim.SetArrowVisibility (vectorToTarget.magnitude);
 			} else {
 				_charAnim.ScaleTail (0.8f);
-				_arrowAnim.HideAll ();
+				//_arrowAnim.HideAll ();
 			}
 
 			if (vectorToTarget.x < 0f) {
