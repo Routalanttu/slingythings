@@ -10,12 +10,14 @@ namespace SlingySlugs {
 		public ParticleSystem _explosionPrefab; 
 		private Transform _gcTransform; 
 		private bool _fire; 
-		private bool _armed; 
+		//private bool _armed; 
+		private Slug _slug; 
 
 		// Use this for initialization
 		void Start () {
 
 			_gcTransform = GetComponent<Transform>(); 
+			_slug = GetComponent<Slug> (); 
 
 		}
 
@@ -23,21 +25,25 @@ namespace SlingySlugs {
 		void Update () {
 
 
-			_fire = Input.GetKeyDown (KeyCode.Space); 
+		}
 
-			if(_fire){
+		void OnCollisionEnter2D(Collision2D coll){
+
+			if (Armed && _slug.IsActive) {
 				Fire(); 
 			}
 
 		}
 
-		public void Fire(){
+		void Fire(){
+
+			Debug.Log ("Menikö?");
 
 			Vector2 explosionPos = _gcTransform.position; 
 			ParticleSystem explosion; 
 			explosion = Instantiate(_explosionPrefab, _gcTransform.position, Quaternion.identity) as ParticleSystem; 
 			explosion.Play(); 
-			//SoundController.Instance.PlaySoundByIndex (0, _gcTransform.position); 
+			SoundController.Instance.PlaySoundByIndex (0, _gcTransform.position); 
 			Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, radius);
 			foreach (Collider2D hit in colliders) {
 				Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
@@ -54,17 +60,28 @@ namespace SlingySlugs {
 				}
 			}
 
-			_armed = false; 
+			Armed = false; 
+			_fire = false; 
+
+			//Invoke ("NextPlayerMove", 1); 
+			GameManager.Instance.NextPlayerMove();
+			Debug.Log ("Ois pitäny vaihtaa ny");
+
+
 		}
 
-		void OnCollisionEnter2D(Collision2D coll){
-
-			if (_armed) {
-				Fire(); 
-			}
-
+		public void ArmSlug(){
+			Armed = true;
 		}
 
+		public void NextPlayerMove(){
+			GameManager.Instance.NextPlayerMove (); 
+		}
+
+		public bool Armed {
+			get;
+			private set;
+		}
 
 	}
 }

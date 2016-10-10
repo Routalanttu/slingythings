@@ -17,12 +17,15 @@ namespace SlingySlugs {
 		//[SerializeField] private Transform _flyTrans;
 		private CharacterAnimator _charAnim;
 
+		private Slug _slug;
+
 		private void Awake () {
 			_rigidBody = GetComponent<Rigidbody2D> (); 
 			_gcTransform = GetComponent<Transform> (); 
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_charAnim.SetToIdle ();
 			_explosion = GetComponent<Explosion> ();
+			_slug = GetComponent<Slug> ();
 		}
 
 		void Update () {
@@ -35,13 +38,16 @@ namespace SlingySlugs {
 			_rigidBody.AddForce (stretchVector * _forceMultiplier, ForceMode2D.Impulse);
 			_charAnim.SetToFlight ();
 			_isSlung = true;
+			_explosion.ArmSlug ();
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			_isSlung = false;
 			// Placeholder functionality; should be "SetToLimp"
-			_charAnim.SetToIdle ();
-			_explosion.Fire ();
+			if (_explosion.Armed && _slug.IsActive) {
+				_charAnim.SetToIdle ();
+				//_explosion.ArmSlug ();
+			}
 		}
 
 
