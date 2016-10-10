@@ -25,7 +25,7 @@ namespace SlingySlugs {
 		private ArrowAnimator _arrowAnim;
 
 		// Onko Slug paras nimi tälle scriptille?
-		private Slug _slug;
+		private CharacterInfo _slug;
 
 		private void Awake(){
 			_gcTransform = GetComponent<Transform> ();
@@ -33,7 +33,7 @@ namespace SlingySlugs {
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_charAnim.SetToIdle ();
 			_arrowAnim = FindObjectOfType<ArrowAnimator> ();
-			_slug = GetComponent<Slug> ();
+			_slug = GetComponent<CharacterInfo> ();
 
 			/*	Ehkä tällainen pitäis tehdä, ellei prefabissa vain määritä
 			 * _maxStretch = //Hahmotyypin määrittämä maksimi

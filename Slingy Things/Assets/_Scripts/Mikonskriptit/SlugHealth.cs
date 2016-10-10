@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs {
 public class SlugHealth : MonoBehaviour {
 
 	public int _slugHealth = 100;
@@ -22,7 +23,7 @@ public class SlugHealth : MonoBehaviour {
 	public void DecreaseHealth(int damageAmount) {
 
 		_slugHealth -= damageAmount; 
-		GameManager.Instance.DecreaseHealth ((int)_slug.teamSelect, damageAmount); 
+		GameManager.Instance.DecreaseTeamHealth ((int)_slug.teamSelect, damageAmount); 
 
 		float hpQuotient = (float)damageAmount / 100; 
 
@@ -40,4 +41,5 @@ public class SlugHealth : MonoBehaviour {
 	public int GetHealth () {
 		return _slugHealth;
 	}
+}
 }

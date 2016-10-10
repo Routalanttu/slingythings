@@ -26,7 +26,7 @@ public class Menu : MonoBehaviour {
     }
 
     public void OnLevelSelection() {
-        SceneManager.LoadScene("Mikkotest");
+        SceneManager.LoadScene("Pre-pre-Alpha");
     }
 
     public void OnQuit() {

@@ -17,7 +17,7 @@ namespace SlingySlugs {
 		//[SerializeField] private Transform _flyTrans;
 		private CharacterAnimator _charAnim;
 
-		private Slug _slug;
+		private CharacterInfo _slug;
 
 		private void Awake () {
 			_rigidBody = GetComponent<Rigidbody2D> (); 
@@ -25,7 +25,7 @@ namespace SlingySlugs {
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_charAnim.SetToIdle ();
 			_explosion = GetComponent<Explosion> ();
-			_slug = GetComponent<Slug> ();
+			_slug = GetComponent<CharacterInfo> ();
 		}
 
 		void Update () {

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs {
 public class WaterTrigger : MonoBehaviour {
 
 	// Use this for initialization
@@ -12,5 +13,13 @@ public class WaterTrigger : MonoBehaviour {
 		Destroy (other.gameObject); 
 		SoundController.Instance.PlaySoundByIndex (2, other.transform.position); 
 		Debug.Log ("hit water"); 
+		if (other.gameObject.CompareTag ("Slug")) {
+				other.gameObject.GetComponent<CharacterInfo> ().DecreaseHealth (100);
+
+				// TOTAL PLACEHOLDER PLS REMOVE
+				GameManager.Instance.NextPlayerMove ();
+		}
+		
 	}
+}
 }

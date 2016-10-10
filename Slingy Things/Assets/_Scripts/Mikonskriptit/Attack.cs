@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs {
 public class Attack : MonoBehaviour {
 
 	public float radius = 5.0F;
@@ -73,5 +74,7 @@ public class Attack : MonoBehaviour {
 		GameManager.Instance.NextPlayerMove (); 
 	}
 
+
+}
 
 }

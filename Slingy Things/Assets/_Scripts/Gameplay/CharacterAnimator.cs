@@ -17,7 +17,11 @@ namespace SlingySlugs {
 		[SerializeField] private Transform _stretchTailTransform;
 		[SerializeField] private Transform _flightTransform;
 		[SerializeField] private SpriteRenderer _flight;
-		[SerializeField] private SlugHealth _health;
+		private CharacterInfo _char;
+
+		private void Awake () {
+			_char = GetComponent<CharacterInfo> ();
+		}
 
 		public void SetToIdle () {
 			_head.enabled = true;
@@ -89,7 +93,7 @@ namespace SlingySlugs {
 			
 		// Temp
 		private void Update() {
-			SetHealthFace (_health.GetHealth ());
+			SetHealthFace (_char.Health);
 		}
 	}
 }

@@ -53,14 +53,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013202551112}
   - 50: {fileID: 50000011400325824}
-  - 114: {fileID: 114000010392835330}
   - 114: {fileID: 114000010949122934}
   - 61: {fileID: 61000010425336868}
   - 61: {fileID: 61000011883747340}
   - 114: {fileID: 114000010084548142}
   - 114: {fileID: 114000011365606050}
-  - 114: {fileID: 114000011651067044}
   - 114: {fileID: 114000010714371476}
+  - 114: {fileID: 114000013188627228}
   m_Layer: 0
   m_Name: SlugCharacter
   m_TagString: Player
@@ -274,7 +273,7 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61000010425336868
 BoxCollider2D:
@@ -350,18 +349,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceMultiplier: 20
---- !u!114 &114000010392835330
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011518240616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aed35deffd1b4eca82ba09afe1817b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _slugHealth: 100
 --- !u!114 &114000010714371476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -401,7 +388,6 @@ MonoBehaviour:
   _stretchTailTransform: {fileID: 4000010248538262}
   _flightTransform: {fileID: 4000013772083106}
   _flight: {fileID: 212000012923637982}
-  _health: {fileID: 114000010392835330}
 --- !u!114 &114000011365606050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -415,7 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxStretch: 2
   _minStretch: 0.8
---- !u!114 &114000011651067044
+--- !u!114 &114000013188627228
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -423,10 +409,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011518240616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e5547ea779748c79a1b513aeb6b405, type: 3}
+  m_Script: {fileID: 11500000, guid: 748d0dad9ece45a4cbeb7515f5c5c49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamSelect: 1
+  _team: 1
+  _species: 0
+  _health: 100
 --- !u!212 &212000010219862790
 SpriteRenderer:
   m_ObjectHideFlags: 1

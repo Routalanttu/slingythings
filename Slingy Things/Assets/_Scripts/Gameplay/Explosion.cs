@@ -9,15 +9,14 @@ namespace SlingySlugs {
 		public int _explosionDamageMultiplier = 2; 
 		public ParticleSystem _explosionPrefab; 
 		private Transform _gcTransform; 
-		private bool _fire; 
-		//private bool _armed; 
-		private Slug _slug; 
+		private bool _fire;
+		private CharacterInfo _slug; 
 
 		// Use this for initialization
 		void Start () {
 
 			_gcTransform = GetComponent<Transform>(); 
-			_slug = GetComponent<Slug> (); 
+			_slug = GetComponent<CharacterInfo> (); 
 
 		}
 
@@ -37,8 +36,6 @@ namespace SlingySlugs {
 
 		void Fire(){
 
-			Debug.Log ("Menikö?");
-
 			Vector2 explosionPos = _gcTransform.position; 
 			ParticleSystem explosion; 
 			explosion = Instantiate(_explosionPrefab, _gcTransform.position, Quaternion.identity) as ParticleSystem; 
@@ -55,7 +52,7 @@ namespace SlingySlugs {
 
 				if (rb != null && hit.gameObject.tag == "Slug"){
 					rb.AddForce (explosionDir * _explosionForce, ForceMode2D.Impulse);  
-					hit.GetComponent<SlugHealth> ().DecreaseHealth (explosionDamage); 
+					hit.GetComponent<CharacterInfo> ().DecreaseHealth (explosionDamage); 
 
 				}
 			}
@@ -63,9 +60,7 @@ namespace SlingySlugs {
 			Armed = false; 
 			_fire = false; 
 
-			//Invoke ("NextPlayerMove", 1); 
 			GameManager.Instance.NextPlayerMove();
-			Debug.Log ("Ois pitäny vaihtaa ny");
 
 
 		}

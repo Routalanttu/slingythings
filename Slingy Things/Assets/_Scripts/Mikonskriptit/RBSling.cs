@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs {
 public class RBSling : MonoBehaviour {
 
 	public float _forceAmount; 
@@ -70,4 +71,5 @@ public class RBSling : MonoBehaviour {
 	}
 
 
+}
 }
