@@ -26,7 +26,7 @@ public class Menu : MonoBehaviour {
     }
 
     public void OnLevelSelection() {
-        SceneManager.LoadScene("Pre-pre-Alpha");
+        SceneManager.LoadScene("00Pre-pre-Alpha");
     }
 
     public void OnQuit() {

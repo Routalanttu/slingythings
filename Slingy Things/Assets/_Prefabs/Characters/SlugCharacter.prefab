@@ -363,7 +363,8 @@ MonoBehaviour:
   radius: 5
   _explosionForce: 10
   _explosionDamageMultiplier: 2
-  _explosionPrefab: {fileID: 19800000, guid: 092aeef3857c50f41ada30e877c781cd, type: 2}
+  _explosionPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
+    type: 2}
 --- !u!114 &114000010949122934
 MonoBehaviour:
   m_ObjectHideFlags: 1
