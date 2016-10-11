@@ -21,6 +21,7 @@ namespace SlingySlugs {
 			_gcTransform = GetComponent<Transform>(); 
 			_slug = GetComponent<CharacterInfo> (); 
 
+			// HORRIBLE PLACEHOLDER PURKKA HURRGH PLS REMOVE
 			xplo = GameObject.FindGameObjectWithTag ("Explosion").transform;
 			xplo.position = new Vector2 (9000f, 9000f);
 			niggers = xplo.gameObject.GetComponent<Animator> ();
