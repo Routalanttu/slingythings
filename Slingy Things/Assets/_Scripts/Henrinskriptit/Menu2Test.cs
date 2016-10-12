@@ -28,13 +28,14 @@ public class Menu2Test : MonoBehaviour {
         if (playPressCheck) {
             menuObjects.transform.position = Vector3.Lerp(centerScreen.position, offScreenRight.position, fracJourney);
             numberOfTeamsObjects.transform.position = Vector3.Lerp(offScreenLeft.position, centerScreen.position, fracJourney);
+            Debug.Log(fracJourney);
 
             if (menuObjects.transform.position == offScreenRight.transform.position) {
                 playPressCheck = false;
             }
         }
-        
-        if(creditsPressCheck) {
+
+        if (creditsPressCheck) {
             menuObjects.transform.position = Vector3.Lerp(offScreenRight.position, centerScreen.position, fracJourney);
             numberOfTeamsObjects.transform.position = Vector3.Lerp(centerScreen.position, offScreenLeft.position, fracJourney);
 
