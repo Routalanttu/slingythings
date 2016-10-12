@@ -12,6 +12,7 @@ namespace SlingySlugs {
 		private Rigidbody2D _rigidBody; 
 		private Transform _gcTransform; 
 
+		private bool _isArmed;
 		private bool _isSlung;
 
 		//[SerializeField] private Transform _flyTrans;
@@ -24,7 +25,7 @@ namespace SlingySlugs {
 			_gcTransform = GetComponent<Transform> (); 
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_charAnim.SetToIdle ();
-			_explosion = GetComponent<Explosion> ();
+			_explosion = FindObjectOfType<Explosion> ();
 			_slug = GetComponent<CharacterInfo> ();
 		}
 
@@ -38,15 +39,17 @@ namespace SlingySlugs {
 			_rigidBody.AddForce (stretchVector * _forceMultiplier, ForceMode2D.Impulse);
 			_charAnim.SetToFlight ();
 			_isSlung = true;
-			_explosion.ArmSlug ();
+			_isArmed = true;
+			_explosion.Arm ();
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			_isSlung = false;
 			// Placeholder functionality; should be "SetToLimp"
-			if (_explosion.Armed && _slug.IsActive) {
+			if (_isArmed && _slug.IsActive) {
 				_charAnim.SetToIdle ();
-				//_explosion.ArmSlug ();
+				// Performs the explosion and returns a new value on the same line:
+				_isArmed = _explosion.Fire (_gcTransform.position);
 			}
 		}
 
