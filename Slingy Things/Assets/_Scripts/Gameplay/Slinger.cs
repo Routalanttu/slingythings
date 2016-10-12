@@ -12,6 +12,8 @@ namespace SlingySlugs {
 		private Rigidbody2D _rigidBody; 
 		private Transform _gcTransform; 
 
+		// Käytetäänkö tätä armia mihinkään todella?
+		// Siis mihinkään, mikä ei toimisi tuolla slungillakin?
 		private bool _isArmed;
 		private bool _isSlung;
 
