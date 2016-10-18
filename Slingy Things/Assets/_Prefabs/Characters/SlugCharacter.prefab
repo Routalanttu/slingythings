@@ -58,7 +58,6 @@ GameObject:
   - 61: {fileID: 61000011883747340}
   - 114: {fileID: 114000010084548142}
   - 114: {fileID: 114000011365606050}
-  - 114: {fileID: 114000010714371476}
   - 114: {fileID: 114000013188627228}
   m_Layer: 0
   m_Name: SlugCharacter
@@ -349,22 +348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceMultiplier: 20
---- !u!114 &114000010714371476
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011518240616}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07de2375f7bd694c93d6768884d824e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 5
-  _explosionForce: 10
-  _explosionDamageMultiplier: 2
-  _explosionPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
-    type: 2}
 --- !u!114 &114000010949122934
 MonoBehaviour:
   m_ObjectHideFlags: 1
