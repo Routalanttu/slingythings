@@ -7,7 +7,7 @@ namespace SlingySlugs {
 	public class GameManager : MonoBehaviour {
 
 		public int activePlayers = 2; 
-		public camFollow _camFollow; 
+		public CameraController _cameraController; 
 
 		//TEAM VALUES 
 		public List<GameObject> _team1Slugs; 
@@ -22,7 +22,8 @@ namespace SlingySlugs {
 		private static bool _isQuitting = false;
 		private int currentPlayer = 0; 
 
-		private bool _gameStarted; 
+		private bool _gameStarted;
+        public bool CharacterTouched { set; get; } //if player activates a character 
 
 		public static GameManager Instance {
 			get {
@@ -140,7 +141,7 @@ namespace SlingySlugs {
 		}
 
 		public void SetCameraTarget(Transform target){
-			_camFollow.SetCameraTarget (target); 
+			_cameraController.SetCameraTarget (target); 
 		}
 
 		public void KillSlug(int teamNumber, GameObject go){

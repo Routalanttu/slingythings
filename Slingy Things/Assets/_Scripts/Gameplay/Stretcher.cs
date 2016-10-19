@@ -53,11 +53,13 @@ namespace SlingySlugs {
 				_clickedOn = true;
 				_charAnim.SetToStretch ();
 				SoundController.Instance.PlaySoundByIndex (1, _gcTransform.position);
+                GameManager.Instance.CharacterTouched = true; 
 			}
 		}
 
 		void OnMouseUp(){
 			if (_clickedOn) {
+                GameManager.Instance.CharacterTouched = false; 
 				_clickedOn = false;
 				_arrowAnim.HideAll ();
 
