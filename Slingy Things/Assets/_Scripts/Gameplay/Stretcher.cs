@@ -52,7 +52,7 @@ namespace SlingySlugs {
 			if (_slug.IsActive) {
 				_clickedOn = true;
 				_charAnim.SetToStretch ();
-				SoundController.Instance.PlaySoundByIndex (1, _gcTransform.position);
+				SoundController.Instance.PlaySoundByIndex (1);
                 GameManager.Instance.CharacterTouched = true; 
 			}
 		}
@@ -66,10 +66,10 @@ namespace SlingySlugs {
 				// Sling if stretch is over minimum, otherwise cancel:
 				if (_stretchVector.magnitude >= _minStretch) {
 					_slinger.Sling (_stretchVector);
-					SoundController.Instance.PlaySoundByIndex (3, _gcTransform.position);
+					SoundController.Instance.PlaySoundByIndex (3);
 				} else {
 					_charAnim.SetToIdle ();
-					SoundController.Instance.PlaySoundByIndex (1, _gcTransform.position);
+					SoundController.Instance.PlaySoundByIndex (1);
 				}
 			}
 
