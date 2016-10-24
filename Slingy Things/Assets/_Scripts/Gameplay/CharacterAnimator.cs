@@ -77,6 +77,7 @@ namespace SlingySlugs {
 		public void StretchFlip (bool state) {
 			_head.flipX = state;
 			_idleTail.flipX = state;
+			_stretchTail.flipY = state;
 		}
 
 		private void FlightFlip (bool state) {
