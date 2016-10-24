@@ -5,30 +5,33 @@ public class SoundObject {
 
 	public AudioSource source; 
 	public GameObject sourceGO; 
-	public Transform sourceTR; 
-
 	public AudioClip clip; 
 	public string name; 
 
 	public SoundObject (AudioClip aClip, string aName, float aVolume){
 
 		sourceGO = new GameObject ("AudioSource_" + aName); 
-		sourceTR = sourceGO.transform;
 		source = sourceGO.AddComponent<AudioSource> (); 
 		source.name = "AudioSource_" + aName; 
 		source.playOnAwake = false; 
 		source.clip = aClip; 
 		source.volume = aVolume; 
-		source.spatialBlend = 0.8f; 
-
+		source.spatialBlend = 0f; 
+		source.bypassEffects = true; 
+		source.bypassListenerEffects = true; 
+		source.bypassReverbZones = true; 
+	
 		clip = aClip; 
 		name = aName; 
 
 	}
 
-	public void PlaySound(Vector3 atPosition){
-		sourceTR.position = atPosition; 
+	public void PlaySound(){
 		source.PlayOneShot (clip); 
+	}
+
+	public void StopSound(){
+		source.Stop (); //stops the audiosource 
 	}
 
 	public void SetVolume(float setVolume){
@@ -79,7 +82,7 @@ public class SoundController : MonoBehaviour {
 
 	}
 
-	public void PlaySoundByIndex(int anIndexNumber, Vector3 aPosition) {
+	public void PlaySoundByIndex(int anIndexNumber) {
 
 		//CHECK ARRAY BOUNDS 
 		if (anIndexNumber > soundObjectList.Count) {
@@ -88,8 +91,20 @@ public class SoundController : MonoBehaviour {
 		}
 
 		tempSoundObj = (SoundObject)soundObjectList [anIndexNumber]; 
-		tempSoundObj.PlaySound (aPosition); 
+		tempSoundObj.PlaySound (); 
 
+	}
+
+	public void StopSoundByIndex(int anIndexNumber) {
+
+		//CHECK ARRAY BOUNDS 
+		if (anIndexNumber > soundObjectList.Count) {
+			Debug.LogWarning ("trying to stop a sound indexed outside sound array"); 
+			anIndexNumber = soundObjectList.Count - 1; 
+		}
+
+		tempSoundObj = (SoundObject)soundObjectList [anIndexNumber]; 
+		tempSoundObj.StopSound (); 
 
 	}
 

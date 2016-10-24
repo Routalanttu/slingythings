@@ -9,12 +9,7 @@ public class GUIManager : MonoBehaviour {
 	public Text _team2HealthText; 
 	public Slider _team1HealthSlider; 
 	public Slider _team2HealthSlider; 
-
-	//FOR DEBUG:
-	public Text _debug1Text;
-	public Text _debug2Text;
-	public Text _debug3Text;
-	public Text _debug4Text;
+	public GameObject _pauseMenu; 
 
 	void Awake(){
 
@@ -29,6 +24,13 @@ public class GUIManager : MonoBehaviour {
 		if (_team2HealthText == null) {
 			Debug.LogError ("GUIManager - _redTeamMessage missing"); 
 		}
+
+		if (_pauseMenu == null) {
+			Debug.LogError ("pausemenu missing "); 
+		}
+
+		_pauseMenu.SetActive(false); 
+
 
 	}
 
@@ -70,27 +72,14 @@ public class GUIManager : MonoBehaviour {
 		_team2HealthSlider.value = (float)team2health / 1000; 
 	}
 
-	public void Paused(){
-		ShowMessage ("Paused"); 
-	}
-
-	public void SetDebugText(int textNumber, string text){
-
-		switch(textNumber){
-		case 1:
-			_debug1Text.text = text; 
-			break; 
-		case 2:
-			_debug2Text.text = text; 
-			break;
-		case 3: 
-			_debug3Text.text = text; 
-			break;
-		case 4:
-			_debug4Text.text = text; 
-			break;
-		default: 
-			break; 
+	public void Paused(bool paused){
+		//ShowMessage ("Paused"); 
+		if (paused) {
+			_pauseMenu.SetActive (true); 
+		} else {
+			_pauseMenu.SetActive (false); 
 		}
+
 	}
+		
 }

@@ -73,7 +73,7 @@ public class RBStretch: MonoBehaviour {
 
 	void OnMouseUp(){
 		clickedOn = false;
-		SoundController.Instance.PlaySoundByIndex (1, _gcTransform.position); 
+		SoundController.Instance.PlaySoundByIndex (1); 
 		HideAllArrows ();
 	}
 

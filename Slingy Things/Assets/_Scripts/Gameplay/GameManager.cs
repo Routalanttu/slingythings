@@ -111,7 +111,7 @@ namespace SlingySlugs {
 
 		void UserInput(){
 
-			if (Input.GetKeyDown (KeyCode.P)) {
+			if (Input.GetKeyDown (KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) {
 				Pause (); 
 			} 
 
@@ -128,11 +128,12 @@ namespace SlingySlugs {
 			if (!_paused) {
 				Time.timeScale = 0; 
 				_paused = true; 
-				GUIManager.Paused (); 
+				GUIManager.Paused (true); 
 			} else {
 				Time.timeScale = 1; 
 				_paused = false; 
 				GUIManager.HideMessage (); 
+				GUIManager.Paused (false); 
 			}
 		}
 

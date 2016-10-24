@@ -41,7 +41,7 @@ public class Attack : MonoBehaviour {
 		ParticleSystem explosion; 
 		explosion = Instantiate(_explosionPrefab, _gcTransform.position, Quaternion.identity) as ParticleSystem; 
 		explosion.Play(); 
-		SoundController.Instance.PlaySoundByIndex (0, _gcTransform.position); 
+		SoundController.Instance.PlaySoundByIndex (0); 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, radius);
         foreach (Collider2D hit in colliders) {
             Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
