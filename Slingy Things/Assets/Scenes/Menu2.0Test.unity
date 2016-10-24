@@ -471,7 +471,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297472043}
+      - m_Target: {fileID: 297472045}
         m_MethodName: OnPlay
         m_Mode: 1
         m_Arguments:
@@ -525,7 +525,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 297472044}
-  - 114: {fileID: 297472043}
+  - 114: {fileID: 297472045}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -533,23 +533,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &297472043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 297472042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b5ad2671782abb4ca5e62f474438291, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuObjects: {fileID: 1131163990}
-  numberOfTeamsObjects: {fileID: 1738733536}
-  centerScreen: {fileID: 1812064303}
-  offScreenRight: {fileID: 613119291}
-  offScreenLeft: {fileID: 85603121}
-  speed: 5
 --- !u!4 &297472044
 Transform:
   m_ObjectHideFlags: 0
@@ -563,6 +546,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &297472045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 297472042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b358a13f758a84441b7f3eb8cd782840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuObjects: {fileID: 1131163990}
+  numberOfTeamsObjects: {fileID: 1738733536}
+  centerScreen: {fileID: 1812064303}
+  offScreenRight: {fileID: 613119291}
+  offScreenLeft: {fileID: 85603121}
+  mainMenuObjects: {fileID: 1131163992}
+  mainMenuCredits: {fileID: 1738733538}
 --- !u!1 &485141971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,6 +1012,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 1131163991}
+  - 95: {fileID: 1131163992}
   m_Layer: 5
   m_Name: MainMenuObjects
   m_TagString: Untagged
@@ -1040,6 +1042,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1131163992
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1131163990}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2d8aaffcd4b9d442aad3329266f58f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1153061582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1343,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297472043}
+      - m_Target: {fileID: 297472045}
         m_MethodName: OnCreditsReturn
         m_Mode: 1
         m_Arguments:
@@ -1440,6 +1459,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 1738733537}
+  - 95: {fileID: 1738733538}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -1463,9 +1483,26 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -802, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1738733538
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1738733536}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf70e451249f9cd40a922f306bd8e0b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1812064302
 GameObject:
   m_ObjectHideFlags: 0

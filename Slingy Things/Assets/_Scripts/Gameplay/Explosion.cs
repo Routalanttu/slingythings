@@ -4,60 +4,36 @@ using System.Collections;
 namespace SlingySlugs {
 	public class Explosion : MonoBehaviour {
 
-		public float radius = 5.0F;
-		public float _explosionForce = 10F;
-		public int _explosionDamageMultiplier = 2; 
-		public ParticleSystem _explosionPrefab; 
-		private Transform _gcTransform; 
-		private bool _fire;
-		private CharacterInfo _slug; 
+		[SerializeField] private float radius = 5.0F;
+		[SerializeField] private float _explosionForce = 10F;
+		[SerializeField] private int _explosionDamageMultiplier = 2; 
+		[SerializeField] private ParticleSystem _explosionPrefab; 
+		private Transform _gcTransform;
+		private Animator _xploAnim;
 
-		private Transform xplo;
-		private Animator niggers;
-
-		// Use this for initialization
-		void Start () {
-
+		void Awake () {
 			_gcTransform = GetComponent<Transform>(); 
-			_slug = GetComponent<CharacterInfo> (); 
-
-			// HORRIBLE PLACEHOLDER PURKKA HURRGH PLS REMOVE
-			xplo = GameObject.FindGameObjectWithTag ("Explosion").transform;
-			xplo.position = new Vector2 (9000f, 9000f);
-			niggers = xplo.gameObject.GetComponent<Animator> ();
-
+			_xploAnim = GetComponent<Animator> ();
 		}
 
-		// Update is called once per frame
-		void Update () {
-
-
+		public void Arm () {
+			_xploAnim.SetBool ("Blown", false);
 		}
 
-		void OnCollisionEnter2D(Collision2D coll){
+		public bool Fire(Vector2 xploPos){
+			_gcTransform.position = xploPos;
+			_xploAnim.SetBool ("Blown", true);
 
-			if (Armed && _slug.IsActive) {
-				Fire(); 
-			}
-
-		}
-
-		void Fire(){
-
-			xplo.position = transform.position;
-			niggers.SetBool ("Blown", true);
-
-			Vector2 explosionPos = _gcTransform.position; 
 			ParticleSystem explosion; 
 			explosion = Instantiate(_explosionPrefab, _gcTransform.position, Quaternion.identity) as ParticleSystem; 
 			explosion.Play(); 
 			SoundController.Instance.PlaySoundByIndex (0, _gcTransform.position); 
 
-			Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionPos, radius);
+			Collider2D[] colliders = Physics2D.OverlapCircleAll(xploPos, radius);
 			foreach (Collider2D hit in colliders) {
 				Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
 				Vector2 hitPosition = hit.GetComponent<Transform>().position;
-				Vector2 explosionDelta = hitPosition- explosionPos; //Get vector between explosion and hit 
+				Vector2 explosionDelta = hitPosition- xploPos; //Get vector between explosion and hit 
 				Vector2 explosionDir = Vector3.Normalize (explosionDelta); //normalize the vector to get direction only 
 				float deltaDistance = radius - explosionDelta.magnitude; //get the effective blast magnitude
 				int explosionDamage = (int)deltaDistance * _explosionDamageMultiplier; 
@@ -65,33 +41,12 @@ namespace SlingySlugs {
 				if (rb != null && hit.gameObject.tag == "Slug"){
 					rb.AddForce (explosionDir * _explosionForce, ForceMode2D.Impulse);  
 					hit.GetComponent<CharacterInfo> ().DecreaseHealth (explosionDamage); 
-
 				}
 			}
 
-			Armed = false; 
-			_fire = false; 
-
 			GameManager.Instance.NextPlayerMove();
 
-
-
+			return false;
 		}
-
-		public void ArmSlug(){
-			Armed = true;
-			niggers.SetBool ("Blown", false);
-			xplo.position = new Vector2 (9000f, 9000f);
-		}
-
-		public void NextPlayerMove(){
-			GameManager.Instance.NextPlayerMove (); 
-		}
-
-		public bool Armed {
-			get;
-			private set;
-		}
-
 	}
 }

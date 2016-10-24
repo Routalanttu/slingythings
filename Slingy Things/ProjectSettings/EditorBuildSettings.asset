@@ -7,19 +7,19 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: Assets/Scenes/Pyrytest.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SplashScreen.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
   - enabled: 0
     path: Assets/Scenes/Henritest.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Credits.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TeamsAndAnimals.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SelectLevel.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Options.unity
   - enabled: 0
     path: Assets/Scenes/Mikkotest.unity
