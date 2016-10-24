@@ -214,6 +214,20 @@ namespace SlingySlugs {
 
 			}
 		}
+
+		public void RestartLevel(){
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		}
+
+		public void QuitGame(){
+
+			PlayerPrefs.Save (); 
+			Application.Quit (); 
+		}
+
+		public void ResumeGame(){
+			Pause (); 
+		}
 			
 
 		private void OnApplicationQuit(){
@@ -227,14 +241,15 @@ namespace SlingySlugs {
 	        StartCoroutine(SceneLoad());
 	    }
 
+
+
 	    IEnumerator SceneLoad () {
 	        yield return new WaitForSecondsRealtime(3.0f);
 	        SceneManager.LoadScene("TeamsAndAnimals");
 	    }
 
 
-			
-
+	
 
 	}
 

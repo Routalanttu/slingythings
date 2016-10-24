@@ -112,11 +112,14 @@ public class SoundController : MonoBehaviour {
 	public void setVolume(float volumeControl){
 		volume = volumeControl; 
 
-		foreach (SoundObject soundobj in soundObjectList) {
-			soundobj.source.volume = volume;  
+		if (soundObjectList != null) {
+			foreach (SoundObject soundobj in soundObjectList) {
+				soundobj.source.volume = volume;  
+			}
+
+			PlayerPrefs.SetFloat ("soundvolume", volume); 
 		}
-			
-		PlayerPrefs.SetFloat ("soundvolume", volume); 
+
 	}
 
 	public void StopSounds(){
