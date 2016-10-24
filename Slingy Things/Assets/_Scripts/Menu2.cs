@@ -4,19 +4,20 @@ using System.Collections;
 public class Menu2 : MonoBehaviour {
 
     public GameObject menuObjects;
-    public GameObject numberOfTeamsObjects;
+    //public GameObject numberOfTeamsObjects;
+    public GameObject teamsAndAnimals;
+    public GameObject selectLevel;
     public Transform centerScreen;
     public Transform offScreenRight;
     public Transform offScreenLeft;
     public Animator mainMenuObjects;
     public Animator mainMenuCredits;
-    private bool playPressCheck = false;
-    private bool creditsPressCheck = false;
+
 
 
     // Use this for initialization
     void Start () {
-        numberOfTeamsObjects.transform.position = offScreenLeft.transform.position;
+        teamsAndAnimals.transform.position = offScreenRight.transform.position;
         menuObjects.transform.position = centerScreen.transform.position;
     }
 	
