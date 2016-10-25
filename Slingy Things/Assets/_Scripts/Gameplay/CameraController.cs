@@ -80,7 +80,7 @@ namespace SlingySlugs
                 _transform.position = Vector3.Lerp(_transform.position, _target.position, dampingSpeed) + new Vector3(0, 0.0f, -10);
             }
 
-            CheckBorders();
+           CheckBorders();
 
         }
 

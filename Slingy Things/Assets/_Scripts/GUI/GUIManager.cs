@@ -11,6 +11,10 @@ public class GUIManager : MonoBehaviour {
 	public Slider _team2HealthSlider; 
 	public GameObject _pauseMenu; 
 
+	//PAUSE MENU
+	public Slider _soundLevel;
+	public Slider _musicLevel; 
+
 	void Awake(){
 
 		if (_message == null) {
@@ -29,6 +33,15 @@ public class GUIManager : MonoBehaviour {
 			Debug.LogError ("pausemenu missing "); 
 		}
 
+		if (_soundLevel == null) {
+			Debug.LogError ("_soundlevel missing "); 
+		}
+
+		if (_musicLevel == null) {
+			Debug.LogError ("_musicLevel missing "); 
+		}
+
+		SetMenuValues (); 
 		_pauseMenu.SetActive(false); 
 
 
@@ -78,6 +91,18 @@ public class GUIManager : MonoBehaviour {
 			_pauseMenu.SetActive (true); 
 		} else {
 			_pauseMenu.SetActive (false); 
+		}
+
+	}
+
+	void SetMenuValues(){
+
+		if(PlayerPrefs.HasKey("soundvolume")){
+			_soundLevel.value = PlayerPrefs.GetFloat ("soundvolume"); 
+		}
+
+		if (PlayerPrefs.HasKey ("musicvolume")) {
+			_musicLevel.value = PlayerPrefs.GetFloat ("musicvolume"); 
 		}
 
 	}

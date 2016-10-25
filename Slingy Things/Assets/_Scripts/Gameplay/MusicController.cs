@@ -43,10 +43,13 @@ public class MusicController : MonoBehaviour {
 
 	public void setVolume(float volumeControl){
 
-		volume = volumeControl; 
-		source.volume = volume; 
+		if (source != null) {
+			volume = volumeControl; 
+			source.volume = volume; 
 
-		PlayerPrefs.SetFloat ("musicvolume", volume); 
+			PlayerPrefs.SetFloat ("musicvolume", volume); 
+		}
+
 	}
 
 
