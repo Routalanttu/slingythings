@@ -27,13 +27,13 @@ public class Menu2 : MonoBehaviour {
 	}
 
     public void OnPlay() {
-        mainMenuObjects.SetTrigger("MainObjectsMoveTo");
-        teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMoveTo");
+        mainMenuObjects.SetTrigger("MainMenuMove");
+        teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMove");
     }
 
     public void OnCreditsReturn() {
-        mainMenuObjects.SetTrigger("MainObjectsMoveTo");
-        teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMoveTo");
+        mainMenuObjects.SetTrigger("MainMenuMove");
+        teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMove");
     }
 
 }
