@@ -48,6 +48,7 @@ public class MusicController : MonoBehaviour {
 			source.volume = volume; 
 
 			PlayerPrefs.SetFloat ("musicvolume", volume); 
+			PlayerPrefs.Save (); 
 		}
 
 	}

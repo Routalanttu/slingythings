@@ -118,6 +118,7 @@ public class SoundController : MonoBehaviour {
 			}
 
 			PlayerPrefs.SetFloat ("soundvolume", volume); 
+			PlayerPrefs.Save (); 
 		}
 
 	}
