@@ -11,7 +11,7 @@ public class Menu2 : MonoBehaviour {
     public Transform offScreenRight;
     public Transform offScreenLeft;
     public Animator mainMenuObjects;
-    public Animator mainMenuCredits;
+    public Animator teamsAndAnimalsObjects;
 
 
 
@@ -27,13 +27,13 @@ public class Menu2 : MonoBehaviour {
 	}
 
     public void OnPlay() {
-        mainMenuObjects.SetTrigger("Menu2MainMenuObjectsMoveAwayFromScreen");
-        mainMenuCredits.SetTrigger("Menu2CreditsMoveToScreen");
+        mainMenuObjects.SetTrigger("MainMenuMove");
+        teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMove");
     }
 
     public void OnCreditsReturn() {
-        mainMenuObjects.SetTrigger("Menu2MainMenuObjectsMoveAwayFromScreen");
-        mainMenuCredits.SetTrigger("Menu2CreditsMoveToScreen");
+        mainMenuObjects.SetTrigger("MainMenuMove");
+        teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMove");
     }
 
 }
