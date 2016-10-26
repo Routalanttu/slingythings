@@ -9,6 +9,16 @@ namespace SlingySlugs {
 		public int activePlayers = 2; 
 		public CameraController _cameraController; 
 
+		//Gameplay states
+		enum State
+		{
+			_stateWaitForTurn, 
+			_stateAim, 
+			_stateInAir, 
+			_stateExplode, 
+			_stateCheckDamages
+		};
+
 		//TEAM VALUES 
 		public List<GameObject> _team1Slugs; 
 		public List<GameObject> _team2Slugs; 
