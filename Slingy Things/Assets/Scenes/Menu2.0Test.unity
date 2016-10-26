@@ -673,7 +673,7 @@ MonoBehaviour:
   offScreenRight: {fileID: 613119291}
   offScreenLeft: {fileID: 85603121}
   mainMenuObjects: {fileID: 1131163992}
-  mainMenuCredits: {fileID: 1738733538}
+  teamsAndAnimalsObjects: {fileID: 956649976}
 --- !u!1 &485141971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,6 +1407,16 @@ Prefab:
     - target: {fileID: 1000010570530844, guid: e33a5f56fcdea66449e4bb9ee44f7a31, type: 2}
       propertyPath: m_Name
       value: TeamsAndAnimalsContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013349540730, guid: e33a5f56fcdea66449e4bb9ee44f7a31,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 297472045}
+    - target: {fileID: 114000013349540730, guid: e33a5f56fcdea66449e4bb9ee44f7a31,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCreditsReturn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e33a5f56fcdea66449e4bb9ee44f7a31, type: 2}
