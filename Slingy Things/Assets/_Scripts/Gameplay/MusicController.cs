@@ -6,20 +6,35 @@ public class MusicController : MonoBehaviour {
 	private float volume; 
 
 	public AudioClip music; 
+	public float _defaultVolume = 0.2f; 
 
 	public bool loopMusic; 
 
 	private AudioSource source; 
 	private GameObject sourceGO; 
 
+	public GameObject _musicoff; 
+
+	void Awake(){
+
+		if (_musicoff == null) {
+			Debug.LogError ("_musicoff missing"); 
+		}
+
+	}
+
 	void Start()
 	{
-
-		if(PlayerPrefs.HasKey("musicvolume")){
-			volume = PlayerPrefs.GetFloat ("musicvolume"); 
+		/*
+		if(PlayerPrefs.HasKey("mutemusic")){
+			source.mute = true; 
 		}else{
-			volume = 0.2f; 
+			volume = _defaultVolume; 
 		}
+
+		*/
+
+		volume = _defaultVolume; 
 
 		sourceGO = new GameObject("Music_Audiosource"); 
 		source = sourceGO.AddComponent<AudioSource>();
@@ -41,17 +56,21 @@ public class MusicController : MonoBehaviour {
 
 	}
 
-	public void setVolume(float volumeControl){
+	public void ToggleMute(){
 
-		if (source != null) {
-			volume = volumeControl; 
-			source.volume = volume; 
-
-			PlayerPrefs.SetFloat ("musicvolume", volume); 
-			PlayerPrefs.Save (); 
+		if (source.mute) {
+			source.mute = false; 
+			PlayerPrefs.SetInt ("mutemusic", 0); 
+			_musicoff.SetActive (false); 
+		}else{
+			source.mute = true; 
+			PlayerPrefs.SetInt ("mutemusic", 1); 
+			_musicoff.SetActive (true); 
 		}
 
+		PlayerPrefs.Save (); 
 	}
+
 
 
 
