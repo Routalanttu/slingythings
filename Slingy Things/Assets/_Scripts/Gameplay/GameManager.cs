@@ -245,7 +245,6 @@ namespace SlingySlugs {
 		}
 
 		public void GameOver(int winningTeamNumber){
-			Pause (); 
 			GUIManager.GameOver (winningTeamNumber);
 	        // Didn't want the TeamsAndAnimals scene loading immediately after the game ends so I decided to use a coroutine
 	        StartCoroutine(SceneLoad());
