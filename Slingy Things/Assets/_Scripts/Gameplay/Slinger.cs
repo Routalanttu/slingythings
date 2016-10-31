@@ -27,7 +27,7 @@ namespace SlingySlugs {
 			_gcTransform = GetComponent<Transform> (); 
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_charAnim.SetToIdle ();
-			_explosion = FindObjectOfType<Explosion> ();
+			_explosion = GetComponent<Explosion> (); 
 			_slug = GetComponent<CharacterInfo> ();
 		}
 
@@ -50,8 +50,8 @@ namespace SlingySlugs {
 			// Placeholder functionality; should be "SetToLimp"
 			if (_isArmed && _slug.IsActive) {
 				_charAnim.SetToIdle ();
-				// Performs the explosion and returns a new value on the same line:
-				_isArmed = _explosion.Fire (_gcTransform.position);
+				_explosion.Fire ();
+				_isArmed = false;
 			}
 		}
 
