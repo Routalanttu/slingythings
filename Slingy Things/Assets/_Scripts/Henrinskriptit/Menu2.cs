@@ -31,9 +31,17 @@ public class Menu2 : MonoBehaviour {
         teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMove");
     }
 
-    public void OnCreditsReturn() {
+    public void OnTeamsAndAnimalsReturn() {
         mainMenuObjects.SetTrigger("MainMenuMove");
         teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMove");
+    }
+
+    public void OnCredits() {
+
+    }
+
+    public void OnCreditsReturn() {
+
     }
 
 }
