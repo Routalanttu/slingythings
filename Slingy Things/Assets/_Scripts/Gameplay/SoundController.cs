@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SoundObject {
+public class SoundObject
+{
 
-	public AudioSource source; 
-	public GameObject sourceGO; 
-	public AudioClip clip; 
-	public string name; 
+	public AudioSource source;
+	public GameObject sourceGO;
+	public AudioClip clip;
+	public string name;
 
-	public SoundObject (AudioClip aClip, string aName, float aVolume){
+	public SoundObject (AudioClip aClip, string aName, float aVolume)
+	{
 
 		sourceGO = new GameObject ("AudioSource_" + aName); 
 		source = sourceGO.AddComponent<AudioSource> (); 
@@ -26,63 +28,86 @@ public class SoundObject {
 
 	}
 
-	public void PlaySound(){
+	public void PlaySound ()
+	{
 		source.PlayOneShot (clip); 
 	}
 
-	public void StopSound(){
+	public void StopSound ()
+	{
 		source.Stop (); //stops the audiosource 
 	}
 
-	public void SetVolume(float setVolume){
+	public void SetVolume (float setVolume)
+	{
 		source.volume = setVolume; 
 	}
 }
 
 
 
-public class SoundController : MonoBehaviour {
+public class SoundController : MonoBehaviour
+{
 
-	private static SoundController _instance; 
+	private static SoundController _instance;
 
-	public static SoundController Instance{
+	public static SoundController Instance {
 		get {
 			return _instance; 
 		}
 	}
 
-	public AudioClip[] GameSounds; 
-	private int totalSounds; 
-	private ArrayList soundObjectList; 
-	private SoundObject tempSoundObj; 
-	private float volume;  
+	public AudioClip[] GameSounds;
+	public float[] SoundVolumes = new float[10];
+	public float _defaultVolume = 0.5f;
+	private int totalSounds;
+	private ArrayList soundObjectList;
+	private SoundObject tempSoundObj;
+	private float volume;
+	public bool _soundsMuted = false;  
+	public GameObject _soundsOff; 
 
-	public void Awake(){
+
+	public void Awake ()
+	{
+
+		if (_soundsOff == null) {
+			Debug.LogError ("_soundsoff missing"); 
+		}
 
 		if (_instance == null) {
 			_instance = this; 
-		}else if (_instance != this) {
-			 Destroy (this); 
+		} else if (_instance != this) {
+			Destroy (this); 
 		}
 
-		if(PlayerPrefs.HasKey("soundvolume")){
-			volume = PlayerPrefs.GetFloat ("soundvolume"); 
-		}else{
-			volume = 1; 
-		}
+		soundObjectList = new ArrayList (); 
 
-		soundObjectList = new ArrayList(); 
 
 		foreach (AudioClip theSound in GameSounds) {
+
+			if (SoundVolumes.Length >= GameSounds.Length) {
+				volume = SoundVolumes [totalSounds]; //set volume for a sound, sort of a mixer in the editor
+			} else {
+				Debug.LogError ("Check SoundVolumes Mixer Array size!!"); 
+			}
+
+			if (volume <= 0)
+				volume = _defaultVolume;  
+			if (volume > 1)
+				volume = 1; 
+
 			tempSoundObj = new SoundObject (theSound, theSound.name, volume); 
 
 			soundObjectList.Add (tempSoundObj); 
 			totalSounds++; 
+
 		}
 
 	}
 
-	public void PlaySoundByIndex(int anIndexNumber) {
+	public void PlaySoundByIndex (int anIndexNumber)
+	{
 
 		//CHECK ARRAY BOUNDS 
 		if (anIndexNumber > soundObjectList.Count) {
@@ -95,7 +120,8 @@ public class SoundController : MonoBehaviour {
 
 	}
 
-	public void StopSoundByIndex(int anIndexNumber) {
+	public void StopSoundByIndex (int anIndexNumber)
+	{
 
 		//CHECK ARRAY BOUNDS 
 		if (anIndexNumber > soundObjectList.Count) {
@@ -107,38 +133,53 @@ public class SoundController : MonoBehaviour {
 		tempSoundObj.StopSound (); 
 
 	}
+		
+	public void ToggleMute(){
 
-
-	public void setVolume(float volumeControl){
-		volume = volumeControl; 
+		if (_soundsMuted) {
+			_soundsMuted = false; 
+			PlayerPrefs.SetInt ("mutesounds", 0); 
+			_soundsOff.SetActive (false); 
+		}else{
+			_soundsMuted = true; 
+			PlayerPrefs.SetInt ("mutesounds", 1); 
+			_soundsOff.SetActive (true); 
+		}
 
 		if (soundObjectList != null) {
 			foreach (SoundObject soundobj in soundObjectList) {
-				soundobj.source.volume = volume;  
-			}
 
-			PlayerPrefs.SetFloat ("soundvolume", volume); 
+				if (_soundsMuted) {
+					soundobj.source.mute = true; 
+				} else {
+					soundobj.source.mute = false; 
+				}
+			}
 		}
 
+		PlayerPrefs.Save (); 
 	}
 
-	public void StopSounds(){
+	public void StopSounds ()
+	{
 
 		foreach (SoundObject soundobj in soundObjectList) {
 			soundobj.source.Stop (); 
 		}
 	}
 
-	public void PlaySounds(){
+	public void PlaySounds ()
+	{
 
 		foreach (SoundObject soundobj in soundObjectList) {
 			soundobj.source.Play (); 
 		}
 	}
 
-	public bool isPlaying(int audioIndex){
+	public bool isPlaying (int audioIndex)
+	{
 
-		SoundObject tempSound = (SoundObject) soundObjectList [audioIndex]; 
+		SoundObject tempSound = (SoundObject)soundObjectList [audioIndex]; 
 		return tempSound.source.isPlaying;
 	}
 

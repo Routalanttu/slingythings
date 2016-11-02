@@ -9,6 +9,16 @@ namespace SlingySlugs {
 		public int activePlayers = 2; 
 		public CameraController _cameraController; 
 
+		//Gameplay states
+		enum State
+		{
+			_stateWaitForTurn, 
+			_stateAim, 
+			_stateInAir, 
+			_stateExplode, 
+			_stateCheckDamages
+		};
+
 		//TEAM VALUES 
 		public List<GameObject> _team1Slugs; 
 		public List<GameObject> _team2Slugs; 
@@ -235,7 +245,6 @@ namespace SlingySlugs {
 		}
 
 		public void GameOver(int winningTeamNumber){
-			Pause (); 
 			GUIManager.GameOver (winningTeamNumber);
 	        // Didn't want the TeamsAndAnimals scene loading immediately after the game ends so I decided to use a coroutine
 	        StartCoroutine(SceneLoad());
