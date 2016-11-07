@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace SlingySlugs {
 	public class CharacterInfo : MonoBehaviour {
+
 		public enum Team 
 		{
 			Team1 = 1, 
@@ -24,8 +25,14 @@ namespace SlingySlugs {
 		}
 
 		[SerializeField] private Species _species;
-
 		[SerializeField] private int _health = 100;
+		[SerializeField] private bool _dead = false;
+		[SerializeField] private GameObject _deathAnimation;
+		private Transform _myTransform;
+
+		private void Awake () {
+			_myTransform = GetComponent<Transform> ();
+		}
 
 		public int Health {
 			get { return _health; }
@@ -51,6 +58,7 @@ namespace SlingySlugs {
 		}
 
 		public void Die(){
+			Instantiate(_deathAnimation, _myTransform.position, Quaternion.identity);
 			GameManager.Instance.KillSlug ((int)_team, gameObject); 
 			Destroy (gameObject); 
 		}
