@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Henritest.unity
   - enabled: 0
     path: Assets/Scenes/Credits.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TeamsAndAnimals.unity
   - enabled: 0
     path: Assets/Scenes/SelectLevel.unity
