@@ -5,25 +5,17 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Pyrytest.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SplashScreen.unity
-  - enabled: 0
-    path: Assets/Scenes/Menu.unity
-  - enabled: 0
-    path: Assets/Scenes/Henritest.unity
-  - enabled: 0
-    path: Assets/Scenes/Credits.unity
-  - enabled: 0
-    path: Assets/Scenes/TeamsAndAnimals.unity
-  - enabled: 0
-    path: Assets/Scenes/SelectLevel.unity
-  - enabled: 0
-    path: Assets/Scenes/Options.unity
-  - enabled: 0
-    path: Assets/Scenes/Mikkotest.unity
-  - enabled: 0
-    path: Assets/Scenes/00Pre-pre-Alpha.unity
   - enabled: 1
     path: Assets/Scenes/Menu2.0Test.unity
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+  - enabled: 1
+    path: Assets/Scenes/TeamsAndAnimals.unity
+  - enabled: 1
+    path: Assets/Scenes/SelectLevel.unity
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+  - enabled: 1
+    path: Assets/Scenes/00Pre-pre-Alpha.unity

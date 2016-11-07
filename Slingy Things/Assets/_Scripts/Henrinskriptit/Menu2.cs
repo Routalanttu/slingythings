@@ -4,21 +4,28 @@ using System.Collections;
 public class Menu2 : MonoBehaviour {
 
     public GameObject menuObjects;
-    //public GameObject numberOfTeamsObjects;
-    public GameObject teamsAndAnimals;
-    public GameObject selectLevel;
-    public Transform centerScreen;
-    public Transform offScreenRight;
-    public Transform offScreenLeft;
+	public GameObject teamsAndAnimals;
+	public GameObject selectLevel;
+    
     public Animator mainMenuObjects;
     public Animator teamsAndAnimalsObjects;
+	public Animator selectLevelObjects; 
+
+	//tarviiko?
+	//public Transform centerScreen;
+	//public Transform offScreenRight;
+	//public Transform offScreenLeft;
+
+	//public GameObject numberOfTeamsObjects;
 
 
 
     // Use this for initialization
     void Start () {
-        teamsAndAnimals.transform.position = offScreenRight.transform.position;
-        menuObjects.transform.position = centerScreen.transform.position;
+
+		//tarviiko?
+       // teamsAndAnimals.transform.position = offScreenRight.transform.position;
+       // menuObjects.transform.position = centerScreen.transform.position;
     }
 	
 	// Update is called once per frame
@@ -33,8 +40,19 @@ public class Menu2 : MonoBehaviour {
 
     public void OnTeamsAndAnimalsReturn() {
         mainMenuObjects.SetTrigger("MainMenuMove");
-        teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMove");
+        teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMoveBack");
     }
+
+	public void OnToLevelSelect(){
+		teamsAndAnimalsObjects.SetTrigger ("TeamsAndAnimalsMove"); 
+		selectLevelObjects.SetTrigger ("SelectLevelMove"); 
+
+	}
+
+	public void OnLevelSelectReturn(){
+		teamsAndAnimalsObjects.SetTrigger ("TeamsAndAnimalsMove"); 
+		selectLevelObjects.SetTrigger ("SelectLevelMove"); 
+	}
 
     public void OnCredits() {
 
