@@ -7,6 +7,7 @@ public class Menu2 : MonoBehaviour {
     public Animator _teamsAndAnimalsObjectsAnim;
 	public Animator _selectLevelObjectsAnim; 
 	public Animator _titleAnim; 
+	public Animator _optionsMenuAnim; 
 
 	//public GameObject numberOfTeamsObjects;
 
@@ -44,12 +45,23 @@ public class Menu2 : MonoBehaviour {
 		_selectLevelObjectsAnim.SetTrigger ("SelectLevelMove"); 
 	}
 
-    public void OnCredits() {
+    public void OnOptions() {
+		_mainMenuObjectsAnim.SetTrigger("MainMenuMove");
+		_titleAnim.SetTrigger ("TitleMove"); 
+		_optionsMenuAnim.SetTrigger ("OptionsMove"); 
 
     }
 
-    public void OnCreditsReturn() {
-
+    public void OnOptionsReturn() {
+		_mainMenuObjectsAnim.SetTrigger("MainMenuMove");
+		_titleAnim.SetTrigger ("TitleMove"); 
+		_optionsMenuAnim.SetTrigger ("OptionsMove"); 
     }
+
+	public void PlayButtonSound(){
+
+		SoundController.Instance.PlaySoundByIndex (0); 
+
+	}
 
 }
