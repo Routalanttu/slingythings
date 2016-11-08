@@ -2,14 +2,11 @@
 using System.Collections;
 
 public class Menu2 : MonoBehaviour {
-
-    public GameObject menuObjects;
-	public GameObject teamsAndAnimals;
-	public GameObject selectLevel;
     
-    public Animator mainMenuObjects;
-    public Animator teamsAndAnimalsObjects;
-	public Animator selectLevelObjects; 
+    public Animator _mainMenuObjectsAnim;
+    public Animator _teamsAndAnimalsObjectsAnim;
+	public Animator _selectLevelObjectsAnim; 
+	public Animator _titleAnim; 
 
 	//public GameObject numberOfTeamsObjects;
 
@@ -24,24 +21,27 @@ public class Menu2 : MonoBehaviour {
 	}
 
     public void OnPlay() {
-        mainMenuObjects.SetTrigger("MainMenuMove");
-        teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMove");
+        _mainMenuObjectsAnim.SetTrigger("MainMenuMove");
+        _teamsAndAnimalsObjectsAnim.SetTrigger("TeamsAndAnimalsMove");
+		_titleAnim.SetTrigger ("TitleMove"); 
+
     }
 
     public void OnTeamsAndAnimalsReturn() {
-        mainMenuObjects.SetTrigger("MainMenuMove");
-        teamsAndAnimalsObjects.SetTrigger("TeamsAndAnimalsMoveBack");
+        _mainMenuObjectsAnim.SetTrigger("MainMenuMove");
+        _teamsAndAnimalsObjectsAnim.SetTrigger("TeamsAndAnimalsMoveBack");
+		_titleAnim.SetTrigger ("TitleMove"); 
     }
 
 	public void OnToLevelSelect(){
-		teamsAndAnimalsObjects.SetTrigger ("TeamsAndAnimalsMove"); 
-		selectLevelObjects.SetTrigger ("SelectLevelMove"); 
+		_teamsAndAnimalsObjectsAnim.SetTrigger ("TeamsAndAnimalsMove"); 
+		_selectLevelObjectsAnim.SetTrigger ("SelectLevelMove"); 
 
 	}
 
 	public void OnLevelSelectReturn(){
-		teamsAndAnimalsObjects.SetTrigger ("TeamsAndAnimalsMove"); 
-		selectLevelObjects.SetTrigger ("SelectLevelMove"); 
+		_teamsAndAnimalsObjectsAnim.SetTrigger ("TeamsAndAnimalsMove"); 
+		_selectLevelObjectsAnim.SetTrigger ("SelectLevelMove"); 
 	}
 
     public void OnCredits() {
