@@ -257,6 +257,10 @@ namespace SlingySlugs {
 	        SceneManager.LoadScene("TeamsAndAnimals");
 	    }
 
+		public void GoToMenu () {
+			SceneManager.LoadScene ("Menu");
+		}
+
 
 	
 
