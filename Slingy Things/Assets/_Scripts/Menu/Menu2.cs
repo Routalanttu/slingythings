@@ -8,6 +8,7 @@ public class Menu2 : MonoBehaviour {
 	public Animator _selectLevelObjectsAnim; 
 	public Animator _titleAnim; 
 	public Animator _optionsMenuAnim; 
+	public Animator _teamManagementAnim; 
 
 	//public GameObject numberOfTeamsObjects;
 
@@ -57,6 +58,20 @@ public class Menu2 : MonoBehaviour {
 		_titleAnim.SetTrigger ("TitleMove"); 
 		_optionsMenuAnim.SetTrigger ("OptionsMove"); 
     }
+
+	public void OnTeamManagement(){
+		_mainMenuObjectsAnim.SetTrigger("MainMenuMove");
+		_teamManagementAnim.SetTrigger ("TeamManagementMove"); 
+		_titleAnim.SetTrigger ("TitleMove"); 
+
+	}
+
+	public void OnTeamManagementReturn(){
+		_mainMenuObjectsAnim.SetTrigger("MainMenuMove");
+		_teamManagementAnim.SetTrigger ("TeamManagementMove"); 
+		_titleAnim.SetTrigger ("TitleMove"); 
+
+	}
 
 	public void PlayButtonSound(){
 
