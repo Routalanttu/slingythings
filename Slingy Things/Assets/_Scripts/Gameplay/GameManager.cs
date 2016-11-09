@@ -215,7 +215,7 @@ namespace SlingySlugs {
 			} else {
 
 				foreach (var slug in _team2Slugs) {
-					slug.GetComponent<CharacterInfo> ().IsActive = true; 
+					slug.GetComponent<CharacterInfo> ().IsActive = true;
 				}
 
 				foreach (var slug in _team1Slugs) {
