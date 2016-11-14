@@ -16,8 +16,10 @@ namespace SlingySlugs {
 
 		// These values might/should be determined by the character type.
 		// Can be done straight to the prefab though?
-		[SerializeField] private float _maxStretch = 2.0f;
-		[SerializeField] private float _minStretch = 0.8f;
+		[SerializeField] private float _maxPowerStretch = 10.0f;
+		[SerializeField] private float _minPowerStretch = 0.5f;
+		private float _maxVisualStretch = 2.0f;
+		private float _minVisualStretch = 0.8f;
 		private Vector2 _stretchVector;
 		private Slinger _slinger;
 
@@ -36,8 +38,8 @@ namespace SlingySlugs {
 			_slug = GetComponent<CharacterInfo> ();
 
 			/*	Ehkä tällainen pitäis tehdä, ellei prefabissa vain määritä
-			 * _maxStretch = //Hahmotyypin määrittämä maksimi
-			 * _minStretch = //Hahmotyypin määrittämä minimi
+			 * _maxPowerStretch = //Hahmotyypin määrittämä maksimi
+			 * _minPowerStretch = //Hahmotyypin määrittämä minimi
 			 * 
 			 */
 		}
@@ -64,7 +66,7 @@ namespace SlingySlugs {
 				_arrowAnim.HideAll ();
 
 				// Sling if stretch is over minimum, otherwise cancel:
-				if (_stretchVector.magnitude >= _minStretch) {
+				if (_stretchVector.magnitude >= _minPowerStretch) {
 					_slinger.Sling (_stretchVector);
 					SoundController.Instance.PlaySoundByIndex (3);
 				} else {
@@ -83,19 +85,21 @@ namespace SlingySlugs {
 			_slugPosition = _gcTransform.position;
 
 			_stretchVector = _slugPosition - _mousePos; 
-			_stretchVector = Vector2.ClampMagnitude (_stretchVector, _maxStretch);
+			_stretchVector = Vector2.ClampMagnitude (_stretchVector, _maxPowerStretch);
 
 			float stretchAngle = Mathf.Atan2(_stretchVector.y, _stretchVector.x) * Mathf.Rad2Deg;
 			Quaternion tailRotation = Quaternion.AngleAxis(stretchAngle, Vector3.forward);
 			_charAnim.RotateTail (tailRotation);
 			_arrowAnim.Rotate (tailRotation, _slugPosition);
 
+			float scaledStretch = _minVisualStretch + _stretchVector.magnitude * ((_maxVisualStretch - _minVisualStretch) / _maxPowerStretch);
+
 			// Stretch tail by player input, but disallow excessive shrinkage:
-			if (_stretchVector.magnitude > _minStretch) {
-				_charAnim.ScaleTail (_stretchVector.magnitude);
-				_arrowAnim.SetArrowVisibility (_stretchVector.magnitude, _minStretch, _maxStretch);
+			if (_stretchVector.magnitude > _minPowerStretch) {
+				_charAnim.ScaleTail (scaledStretch);
+				_arrowAnim.SetArrowVisibility (scaledStretch, _minVisualStretch, _maxVisualStretch);
 			} else {
-				_charAnim.ScaleTail (_minStretch);
+				_charAnim.ScaleTail (_minVisualStretch);
 				_arrowAnim.HideAll ();
 			}
 
