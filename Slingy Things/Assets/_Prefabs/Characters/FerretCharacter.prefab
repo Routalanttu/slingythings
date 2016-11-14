@@ -365,6 +365,7 @@ MonoBehaviour:
   _explosionDamageMultiplier: 2
   _explosionPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
     type: 2}
+  _explosionAnimation: {fileID: 0}
 --- !u!114 &114000010949122934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -400,8 +401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb839845c528ab45b110d5fe2cb0fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxStretch: 2
-  _minStretch: 0.8
+  _maxPowerStretch: 10
+  _minPowerStretch: 0.5
 --- !u!114 &114000013188627228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -416,6 +417,9 @@ MonoBehaviour:
   _team: 1
   _species: 0
   _health: 100
+  _dead: 0
+  _deathAnimation: {fileID: 1000013280099540, guid: ee7f2becf47208e4baeed99745b9b0e9,
+    type: 2}
 --- !u!212 &212000010219862790
 SpriteRenderer:
   m_ObjectHideFlags: 1

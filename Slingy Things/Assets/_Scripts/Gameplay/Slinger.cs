@@ -17,6 +17,8 @@ namespace SlingySlugs {
 		private bool _isArmed;
 		private bool _isSlung;
 
+		private float _soundCooldown = 1f;
+
 		//[SerializeField] private Transform _flyTrans;
 		private CharacterAnimator _charAnim;
 
@@ -35,6 +37,10 @@ namespace SlingySlugs {
 			if (_isSlung) {
 				_charAnim.RotateFlight (_rigidBody.velocity);
 			}
+
+			if (_soundCooldown > 0f) {
+				_soundCooldown -= Time.deltaTime;
+			}
 		}
 
 		public void Sling (Vector2 stretchVector) {
@@ -47,13 +53,38 @@ namespace SlingySlugs {
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			_isSlung = false;
+			_charAnim.SetToIdle ();
 			// Placeholder functionality; should be "SetToLimp"
 			if (_isArmed && _slug.IsActive) {
-				_charAnim.SetToIdle ();
+				//_charAnim.SetToIdle ();
 				_explosion.Fire ();
+				_soundCooldown = 1f;
+				if (_slug.GetSpecies () == 2) {
+					GetComponent<Pollenation> ().Fire ();
+				}
 				_isArmed = false;
+			} else {
+				if (_soundCooldown <= 0f) {
+					SoundController.Instance.PlaySoundByIndex (1);
+					_soundCooldown = 1f;
+				}
 			}
 		}
+
+		void OnCollisionStay2D(Collision2D coll) {
+			_charAnim.SetToIdle ();
+		}
+
+		void OnCollisionExit2D(Collision2D coll) {
+			SetToSlung ();
+		}
+
+		public void SetToSlung () {
+			_isSlung = true;
+			_charAnim.SetToFlight ();
+		}
+
+
 
 
 	}

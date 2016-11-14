@@ -11,3 +11,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
   - enabled: 1
     path: Assets/Scenes/00Pre-pre-Alpha.unity
+  - enabled: 1
+    path: Assets/Scenes/zzzPyryTest2.unity
