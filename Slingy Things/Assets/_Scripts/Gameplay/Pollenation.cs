@@ -7,6 +7,7 @@ namespace SlingySlugs {
 		[SerializeField] private float radius = 10.0f;
 		[SerializeField] private int _healAmountMultiplier = 2; 
 		[SerializeField] private GameObject _pollenAnimation; 
+		[SerializeField] private GameObject _healPoof;
 		private Transform _gcTransform;
 
 		void Awake () {
@@ -30,6 +31,7 @@ namespace SlingySlugs {
 
 				if (rb != null && hit.gameObject.tag == "Slug" && rb!= this.gameObject.GetComponent<Rigidbody2D>()){  
 					hit.GetComponent<CharacterInfo> ().IncreaseHealth (healAmount);
+					Instantiate (_healPoof, hit.transform.position, Quaternion.identity);
 				}
 			}
 
