@@ -104,6 +104,23 @@ public class SoundController : MonoBehaviour
 
 		}
 
+		if(PlayerPrefs.HasKey("mutesounds") && PlayerPrefs.GetInt("mutesounds") == 1){
+			_soundsOff.SetActive (true); 
+			_soundsMuted = true; 
+		}
+
+		if (soundObjectList != null) {
+			foreach (SoundObject soundobj in soundObjectList) {
+
+				if (_soundsMuted) {
+					soundobj.source.mute = true; 
+				} else {
+					soundobj.source.mute = false; 
+				}
+			}
+		}
+
+
 	}
 
 	public void PlaySoundByIndex (int anIndexNumber)

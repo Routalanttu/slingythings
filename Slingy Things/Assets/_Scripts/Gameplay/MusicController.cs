@@ -25,15 +25,6 @@ public class MusicController : MonoBehaviour {
 
 	void Start()
 	{
-		/*
-		if(PlayerPrefs.HasKey("mutemusic")){
-			source.mute = true; 
-		}else{
-			volume = _defaultVolume; 
-		}
-
-		*/
-
 		volume = _defaultVolume; 
 
 		sourceGO = new GameObject("Music_Audiosource"); 
@@ -42,6 +33,15 @@ public class MusicController : MonoBehaviour {
 		source.playOnAwake = true; 
 		source.clip = music; 
 		source.volume = volume; 
+
+
+		if(PlayerPrefs.HasKey("mutemusic") && PlayerPrefs.GetInt("mutemusic") == 1){
+			source.mute = true; 
+			_musicoff.SetActive (true); 
+		}else{
+			volume = _defaultVolume; 
+		}
+			
 
 	}
 
