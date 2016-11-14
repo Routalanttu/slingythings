@@ -51,6 +51,9 @@ namespace SlingySlugs {
 			if (_isArmed && _slug.IsActive) {
 				_charAnim.SetToIdle ();
 				_explosion.Fire ();
+				if (_slug.GetSpecies() == 2) {
+					GetComponent<Pollenation> ().Fire ();
+				}
 				_isArmed = false;
 			}
 		}

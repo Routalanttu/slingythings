@@ -57,11 +57,25 @@ namespace SlingySlugs {
 			}
 		}
 
+		public void IncreaseHealth(int healAmount) {
+			_health += healAmount;
+
+			// Take away the excess health gain:
+			if (_health > 100) {
+				healAmount -= (_health - 100);
+				_health = 100;
+			}
+			GameManager.Instance.DecreaseTeamHealth ((int)_team, healAmount);
+		}
+
 		public void Die(){
 			Instantiate(_deathAnimation, _myTransform.position, Quaternion.identity);
 			GameManager.Instance.KillSlug ((int)_team, gameObject); 
 			Destroy (gameObject); 
 		}
 
+		public int GetSpecies () {
+			return (int)_species;
+		}
 	}
 }
