@@ -10,7 +10,7 @@ namespace SlingySlugs {
 		[SerializeField] private ParticleSystem _explosionPrefab; 
 		[SerializeField] private GameObject _explosionAnimation; 
 		private Transform _gcTransform;
-		private Animator _xploAnim;
+		//private Animator _xploAnim;
 
 		void Awake () {
 			_gcTransform = GetComponent<Transform>(); 

@@ -261,7 +261,9 @@ namespace SlingySlugs {
 			SceneManager.LoadScene ("Menu");
 		}
 
-
+		public int GetCurrentActiveTeam() {
+			return currentPlayer;
+		}
 	
 
 	}
