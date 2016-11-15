@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxPowerStretch: 10
-  _minPowerStretch: 0.5
+  _minPowerStretch: 1.2
 --- !u!114 &114000013188627228
 MonoBehaviour:
   m_ObjectHideFlags: 1
