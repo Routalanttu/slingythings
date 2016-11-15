@@ -9,9 +9,11 @@ namespace SlingySlugs {
 		[SerializeField] private GameObject _pollenAnimation; 
 		[SerializeField] private GameObject _healPoof;
 		private Transform _gcTransform;
+		private int _team;
 
 		void Awake () {
 			_gcTransform = GetComponent<Transform>(); 
+			_team = GetComponent<CharacterInfo> ().GetTeam ();
 		}
 
 		public bool Fire(){
@@ -29,7 +31,11 @@ namespace SlingySlugs {
 				float deltaDistance = radius - healDelta.magnitude; //get the effective blast magnitude
 				int healAmount = (int)deltaDistance * _healAmountMultiplier; 
 
-				if (rb != null && hit.gameObject.tag == "Slug" && rb!= this.gameObject.GetComponent<Rigidbody2D>()){  
+				if (rb != null && 
+					hit.gameObject.tag == "Slug" && 
+					hit.transform.GetComponent<CharacterInfo>().GetTeam() == _team &&
+					rb != this.gameObject.GetComponent<Rigidbody2D>())
+				{  
 					hit.GetComponent<CharacterInfo> ().IncreaseHealth (healAmount);
 					Instantiate (_healPoof, hit.transform.position, Quaternion.identity);
 				}

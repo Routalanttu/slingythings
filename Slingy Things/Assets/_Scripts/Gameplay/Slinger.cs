@@ -83,9 +83,10 @@ namespace SlingySlugs {
 			_isSlung = true;
 			_charAnim.SetToFlight ();
 		}
-
-
-
+			
+		public bool GetArmedState() {
+			return _isArmed;
+		}
 
 	}
 }

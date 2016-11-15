@@ -17,7 +17,9 @@ public class WaterTrigger : MonoBehaviour {
 				other.gameObject.GetComponent<CharacterInfo> ().DecreaseHealth (100);
 
 				// TOTAL PLACEHOLDER PLS REMOVE
-				GameManager.Instance.NextPlayerMove ();
+				if (other.gameObject.GetComponent<Slinger>().GetArmedState()) {
+					GameManager.Instance.NextPlayerMove ();
+				}
 		}
 		
 	}
