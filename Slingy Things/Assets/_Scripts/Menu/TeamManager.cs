@@ -4,10 +4,29 @@ using UnityEngine.UI;
 
 public class TeamManager : MonoBehaviour {
 
+	private int _numberOfPlayers; 
+
+	//SLOT SPRITES
+	public Sprite _redSlotSprite; 
+	public Sprite _blueSlotSprite; 
+	public Sprite _yellowSlotSprite; 
+	public Sprite _greenSlotSprite; 
+	public Sprite _violetSlotSprite;
+	public Sprite _orangeSlotSprite;
+
+	//SLOT IMAGES
+	public Image[] _slotImages;
+
+	public GameObject _nextButtonGO; 
+	Button nextButton; 
+	Animator nextButtonAnimator;
+
+	private bool[] _teamsSelected = new bool[6];
+
 	//SLUG CLASS SPRITES
-	public Sprite _class1; 
-	public Sprite _class2;
-	public Sprite _class3; 
+	public Sprite _slugSprite; 
+	public Sprite _snailSprite;
+	public Sprite _octopusSprite; 
 
 	//SLUG MENU IMAGES
 	public Image _classImage1; 
@@ -55,6 +74,8 @@ public class TeamManager : MonoBehaviour {
 	public Text _team2Text; 
 	public Text _team3Text; 
 	public Text _team4Text; 
+	public Text _team5Text; 
+	public Text _team6Text; 
 
 
 	// Use this for initialization
@@ -70,6 +91,11 @@ public class TeamManager : MonoBehaviour {
 
 		SetNamesAndClasses (); 
 
+		nextButton = _nextButtonGO.GetComponent<Button> (); 
+		nextButton.enabled = false; 
+		nextButtonAnimator = _nextButtonGO.GetComponent<Animator> ();
+		nextButtonAnimator.enabled = false; 
+
 	}
 		
 	private void UpdateTeamMenu(){
@@ -78,6 +104,9 @@ public class TeamManager : MonoBehaviour {
 		_team2Text.text = PlayerPrefs.GetString("team2Name"); 
 		_team3Text.text = PlayerPrefs.GetString("team3Name"); 
 		_team4Text.text = PlayerPrefs.GetString("team4Name"); 
+		_team5Text.text = PlayerPrefs.GetString("team5Name"); 
+		_team6Text.text = PlayerPrefs.GetString("team6Name"); 
+
 
 	}
 
@@ -159,6 +188,43 @@ public class TeamManager : MonoBehaviour {
 			_slug6Class = PlayerPrefs.GetString ("t4s6Class"); 
 
 			break;
+		case 5:
+			_teamName = PlayerPrefs.GetString ("team5Name"); 
+
+			_slug1Name = PlayerPrefs.GetString ("t5s1Name");
+			_slug2Name = PlayerPrefs.GetString ("t5s2Name"); 
+			_slug3Name = PlayerPrefs.GetString ("t5s3Name"); 
+			_slug4Name = PlayerPrefs.GetString ("t5s4Name"); 
+			_slug5Name = PlayerPrefs.GetString ("t5s5Name"); 
+			_slug6Name = PlayerPrefs.GetString ("t5s6Name"); 
+
+			_slug1Class = PlayerPrefs.GetString ("t5s1Class"); 
+			_slug2Class = PlayerPrefs.GetString ("t5s2Class"); 
+			_slug3Class = PlayerPrefs.GetString ("t5s2Class"); 
+			_slug4Class = PlayerPrefs.GetString ("t5s4Class"); 
+			_slug5Class = PlayerPrefs.GetString ("t5s5Class"); 
+			_slug6Class = PlayerPrefs.GetString ("t5s6Class"); 
+
+			break;
+
+		case 6:
+			_teamName = PlayerPrefs.GetString ("team6Name"); 
+
+			_slug1Name = PlayerPrefs.GetString ("t6s1Name");
+			_slug2Name = PlayerPrefs.GetString ("t6s2Name"); 
+			_slug3Name = PlayerPrefs.GetString ("t6s3Name"); 
+			_slug4Name = PlayerPrefs.GetString ("t6s4Name"); 
+			_slug5Name = PlayerPrefs.GetString ("t6s5Name"); 
+			_slug6Name = PlayerPrefs.GetString ("t6s6Name"); 
+
+			_slug1Class = PlayerPrefs.GetString ("t6s1Class"); 
+			_slug2Class = PlayerPrefs.GetString ("t6s2Class"); 
+			_slug3Class = PlayerPrefs.GetString ("t6s2Class"); 
+			_slug4Class = PlayerPrefs.GetString ("t6s4Class"); 
+			_slug5Class = PlayerPrefs.GetString ("t6s5Class"); 
+			_slug6Class = PlayerPrefs.GetString ("t6s6Class"); 
+
+			break;
 
 		}
 
@@ -175,51 +241,51 @@ public class TeamManager : MonoBehaviour {
 
 		//SET SLUG CLASS IMAGES
 		if (_slug1Class == "Slug") {
-			_classImage1.sprite = _class1; 
+			_classImage1.sprite = _slugSprite; 
 		} else if (_slug1Class == "Snail") {
-			_classImage1.sprite = _class2; 
+			_classImage1.sprite = _snailSprite; 
 		} else if (_slug1Class == "Octopus") {
-			_classImage1.sprite = _class3; 
+			_classImage1.sprite = _octopusSprite; 
 		}
 
 		if (_slug2Class == "Slug") {
-			_classImage2.sprite = _class1; 
+			_classImage2.sprite = _slugSprite; 
 		} else if (_slug2Class == "Snail") {
-			_classImage2.sprite = _class2; 
+			_classImage2.sprite = _snailSprite; 
 		} else if (_slug2Class == "Octopus") {
-			_classImage2.sprite = _class3; 
+			_classImage2.sprite = _octopusSprite; 
 		}
 
 		if (_slug3Class == "Slug") {
-			_classImage3.sprite = _class1; 
+			_classImage3.sprite = _slugSprite; 
 		} else if (_slug3Class == "Snail") {
-			_classImage3.sprite = _class2; 
+			_classImage3.sprite = _snailSprite; 
 		} else if (_slug3Class == "Octopus") {
-			_classImage3.sprite = _class3; 
+			_classImage3.sprite = _octopusSprite; 
 		}
 
 		if (_slug4Class == "Slug") {
-			_classImage4.sprite = _class1; 
+			_classImage4.sprite = _slugSprite; 
 		} else if (_slug4Class == "Snail") {
-			_classImage4.sprite = _class2; 
+			_classImage4.sprite = _snailSprite; 
 		} else if (_slug4Class == "Octopus") {
-			_classImage4.sprite = _class3; 
+			_classImage4.sprite = _octopusSprite; 
 		}
 
 		if (_slug5Class == "Slug") {
-			_classImage5.sprite = _class1; 
+			_classImage5.sprite = _slugSprite; 
 		} else if (_slug5Class == "Snail") {
-			_classImage5.sprite = _class2; 
+			_classImage5.sprite = _snailSprite; 
 		} else if (_slug4Class == "Octopus") {
-			_classImage5.sprite = _class3; 
+			_classImage5.sprite = _octopusSprite; 
 		}
 
 		if (_slug6Class == "Slug") {
-			_classImage6.sprite = _class1; 
+			_classImage6.sprite = _slugSprite; 
 		} else if (_slug6Class == "Snail") {
-			_classImage6.sprite = _class2; 
+			_classImage6.sprite = _snailSprite; 
 		} else if (_slug6Class == "Octopus") {
-			_classImage6.sprite = _class3; 
+			_classImage6.sprite = _octopusSprite; 
 		}
 			
 	}
@@ -228,7 +294,7 @@ public class TeamManager : MonoBehaviour {
 
 		_teamSelected++; 
 
-		if (_teamSelected > 4) {
+		if (_teamSelected > 6) {
 			_teamSelected = 1; 
 		}
 
@@ -241,7 +307,7 @@ public class TeamManager : MonoBehaviour {
 		_teamSelected--; 
 
 		if (_teamSelected < 1) {
-			_teamSelected = 4; 
+			_teamSelected = 6; 
 		}
 
 		SetNamesAndClasses (); 
@@ -298,29 +364,101 @@ public class TeamManager : MonoBehaviour {
 
 	public void ChangeClass(int slugNumber){
 
+
 		switch (slugNumber) {
 		case 1:
-			
+			if (_slug1Class == "Slug") {
+				_classImage1.sprite = _snailSprite; 
+				_slug1Class = "Snail"; 
+			} else if (_slug1Class == "Snail") {
+				_classImage1.sprite = _octopusSprite; 
+				_slug1Class = "Octopus"; 
+			} else if (_slug1Class == "Octopus") {
+				_classImage1.sprite = _slugSprite; 
+				_slug1Class = "Slug"; 
+			}
+
+			PlayerPrefs.SetString ("t" + _teamSelected + "s" + slugNumber + "Class", _slug1Class); 
 
 			break;
 
 		case 2:
+			if (_slug2Class == "Slug") {
+				_classImage2.sprite = _snailSprite; 
+				_slug2Class = "Snail"; 
+			} else if (_slug2Class == "Snail") {
+				_classImage2.sprite = _octopusSprite; 
+				_slug2Class = "Octopus"; 
+			} else if (_slug2Class == "Octopus") {
+				_classImage2.sprite = _slugSprite; 
+				_slug2Class = "Slug"; 
+			}
+
+			PlayerPrefs.SetString ("t" + _teamSelected + "s" + slugNumber + "Class", _slug2Class); 
 			
 			break;
 
 		case 3:
+			if (_slug3Class == "Slug") {
+				_classImage3.sprite = _snailSprite; 
+				_slug3Class = "Snail"; 
+			} else if (_slug3Class == "Snail") {
+				_classImage3.sprite = _octopusSprite; 
+				_slug3Class = "Octopus"; 
+			} else if (_slug3Class == "Octopus") {
+				_classImage3.sprite = _slugSprite; 
+				_slug3Class = "Slug"; 
+			}
+
+			PlayerPrefs.SetString ("t" + _teamSelected + "s" + slugNumber + "Class", _slug3Class); 
 			
 			break;
 
 		case 4:
+			if (_slug4Class == "Slug") {
+				_classImage4.sprite = _snailSprite; 
+				_slug4Class = "Snail"; 
+			} else if (_slug4Class == "Snail") {
+				_classImage4.sprite = _octopusSprite; 
+				_slug4Class = "Octopus"; 
+			} else if (_slug4Class == "Octopus") {
+				_classImage4.sprite = _slugSprite; 
+				_slug4Class = "Slug"; 
+			}
+
+			PlayerPrefs.SetString ("t" + _teamSelected + "s" + slugNumber + "Class", _slug4Class); 
 
 			break;
 
 		case 5:
+			if (_slug5Class == "Slug") {
+				_classImage5.sprite = _snailSprite; 
+				_slug5Class = "Snail"; 
+			} else if (_slug5Class == "Snail") {
+				_classImage5.sprite = _octopusSprite; 
+				_slug5Class = "Octopus"; 
+			} else if (_slug5Class == "Octopus") {
+				_classImage5.sprite = _slugSprite; 
+				_slug5Class = "Slug"; 
+			}
+
+			PlayerPrefs.SetString ("t" + _teamSelected + "s" + slugNumber + "Class", _slug5Class); 
 
 			break; 
 
 		case 6:
+			if (_slug6Class == "Slug") {
+				_classImage6.sprite = _snailSprite; 
+				_slug6Class = "Snail"; 
+			} else if (_slug6Class == "Snail") {
+				_classImage6.sprite = _octopusSprite; 
+				_slug6Class = "Octopus"; 
+			} else if (_slug6Class == "Octopus") {
+				_classImage6.sprite = _slugSprite; 
+				_slug6Class = "Slug";
+			}
+
+			PlayerPrefs.SetString ("t" + _teamSelected + "s" + slugNumber + "Class", _slug6Class);
 
 			break; 
 
@@ -328,6 +466,56 @@ public class TeamManager : MonoBehaviour {
 			break; 
 
 		}
+
+		PlayerPrefs.Save (); 
+
+	}
+
+	public void ChooseTeams(int teamNumber){
+
+		if (!_teamsSelected[teamNumber-1] && _numberOfPlayers < 4) {
+			switch (teamNumber) {
+			case 1:
+				_slotImages[_numberOfPlayers].sprite = _redSlotSprite; 
+				break;
+			case 2:
+				_slotImages[_numberOfPlayers].sprite = _blueSlotSprite; 
+				break;
+			case 3:
+				_slotImages[_numberOfPlayers].sprite = _yellowSlotSprite; 
+				break;
+			case 4:
+				_slotImages[_numberOfPlayers].sprite= _greenSlotSprite; 
+				break;
+			case 5:
+				_slotImages[_numberOfPlayers].sprite = _violetSlotSprite; 
+				break;
+			case 6:
+				_slotImages[_numberOfPlayers].sprite = _orangeSlotSprite; 
+				break;
+			default:
+				break;
+			}
+
+			_teamsSelected [teamNumber - 1] = true; 	
+			_numberOfPlayers++; 
+		}
+
+		if (_numberOfPlayers >= 2) {
+
+			Image nextButtonImage = _nextButtonGO.GetComponent<Image> (); 
+			Color c = nextButtonImage.color; 
+			c.a = 255;
+			nextButtonImage.color = c; 
+
+			Button nextButton = _nextButtonGO.GetComponent<Button> (); 
+			nextButton.enabled = true; 
+
+			Animator nextButtonAnimator = _nextButtonGO.GetComponent<Animator> ();
+			nextButtonAnimator.enabled = true; 
+
+		}
+	
 
 	}
 		
@@ -338,10 +526,13 @@ public class TeamManager : MonoBehaviour {
 		PlayerPrefs.SetString ("team2Name", "Team2"); 
 		PlayerPrefs.SetString ("team3Name", "Team3"); 
 		PlayerPrefs.SetString ("team4Name", "Team4"); 
+		PlayerPrefs.SetString ("team5Name", "Team5"); 
+		PlayerPrefs.SetString ("team6Name", "Team6"); 
 
-		for(int i = 1; i < 5; i++){
 
-			for (int j = 1; i < 6; i++) {
+		for(int i = 1; i < 7; i++){   //cycle through the teams
+
+			for (int j = 1; j < 7; j++) {  //cycle through the slugs 
 
 				switch (j) {
 
@@ -363,10 +554,58 @@ public class TeamManager : MonoBehaviour {
 				case 6:
 					PlayerPrefs.SetString ("t" + i + "s" + j + "Class", "Snail"); 
 					break; 
+				default:
+					break; 
 
 				}
 			}
 		}
+
+		PlayerPrefs.SetString ("t1s1Name", "Mara"); 
+		PlayerPrefs.SetString ("t1s2Name", "Kalle"); 
+		PlayerPrefs.SetString ("t1s3Name", "Jussi"); 
+		PlayerPrefs.SetString ("t1s4Name", "Crisu"); 
+		PlayerPrefs.SetString ("t1s5Name", "Kauno"); 
+		PlayerPrefs.SetString ("t1s6Name", "Leija"); 
+
+		PlayerPrefs.SetString ("t2s1Name", "Mopsi"); 
+		PlayerPrefs.SetString ("t2s2Name", "TheMan"); 
+		PlayerPrefs.SetString ("t2s3Name", "Niska"); 
+		PlayerPrefs.SetString ("t2s4Name", "Kynis"); 
+		PlayerPrefs.SetString ("t2s5Name", "Rock"); 
+		PlayerPrefs.SetString ("t2s6Name", "Heidi"); 
+
+		PlayerPrefs.SetString ("t3s1Name", "Jesse"); 
+		PlayerPrefs.SetString ("t3s2Name", "Sister"); 
+		PlayerPrefs.SetString ("t3s3Name", "Jape"); 
+		PlayerPrefs.SetString ("t3s4Name", "Milli"); 
+		PlayerPrefs.SetString ("t3s5Name", "Tube"); 
+		PlayerPrefs.SetString ("t3s6Name", "Katri"); 
+
+		PlayerPrefs.SetString ("t4s1Name", "Charlie"); 
+		PlayerPrefs.SetString ("t4s2Name", "Juha"); 
+		PlayerPrefs.SetString ("t4s3Name", "Carl"); 
+		PlayerPrefs.SetString ("t4s4Name", "Mike"); 
+		PlayerPrefs.SetString ("t4s5Name", "Kevin"); 
+		PlayerPrefs.SetString ("t4s6Name", "Bum"); 
+
+		PlayerPrefs.SetString ("t5s1Name", "Hardy"); 
+		PlayerPrefs.SetString ("t5s2Name", "Tank"); 
+		PlayerPrefs.SetString ("t5s3Name", "Snipah"); 
+		PlayerPrefs.SetString ("t5s4Name", "FatBoy"); 
+		PlayerPrefs.SetString ("t5s5Name", "Juba"); 
+		PlayerPrefs.SetString ("t5s6Name", "Teemu"); 
+
+		PlayerPrefs.SetString ("t6s1Name", "Nätti"); 
+		PlayerPrefs.SetString ("t6s2Name", "Nico"); 
+		PlayerPrefs.SetString ("t6s3Name", "Eero"); 
+		PlayerPrefs.SetString ("t6s4Name", "Kelli"); 
+		PlayerPrefs.SetString ("t6s5Name", "Lee"); 
+		PlayerPrefs.SetString ("t6s6Name", "Rotten"); 
+
+
+
+
 			
 
 	}
