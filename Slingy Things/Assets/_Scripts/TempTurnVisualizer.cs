@@ -17,8 +17,10 @@ namespace SlingySlugs {
 			foreach (var slug in _slugs) {
 				if (slug.GetComponent<CharacterInfo> ().GetTeam () == 1) {
 					Instantiate (_blueIndicator, slug.transform.position + new Vector3(0f,1f,0f), Quaternion.identity, slug.transform);
+					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				} else if (slug.GetComponent<CharacterInfo> ().GetTeam () == 2) {
 					Instantiate (_redIndicator, slug.transform.position + new Vector3(0f,1f,0f), Quaternion.identity, slug.transform);
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 			}
 		}

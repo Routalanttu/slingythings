@@ -206,20 +206,24 @@ namespace SlingySlugs {
 
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true; 
+					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				}
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 			} else {
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true;
+					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				}
 
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 			}

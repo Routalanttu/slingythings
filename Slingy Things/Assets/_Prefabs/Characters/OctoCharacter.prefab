@@ -55,7 +55,7 @@ GameObject:
   - 50: {fileID: 50000011400325824}
   - 114: {fileID: 114000010949122934}
   - 61: {fileID: 61000010425336868}
-  - 61: {fileID: 61000011883747340}
+  - 58: {fileID: 58000014032957718}
   - 114: {fileID: 114000010084548142}
   - 114: {fileID: 114000011365606050}
   - 114: {fileID: 114000010714371476}
@@ -276,6 +276,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!58 &58000014032957718
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011518240616}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0.15}
+  serializedVersion: 2
+  m_Radius: 3
 --- !u!61 &61000010425336868
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -290,20 +304,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.2}
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.3}
---- !u!61 &61000011883747340
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011518240616}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.15}
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5}
 --- !u!95 &95000010886705202
 Animator:
   serializedVersion: 3
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07de2375f7bd694c93d6768884d824e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 2
+  _radius: 5
   _explosionForce: 2
   _explosionDamageMultiplier: 2
   _explosionPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
@@ -466,7 +466,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 443106d08a24158468932865c6647370, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -565,7 +565,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 01023e298980ed44384f2f882de23585, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
