@@ -24,6 +24,8 @@ namespace SlingySlugs {
 
 		private CharacterInfo _slug;
 
+		private int _snailBlowCounter;
+
 		private void Awake () {
 			_rigidBody = GetComponent<Rigidbody2D> (); 
 			_gcTransform = GetComponent<Transform> (); 
@@ -31,6 +33,7 @@ namespace SlingySlugs {
 			_charAnim.SetToIdle ();
 			_explosion = GetComponent<Explosion> (); 
 			_slug = GetComponent<CharacterInfo> ();
+			_snailBlowCounter = 2;
 		}
 
 		void Update () {
@@ -49,6 +52,7 @@ namespace SlingySlugs {
 			_isSlung = true;
 			_isArmed = true;
 			_explosion.Arm ();
+			_snailBlowCounter = 0;
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {
@@ -69,6 +73,14 @@ namespace SlingySlugs {
 					_soundCooldown = 1f;
 				}
 			}
+
+			if (_snailBlowCounter < 2 && _slug.GetSpecies() == 1) {
+				_isArmed = true;
+				_isSlung = true;
+				_snailBlowCounter++;
+				_explosion.Fire ();
+			}
+			Debug.Log (_snailBlowCounter + " " + _isArmed);
 		}
 
 		void OnCollisionStay2D(Collision2D coll) {
