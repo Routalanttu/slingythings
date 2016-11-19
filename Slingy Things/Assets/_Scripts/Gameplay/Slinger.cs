@@ -80,7 +80,7 @@ namespace SlingySlugs {
 				_snailBlowCounter++;
 				_explosion.Fire ();
 			}
-			Debug.Log (_snailBlowCounter + " " + _isArmed);
+			//Debug.Log (_snailBlowCounter + " " + _isArmed);
 		}
 
 		void OnCollisionStay2D(Collision2D coll) {

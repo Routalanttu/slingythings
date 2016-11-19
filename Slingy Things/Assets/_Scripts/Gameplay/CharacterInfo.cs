@@ -77,5 +77,9 @@ namespace SlingySlugs {
 		public int GetSpecies () {
 			return (int)_species;
 		}
+
+		public void SetTeam (int team) {
+			_team = (Team)team;
+		}
 	}
 }
