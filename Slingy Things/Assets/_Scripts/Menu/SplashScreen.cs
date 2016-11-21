@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+namespace SlingySlugs{
+
 public class SplashScreen : MonoBehaviour {
 
     [SerializeField] private float delayTime = 5.0f;
@@ -49,4 +51,5 @@ public class SplashScreen : MonoBehaviour {
             SceneManager.LoadScene("Menu");
         }
     }
+}
 }

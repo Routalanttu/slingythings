@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+namespace SlingySlugs{
+
 public class TempResetter : MonoBehaviour {
 
 	// Use this for initialization
@@ -15,4 +17,5 @@ public class TempResetter : MonoBehaviour {
 			SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 		}
 	}
+}
 }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs{
+
 public class MusicController : MonoBehaviour {
 
 	private float volume; 
@@ -81,4 +83,5 @@ public class MusicController : MonoBehaviour {
 
 
 
+}
 }

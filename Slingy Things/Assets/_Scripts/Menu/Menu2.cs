@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs{
+
 public class Menu2 : MonoBehaviour {
     
     public Animator _mainMenuObjectsAnim;
@@ -79,4 +81,5 @@ public class Menu2 : MonoBehaviour {
 
 	}
 
+}
 }

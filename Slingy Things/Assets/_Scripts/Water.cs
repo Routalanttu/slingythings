@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs{
+
 public class Water : MonoBehaviour {
 
 	private Transform _gcTransform; 
@@ -31,4 +33,5 @@ public class Water : MonoBehaviour {
 		}
 	
 	}
+}
 }
