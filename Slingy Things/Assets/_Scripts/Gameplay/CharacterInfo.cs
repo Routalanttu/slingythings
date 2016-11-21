@@ -8,15 +8,13 @@ namespace SlingySlugs {
 		{
 			Team1 = 1, 
 			Team2 = 2, 
-			Team3 = 3,
-			Team4 = 4,
 		};
 
 		[SerializeField] private Team _team = Team.Team1;
 
 		public int GetTeam () {
-			int teamNumber = (int)_team;
-			return teamNumber;
+			int mitavittua = (int)_team;
+			return mitavittua;
 		}
 
 		private enum Species {
@@ -28,12 +26,12 @@ namespace SlingySlugs {
 
 		[SerializeField] private Species _species;
 		[SerializeField] private int _health = 100;
-		[SerializeField] private bool _dead = false;
 		[SerializeField] private GameObject _deathAnimation;
 		[SerializeField] private GameObject _healthTextObject;
-
 		private TextMesh _healthText;
 		private Transform _myTransform;
+
+		private bool _dead = false;
 
 		private void Awake () {
 			_myTransform = GetComponent<Transform> ();
@@ -63,7 +61,7 @@ namespace SlingySlugs {
 			}
 			GameManager.Instance.DecreaseTeamHealth ((int)_team, damageAmount); 
 
-			if(_health <= 0) {
+			if(!_dead && _health <= 0) {
 				Die (); 
 			}
 
@@ -84,9 +82,9 @@ namespace SlingySlugs {
 		}
 
 		public void Die(){
+			_dead = true;
 			Instantiate(_deathAnimation, _myTransform.position, Quaternion.identity);
-			GameManager.Instance.KillSlug ((int)_team, gameObject); 
-			Destroy (gameObject); 
+			GameManager.Instance.KillSlug ((int)_team, gameObject);
 		}
 
 		public int GetSpecies () {
@@ -95,63 +93,24 @@ namespace SlingySlugs {
 
 		public void SetTeam (int team) {
 			_team = (Team)team;
-		}
 
-		public void SetColor(string colorName){
-
-			Debug.Log (colorName); 
-
-			if (colorName == "Red") {
-				Color tmp = _healthText.color;
-				tmp.r = 255f;
-				tmp.g = 0f;
-				tmp.b = 0f;
-				_healthText.color = tmp;
-			} else if (colorName == "Blue") {
+			if (_team == Team.Team1) {
 				Color tmp = _healthText.color;
 				tmp.r = 0f;
 				tmp.g = 0f;
 				tmp.b = 255f;
 				_healthText.color = tmp;
-			} else if (colorName == "Yellow") {
+			} else if (_team == Team.Team2) {
 				Color tmp = _healthText.color;
 				tmp.r = 255f;
-				tmp.g = 255f;
-				tmp.b = 0f;
-				_healthText.color = tmp;
-			} else if (colorName == "Green") {
-				Color tmp = _healthText.color;
-				tmp.r = 0;
-				tmp.g = 255f;
-				tmp.b = 50f;
-				_healthText.color = tmp;
-			} else if (colorName == "Violet") {
-				Color tmp = _healthText.color;
-				tmp.r = 255f;
-				tmp.g = 0f;
-				tmp.b = 255f;
-				_healthText.color = tmp;
-			} else if (colorName == "Orange") {
-				Color tmp = _healthText.color;
-				tmp.r = 255f;
-				tmp.g = 200f;
-				tmp.b = 0f;
-				_healthText.color = tmp;
-			} else if (colorName == "Coral") {
-				Color tmp = _healthText.color;
-				tmp.r = 40f;
-				tmp.g = 200f;
-				tmp.b = 200f;
-				_healthText.color = tmp;
-			}else {
-				Color tmp = _healthText.color;
-				tmp.r = 0f;
 				tmp.g = 0f;
 				tmp.b = 0f;
 				_healthText.color = tmp;
 			}
-
 		}
 
+		public void SetDeath () {
+			_dead = true;
+		}
 	}
 }

@@ -60,9 +60,11 @@ public class GUIManager : MonoBehaviour {
 	public void GameOver(int winningTeamNumber){
 
 		if (winningTeamNumber == 1) {
-			ShowMessage ("Team 1 wins!!"); 
+			// Tiimin nimi tän tilalle ja teksti sen väriseksi
+			ShowMessage ("Blue team wins!!"); 
 		} else if (winningTeamNumber == 2) {
-			ShowMessage ("Team 2 wins!!"); 
+			// Tiimin nimi tän tilalle ja teksti sen väriseksi
+			ShowMessage ("Red team wins!!"); 
 		}
 
 	}

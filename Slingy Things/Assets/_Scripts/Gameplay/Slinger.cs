@@ -6,34 +6,28 @@ namespace SlingySlugs {
 
 		[SerializeField] private float _forceMultiplier;
 
-		// The Attack script should be renamed "Explosion":
 		private Explosion _explosion; 
 
 		private Rigidbody2D _rigidBody; 
 		private Transform _gcTransform; 
 
-		// Käytetäänkö tätä armia mihinkään todella?
-		// Siis mihinkään, mikä ei toimisi tuolla slungillakin?
 		private bool _isArmed;
 		private bool _isSlung;
 
 		private float _soundCooldown = 1f;
 
-		//[SerializeField] private Transform _flyTrans;
 		private CharacterAnimator _charAnim;
 
 		private CharacterInfo _slug;
 
-		private int _snailBlowCounter;
+		private int _snailBlowCounter = 2;
 
 		private void Awake () {
-			_rigidBody = GetComponent<Rigidbody2D> (); 
 			_gcTransform = GetComponent<Transform> (); 
-			_charAnim = GetComponent<CharacterAnimator> ();
-			_charAnim.SetToIdle ();
-			_explosion = GetComponent<Explosion> (); 
+			_rigidBody = GetComponent<Rigidbody2D> (); 
 			_slug = GetComponent<CharacterInfo> ();
-			_snailBlowCounter = 2;
+			_charAnim = GetComponent<CharacterAnimator> ();
+			_explosion = GetComponent<Explosion> (); 
 		}
 
 		void Update () {
@@ -48,7 +42,6 @@ namespace SlingySlugs {
 
 		public void Sling (Vector2 stretchVector) {
 			_rigidBody.AddForce (stretchVector * _forceMultiplier, ForceMode2D.Impulse);
-			_charAnim.SetToFlight ();
 			_isSlung = true;
 			_isArmed = true;
 			_explosion.Arm ();
@@ -57,10 +50,7 @@ namespace SlingySlugs {
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			_isSlung = false;
-			_charAnim.SetToIdle ();
-			// Placeholder functionality; should be "SetToLimp"
 			if (_isArmed && _slug.IsActive) {
-				//_charAnim.SetToIdle ();
 				_explosion.Fire ();
 				_soundCooldown = 1f;
 				if (_slug.GetSpecies () == 2) {
@@ -82,15 +72,7 @@ namespace SlingySlugs {
 			}
 			//Debug.Log (_snailBlowCounter + " " + _isArmed);
 		}
-
-		void OnCollisionStay2D(Collision2D coll) {
-			_charAnim.SetToIdle ();
-		}
-
-		void OnCollisionExit2D(Collision2D coll) {
-			SetToSlung ();
-		}
-
+			
 		public void SetToSlung () {
 			_isSlung = true;
 			_charAnim.SetToFlight ();
@@ -98,6 +80,14 @@ namespace SlingySlugs {
 			
 		public bool GetArmedState() {
 			return _isArmed;
+		}
+
+		private void FixedUpdate () {
+			if (Mathf.Abs (_rigidBody.velocity.x) > 0.4f || Mathf.Abs (_rigidBody.velocity.y) > 0.4f) {
+				SetToSlung ();
+			} else {
+				_charAnim.SetToIdle ();
+			}
 		}
 
 	}

@@ -113,6 +113,7 @@ namespace SlingySlugs {
 			UserInput (); 
 			CheckGameState (); 
 		
+			Debug.Log ("Sinisiä jäljellä " + _team1SlugAmount + ", punaisia " + _team2SlugAmount);
 		}
 
 		void StartGame(){
@@ -159,13 +160,17 @@ namespace SlingySlugs {
 
 			if (teamNumber== 1) {
 				_team1SlugAmount--; 
-				_team1Slugs.Remove (go); 
+				_team1Slugs.Remove (go);
 			}
 
 			if (teamNumber == 2) {
 				_team2SlugAmount--; 
 				_team2Slugs.Remove (go); 
 			}
+
+			go.GetComponent<CharacterInfo> ().DecreaseHealth (100);
+
+			Destroy (go);
 
 			if (_team1SlugAmount <= 0) {
 				GameOver (2);
@@ -204,6 +209,7 @@ namespace SlingySlugs {
 
 			if (currentPlayer == 1) {
 
+				// TÄMÄ ON ISO ONGELMA!!! _team1Slugs-taulukkoa kun referoidaan ja löytyy kuolleita matoja, can't do things.
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true; 
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
@@ -268,7 +274,6 @@ namespace SlingySlugs {
 		public int GetCurrentActiveTeam() {
 			return currentPlayer;
 		}
-	
 
 	}
 
