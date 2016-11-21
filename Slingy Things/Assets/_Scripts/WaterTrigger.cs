@@ -10,16 +10,15 @@ public class WaterTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D other){
-		Destroy (other.gameObject); 
 		SoundController.Instance.PlaySoundByIndex (2); 
 
 		if (other.gameObject.CompareTag ("Slug")) {
-				other.gameObject.GetComponent<CharacterInfo> ().DecreaseHealth (100);
-
 				// TOTAL PLACEHOLDER PLS REMOVE
 				if (other.gameObject.GetComponent<Slinger>().GetArmedState()) {
 					GameManager.Instance.NextPlayerMove ();
 				}
+
+				other.gameObject.GetComponent<CharacterInfo> ().Die ();
 		}
 		
 	}

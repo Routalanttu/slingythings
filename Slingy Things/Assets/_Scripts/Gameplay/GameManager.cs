@@ -113,6 +113,7 @@ namespace SlingySlugs {
 			UserInput (); 
 			CheckGameState (); 
 		
+			Debug.Log ("Sinisiä jäljellä " + _team1SlugAmount + ", punaisia " + _team2SlugAmount);
 		}
 
 		void StartGame(){
@@ -159,13 +160,17 @@ namespace SlingySlugs {
 
 			if (teamNumber== 1) {
 				_team1SlugAmount--; 
-				_team1Slugs.Remove (go); 
+				_team1Slugs.Remove (go);
 			}
 
 			if (teamNumber == 2) {
 				_team2SlugAmount--; 
 				_team2Slugs.Remove (go); 
 			}
+
+			go.GetComponent<CharacterInfo> ().DecreaseHealth (100);
+
+			Destroy (go);
 
 			if (_team1SlugAmount <= 0) {
 				GameOver (2);
@@ -269,7 +274,6 @@ namespace SlingySlugs {
 		public int GetCurrentActiveTeam() {
 			return currentPlayer;
 		}
-	
 
 	}
 

@@ -26,11 +26,12 @@ namespace SlingySlugs {
 
 		[SerializeField] private Species _species;
 		[SerializeField] private int _health = 100;
-		[SerializeField] private bool _dead = false;
 		[SerializeField] private GameObject _deathAnimation;
 		[SerializeField] private GameObject _healthTextObject;
 		private TextMesh _healthText;
 		private Transform _myTransform;
+
+		private bool _dead = false;
 
 		private void Awake () {
 			_myTransform = GetComponent<Transform> ();
@@ -60,7 +61,7 @@ namespace SlingySlugs {
 			}
 			GameManager.Instance.DecreaseTeamHealth ((int)_team, damageAmount); 
 
-			if(_health <= 0) {
+			if(!_dead && _health <= 0) {
 				Die (); 
 			}
 
@@ -81,9 +82,9 @@ namespace SlingySlugs {
 		}
 
 		public void Die(){
+			_dead = true;
 			Instantiate(_deathAnimation, _myTransform.position, Quaternion.identity);
-			GameManager.Instance.KillSlug ((int)_team, gameObject); 
-			Destroy (gameObject); 
+			GameManager.Instance.KillSlug ((int)_team, gameObject);
 		}
 
 		public int GetSpecies () {
@@ -106,6 +107,10 @@ namespace SlingySlugs {
 				tmp.b = 0f;
 				_healthText.color = tmp;
 			}
+		}
+
+		public void SetDeath () {
+			_dead = true;
 		}
 	}
 }
