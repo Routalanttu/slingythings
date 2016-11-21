@@ -5,19 +5,8 @@ namespace SlingySlugs{
 
 	public class GameSessionController : MonoBehaviour {
 
-		private int numberOfPlayers; 
-
-		private bool team1Selected;
-		private bool team2Selected;
-		private bool team3Selected;
-		private bool team4Selected;
-		private bool team5Selected;
-		private bool team6Selected;
-
-		private string team1; 
-		private string team2;
-		private string team3;
-		private string team4;
+		public int _numberOfTeams;
+		public Team[] _teams;   //setted in teammanaager / choose team
 
 		public static GameSessionController _instance; 
 
@@ -27,6 +16,14 @@ namespace SlingySlugs{
 			} else if (_instance != this) {
 				Destroy (this); 
 			}
+
+			_teams = new Team[4]; 
+
+			for (int i = 0; i < _teams.Length; i++) {
+				_teams [i] = new Team (); 
+			}
+
+
 		}
 
 		// Use this for initialization
@@ -36,69 +33,21 @@ namespace SlingySlugs{
 
 		}
 
-		// Update is called once per frame
-		void Update () {
-
-		}
-
 		public void setTeams(){
 		
 
 		}
+	
 
-		public void ChooseTeam(int teamNumber){
+		public void TestLog(){
 
-			switch (teamNumber) {
-			case 1:
-				team1Selected = true; 
-				break;
-			case 2:
-				team2Selected = true; 
-				break;
-			case 3:
-				team3Selected = true; 
-				break;
-			case 4:
-				team4Selected = true; 
-				break;
-			case 5:
-				team5Selected = true; 
-				break;
-			case 6:
-				team6Selected = true; 
-				break;
-			default:
-				break;
-			}
-
-			numberOfPlayers++; 
-
-
-			if (numberOfPlayers >= 2) {
-
-				//activate go to game button
-			}
-
+			Debug.Log ("GameSessionController on siirtynyt menusta peliin"); 
 
 		}
 
 
 	}
-
-
-	/*
-	 * 
-	 * klikkaa tiimin nappulaa: 
-
-—>   tiimi1 selected = true 
-
-if(team1)
-
-
-
-numberofteams ++ 
-
-if (number teams)>= 2  voi jatkaa peliin 
-*/
 }
+
+
 
