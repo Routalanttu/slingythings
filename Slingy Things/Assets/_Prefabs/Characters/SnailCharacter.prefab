@@ -368,9 +368,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _team: 1
   _species: 1
-  _health: 40
+  _health: 100
   _dead: 0
   _deathAnimation: {fileID: 1000013280099540, guid: ee7f2becf47208e4baeed99745b9b0e9,
+    type: 2}
+  _healthTextObject: {fileID: 1000013682764038, guid: facb2eb4885da334bb99a174e486192b,
     type: 2}
 --- !u!114 &114000011585762124
 MonoBehaviour:

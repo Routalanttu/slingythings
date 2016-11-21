@@ -204,6 +204,7 @@ namespace SlingySlugs {
 
 			if (currentPlayer == 1) {
 
+				// TÄMÄ ON ISO ONGELMA!!! _team1Slugs-taulukkoa kun referoidaan ja löytyy kuolleita matoja, can't do things.
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true; 
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
