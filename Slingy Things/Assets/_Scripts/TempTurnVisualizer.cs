@@ -14,6 +14,8 @@ namespace SlingySlugs {
 		void Start () {
 			_slugs = GameObject.FindGameObjectsWithTag ("Slug");
 
+			// RÄJÄYTIN POIS KOSKA HELATEKSTIEN KANSSA TARPEETON
+			/*
 			foreach (var slug in _slugs) {
 				if (slug.GetComponent<CharacterInfo> ().GetTeam () == 1) {
 					Instantiate (_blueIndicator, slug.transform.position + new Vector3(0f,1f,0f), Quaternion.identity, slug.transform);
@@ -23,6 +25,7 @@ namespace SlingySlugs {
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 			}
+			*/
 		}
 		
 		// Update is called once per frame
