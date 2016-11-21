@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs{
+
 public class CloudMovement : MonoBehaviour {
 
 	private float _posX;
@@ -29,4 +31,5 @@ public class CloudMovement : MonoBehaviour {
 
 	
 	}
+}
 }

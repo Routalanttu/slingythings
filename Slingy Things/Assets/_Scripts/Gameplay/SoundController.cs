@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs{
+
 public class SoundObject
 {
 
@@ -201,4 +203,5 @@ public class SoundController : MonoBehaviour
 	}
 
 		
+}
 }

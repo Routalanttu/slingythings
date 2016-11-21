@@ -2,9 +2,13 @@
 using System.Collections;
 using UnityEngine.UI; 
 
+namespace SlingySlugs{
+
 public class TeamManager : MonoBehaviour {
 
 	private int _numberOfPlayers; 
+
+	public GameSessionController _gameSessionController; 
 
 	//SLOT SPRITES
 	public Sprite _redSlotSprite; 
@@ -609,4 +613,5 @@ public class TeamManager : MonoBehaviour {
 			
 
 	}
+}
 }

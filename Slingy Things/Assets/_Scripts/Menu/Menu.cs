@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+namespace SlingySlugs{
+	
 public class Menu : MonoBehaviour {
 
     public void OnPlay() {
@@ -37,4 +39,5 @@ public class Menu : MonoBehaviour {
         SceneManager.LoadScene("Options");
     }
 
+}
 }

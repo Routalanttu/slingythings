@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI; 
 
+namespace SlingySlugs{
+
 public class GUIManager : MonoBehaviour {
 
 	public Text _message; 
@@ -88,4 +90,5 @@ public class GUIManager : MonoBehaviour {
 
 	}
 		
+}
 }

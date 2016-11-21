@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs{
+
 public class TempTeamContainer : MonoBehaviour {
 
 	// Use this for initialization
@@ -35,4 +37,5 @@ public class TempTeamContainer : MonoBehaviour {
 	void Update () {
 	
 	}
+}
 }

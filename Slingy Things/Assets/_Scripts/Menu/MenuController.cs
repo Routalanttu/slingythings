@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace SlingySlugs{
+
 public class MenuController : MonoBehaviour {
 
     public GameObject menuObjects;
@@ -32,4 +34,5 @@ public class MenuController : MonoBehaviour {
 
     }
 
+}
 }

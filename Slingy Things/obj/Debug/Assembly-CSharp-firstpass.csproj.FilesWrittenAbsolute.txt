@@ -1,0 +1,17 @@
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/obj/Debug/Assembly-CSharp-firstpass.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/obj/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/UnityEngine.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/UnityEditor.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/Mono.Cecil.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/Unity.DataContract.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/mikkomcmenamin/slingythings/Slingy Things/Temp/bin/Debug/Mono.Cecil.Mdb.dll
