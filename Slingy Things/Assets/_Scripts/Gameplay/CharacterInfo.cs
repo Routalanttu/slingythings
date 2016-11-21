@@ -8,6 +8,8 @@ namespace SlingySlugs {
 		{
 			Team1 = 1, 
 			Team2 = 2, 
+			Team3 = 3,
+			Team4 = 4,
 		};
 
 		[SerializeField] private Team _team = Team.Team1;
@@ -93,20 +95,62 @@ namespace SlingySlugs {
 
 		public void SetTeam (int team) {
 			_team = (Team)team;
+		}
 
-			if (_team == Team.Team1) {
-				Color tmp = _healthText.color;
-				tmp.r = 0f;
-				tmp.g = 0f;
-				tmp.b = 255f;
-				_healthText.color = tmp;
-			} else if (_team == Team.Team2) {
+		public void SetColor(string colorName){
+
+			Debug.Log (colorName); 
+
+			if (colorName == "Red") {
 				Color tmp = _healthText.color;
 				tmp.r = 255f;
 				tmp.g = 0f;
 				tmp.b = 0f;
 				_healthText.color = tmp;
+			} else if (colorName == "Blue") {
+				Color tmp = _healthText.color;
+				tmp.r = 0f;
+				tmp.g = 0f;
+				tmp.b = 255f;
+				_healthText.color = tmp;
+			} else if (colorName == "Yellow") {
+				Color tmp = _healthText.color;
+				tmp.r = 255f;
+				tmp.g = 255f;
+				tmp.b = 0f;
+				_healthText.color = tmp;
+			} else if (colorName == "Green") {
+				Color tmp = _healthText.color;
+				tmp.r = 0;
+				tmp.g = 255f;
+				tmp.b = 50f;
+				_healthText.color = tmp;
+			} else if (colorName == "Violet") {
+				Color tmp = _healthText.color;
+				tmp.r = 255f;
+				tmp.g = 0f;
+				tmp.b = 255f;
+				_healthText.color = tmp;
+			} else if (colorName == "Orange") {
+				Color tmp = _healthText.color;
+				tmp.r = 255f;
+				tmp.g = 200f;
+				tmp.b = 0f;
+				_healthText.color = tmp;
+			} else if (colorName == "Coral") {
+				Color tmp = _healthText.color;
+				tmp.r = 40f;
+				tmp.g = 200f;
+				tmp.b = 200f;
+				_healthText.color = tmp;
+			}else {
+				Color tmp = _healthText.color;
+				tmp.r = 0f;
+				tmp.g = 0f;
+				tmp.b = 0f;
+				_healthText.color = tmp;
 			}
+
 		}
 
 		public void SetDeath () {
