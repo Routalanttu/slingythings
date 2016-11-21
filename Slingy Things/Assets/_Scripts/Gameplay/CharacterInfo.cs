@@ -28,10 +28,18 @@ namespace SlingySlugs {
 		[SerializeField] private int _health = 100;
 		[SerializeField] private bool _dead = false;
 		[SerializeField] private GameObject _deathAnimation;
+		[SerializeField] private GameObject _healthTextObject;
+		private TextMesh _healthText;
 		private Transform _myTransform;
 
 		private void Awake () {
 			_myTransform = GetComponent<Transform> ();
+
+			_healthTextObject = (GameObject)Instantiate (
+				_healthTextObject, transform.position + new Vector3(0f,1f,0f), 
+				Quaternion.identity, transform);
+			_healthText = _healthTextObject.GetComponent<TextMesh> ();
+			_healthText.GetComponent<TextMesh> ().text = _health.ToString();
 		}
 
 		public int Health {
@@ -55,6 +63,8 @@ namespace SlingySlugs {
 			if(_health <= 0) {
 				Die (); 
 			}
+
+			_healthText.GetComponent<TextMesh> ().text = _health.ToString();
 		}
 
 		public void IncreaseHealth(int healAmount) {
@@ -66,6 +76,8 @@ namespace SlingySlugs {
 				_health = 100;
 			}
 			GameManager.Instance.DecreaseTeamHealth ((int)_team, healAmount);
+
+			_healthText.GetComponent<TextMesh> ().text = _health.ToString();
 		}
 
 		public void Die(){
@@ -80,6 +92,20 @@ namespace SlingySlugs {
 
 		public void SetTeam (int team) {
 			_team = (Team)team;
+
+			if (_team == Team.Team1) {
+				Color tmp = _healthText.color;
+				tmp.r = 0f;
+				tmp.g = 0f;
+				tmp.b = 255f;
+				_healthText.color = tmp;
+			} else if (_team == Team.Team2) {
+				Color tmp = _healthText.color;
+				tmp.r = 255f;
+				tmp.g = 0f;
+				tmp.b = 0f;
+				_healthText.color = tmp;
+			}
 		}
 	}
 }

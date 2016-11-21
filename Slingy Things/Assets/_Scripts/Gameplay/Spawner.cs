@@ -23,7 +23,9 @@ namespace SlingySlugs {
 				_indexesUsed [_index] = true;
 
 				GameObject blerg = (GameObject)Instantiate (_slugPrefab, _spawnPoints [_index].transform.position, Quaternion.identity);
-				if (i >= 6) {
+				if (i < 6) {
+					blerg.GetComponent<CharacterInfo> ().SetTeam (1);
+				} else if (i >= 6) {
 					blerg.GetComponent<CharacterInfo> ().SetTeam (2);
 				}
 			}
