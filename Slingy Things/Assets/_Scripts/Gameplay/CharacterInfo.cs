@@ -30,8 +30,12 @@ namespace SlingySlugs {
 		[SerializeField] private int _health = 100;
 		[SerializeField] private GameObject _deathAnimation;
 		[SerializeField] private GameObject _healthTextObject;
+		[SerializeField] private GameObject _nameTextObject;
 		private TextMesh _healthText;
+		private TextMesh _nameText; 
 		private Transform _myTransform;
+
+		private string _characterName; 
 
 		private bool _dead = false;
 
@@ -41,8 +45,16 @@ namespace SlingySlugs {
 			_healthTextObject = (GameObject)Instantiate (
 				_healthTextObject, transform.position + new Vector3(0f,1f,0f), 
 				Quaternion.identity, transform);
+
+			_nameTextObject = (GameObject)Instantiate (
+				_nameTextObject, transform.position + new Vector3(0f,1.9f,0f), 
+				Quaternion.identity, transform);
+			
 			_healthText = _healthTextObject.GetComponent<TextMesh> ();
 			_healthText.GetComponent<TextMesh> ().text = _health.ToString();
+
+			_nameText = _nameTextObject.GetComponent<TextMesh> (); 
+			_nameText.GetComponent<TextMesh> ().text = "defaultname"; 
 		}
 
 		public int Health {
@@ -52,6 +64,11 @@ namespace SlingySlugs {
 		public bool IsActive {
 			set; 
 			get; 
+		}
+
+		public void SetName(string name){
+			_characterName = name; 
+			_nameText.GetComponent<TextMesh> ().text = _characterName; 
 		}
 
 		public void DecreaseHealth(int damageAmount) {
@@ -99,57 +116,48 @@ namespace SlingySlugs {
 
 		public void SetColor(string colorName){
 
-			Debug.Log (colorName); 
+			Color tmp = _healthText.color;
 
 			if (colorName == "Red") {
-				Color tmp = _healthText.color;
 				tmp.r = 255f;
 				tmp.g = 0f;
 				tmp.b = 0f;
-				_healthText.color = tmp;
 			} else if (colorName == "Blue") {
-				Color tmp = _healthText.color;
 				tmp.r = 0f;
 				tmp.g = 0f;
 				tmp.b = 255f;
-				_healthText.color = tmp;
 			} else if (colorName == "Yellow") {
-				Color tmp = _healthText.color;
 				tmp.r = 255f;
 				tmp.g = 255f;
 				tmp.b = 0f;
-				_healthText.color = tmp;
 			} else if (colorName == "Green") {
-				Color tmp = _healthText.color;
 				tmp.r = 0;
 				tmp.g = 255f;
 				tmp.b = 50f;
 				_healthText.color = tmp;
 			} else if (colorName == "Violet") {
-				Color tmp = _healthText.color;
 				tmp.r = 255f;
 				tmp.g = 0f;
 				tmp.b = 255f;
 				_healthText.color = tmp;
 			} else if (colorName == "Orange") {
-				Color tmp = _healthText.color;
 				tmp.r = 255f;
 				tmp.g = 200f;
 				tmp.b = 0f;
 				_healthText.color = tmp;
-			} else if (colorName == "Coral") {
-				Color tmp = _healthText.color;
+			} else if (colorName == "Coral") { 
+				//this is for testing
 				tmp.r = 40f;
 				tmp.g = 200f;
 				tmp.b = 200f;
-				_healthText.color = tmp;
 			}else {
-				Color tmp = _healthText.color;
 				tmp.r = 0f;
 				tmp.g = 0f;
 				tmp.b = 0f;
-				_healthText.color = tmp;
 			}
+
+			_healthText.color = tmp;
+			_nameText.color = tmp; 
 
 		}
 

@@ -112,8 +112,7 @@ namespace SlingySlugs {
 
 			UserInput (); 
 			CheckGameState (); 
-		
-			Debug.Log ("Sinisiä jäljellä " + _team1SlugAmount + ", punaisia " + _team2SlugAmount);
+
 		}
 
 		void StartGame(){
@@ -157,6 +156,8 @@ namespace SlingySlugs {
 		}
 
 		public void KillSlug(int teamNumber, GameObject go){
+
+			Debug.Log ("Sinisiä jäljellä " + _team1SlugAmount + ", punaisia " + _team2SlugAmount);
 
 			if (teamNumber== 1) {
 				_team1SlugAmount--; 
