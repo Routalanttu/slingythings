@@ -45,9 +45,10 @@ namespace SlingySlugs {
 				}
 			}
 
-			GameManager.Instance.NextPlayerMove();
+			GameManager.Instance.ExplosionAccomplished (); 
 
 			return false;
 		}
+			
 	}
 }

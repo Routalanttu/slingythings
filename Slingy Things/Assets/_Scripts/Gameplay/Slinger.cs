@@ -46,6 +46,7 @@ namespace SlingySlugs {
 			_isArmed = true;
 			_explosion.Arm ();
 			_snailBlowCounter = 0;
+			GameManager.Instance.DeactiveCircleColliders(); 
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {

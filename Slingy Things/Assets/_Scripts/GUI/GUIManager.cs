@@ -6,6 +6,11 @@ namespace SlingySlugs{
 
 	public class GUIManager : MonoBehaviour {
 
+		public GameObject _team1HealthObject;
+		public GameObject _team2HealthObject;
+		public GameObject _team3HealthObject;
+		public GameObject _team4HealthObject;
+
 		public Text _message; 
 		public Text _team1NameText; 
 		public Text _team2NameText; 
@@ -75,8 +80,13 @@ namespace SlingySlugs{
 			_team3HealthFill.color = GameSessionController._instance._teams [2]._teamUnityColor;
 			_team4HealthFill.color = GameSessionController._instance._teams [3]._teamUnityColor;
 
-			if (GameSessionController._instance._numberOfTeams == 3) {
+			if (GameSessionController._instance._numberOfTeams == 2) {
 
+				_team3HealthObject.SetActive (false); 
+				_team4HealthObject.SetActive (false); 
+				 
+			}else if (GameSessionController._instance._numberOfTeams == 3) {
+				_team4HealthObject.SetActive (false); 
 			}
 
 
@@ -84,6 +94,8 @@ namespace SlingySlugs{
 		
 		// Update is called once per frame
 		void Update () {
+
+
 		
 		}
 
@@ -108,12 +120,13 @@ namespace SlingySlugs{
 
 		}
 
-		public void UpdateHealth(int team1health, int team2health){
+		public void UpdateHealth(int team1health, int team2health, int team3health, int team4health){
 
 			_team1HealthSlider.value = (float)team1health / 600f; 
 			_team2HealthSlider.value = (float)team2health / 600f; 
+			_team3HealthSlider.value = (float)team3health / 600f; 
+			_team4HealthSlider.value = (float)team4health / 600f; 
 
-				Debug.Log ("health1 value" + _team1HealthSlider.value); 
 		}
 
 		public void Paused(bool paused){

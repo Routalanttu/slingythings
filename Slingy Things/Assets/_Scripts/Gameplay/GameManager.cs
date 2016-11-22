@@ -3,37 +3,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-namespace SlingySlugs {
-	public class GameManager : MonoBehaviour {
+namespace SlingySlugs
+{
+	public class GameManager : MonoBehaviour
+	{
 
-		public int activePlayers = 2; 
-		public CameraController _cameraController; 
+		public CameraController _cameraController;
 
 		//Gameplay states
 		enum State
 		{
-			_stateWaitForTurn, 
-			_stateAim, 
-			_stateInAir, 
-			_stateExplode, 
-			_stateCheckDamages
-		};
+			_stateWaitForTurn,
+			_stateAim,
+			_stateInAir,
+			_stateExplode,
+			_stateCheckDamages}
 
-		//TEAM VALUES 
-		public List<GameObject> _team1Slugs; 
-		public List<GameObject> _team2Slugs; 
+		;
 
-		private int _team1SlugAmount; 
-		private int _team2SlugAmount; 
-		private int _team1Health; 
-		private int _team2Health; 
+		private int numberOfTeams;
 
-		private static GameManager _instance; 
+		//TEAM VALUES
+		public List<GameObject> _team1Slugs;
+		public List<GameObject> _team2Slugs;
+		public List<GameObject> _team3Slugs;
+		public List<GameObject> _team4Slugs;
+
+		public List<Rigidbody2D> _allSlugRigidbodies;
+
+
+		private int _team1SlugAmount;
+		private int _team2SlugAmount;
+		private int _team3SlugAmount;
+		private int _team4SlugAmount;
+
+		private int _team1Health;
+		private int _team2Health;
+		private int _team3Health;
+		private int _team4Health;
+
+		private static GameManager _instance;
 		private static bool _isQuitting = false;
-		private int currentPlayer = 0; 
+		private int currentPlayer = 0;
 
 		private bool _gameStarted;
-        public bool CharacterTouched { set; get; } //if player activates a character 
+
+		private bool _explosionAccomplished; 
+		private bool _allSlugsStill; 
+
+		public bool CharacterTouched { set; get; }
+		//if player activates a character
 
 		public static GameManager Instance {
 			get {
@@ -46,22 +65,20 @@ namespace SlingySlugs {
 
 		private GUIManager _guiManager;
 
-		public GUIManager GUIManager
-		{
-			get
-			{
-				if(_guiManager == null)
-				{
-					_guiManager = FindObjectOfType<GUIManager>(); 
+		public GUIManager GUIManager {
+			get {
+				if (_guiManager == null) {
+					_guiManager = FindObjectOfType<GUIManager> (); 
 				}
 
 				return _guiManager; 
 			}
 		}
 
-		private bool _paused = false; 
+		private bool _paused = false;
 
-		void Awake() {
+		void Awake ()
+		{
 
 			if (_instance == null) {
 				_instance = this; 
@@ -70,20 +87,32 @@ namespace SlingySlugs {
 			}
 				
 		}
-			
-		void Start () {
 
-			_team1Slugs = new List<GameObject>(); 
-			_team2Slugs = new List<GameObject>(); 
+		void Start ()
+		{
 
-			GameObject[] gos = GameObject.FindGameObjectsWithTag("Slug");
+			numberOfTeams = GameSessionController._instance._numberOfTeams; 
+
+			_team1Slugs = new List<GameObject> (); 
+			_team2Slugs = new List<GameObject> (); 
+			_team3Slugs = new List<GameObject> (); 
+			_team4Slugs = new List<GameObject> (); 
+
+			GameObject[] gos = GameObject.FindGameObjectsWithTag ("Slug");
 
 			foreach (GameObject go in gos) {
 
-				if (go.GetComponent<CharacterInfo> ().GetTeam() == 1) {
+				Rigidbody2D rb2d = go.GetComponent<Rigidbody2D> (); 
+				_allSlugRigidbodies.Add (rb2d); 
+
+				if (go.GetComponent<CharacterInfo> ().GetTeam () == 1) {
 					_team1Slugs.Add (go); 
-				} else {
+				} else if (go.GetComponent<CharacterInfo> ().GetTeam () == 2) {
 					_team2Slugs.Add (go); 
+				} else if (go.GetComponent<CharacterInfo> ().GetTeam () == 3) {
+					_team3Slugs.Add (go); 
+				} else {
+					_team4Slugs.Add (go); 
 				}
 
 			}
@@ -96,32 +125,47 @@ namespace SlingySlugs {
 			foreach (GameObject go in _team2Slugs) {
 				_team2Health += go.GetComponent<CharacterInfo> ().Health; 
 			}
+
+			foreach (GameObject go in _team3Slugs) {
+				_team3Health += go.GetComponent<CharacterInfo> ().Health; 
+			}
+
+			foreach (GameObject go in _team3Slugs) {
+				_team4Health += go.GetComponent<CharacterInfo> ().Health; 
+			}
 				
-			GUIManager.UpdateHealth (_team1Health, _team2Health); 
+			GUIManager.UpdateHealth (_team1Health, _team2Health, _team3Health, _team4Health); 
 
 			_team1SlugAmount = _team1Slugs.Count; 
 			_team2SlugAmount = _team2Slugs.Count; 
+			_team3SlugAmount = _team3Slugs.Count; 
+			_team4SlugAmount = _team4Slugs.Count; 
 
 			// PLACEHOLDERPURKKA PLS REMOVE
 			_guiManager.HideMessage ();
+
 			NextPlayerMove ();
 		
 		}
 
-		void Update () {
+		void Update ()
+		{
 
-			UserInput (); 
+			//UserInput (); 
 			CheckGameState (); 
+
 
 		}
 
-		void StartGame(){
+		void StartGame ()
+		{
 			GUIManager.HideMessage (); 
 		}
 
-		void UserInput(){
+		void UserInput ()
+		{
 
-			if (Input.GetKeyDown (KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) {
+			if (Input.GetKeyDown (KeyCode.P) || Input.GetKeyDown (KeyCode.Escape)) {
 				Pause (); 
 			} 
 
@@ -133,7 +177,8 @@ namespace SlingySlugs {
 			}
 		}
 
-		public void Pause(){
+		public void Pause ()
+		{
 
 			if (!_paused) {
 				Time.timeScale = 0; 
@@ -147,19 +192,45 @@ namespace SlingySlugs {
 			}
 		}
 
-		void CheckGameState(){
+		void CheckGameState ()
+		{
+			if (_explosionAccomplished) {
 
+				int numberOfMovingSlugs = 0;  
+
+				foreach (Rigidbody2D rb in _allSlugRigidbodies) {
+					
+					if (Mathf.Abs (rb.velocity.x) > 0.4f || Mathf.Abs (rb.velocity.y) > 0.4f) {
+						numberOfMovingSlugs++; 
+					}
+				}
+
+				if (numberOfMovingSlugs == 0) {
+					_allSlugsStill = true; 
+				}
+					
+				Debug.Log ("_allSlugsStill is " + _allSlugsStill); 
+
+			}
+
+			if (_explosionAccomplished && _allSlugsStill) {
+				NextPlayerMove();
+				_allSlugsStill = false;
+				_explosionAccomplished = false; 
+			}
 		}
 
-		public void SetCameraTarget(Transform target){
+		public void SetCameraTarget (Transform target)
+		{
 			_cameraController.SetCameraTarget (target); 
 		}
 
-		public void KillSlug(int teamNumber, GameObject go){
+		public void KillSlug (int teamNumber, GameObject go)
+		{
 
-			Debug.Log ("Sinisiä jäljellä " + _team1SlugAmount + ", punaisia " + _team2SlugAmount);
+			_allSlugRigidbodies.Remove (go.GetComponent<Rigidbody2D> ()); 
 
-			if (teamNumber== 1) {
+			if (teamNumber == 1) {
 				_team1SlugAmount--; 
 				_team1Slugs.Remove (go);
 			}
@@ -169,10 +240,21 @@ namespace SlingySlugs {
 				_team2Slugs.Remove (go); 
 			}
 
+			if (teamNumber == 3) {
+				_team3SlugAmount--; 
+				_team3Slugs.Remove (go); 
+			}
+
+			if (teamNumber == 4) {
+				_team4SlugAmount--; 
+				_team4Slugs.Remove (go); 
+			}
+
 			go.GetComponent<CharacterInfo> ().DecreaseHealth (100);
 
 			Destroy (go);
 
+			//DO SOMETHING HERE
 			if (_team1SlugAmount <= 0) {
 				GameOver (2);
 			} else if (_team2SlugAmount <= 0) {
@@ -180,37 +262,91 @@ namespace SlingySlugs {
 			}
 
 		}
-			
 
-		public void DecreaseTeamHealth(int teamNumber, int decreaseAmount){
+
+		public void DecreaseTeamHealth (int teamNumber, int decreaseAmount)
+		{
 
 			if (teamNumber == 1) {
 				_team1Health -= decreaseAmount; 
-			}else if( teamNumber == 2){
+			} else if (teamNumber == 2) {
 				_team2Health -= decreaseAmount; 
+			} else if (teamNumber == 3) {
+				_team3Health -= decreaseAmount; 
+			} else if (teamNumber == 4) {
+				_team4Health -= decreaseAmount; 
 			}
 
-			GUIManager.UpdateHealth(_team1Health, _team2Health); 
+			GUIManager.UpdateHealth (_team1Health, _team2Health, _team3Health, _team4Health); 
 
 		}
 
+		public void ExplosionAccomplished(){
+			_explosionAccomplished = true; 
+		}
 
-		public void NextPlayerMove(){
-			 
-			if (currentPlayer == 1) {
-				currentPlayer = 2; 
-			} else {
-				currentPlayer = 1; 
+
+		public void NextPlayerMove ()
+		{
+
+			if (numberOfTeams == 2) {
+				if (currentPlayer == 1) {
+					currentPlayer = 2; 
+				} else {
+					currentPlayer = 1; 
+				}
 			}
 
+			if (numberOfTeams == 3) {
+				if (currentPlayer == 1) {
+					currentPlayer = 2; 
+				} else if (currentPlayer == 2) {
+					currentPlayer = 3; 
+				} else {
+					currentPlayer = 1; 
+				}
+			}
+
+			if (numberOfTeams == 4) {
+				if (currentPlayer == 1) {
+					currentPlayer = 2; 
+				} else if (currentPlayer == 2) {
+					currentPlayer = 3; 
+				} else if (currentPlayer == 3) {
+					currentPlayer = 4; 
+				} else {
+					currentPlayer = 1; 
+				}
+			}
+			 
 			ActivateTeam(); 
 		}
 
-		public void ActivateTeam(){
+		public void DeactiveCircleColliders(){
+
+			foreach (var slug in _team1Slugs) {
+				slug.GetComponent<CircleCollider2D> ().enabled = false;
+			}
+
+			foreach (var slug in _team2Slugs) {
+				slug.GetComponent<CircleCollider2D> ().enabled = false;
+			}
+
+			foreach (var slug in _team3Slugs) {
+				slug.GetComponent<CircleCollider2D> ().enabled = false;
+			}
+
+			foreach (var slug in _team4Slugs) {
+				slug.GetComponent<CircleCollider2D> ().enabled = false;
+			}
+
+		}
+
+		public void ActivateTeam ()
+		{
 
 			if (currentPlayer == 1) {
 
-				// TÄMÄ ON ISO ONGELMA!!! _team1Slugs-taulukkoa kun referoidaan ja löytyy kuolleita matoja, can't do things.
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true; 
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
@@ -221,7 +357,17 @@ namespace SlingySlugs {
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
-			} else {
+				foreach (var slug in _team3Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
+				}
+
+				foreach (var slug in _team4Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
+				}
+
+			} else if (currentPlayer == 2) {
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true;
@@ -233,46 +379,108 @@ namespace SlingySlugs {
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
+				foreach (var slug in _team3Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
+				}
+
+				foreach (var slug in _team4Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
+				}
+
+			} else if (currentPlayer == 3) {
+
+				foreach (var slug in _team3Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = true;
+					slug.GetComponent<CircleCollider2D> ().enabled = true;
+				}
+
+				foreach (var slug in _team1Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
+				}
+
+				foreach (var slug in _team2Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
+				}
+
+				foreach (var slug in _team4Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
+				}
+
+			} else {
+
+				foreach (var slug in _team4Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = true;
+					slug.GetComponent<CircleCollider2D> ().enabled = true;
+				}
+
+				foreach (var slug in _team1Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
+				}
+
+				foreach (var slug in _team2Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
+				}
+
+				foreach (var slug in _team3Slugs) {
+					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CircleCollider2D> ().enabled = false;
+				}
+
 			}
 		}
 
-		public void RestartLevel(){
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		public void RestartLevel ()
+		{
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		}
 
-		public void QuitGame(){
+		public void QuitGame ()
+		{
 
 			PlayerPrefs.Save (); 
 			Application.Quit (); 
 		}
 
-		public void ResumeGame(){
+		public void ResumeGame ()
+		{
 			Pause (); 
 		}
-			
 
-		private void OnApplicationQuit(){
+
+		private void OnApplicationQuit ()
+		{
 			_isQuitting = true; 
 		}
 
-		public void GameOver(int winningTeamNumber){
+		public void GameOver (int winningTeamNumber)
+		{
 			GUIManager.GameOver (winningTeamNumber);
-	        // Didn't want the TeamsAndAnimals scene loading immediately after the game ends so I decided to use a coroutine
-	        StartCoroutine(SceneLoad());
-	    }
+			// Didn't want the TeamsAndAnimals scene loading immediately after the game ends so I decided to use a coroutine
+			StartCoroutine (SceneLoad ());
+		}
 
 
 
-	    IEnumerator SceneLoad () {
-	        yield return new WaitForSecondsRealtime(3.0f);
-	        SceneManager.LoadScene("TeamsAndAnimals");
-	    }
+		IEnumerator SceneLoad ()
+		{
+			yield return new WaitForSecondsRealtime (3.0f);
+			SceneManager.LoadScene ("TeamsAndAnimals");
+		}
 
-		public void GoToMenu () {
+		public void GoToMenu ()
+		{
 			SceneManager.LoadScene ("Menu");
 		}
 
-		public int GetCurrentActiveTeam() {
+		public int GetCurrentActiveTeam ()
+		{
 			return currentPlayer;
 		}
 
