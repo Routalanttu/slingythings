@@ -19,19 +19,19 @@ public class SplashScreen : MonoBehaviour {
     }
 
     private void Update() {
-        float häh = Time.deltaTime;
+        float time = Time.deltaTime;
 
-        delayTime -= häh;
+        delayTime -= time;
 
         if (delayTime < 4.5f && delayTime > 3.5f) {
-            vittu += häh;
+            vittu += time;
             Color tmp = new Color(_sr.color.r, _sr.color.g, _sr.color.b,vittu);
 
             _sr.color = tmp;
         }
 
         if (delayTime < 1.5f && delayTime > 0.5f) {
-            vittu -= häh;
+            vittu -= time;
             Color tmp = new Color(_sr.color.r, _sr.color.g, _sr.color.b,vittu);
 
             _sr.color = tmp;
