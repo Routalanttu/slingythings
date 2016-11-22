@@ -55,6 +55,8 @@ namespace SlingySlugs {
 				color = GameSessionController._instance._teams [3]._teamColor; 
 			}
 
+			Debug.Log (color); 
+
 
 			if (color == "Red") {
 				_redTurn.enabled = true;

@@ -515,6 +515,7 @@ namespace SlingySlugs{
 
 				//set team color
 				GameSessionController._instance._teams[_numberOfTeams - 1]._teamColor = PlayerPrefs.GetString("team" + teamNumber + "Color"); 
+				GameSessionController._instance._teams[_numberOfTeams - 1].SetUnityColor (); 
 
 				//set slug names
 				for(int i = 1; i < 7; i++){
@@ -597,9 +598,9 @@ namespace SlingySlugs{
 				}
 			}
 
-			PlayerPrefs.SetString ("t1s1Name", "Mara"); 
-			PlayerPrefs.SetString ("t1s2Name", "Kalle"); 
-			PlayerPrefs.SetString ("t1s3Name", "Jussi"); 
+			PlayerPrefs.SetString ("t1s1Name", "Shellboy"); 
+			PlayerPrefs.SetString ("t1s2Name", "Wartslug"); 
+			PlayerPrefs.SetString ("t1s3Name", "8-Feeler"); 
 			PlayerPrefs.SetString ("t1s4Name", "Crisu"); 
 			PlayerPrefs.SetString ("t1s5Name", "Kauno"); 
 			PlayerPrefs.SetString ("t1s6Name", "Leija"); 

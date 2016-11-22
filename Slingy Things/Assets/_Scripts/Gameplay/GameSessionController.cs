@@ -33,10 +33,6 @@ namespace SlingySlugs{
 
 		}
 
-		public void setTeams(){
-		
-
-		}
 	
 
 		public void TestLog(){
