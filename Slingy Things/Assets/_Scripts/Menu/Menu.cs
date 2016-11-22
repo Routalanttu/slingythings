@@ -28,7 +28,7 @@ public class Menu : MonoBehaviour {
     }
 
     public void OnLevelSelection() {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 
     public void OnQuit() {
