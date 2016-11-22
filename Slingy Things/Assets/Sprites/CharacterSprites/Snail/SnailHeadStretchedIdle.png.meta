@@ -1,17 +1,14 @@
 fileFormatVersion: 2
-guid: 3f9660ef2c8d7334a824d1d725e51ef4
-timeCreated: 1479815223
+guid: dacc38798dd6e0242b6c169ed2e7e359
+timeCreated: 1479815281
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: SnailIdleAnimSheet_0
-    21300002: SnailIdleAnimSheet_1
-    21300004: SnailIdleAnimSheet_2
-    21300006: SnailIdleAnimSheet_3
-    21300008: SnailIdleAnimSheet_4
-    21300010: SnailIdleAnimSheet_5
-    21300012: SnailIdleAnimSheet_6
-    21300014: SnailIdleAnimSheet_7
+    21300000: SnailHeadStretchedIdle_0
+    21300002: SnailHeadStretchedIdle_1
+    21300004: SnailHeadStretchedIdle_2
+    21300006: SnailHeadStretchedIdle_3
+    21300008: SnailHeadStretchedIdle_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -61,11 +58,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SnailIdleAnimSheet_0
+      name: SnailHeadStretchedIdle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 0
         width: 192
         height: 192
       alignment: 0
@@ -74,11 +71,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SnailIdleAnimSheet_1
+      name: SnailHeadStretchedIdle_1
       rect:
         serializedVersion: 2
         x: 192
-        y: 192
+        y: 0
         width: 192
         height: 192
       alignment: 0
@@ -87,11 +84,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SnailIdleAnimSheet_2
+      name: SnailHeadStretchedIdle_2
       rect:
         serializedVersion: 2
         x: 384
-        y: 192
+        y: 0
         width: 192
         height: 192
       alignment: 0
@@ -100,11 +97,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SnailIdleAnimSheet_3
+      name: SnailHeadStretchedIdle_3
       rect:
         serializedVersion: 2
         x: 576
-        y: 192
+        y: 0
         width: 192
         height: 192
       alignment: 0
@@ -113,49 +110,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SnailIdleAnimSheet_4
+      name: SnailHeadStretchedIdle_4
       rect:
         serializedVersion: 2
         x: 768
-        y: 192
-        width: 192
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: SnailIdleAnimSheet_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 192
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: SnailIdleAnimSheet_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 192
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: SnailIdleAnimSheet_7
-      rect:
-        serializedVersion: 2
-        x: 384
         y: 0
         width: 192
         height: 192
