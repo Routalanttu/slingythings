@@ -1,85 +1,111 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-namespace SlingySlugs{
+namespace SlingySlugs
+{
 
-public class Menu2 : MonoBehaviour {
+	public class Menu2 : MonoBehaviour
+	{
     
-    public Animator _mainMenuObjectsAnim;
-    public Animator _teamsAndAnimalsObjectsAnim;
-	public Animator _selectLevelObjectsAnim; 
-	public Animator _titleAnim; 
-	public Animator _optionsMenuAnim; 
-	public Animator _teamManagementAnim; 
+		public Animator _mainMenuObjectsAnim;
+		public Animator _teamsAndAnimalsObjectsAnim;
+		public Animator _selectLevelObjectsAnim;
+		public Animator _titleAnim;
+		public Animator _optionsMenuAnim;
+		public Animator _teamManagementAnim;
 
-	//public GameObject numberOfTeamsObjects;
+		//public GameObject numberOfTeamsObjects;
 
-    // Use this for initialization
-    void Start () {
+		// Use this for initialization
+		void Start ()
+		{
 
-    }
+		}
 	
-	// Update is called once per frame
-	void Update () {
+		// Update is called once per frame
+		void Update ()
+		{
 	
+		}
+
+		public void OnPlay ()
+		{
+			_mainMenuObjectsAnim.SetTrigger ("MainMenuMove");
+			_teamsAndAnimalsObjectsAnim.SetTrigger ("TeamsAndAnimalsMove");
+			_titleAnim.SetTrigger ("TitleMove"); 
+
+		}
+
+		public void OnTeamsAndAnimalsReturn ()
+		{
+			_mainMenuObjectsAnim.SetTrigger ("MainMenuMove");
+			_teamsAndAnimalsObjectsAnim.SetTrigger ("TeamsAndAnimalsMoveBack");
+			_titleAnim.SetTrigger ("TitleMove"); 
+		}
+
+		public void OnToLevelSelect ()
+		{
+			_teamsAndAnimalsObjectsAnim.SetTrigger ("TeamsAndAnimalsMove"); 
+			_selectLevelObjectsAnim.SetTrigger ("SelectLevelMove"); 
+
+		}
+
+		public void OnLevelSelectReturn ()
+		{
+			_teamsAndAnimalsObjectsAnim.SetTrigger ("TeamsAndAnimalsMove"); 
+			_selectLevelObjectsAnim.SetTrigger ("SelectLevelMove"); 
+		}
+
+		public void OnOptions ()
+		{
+			_mainMenuObjectsAnim.SetTrigger ("MainMenuMove");
+			_titleAnim.SetTrigger ("TitleMove"); 
+			_optionsMenuAnim.SetTrigger ("OptionsMove"); 
+
+		}
+
+		public void OnOptionsReturn ()
+		{
+			_mainMenuObjectsAnim.SetTrigger ("MainMenuMove");
+			_titleAnim.SetTrigger ("TitleMove"); 
+			_optionsMenuAnim.SetTrigger ("OptionsMove"); 
+		}
+
+		public void OnTeamManagement ()
+		{
+			_mainMenuObjectsAnim.SetTrigger ("MainMenuMove");
+			_teamManagementAnim.SetTrigger ("TeamManagementMove"); 
+			_titleAnim.SetTrigger ("TitleMove"); 
+
+		}
+
+		public void OnTeamManagementReturn ()
+		{
+			_mainMenuObjectsAnim.SetTrigger ("MainMenuMove");
+			_teamManagementAnim.SetTrigger ("TeamManagementMove"); 
+			_titleAnim.SetTrigger ("TitleMove"); 
+
+		}
+
+		public void PlayButtonSound ()
+		{
+
+			SoundController.Instance.PlaySoundByIndex (0); 
+
+		}
+
+		public void OnLevelSelection (int level)
+		{
+			SceneManager.LoadScene (level);
+		}
+
+		public void OnQuit ()
+		{
+			Application.Quit ();
+		}
+
+
 	}
-
-    public void OnPlay() {
-        _mainMenuObjectsAnim.SetTrigger("MainMenuMove");
-        _teamsAndAnimalsObjectsAnim.SetTrigger("TeamsAndAnimalsMove");
-		_titleAnim.SetTrigger ("TitleMove"); 
-
-    }
-
-    public void OnTeamsAndAnimalsReturn() {
-        _mainMenuObjectsAnim.SetTrigger("MainMenuMove");
-        _teamsAndAnimalsObjectsAnim.SetTrigger("TeamsAndAnimalsMoveBack");
-		_titleAnim.SetTrigger ("TitleMove"); 
-    }
-
-	public void OnToLevelSelect(){
-		_teamsAndAnimalsObjectsAnim.SetTrigger ("TeamsAndAnimalsMove"); 
-		_selectLevelObjectsAnim.SetTrigger ("SelectLevelMove"); 
-
-	}
-
-	public void OnLevelSelectReturn(){
-		_teamsAndAnimalsObjectsAnim.SetTrigger ("TeamsAndAnimalsMove"); 
-		_selectLevelObjectsAnim.SetTrigger ("SelectLevelMove"); 
-	}
-
-    public void OnOptions() {
-		_mainMenuObjectsAnim.SetTrigger("MainMenuMove");
-		_titleAnim.SetTrigger ("TitleMove"); 
-		_optionsMenuAnim.SetTrigger ("OptionsMove"); 
-
-    }
-
-    public void OnOptionsReturn() {
-		_mainMenuObjectsAnim.SetTrigger("MainMenuMove");
-		_titleAnim.SetTrigger ("TitleMove"); 
-		_optionsMenuAnim.SetTrigger ("OptionsMove"); 
-    }
-
-	public void OnTeamManagement(){
-		_mainMenuObjectsAnim.SetTrigger("MainMenuMove");
-		_teamManagementAnim.SetTrigger ("TeamManagementMove"); 
-		_titleAnim.SetTrigger ("TitleMove"); 
-
-	}
-
-	public void OnTeamManagementReturn(){
-		_mainMenuObjectsAnim.SetTrigger("MainMenuMove");
-		_teamManagementAnim.SetTrigger ("TeamManagementMove"); 
-		_titleAnim.SetTrigger ("TitleMove"); 
-
-	}
-
-	public void PlayButtonSound(){
-
-		SoundController.Instance.PlaySoundByIndex (0); 
-
-	}
-
-}
 }

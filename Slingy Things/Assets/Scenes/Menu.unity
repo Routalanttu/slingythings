@@ -1819,7 +1819,6 @@ GameObject:
   - 114: {fileID: 297472046}
   - 114: {fileID: 297472043}
   - 114: {fileID: 297472047}
-  - 114: {fileID: 297472048}
   m_Layer: 0
   m_Name: _MENUCONTROLLERS_
   m_TagString: Untagged
@@ -1944,17 +1943,6 @@ MonoBehaviour:
   _team4Text: {fileID: 1545243345}
   _team5Text: {fileID: 818545072}
   _team6Text: {fileID: 211131642}
---- !u!114 &297472048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 297472042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21784dbf0cecb334bbd6c9962b04942a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &298354532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,18 +2834,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000013044900756, guid: eff9345c04b46f2408c313e7707708f0,
-          type: 2}
-        m_MethodName: OnLevelSelection
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 297472047}
         m_MethodName: ProceedToGame
         m_Mode: 1
@@ -2865,6 +2841,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 297472045}
+        m_MethodName: OnLevelSelection
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3488,17 +3475,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297472048}
-        m_MethodName: OnLevelSelection
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 297472047}
         m_MethodName: ProceedToGame
         m_Mode: 1
@@ -3506,6 +3482,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 297472045}
+        m_MethodName: OnLevelSelection
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
