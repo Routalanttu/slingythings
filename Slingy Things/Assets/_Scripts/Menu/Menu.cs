@@ -5,39 +5,39 @@ using UnityEngine.UI;
 
 namespace SlingySlugs{
 	
-public class Menu : MonoBehaviour {
+	public class Menu : MonoBehaviour {
 
-    public void OnPlay() {
-        SceneManager.LoadScene("TeamsAndAnimals");
-    }
+	    public void OnPlay() {
+	        SceneManager.LoadScene("TeamsAndAnimals");
+	    }
 
-    public void OnLevelSelect() {
-        SceneManager.LoadScene("SelectLevel");
-    }
+	    public void OnLevelSelect() {
+	        SceneManager.LoadScene("SelectLevel");
+	    }
 
-    public void OnCredits() {
-        SceneManager.LoadScene("Credits");
-    }
+	    public void OnCredits() {
+	        SceneManager.LoadScene("Credits");
+	    }
 
-    public void OnReturn() {
-        SceneManager.LoadScene("Menu");
-    }
+	    public void OnReturn() {
+	        SceneManager.LoadScene("Menu");
+	    }
 
-    public void OnLevelSelectReturn() {
-        SceneManager.LoadScene("TeamsAndAnimals");
-    }
+	    public void OnLevelSelectReturn() {
+	        SceneManager.LoadScene("TeamsAndAnimals");
+	    }
 
-    public void OnLevelSelection() {
-        SceneManager.LoadScene(4);
-    }
+		public void OnLevelSelection(int level) {
+	        SceneManager.LoadScene(level);
+	    }
 
-    public void OnQuit() {
-        Application.Quit();
-    }
+	    public void OnQuit() {
+	        Application.Quit();
+	    }
 
-    public void OnOptions() {
-        SceneManager.LoadScene("Options");
-    }
+	    public void OnOptions() {
+	        SceneManager.LoadScene("Options");
+	    }
 
-}
+	}
 }
