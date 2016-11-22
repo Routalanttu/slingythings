@@ -9,6 +9,7 @@ namespace SlingySlugs{
 		
 		public string _teamName; 
 		public string _teamColor; 
+		public Color _teamUnityColor; 
 		public string[] _slugNames;
 		public string[] _slugClasses;
 
@@ -17,14 +18,42 @@ namespace SlingySlugs{
 			_slugNames = new string[6];
 			_slugClasses = new string[6];
 
-			for (int i = 0; i < 6; i++) {
-				_slugNames [i] = "defaultname";  //default setting, don't know if any use
-			}
+		}
 
-			for (int j = 0; j < 6; j++) {
-				_slugClasses [j] = "Slug";  //default setting, not sure if any use
-			}
 
+		public void SetUnityColor(){
+
+			_teamUnityColor = Color.black; 
+			
+			if (_teamColor == "Red") {
+				_teamUnityColor.r = 1f;
+				_teamUnityColor.g = 0f;
+				_teamUnityColor.b = 0f;
+			} else if (_teamColor == "Blue") {
+				_teamUnityColor.r = 0f;
+				_teamUnityColor.g = 0f;
+				_teamUnityColor.b = 1f;
+			} else if (_teamColor == "Yellow") {
+				_teamUnityColor.r = 1f;
+				_teamUnityColor.g = 1f;
+				_teamUnityColor.b = 0f;
+			} else if (_teamColor == "Green") {
+				_teamUnityColor.r = 0;
+				_teamUnityColor.g = 1f;
+				_teamUnityColor.b = 0f;
+			} else if (_teamColor == "Violet") {
+				_teamUnityColor.r = 1f;
+				_teamUnityColor.g = 0f;
+				_teamUnityColor.b = 1f;
+			} else if (_teamColor == "Orange") {
+				_teamUnityColor.r = 1f;
+				_teamUnityColor.g = 0.5f;
+				_teamUnityColor.b = 0f;
+			} else {
+				_teamUnityColor.r = 0f;
+				_teamUnityColor.g = 0f;
+				_teamUnityColor.b = 0f;
+			}
 		}
 
 	}

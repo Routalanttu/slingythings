@@ -114,50 +114,10 @@ namespace SlingySlugs {
 			_team = (Team)team;
 		}
 
-		public void SetColor(string colorName){
+		public void SetColor(Color unityColor){
 
-			Color tmp = _healthText.color;
-
-			if (colorName == "Red") {
-				tmp.r = 255f;
-				tmp.g = 0f;
-				tmp.b = 0f;
-			} else if (colorName == "Blue") {
-				tmp.r = 0f;
-				tmp.g = 0f;
-				tmp.b = 255f;
-			} else if (colorName == "Yellow") {
-				tmp.r = 255f;
-				tmp.g = 255f;
-				tmp.b = 0f;
-			} else if (colorName == "Green") {
-				tmp.r = 0;
-				tmp.g = 255f;
-				tmp.b = 50f;
-				_healthText.color = tmp;
-			} else if (colorName == "Violet") {
-				tmp.r = 255f;
-				tmp.g = 0f;
-				tmp.b = 255f;
-				_healthText.color = tmp;
-			} else if (colorName == "Orange") {
-				tmp.r = 255f;
-				tmp.g = 200f;
-				tmp.b = 0f;
-				_healthText.color = tmp;
-			} else if (colorName == "Coral") { 
-				//this is for testing
-				tmp.r = 40f;
-				tmp.g = 200f;
-				tmp.b = 200f;
-			}else {
-				tmp.r = 0f;
-				tmp.g = 0f;
-				tmp.b = 0f;
-			}
-
-			_healthText.color = tmp;
-			_nameText.color = tmp; 
+			_healthText.color = unityColor;
+			_nameText.color = unityColor; 
 
 		}
 

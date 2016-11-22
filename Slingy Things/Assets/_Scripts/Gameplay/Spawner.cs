@@ -65,7 +65,7 @@ namespace SlingySlugs {
 
 					GameObject spawnedSlug = (GameObject)Instantiate (tmpPrefab, _spawnPoints [_index].transform.position, Quaternion.identity);
 					spawnedSlug.GetComponent<CharacterInfo> ().SetTeam (i+1);
-					spawnedSlug.GetComponent<CharacterInfo> ().SetColor (_teams[i]._teamColor);
+					spawnedSlug.GetComponent<CharacterInfo> ().SetColor (_teams[i]._teamUnityColor);
 					spawnedSlug.GetComponent<CharacterInfo> ().SetName (_teams[i]._slugNames[j]);
 							
 				} //end inner for loop

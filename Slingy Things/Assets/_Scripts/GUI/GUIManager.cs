@@ -4,93 +4,131 @@ using UnityEngine.UI;
 
 namespace SlingySlugs{
 
-public class GUIManager : MonoBehaviour {
+	public class GUIManager : MonoBehaviour {
 
-	public Text _message; 
-	public Text _team1HealthText; 
-	public Text _team2HealthText; 
-	public Slider _team1HealthSlider; 
-	public Slider _team2HealthSlider; 
-	public GameObject _pauseMenu; 
+		public Text _message; 
+		public Text _team1NameText; 
+		public Text _team2NameText; 
+		public Text _team3NameText; 
+		public Text _team4NameText; 
 
-	void Awake(){
+		public Slider _team1HealthSlider; 
+		public Slider _team2HealthSlider; 
+		public Slider _team3HealthSlider; 
+		public Slider _team4HealthSlider; 
 
-		if (_message == null) {
-			Debug.LogError ("GUIManager - _message missing"); 
+		public Image _team1HealthFill; 
+		public Image _team2HealthFill; 
+		public Image _team3HealthFill; 
+		public Image _team4HealthFill; 
+
+		public GameObject _pauseMenu; 
+
+		void Awake(){
+
+			if (_message == null) {
+				Debug.LogError ("GUIManager - _message missing"); 
+			}
+
+			if (_team1NameText == null) {
+				Debug.LogError ("GUIManager - _Team1name missing"); 
+			}
+
+			if (_team2NameText == null) {
+				Debug.LogError ("GUIManager - _team2name missing"); 
+			}
+
+			if (_team3NameText == null) {
+				Debug.LogError ("GUIManager - _team3name missing"); 
+			}
+
+			if (_team4NameText == null) {
+				Debug.LogError ("GUIManager - _team4name missing"); 
+			}
+
+			if (_pauseMenu == null) {
+				Debug.LogError ("pausemenu missing "); 
+			}
+				
+
+			SetMenuValues (); 
+			_pauseMenu.SetActive(false); 
+
+
 		}
 
-		if (_team1HealthText == null) {
-			Debug.LogError ("GUIManager - _blueTeamMessage missing"); 
+		// Use this for initialization
+		void Start () {
+
+			_team1NameText.text = GameSessionController._instance._teams [0]._teamName; 
+			_team2NameText.text = GameSessionController._instance._teams [1]._teamName; 
+			_team3NameText.text = GameSessionController._instance._teams [2]._teamName; 
+			_team4NameText.text = GameSessionController._instance._teams [3]._teamName; 
+
+			_team1NameText.color = GameSessionController._instance._teams [0]._teamUnityColor;
+			_team2NameText.color = GameSessionController._instance._teams [1]._teamUnityColor;
+			_team3NameText.color = GameSessionController._instance._teams [2]._teamUnityColor;
+			_team4NameText.color = GameSessionController._instance._teams [3]._teamUnityColor;
+
+			_team1HealthFill.color = GameSessionController._instance._teams [0]._teamUnityColor;
+			_team2HealthFill.color = GameSessionController._instance._teams [1]._teamUnityColor;
+			_team3HealthFill.color = GameSessionController._instance._teams [2]._teamUnityColor;
+			_team4HealthFill.color = GameSessionController._instance._teams [3]._teamUnityColor;
+
+			if (GameSessionController._instance._numberOfTeams == 3) {
+
+			}
+
+
+		}
+		
+		// Update is called once per frame
+		void Update () {
+		
 		}
 
-		if (_team2HealthText == null) {
-			Debug.LogError ("GUIManager - _redTeamMessage missing"); 
+		public void ShowMessage(string message){
+			_message.text = message; 
+			_message.gameObject.SetActive (true); 
 		}
 
-		if (_pauseMenu == null) {
-			Debug.LogError ("pausemenu missing "); 
+		public void HideMessage(){
+			_message.gameObject.SetActive (false); 
+		}
+
+		public void GameOver(int winningTeamNumber){
+
+			if (winningTeamNumber == 1) {
+				// Tiimin nimi tän tilalle ja teksti sen väriseksi
+				ShowMessage ("Blue team wins!!"); 
+			} else if (winningTeamNumber == 2) {
+				// Tiimin nimi tän tilalle ja teksti sen väriseksi
+				ShowMessage ("Red team wins!!"); 
+			}
+
+		}
+
+		public void UpdateHealth(int team1health, int team2health){
+
+			_team1HealthSlider.value = (float)team1health / 600f; 
+			_team2HealthSlider.value = (float)team2health / 600f; 
+
+				Debug.Log ("health1 value" + _team1HealthSlider.value); 
+		}
+
+		public void Paused(bool paused){
+			//ShowMessage ("Paused"); 
+			if (paused) {
+				_pauseMenu.SetActive (true); 
+			} else {
+				_pauseMenu.SetActive (false); 
+			}
+
+		}
+
+		void SetMenuValues(){
+
 		}
 			
-
-		SetMenuValues (); 
-		_pauseMenu.SetActive(false); 
-
-
 	}
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-	public void ShowMessage(string message){
-		_message.text = message; 
-		_message.gameObject.SetActive (true); 
-	}
-
-	public void HideMessage(){
-		_message.gameObject.SetActive (false); 
-	}
-
-	public void GameOver(int winningTeamNumber){
-
-		if (winningTeamNumber == 1) {
-			// Tiimin nimi tän tilalle ja teksti sen väriseksi
-			ShowMessage ("Blue team wins!!"); 
-		} else if (winningTeamNumber == 2) {
-			// Tiimin nimi tän tilalle ja teksti sen väriseksi
-			ShowMessage ("Red team wins!!"); 
-		}
-
-	}
-
-	public void UpdateHealth(int team1health, int team2health){
-
-		_team1HealthText.text = "Team 1 health: " + team1health; 
-		_team2HealthText.text = "Team 2 health: " + team2health; 
-
-		_team1HealthSlider.value = (float)team1health / 1000; 
-		_team2HealthSlider.value = (float)team2health / 1000; 
-	}
-
-	public void Paused(bool paused){
-		//ShowMessage ("Paused"); 
-		if (paused) {
-			_pauseMenu.SetActive (true); 
-		} else {
-			_pauseMenu.SetActive (false); 
-		}
-
-	}
-
-	void SetMenuValues(){
-
-	}
-		
-}
 }
