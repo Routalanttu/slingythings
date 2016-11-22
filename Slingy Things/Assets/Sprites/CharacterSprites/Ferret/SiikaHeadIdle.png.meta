@@ -1,12 +1,10 @@
 fileFormatVersion: 2
-guid: 69d0293e20e0b3943a6c05012075daa5
-timeCreated: 1479821834
+guid: 9c78740321d35d340b60a93d2304b010
+timeCreated: 1479821800
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: FerretFlight_0
-    21300002: FerretFlight_1
-    21300004: FerretFlight_2
+    21300000: SiikaHeadIdle_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,39 +54,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FerretFlight_0
+      name: SiikaHeadIdle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 255
-        width: 260
-        height: 260
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: FerretFlight_1
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 255
-        width: 260
-        height: 260
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: FerretFlight_2
-      rect:
-        serializedVersion: 2
-        x: 520
-        y: 255
-        width: 260
-        height: 260
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
