@@ -58,6 +58,7 @@ namespace SlingySlugs {
 				if (_slug.GetSpecies () == 2) {
 					GetComponent<Pollenation> ().Fire ();
 				}
+				// HYI VITTU SIIKA HURGS
 				if (_slug.GetSpecies () != 3) {
 					_isArmed = false;
 				}
