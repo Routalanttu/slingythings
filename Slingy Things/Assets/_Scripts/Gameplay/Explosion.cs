@@ -47,6 +47,10 @@ namespace SlingySlugs {
 
 			return false;
 		}
+
+		public ParticleSystem GetCutter() {
+			return _explosionPrefab;
+		}
 			
 	}
 }
