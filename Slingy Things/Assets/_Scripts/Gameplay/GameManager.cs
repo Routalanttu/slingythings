@@ -209,27 +209,25 @@ namespace SlingySlugs
 
 				if (numberOfMovingSlugs == 0 && !_allSlugsStill) {
 					_allSlugsStill = true; 
-					_stillTimer = 1; 
+					_stillTimer = 1;
 				} else if (numberOfMovingSlugs != 0) {
 					_allSlugsStill = false; 
 				}
-					
-				Debug.Log ("_allSlugsStill is " + _allSlugsStill); 
 
 			}
 
 			//WHEN ALL SLUGS ARE STILL, COUNT 
-			if (_allSlugsStill && _explosionAccomplished) {
+			if (_allSlugsStill && (_explosionAccomplished || _drowned)) {
 				_stillTimer -= Time.deltaTime; 
 			}
 
-
-			if ((_explosionAccomplished || _drowned) && _allSlugsStill && _stillTimer <= 0) {
+			if ((_explosionAccomplished || _drowned) && _allSlugsStill && _stillTimer < 0) {
 				Invoke ("NextPlayerMove", 1); 
-				//NextPlayerMove();
 				_allSlugsStill = false;
 				_explosionAccomplished = false; 
 				_drowned = false; 
+				_stillTimer = 1; 
+
 			}
 		}
 
@@ -295,17 +293,19 @@ namespace SlingySlugs
 		}
 
 		public void ExplosionAccomplished(){
+			//slung slug has exploded
 			_explosionAccomplished = true; 
 		}
 
 		public void Drowned(){
+			//slung slug has drowned
 			_drowned = true; 
 		}
 
 
 		public void NextPlayerMove ()
 		{
-
+			Debug.Log ("NEXTPLAYERMOVE"); 
 			if (numberOfTeams == 2) {
 				if (currentPlayer == 1) {
 					currentPlayer = 2; 
