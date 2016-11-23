@@ -31,6 +31,7 @@ namespace SlingySlugs{
 		public Sprite _slugSprite; 
 		public Sprite _snailSprite;
 		public Sprite _octopusSprite; 
+		public Sprite _siikaSprite; 
 
 		//SLUG MENU IMAGES
 		public Image _classImage1; 
@@ -250,6 +251,8 @@ namespace SlingySlugs{
 				_classImage1.sprite = _snailSprite; 
 			} else if (_slug1Class == "Octopus") {
 				_classImage1.sprite = _octopusSprite; 
+			} else if (_slug1Class == "Siika") {
+				_classImage1.sprite = _siikaSprite; 
 			}
 
 			if (_slug2Class == "Slug") {
@@ -258,6 +261,8 @@ namespace SlingySlugs{
 				_classImage2.sprite = _snailSprite; 
 			} else if (_slug2Class == "Octopus") {
 				_classImage2.sprite = _octopusSprite; 
+			} else if (_slug2Class == "Siika") {
+				_classImage2.sprite = _siikaSprite; 
 			}
 
 			if (_slug3Class == "Slug") {
@@ -266,6 +271,8 @@ namespace SlingySlugs{
 				_classImage3.sprite = _snailSprite; 
 			} else if (_slug3Class == "Octopus") {
 				_classImage3.sprite = _octopusSprite; 
+			}else if (_slug3Class == "Siika") {
+				_classImage3.sprite = _siikaSprite; 
 			}
 
 			if (_slug4Class == "Slug") {
@@ -274,6 +281,8 @@ namespace SlingySlugs{
 				_classImage4.sprite = _snailSprite; 
 			} else if (_slug4Class == "Octopus") {
 				_classImage4.sprite = _octopusSprite; 
+			}else if (_slug4Class == "Siika") {
+				_classImage4.sprite = _siikaSprite; 
 			}
 
 			if (_slug5Class == "Slug") {
@@ -282,6 +291,8 @@ namespace SlingySlugs{
 				_classImage5.sprite = _snailSprite; 
 			} else if (_slug4Class == "Octopus") {
 				_classImage5.sprite = _octopusSprite; 
+			} else if (_slug4Class == "Siika") {
+				_classImage5.sprite = _siikaSprite; 
 			}
 
 			if (_slug6Class == "Slug") {
@@ -290,6 +301,8 @@ namespace SlingySlugs{
 				_classImage6.sprite = _snailSprite; 
 			} else if (_slug6Class == "Octopus") {
 				_classImage6.sprite = _octopusSprite; 
+			}else if (_slug6Class == "Siika") {
+				_classImage6.sprite = _siikaSprite; 
 			}
 				
 		}
@@ -379,6 +392,9 @@ namespace SlingySlugs{
 					_slug1Class = "Octopus"; 
 				} else if (_slug1Class == "Octopus") {
 					_classImage1.sprite = _slugSprite; 
+					_slug1Class = "Siika"; 
+				} else if (_slug1Class == "Siika") {
+					_classImage1.sprite = _slugSprite; 
 					_slug1Class = "Slug"; 
 				}
 
@@ -394,6 +410,9 @@ namespace SlingySlugs{
 					_classImage2.sprite = _octopusSprite; 
 					_slug2Class = "Octopus"; 
 				} else if (_slug2Class == "Octopus") {
+					_classImage2.sprite = _slugSprite; 
+					_slug2Class = "Siika"; 
+				}else if (_slug2Class == "Siika") {
 					_classImage2.sprite = _slugSprite; 
 					_slug2Class = "Slug"; 
 				}
@@ -411,6 +430,9 @@ namespace SlingySlugs{
 					_slug3Class = "Octopus"; 
 				} else if (_slug3Class == "Octopus") {
 					_classImage3.sprite = _slugSprite; 
+					_slug3Class = "Siika"; 
+				} else if (_slug3Class == "Siika") {
+					_classImage3.sprite = _slugSprite; 
 					_slug3Class = "Slug"; 
 				}
 
@@ -426,6 +448,9 @@ namespace SlingySlugs{
 					_classImage4.sprite = _octopusSprite; 
 					_slug4Class = "Octopus"; 
 				} else if (_slug4Class == "Octopus") {
+					_classImage4.sprite = _slugSprite; 
+					_slug4Class = "Siika"; 
+				} else if (_slug4Class == "Siika") {
 					_classImage4.sprite = _slugSprite; 
 					_slug4Class = "Slug"; 
 				}
@@ -443,6 +468,9 @@ namespace SlingySlugs{
 					_slug5Class = "Octopus"; 
 				} else if (_slug5Class == "Octopus") {
 					_classImage5.sprite = _slugSprite; 
+					_slug5Class = "Siika"; 
+				}else if (_slug5Class == "Siika") {
+					_classImage5.sprite = _slugSprite; 
 					_slug5Class = "Slug"; 
 				}
 
@@ -458,6 +486,9 @@ namespace SlingySlugs{
 					_classImage6.sprite = _octopusSprite; 
 					_slug6Class = "Octopus"; 
 				} else if (_slug6Class == "Octopus") {
+					_classImage6.sprite = _slugSprite; 
+					_slug6Class = "Siika";
+				}else if (_slug6Class == "Siika") {
 					_classImage6.sprite = _slugSprite; 
 					_slug6Class = "Slug";
 				}
@@ -583,7 +614,7 @@ namespace SlingySlugs{
 						PlayerPrefs.SetString ("t" + i + "s" + j + "Class", "Snail"); 
 						break;
 					case 4:
-						PlayerPrefs.SetString ("t" + i + "s" + j + "Class", "Slug"); 
+						PlayerPrefs.SetString ("t" + i + "s" + j + "Class", "Siika"); 
 						break; 
 					case 5: 
 						PlayerPrefs.SetString ("t" + i + "s" + j + "Class", "Octopus"); 

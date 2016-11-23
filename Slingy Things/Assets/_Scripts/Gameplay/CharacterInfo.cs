@@ -23,7 +23,7 @@ namespace SlingySlugs {
 			Slug,
 			Snail,
 			Octopus,
-			Ferret
+			Siika,
 		}
 
 		[SerializeField] private Species _species;

@@ -1924,6 +1924,7 @@ MonoBehaviour:
   _slugSprite: {fileID: 21300000, guid: 73ab4255ef1a74fae8fc7b47d91afe35, type: 3}
   _snailSprite: {fileID: 21300000, guid: d917da10032cb48559dd1f97e45129aa, type: 3}
   _octopusSprite: {fileID: 21300000, guid: ba9b4952815824e09a9c703dc451f4af, type: 3}
+  _siikaSprite: {fileID: 21300000, guid: 19dd2a17d4856447bb0dd873e55df885, type: 3}
   _classImage1: {fileID: 964785310}
   _classImage2: {fileID: 1711995190}
   _classImage3: {fileID: 1002643700}
