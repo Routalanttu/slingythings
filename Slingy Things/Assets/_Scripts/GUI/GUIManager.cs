@@ -125,7 +125,6 @@ namespace SlingySlugs{
 		// Update is called once per frame
 		void Update () {
 
-			Debug.Log ("Shownextuppanel " + _showNextUpPanel + " and timer " + _nextUpTimer); 
 
 			if (_bloom) {
 				Bloom (); 
