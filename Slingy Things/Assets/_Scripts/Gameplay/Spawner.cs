@@ -17,6 +17,7 @@ namespace SlingySlugs {
 		[SerializeField] private GameObject _slugPrefab;
 		[SerializeField] private GameObject _octopusPrefab;
 		[SerializeField] private GameObject _snailPrefab;
+		[SerializeField] private GameObject _siikaPrefab;
 
 		void Awake () {
 			// The scene should have empty GameObjects tagged with "Respawn" (or a tag of your choice).
@@ -53,8 +54,10 @@ namespace SlingySlugs {
 						tmpPrefab = _slugPrefab; 
 					} else if (_teams [i]._slugClasses [j] == "Octopus") {
 						tmpPrefab = _octopusPrefab; 
-					}else{
+					} else if (_teams [i]._slugClasses [j] == "Snail") {
 						tmpPrefab = _snailPrefab; 
+					} else {
+						tmpPrefab = _siikaPrefab; 
 					}
 	
 					//loop spawnpoints to find a free random spawnpoint 
