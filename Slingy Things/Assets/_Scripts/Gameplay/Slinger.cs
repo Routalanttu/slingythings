@@ -22,12 +22,22 @@ namespace SlingySlugs {
 
 		private int _snailBlowCounter = 2;
 
+		private int _siikaCounter = 0;
+
+		private ParticleSystem _exploCutter;
+
+
+		private Vector3 _lastPos;
+		private Vector3 _lastVelo;
+		private float _lastAngVelo;
+
 		private void Awake () {
 			_gcTransform = GetComponent<Transform> (); 
 			_rigidBody = GetComponent<Rigidbody2D> (); 
 			_slug = GetComponent<CharacterInfo> ();
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_explosion = GetComponent<Explosion> (); 
+			_exploCutter = _explosion.GetCutter ();
 		}
 
 		void Update () {
@@ -55,12 +65,23 @@ namespace SlingySlugs {
 			if (_isArmed && _slug.IsActive) {
 				_explosion.Fire ();
 				_soundCooldown = 1f;
+				_snailBlowCounter++;
 				if (_slug.GetSpecies () == 2) {
 					GetComponent<Pollenation> ().Fire ();
 				}
 				// HYI VITTU SIIKA HURGS
 				if (_slug.GetSpecies () != 3) {
 					_isArmed = false;
+				} else {
+					if (_snailBlowCounter < 9) {
+						_gcTransform.position = _lastPos;
+						_rigidBody.velocity = _lastVelo;
+						_rigidBody.angularVelocity = _lastAngVelo;
+						Physics2D.IgnoreCollision (GetComponent<BoxCollider2D> (), coll.collider);
+					} else {
+						_isSlung = false;
+						_isArmed = false;
+					}
 				}
 			} else {
 				if (_soundCooldown <= 0f) {
@@ -72,9 +93,10 @@ namespace SlingySlugs {
 			if (_snailBlowCounter < 2 && _slug.GetSpecies() == 1) {
 				_isArmed = true;
 				_isSlung = true;
-				_snailBlowCounter++;
+				//_snailBlowCounter++;
 				_explosion.Fire ();
 			}
+				
 			//Debug.Log (_snailBlowCounter + " " + _isArmed);
 		}
 			
@@ -93,6 +115,20 @@ namespace SlingySlugs {
 			} else {
 				_charAnim.SetToIdle ();
 			}
+
+			_siikaCounter++;
+			if (_isArmed && _slug.GetSpecies() == 3) {
+				//Debug.Log ("meni läpi");
+				//Instantiate (_exploCutter, _gcTransform.position, Quaternion.identity);
+				_explosion.Fire();
+				_siikaCounter = 0;
+			}
+
+
+			_lastPos = _gcTransform.position;
+			_lastVelo = _rigidBody.velocity;
+			_lastAngVelo = _rigidBody.angularVelocity;
+
 		}
 
 	}

@@ -87,7 +87,7 @@ namespace SlingySlugs{
 		void Start () {
 
 			//CHECK IF FIRST TIME LAUNCHED AND SET DEFAULTS
-			if (!PlayerPrefs.HasKey("firstTimeLaunched")) {
+			if (PlayerPrefs.HasKey("firstTimeLaunched")) {
 				PlayerPrefs.SetInt ("firstTimeLaunched", 1); 
 				SetDefaultNamesAndClasses (); 
 			}
