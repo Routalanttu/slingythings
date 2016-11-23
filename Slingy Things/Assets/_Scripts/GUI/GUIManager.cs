@@ -209,7 +209,6 @@ namespace SlingySlugs{
 			t += 1.4f*Time.deltaTime;
 
 			if (t > 1.0f && _bloomingDown) {
-				Debug.Log ("meneekö bloomin sammutukseen"); 
 				_bloom = false; 
 				MainCam.GetComponent<BloomOptimized> ().intensity = 0;
 				_bloomingDown = false; 

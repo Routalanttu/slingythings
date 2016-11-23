@@ -39,10 +39,20 @@ namespace SlingySlugs {
 
 		private bool _dead = false;
 
-		private float _alphaMinimum = 0f;
-		private float _alphaMaximum = 1f;
-		private float _t = 0f; 
-		private Color _tempColor;  
+		private float _nameAlphaMinimum = 0f;
+		private float _nameAlphaMaximum = 1f;
+		private float _nameTime = 0f; 
+		private Color _nameTempColor;  
+
+		private float _healthAlphaMinimum = 0f;
+		private float _healthAlphaMaximum = 1f;
+		private float _healthTime = 0f; 
+		private Color _healthTempColor;  
+
+		private bool _makeNameVisible; 
+		private bool _makeNameHidden; 
+		private bool _makeHealthVisible; 
+		private bool _makeHealthHidden; 
 
 		private void Awake () {
 			_myTransform = GetComponent<Transform> ();
@@ -65,31 +75,73 @@ namespace SlingySlugs {
 		}
 
 		void Start(){
-			_tempColor = _nameText.color; 
+			_nameTempColor = _nameText.color; 
+			_healthTempColor = _healthText.color; 
 		}
 
 		void Update(){
 
-			LerpAlpha(); 
+			NameVisibility (); 
+			HealthVisibility ();
 
 		}
 
-		void LerpAlpha(){
-			
-			_tempColor.a = Mathf.Lerp (_alphaMinimum, _alphaMaximum, _t ); 
-			_t += Time.deltaTime; 
+		void NameVisibility(){
 
-			if (_t > 1) {
-				float tmp = _alphaMinimum; 
-				_alphaMinimum = _alphaMaximum;
-				_alphaMaximum = tmp; 
-				_t = 0f; 
+			if (_makeNameVisible && _nameText.color.a < 1) {
+
+				_nameTempColor.a = Mathf.Lerp (_nameAlphaMinimum, _nameAlphaMaximum, _nameTime ); 
+				_nameTime += 2*Time.deltaTime; 
+				_nameText.color = _nameTempColor; 
+
+				if (_nameText.color.a >= 1) {
+					_makeNameVisible = false; 
+					_nameTime = 0; 
+
+				}
 			}
 
-			_nameText.color = _tempColor; 
+			if (_makeNameHidden && _nameText.color.a > 0) {
+				_nameTempColor.a = Mathf.Lerp (_nameAlphaMaximum, _nameAlphaMinimum, _nameTime ); 
+				_nameTime += 3*Time.deltaTime; 
+				_nameText.color = _nameTempColor; 
 
-			Debug.Log ("alpha on " + _nameText.color.a); 
+				if (_nameText.color.a <= 0) {
+					_makeNameHidden = false; 
+					_nameTime = 0; 
+				}
+			}
+
 		}
+
+		void HealthVisibility(){
+
+			if (_makeHealthVisible && _healthText.color.a < 1) {
+				_healthTempColor.a = Mathf.Lerp (_healthAlphaMinimum, _healthAlphaMaximum, _healthTime ); 
+				_healthTime += 2*Time.deltaTime; 
+				_healthText.color = _healthTempColor; 
+
+				if (_healthText.color.a >= 1) {
+					_makeHealthVisible = false; 
+					_healthTime = 0; 
+
+				}
+			}
+
+			if (_makeHealthHidden && _healthText.color.a > 0) {
+				_healthTempColor.a = Mathf.Lerp (_healthAlphaMaximum, _healthAlphaMinimum, _healthTime ); 
+				_healthTime += 3*Time.deltaTime; 
+				_healthText.color = _healthTempColor; 
+
+				if (_healthText.color.a <= 0) {
+					_makeHealthHidden = false; 
+					_healthTime = 0; 
+				}
+			}
+
+		}
+
+
 
 		public int Health {
 			get { return _health; }
@@ -156,18 +208,18 @@ namespace SlingySlugs {
 		}
 
 		public void ShowName(bool showname){
-			if (showname) {
-				_nameTextObject.SetActive (true); 
+			if (showname) { 
+				_makeNameVisible = true; 
 			} else {
-				_nameTextObject.SetActive (false); 
+				_makeNameHidden = true; 
 			}
 		}
 
 		public void ShowHealth(bool showHealth){
 			if (showHealth) {
-				_healthTextObject.SetActive (true); 
+				_makeHealthVisible = true; 
 			} else {
-				_healthTextObject.SetActive (false); 
+				_makeHealthHidden = true; 
 			}
 		}
 

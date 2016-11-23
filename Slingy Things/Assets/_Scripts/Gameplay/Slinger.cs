@@ -58,12 +58,15 @@ namespace SlingySlugs {
 			_snailBlowCounter = 0;
 			GameManager.Instance.DeactiveCircleColliders(); 
 			GameManager.Instance.SlugSlunged (); 
+			_slug.ShowName (false);
+			_slug.ShowHealth (false); 
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			_isSlung = false;
 
 			if (_isArmed && _slug.IsActive) {
+				Invoke ("ShowNameAndHealth", 2); 
 				_explosion.Fire ();
 				_soundCooldown = 1f;
 				_snailBlowCounter++;
@@ -130,6 +133,11 @@ namespace SlingySlugs {
 			_lastVelo = _rigidBody.velocity;
 			_lastAngVelo = _rigidBody.angularVelocity;
 
+		}
+
+		void ShowNameAndHealth(){
+			_slug.ShowName (true); 
+			_slug.ShowHealth (true); 
 		}
 
 	}
