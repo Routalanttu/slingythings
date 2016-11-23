@@ -45,8 +45,6 @@ namespace SlingySlugs {
 				}
 			}
 
-			GameManager.Instance.ExplosionAccomplished (); 
-
 			return false;
 		}
 			

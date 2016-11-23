@@ -39,6 +39,11 @@ namespace SlingySlugs {
 
 		private bool _dead = false;
 
+		private float _alphaMinimum = 0f;
+		private float _alphaMaximum = 1f;
+		private float _t = 0f; 
+		private Color _tempColor;  
+
 		private void Awake () {
 			_myTransform = GetComponent<Transform> ();
 
@@ -55,6 +60,35 @@ namespace SlingySlugs {
 
 			_nameText = _nameTextObject.GetComponent<TextMesh> (); 
 			_nameText.GetComponent<TextMesh> ().text = "defaultname"; 
+
+
+		}
+
+		void Start(){
+			_tempColor = _nameText.color; 
+		}
+
+		void Update(){
+
+			LerpAlpha(); 
+
+		}
+
+		void LerpAlpha(){
+			
+			_tempColor.a = Mathf.Lerp (_alphaMinimum, _alphaMaximum, _t ); 
+			_t += Time.deltaTime; 
+
+			if (_t > 1) {
+				float tmp = _alphaMinimum; 
+				_alphaMinimum = _alphaMaximum;
+				_alphaMaximum = tmp; 
+				_t = 0f; 
+			}
+
+			_nameText.color = _tempColor; 
+
+			Debug.Log ("alpha on " + _nameText.color.a); 
 		}
 
 		public int Health {
@@ -119,6 +153,22 @@ namespace SlingySlugs {
 			_healthText.color = unityColor;
 			_nameText.color = unityColor; 
 
+		}
+
+		public void ShowName(bool showname){
+			if (showname) {
+				_nameTextObject.SetActive (true); 
+			} else {
+				_nameTextObject.SetActive (false); 
+			}
+		}
+
+		public void ShowHealth(bool showHealth){
+			if (showHealth) {
+				_healthTextObject.SetActive (true); 
+			} else {
+				_healthTextObject.SetActive (false); 
+			}
 		}
 
 		public void SetDeath () {

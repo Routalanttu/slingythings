@@ -73,7 +73,6 @@ namespace SlingySlugs{
 		private string _slug5Class;
 		private string _slug6Class;
 
-
 		//TEAMS AND ANIMALS MENU WHEN GOING TO GAME (CHOOSING TEAMS) 
 		public Text _team1Text;
 		public Text _team2Text; 

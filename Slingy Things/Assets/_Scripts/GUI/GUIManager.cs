@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI; 
+using UnityStandardAssets.ImageEffects;
 
 namespace SlingySlugs{
 
@@ -28,7 +29,22 @@ namespace SlingySlugs{
 		public Image _team4HealthFill; 
 
 		public GameObject _pauseMenu; 
-		public Text _turnText; 
+		public Text _turnText;
+
+		//BLOOM FX
+		public GameObject MainCam;
+		private float _bloomMinimum = 0F;
+		private float _bloomMaximum =  0.5F;
+		private float t = 0.0f;
+		private bool _bloom; 
+		private bool _bloomingDown; 
+
+		//HEALTH BAR SCALE
+		private Vector3 _scaleVectorMinimum;
+		private Vector3 _scaleVectorMaximum;
+		private float _lerpTime = 0F; 
+		private int _activeTeam; 
+
 
 		void Awake(){
 
@@ -55,7 +71,6 @@ namespace SlingySlugs{
 			if (_pauseMenu == null) {
 				Debug.LogError ("pausemenu missing "); 
 			}
-				
 
 			SetMenuValues (); 
 			_pauseMenu.SetActive(false); 
@@ -90,14 +105,46 @@ namespace SlingySlugs{
 				_team4HealthObject.SetActive (false); 
 			}
 
+			MainCam.GetComponent<BloomOptimized> ().intensity = 0;
+
+			_scaleVectorMinimum = _team1HealthObject.transform.localScale; 
+			Vector3 temp = new Vector3 (0.1F, 0.1F, 0);
+			_scaleVectorMaximum = _team1HealthObject.transform.localScale + temp; 
 
 		}
 		
 		// Update is called once per frame
 		void Update () {
 
+			if (_bloom) {
+				Bloom (); 
+			}
 
-		
+			LerpTeamNameScale (); 
+
+		}
+
+		void LerpTeamNameScale(){
+
+			if (_activeTeam == 1) {
+				_team1HealthObject.transform.localScale = Vector2.Lerp (_scaleVectorMinimum, _scaleVectorMaximum, _lerpTime);
+			} else if (_activeTeam == 2) {
+				_team2HealthObject.transform.localScale = Vector2.Lerp (_scaleVectorMinimum, _scaleVectorMaximum, _lerpTime);
+			} else if (_activeTeam == 3) {
+				_team3HealthObject.transform.localScale = Vector2.Lerp (_scaleVectorMinimum, _scaleVectorMaximum, _lerpTime);
+			} else {
+				_team4HealthObject.transform.localScale = Vector2.Lerp (_scaleVectorMinimum, _scaleVectorMaximum, _lerpTime);
+			}
+				
+			_lerpTime += Time.deltaTime; 
+
+			if (_lerpTime > 1) {
+				Vector3 temp = _scaleVectorMinimum;
+				_scaleVectorMinimum = _scaleVectorMaximum;
+				_scaleVectorMaximum = temp; 
+				_lerpTime = 0; 
+			}
+
 		}
 
 		public void ShowMessage(string message){
@@ -111,13 +158,10 @@ namespace SlingySlugs{
 
 		public void GameOver(int winningTeamNumber){
 
-			if (winningTeamNumber == 1) {
-				// Tiimin nimi tän tilalle ja teksti sen väriseksi
-				ShowMessage ("Blue team wins!!"); 
-			} else if (winningTeamNumber == 2) {
-				// Tiimin nimi tän tilalle ja teksti sen väriseksi
-				ShowMessage ("Red team wins!!"); 
-			}
+			ShowMessage ("Team " + GameSessionController._instance._teams [winningTeamNumber - 1]._teamName + " Wins!"); 
+			_message.color = GameSessionController._instance._teams [winningTeamNumber - 1]._teamUnityColor;
+
+			_turnText.enabled = false; 
 
 		}
 
@@ -132,6 +176,7 @@ namespace SlingySlugs{
 
 		public void UpdateTurnText(int activeTeam){
 			_turnText.text = "It's team " + GameSessionController._instance._teams [activeTeam - 1]._teamName + "'s turn"; 
+			_turnText.color = GameSessionController._instance._teams [activeTeam - 1]._teamUnityColor; 
 		}
 
 		public void Paused(bool paused){
@@ -147,6 +192,45 @@ namespace SlingySlugs{
 		void SetMenuValues(){
 
 		}
+
+		public void StartBloom(){
+
+			_bloom = true; 
+		}
+
+		public void ChangeActiveTeam(int teamNumber){
+			_activeTeam = teamNumber; 
+			_lerpTime = 0f; 
+		}
+
+		void Bloom(){
+
+			MainCam.GetComponent<BloomOptimized> ().intensity = Mathf.Lerp (_bloomMinimum, _bloomMaximum, t); 
+			t += 1.4f*Time.deltaTime;
+
+			if (t > 1.0f && _bloomingDown) {
+				Debug.Log ("meneekö bloomin sammutukseen"); 
+				_bloom = false; 
+				MainCam.GetComponent<BloomOptimized> ().intensity = 0;
+				_bloomingDown = false; 
+				float temp = _bloomMaximum;
+				_bloomMaximum = _bloomMinimum;
+				_bloomMinimum = temp;
+				t = 0.0f;
+
+			}
+
+			if (t > 1.0f){
+				float temp = _bloomMaximum;
+				_bloomMaximum = _bloomMinimum;
+				_bloomMinimum = temp;
+				t = 0.0f;
+				_bloomingDown = true; 
+			}
+
+
+		}
+
 			
 	}
 }

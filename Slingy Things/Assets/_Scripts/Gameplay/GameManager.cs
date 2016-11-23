@@ -44,11 +44,11 @@ namespace SlingySlugs
 
 		private static GameManager _instance;
 		private static bool _isQuitting = false;
-		private int currentPlayer = 0;
+		private int currentTeam = 0;
 
 		private bool _gameStarted;
 
-		private bool _explosionAccomplished; 
+		private bool _slugSlunged; 
 		private bool _allSlugsStill; 
 		private float _stillTimer; 
 		private bool _drowned; 
@@ -196,7 +196,7 @@ namespace SlingySlugs
 
 		void CheckGameState ()
 		{
-			if (_explosionAccomplished || _drowned) {
+			if (_slugSlunged || _drowned) {
 			 
 				int numberOfMovingSlugs = 0;  
 
@@ -216,15 +216,16 @@ namespace SlingySlugs
 
 			}
 
-			//WHEN ALL SLUGS ARE STILL, COUNT 
-			if (_allSlugsStill && (_explosionAccomplished || _drowned)) {
+			//WHEN ALL SLUGS ARE STILL, START TIMER 
+			if (_allSlugsStill && (_slugSlunged || _drowned)) {
 				_stillTimer -= Time.deltaTime; 
 			}
 
-			if ((_explosionAccomplished || _drowned) && _allSlugsStill && _stillTimer < 0) {
+			if ((_slugSlunged || _drowned) && _allSlugsStill && _stillTimer < 0) {
+				_guiManager.StartBloom (); 
 				Invoke ("NextPlayerMove", 1); 
 				_allSlugsStill = false;
-				_explosionAccomplished = false; 
+				_slugSlunged = false; 
 				_drowned = false; 
 				_stillTimer = 1; 
 
@@ -266,10 +267,14 @@ namespace SlingySlugs
 			Destroy (go);
 
 			//DO SOMETHING HERE
-			if (_team1SlugAmount <= 0) {
-				GameOver (2);
-			} else if (_team2SlugAmount <= 0) {
-				GameOver (1); 
+			if (_team2SlugAmount <= 0 && _team3SlugAmount <=0 && _team4SlugAmount <= 0) {
+				GameOver (1);
+			} else if (_team1SlugAmount <= 0 && _team3SlugAmount <=0 && _team4SlugAmount <= 0) {
+				GameOver (2); 
+			}else if (_team1SlugAmount <= 0 && _team2SlugAmount <=0 && _team4SlugAmount <= 0) {
+				GameOver (3); 
+			}else if (_team1SlugAmount <= 0 && _team2SlugAmount <=0 && _team3SlugAmount <= 0) {
+				GameOver (4); 
 			}
 
 		}
@@ -292,9 +297,9 @@ namespace SlingySlugs
 
 		}
 
-		public void ExplosionAccomplished(){
+		public void SlugSlunged(){
 			//slung slug has exploded
-			_explosionAccomplished = true; 
+			_slugSlunged = true; 
 		}
 
 		public void Drowned(){
@@ -307,35 +312,37 @@ namespace SlingySlugs
 		{
 			Debug.Log ("NEXTPLAYERMOVE"); 
 			if (numberOfTeams == 2) {
-				if (currentPlayer == 1) {
-					currentPlayer = 2; 
+				if (currentTeam == 1) {
+					currentTeam = 2; 
 				} else {
-					currentPlayer = 1; 
+					currentTeam = 1; 
 				}
 			}
 
 			if (numberOfTeams == 3) {
-				if (currentPlayer == 1) {
-					currentPlayer = 2; 
-				} else if (currentPlayer == 2) {
-					currentPlayer = 3; 
+				if (currentTeam == 1) {
+					currentTeam = 2; 
+				} else if (currentTeam == 2) {
+					currentTeam = 3; 
 				} else {
-					currentPlayer = 1; 
+					currentTeam = 1; 
 				}
 			}
 
 			if (numberOfTeams == 4) {
-				if (currentPlayer == 1) {
-					currentPlayer = 2; 
-				} else if (currentPlayer == 2) {
-					currentPlayer = 3; 
-				} else if (currentPlayer == 3) {
-					currentPlayer = 4; 
+				if (currentTeam == 1) {
+					currentTeam = 2; 
+				} else if (currentTeam == 2) {
+					currentTeam = 3; 
+				} else if (currentTeam == 3) {
+					currentTeam = 4; 
 				} else {
-					currentPlayer = 1; 
+					currentTeam = 1; 
 				}
 			}
-			 
+
+			_guiManager.UpdateTurnText (currentTeam); 
+			_guiManager.ChangeActiveTeam (currentTeam); 
 			ActivateTeam(); 
 		}
 
@@ -362,69 +369,81 @@ namespace SlingySlugs
 		public void ActivateTeam ()
 		{
 
-			if (currentPlayer == 1) {
+			if (currentTeam == 1) {
 
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true; 
+					slug.GetComponent<CharacterInfo> ().ShowName (true); 
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				}
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false); 
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team3Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team4Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
-			} else if (currentPlayer == 2) {
+			} else if (currentTeam == 2) {
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true;
+					slug.GetComponent<CharacterInfo> ().ShowName (true);
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				}
 
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team3Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team4Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
-			} else if (currentPlayer == 3) {
+			} else if (currentTeam == 3) {
 
 				foreach (var slug in _team3Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true;
+					slug.GetComponent<CharacterInfo> ().ShowName (true);
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				}
 
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team4Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
@@ -432,21 +451,25 @@ namespace SlingySlugs
 
 				foreach (var slug in _team4Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true;
+					slug.GetComponent<CharacterInfo> ().ShowName (true);
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				}
 
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team3Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
+					slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
@@ -488,17 +511,18 @@ namespace SlingySlugs
 		IEnumerator SceneLoad ()
 		{
 			yield return new WaitForSecondsRealtime (3.0f);
-			SceneManager.LoadScene ("TeamsAndAnimals");
+			SceneManager.LoadScene ("Menu");
 		}
 
 		public void GoToMenu ()
 		{
+			Time.timeScale = 1; 
 			SceneManager.LoadScene ("Menu");
 		}
 
 		public int GetCurrentActiveTeam ()
 		{
-			return currentPlayer;
+			return currentTeam;
 		}
 
 	}
