@@ -50,6 +50,8 @@ namespace SlingySlugs
 
 		private bool _explosionAccomplished; 
 		private bool _allSlugsStill; 
+		private float _stillTimer; 
+		private bool _drowned; 
 
 		public bool CharacterTouched { set; get; }
 		//if player activates a character
@@ -194,8 +196,8 @@ namespace SlingySlugs
 
 		void CheckGameState ()
 		{
-			if (_explosionAccomplished) {
-
+			if (_explosionAccomplished || _drowned) {
+			 
 				int numberOfMovingSlugs = 0;  
 
 				foreach (Rigidbody2D rb in _allSlugRigidbodies) {
@@ -205,18 +207,29 @@ namespace SlingySlugs
 					}
 				}
 
-				if (numberOfMovingSlugs == 0) {
+				if (numberOfMovingSlugs == 0 && !_allSlugsStill) {
 					_allSlugsStill = true; 
+					_stillTimer = 1; 
+				} else if (numberOfMovingSlugs != 0) {
+					_allSlugsStill = false; 
 				}
 					
 				Debug.Log ("_allSlugsStill is " + _allSlugsStill); 
 
 			}
 
-			if (_explosionAccomplished && _allSlugsStill) {
-				NextPlayerMove();
+			//WHEN ALL SLUGS ARE STILL, COUNT 
+			if (_allSlugsStill && _explosionAccomplished) {
+				_stillTimer -= Time.deltaTime; 
+			}
+
+
+			if ((_explosionAccomplished || _drowned) && _allSlugsStill && _stillTimer <= 0) {
+				Invoke ("NextPlayerMove", 1); 
+				//NextPlayerMove();
 				_allSlugsStill = false;
 				_explosionAccomplished = false; 
+				_drowned = false; 
 			}
 		}
 
@@ -283,6 +296,10 @@ namespace SlingySlugs
 
 		public void ExplosionAccomplished(){
 			_explosionAccomplished = true; 
+		}
+
+		public void Drowned(){
+			_drowned = true; 
 		}
 
 

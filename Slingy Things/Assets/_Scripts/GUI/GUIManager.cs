@@ -28,6 +28,7 @@ namespace SlingySlugs{
 		public Image _team4HealthFill; 
 
 		public GameObject _pauseMenu; 
+		public Text _turnText; 
 
 		void Awake(){
 
@@ -127,6 +128,10 @@ namespace SlingySlugs{
 			_team3HealthSlider.value = (float)team3health / 600f; 
 			_team4HealthSlider.value = (float)team4health / 600f; 
 
+		}
+
+		public void UpdateTurnText(int activeTeam){
+			_turnText.text = "It's team " + GameSessionController._instance._teams [activeTeam - 1]._teamName + "'s turn"; 
 		}
 
 		public void Paused(bool paused){

@@ -37,8 +37,6 @@ namespace SlingySlugs{
 
 		public void TestLog(){
 
-			Debug.Log ("GameSessionController on siirtynyt menusta peliin"); 
-
 		}
 
 
