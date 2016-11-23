@@ -51,13 +51,16 @@ namespace SlingySlugs {
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			_isSlung = false;
+
 			if (_isArmed && _slug.IsActive) {
 				_explosion.Fire ();
 				_soundCooldown = 1f;
 				if (_slug.GetSpecies () == 2) {
 					GetComponent<Pollenation> ().Fire ();
 				}
-				_isArmed = false;
+				if (_slug.GetSpecies () != 3) {
+					_isArmed = false;
+				}
 			} else {
 				if (_soundCooldown <= 0f) {
 					SoundController.Instance.PlaySoundByIndex (1);
