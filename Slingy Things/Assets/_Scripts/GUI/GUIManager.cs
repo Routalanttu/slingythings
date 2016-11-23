@@ -29,7 +29,6 @@ namespace SlingySlugs{
 		public Image _team4HealthFill; 
 
 		public GameObject _pauseMenu; 
-		public Text _turnText;
 
 		//BLOOM FX
 		public GameObject MainCam;
@@ -45,6 +44,14 @@ namespace SlingySlugs{
 		private float _lerpTime = 0F; 
 		private int _activeTeam; 
 
+		//NEXT UP
+		public GameObject _nextUpPanel;
+		public Text _nextUpTeamText; 
+		private bool _showNextUpPanel; 
+		private float _nextUpTimer; 
+
+		public Animator _nextUpAnim;
+		private bool _triggered; 
 
 		void Awake(){
 
@@ -111,10 +118,14 @@ namespace SlingySlugs{
 			Vector3 temp = new Vector3 (0.1F, 0.1F, 0);
 			_scaleVectorMaximum = _team1HealthObject.transform.localScale + temp; 
 
+			_nextUpPanel.SetActive (false); 
+
 		}
 		
 		// Update is called once per frame
 		void Update () {
+
+			Debug.Log ("Shownextuppanel " + _showNextUpPanel + " and timer " + _nextUpTimer); 
 
 			if (_bloom) {
 				Bloom (); 
@@ -122,7 +133,46 @@ namespace SlingySlugs{
 
 			LerpTeamNameScale (); 
 
+			NextUpPanel (); 
+
+	
+
 		}
+
+		void NextUpPanel(){
+			if (_showNextUpPanel) {
+				_nextUpTimer += Time.deltaTime; 
+			}
+
+			if (_showNextUpPanel && _nextUpTimer < 1f) {
+
+				_nextUpPanel.SetActive (true); 
+				_nextUpAnim.enabled = true; 
+
+				if (!_triggered) {
+					Debug.Log ("TRIGGER SCALE UP!"); 
+					_nextUpAnim.SetTrigger ("TurnPanelScale"); 
+					_triggered = true; 
+				}
+			}
+
+			if (_showNextUpPanel && _nextUpTimer >= 1f && _nextUpTimer < 1.5f) {
+				if (_triggered) {
+					_nextUpAnim.SetTrigger ("TurnPanelScale"); 
+					_triggered = false; 
+				}
+
+			}
+
+			if (_showNextUpPanel && _nextUpTimer >= 2f) {
+				_nextUpAnim.enabled = false; 
+				_nextUpPanel.SetActive (false); 
+				_showNextUpPanel = false; 
+				_nextUpTimer = 0; 
+				_showNextUpPanel = false; 
+			}
+		}
+
 
 		void LerpTeamNameScale(){
 
@@ -161,8 +211,6 @@ namespace SlingySlugs{
 			ShowMessage ("Team " + GameSessionController._instance._teams [winningTeamNumber - 1]._teamName + " Wins!"); 
 			_message.color = GameSessionController._instance._teams [winningTeamNumber - 1]._teamUnityColor;
 
-			_turnText.enabled = false; 
-
 		}
 
 		public void UpdateHealth(int team1health, int team2health, int team3health, int team4health){
@@ -175,8 +223,9 @@ namespace SlingySlugs{
 		}
 
 		public void UpdateTurnText(int activeTeam){
-			_turnText.text = "It's team " + GameSessionController._instance._teams [activeTeam - 1]._teamName + "'s turn"; 
-			_turnText.color = GameSessionController._instance._teams [activeTeam - 1]._teamUnityColor; 
+			_nextUpTeamText.text = GameSessionController._instance._teams [activeTeam - 1]._teamName + "!";
+			_nextUpTeamText.color = GameSessionController._instance._teams [activeTeam - 1]._teamUnityColor;
+			_showNextUpPanel = true; 
 		}
 
 		public void Paused(bool paused){

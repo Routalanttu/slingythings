@@ -146,7 +146,10 @@ namespace SlingySlugs
 			// PLACEHOLDERPURKKA PLS REMOVE
 			_guiManager.HideMessage ();
 
+
 			NextPlayerMove ();
+			_guiManager.UpdateTurnText (currentTeam); 
+
 		
 		}
 
@@ -223,6 +226,7 @@ namespace SlingySlugs
 
 			if ((_slugSlunged || _drowned) && _allSlugsStill && _stillTimer < 0) {
 				_guiManager.StartBloom (); 
+				_guiManager.UpdateTurnText (GetNextTeam()); 
 				Invoke ("NextPlayerMove", 1); 
 				_allSlugsStill = false;
 				_slugSlunged = false; 
@@ -311,39 +315,45 @@ namespace SlingySlugs
 		public void NextPlayerMove ()
 		{
 			Debug.Log ("NEXTPLAYERMOVE"); 
+			currentTeam = GetNextTeam (); 
+			_guiManager.ChangeActiveTeam (currentTeam); 
+			ActivateTeam(); 
+		}
+
+		public int GetNextTeam(){
+			
 			if (numberOfTeams == 2) {
 				if (currentTeam == 1) {
-					currentTeam = 2; 
+					return 2; 
 				} else {
-					currentTeam = 1; 
+					return 1; 
 				}
 			}
 
 			if (numberOfTeams == 3) {
 				if (currentTeam == 1) {
-					currentTeam = 2; 
+					return 2; 
 				} else if (currentTeam == 2) {
-					currentTeam = 3; 
+					return 3; 
 				} else {
-					currentTeam = 1; 
+					return 1; 
 				}
 			}
 
 			if (numberOfTeams == 4) {
 				if (currentTeam == 1) {
-					currentTeam = 2; 
+					return 2; 
 				} else if (currentTeam == 2) {
-					currentTeam = 3; 
+					return 3; 
 				} else if (currentTeam == 3) {
-					currentTeam = 4; 
+					return 4; 
 				} else {
-					currentTeam = 1; 
+					return 1; 
 				}
 			}
 
-			_guiManager.UpdateTurnText (currentTeam); 
-			_guiManager.ChangeActiveTeam (currentTeam); 
-			ActivateTeam(); 
+			return currentTeam; // redundant but needed
+
 		}
 
 		public void DeactiveCircleColliders(){
