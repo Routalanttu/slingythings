@@ -123,9 +123,11 @@ namespace SlingySlugs {
 			_siikaCounter++;
 			if (_isArmed && _slug.GetSpecies() == 3) {
 				//Debug.Log ("meni läpi");
-				//Instantiate (_exploCutter, _gcTransform.position, Quaternion.identity);
-				_explosion.Fire();
-				_siikaCounter = 0;
+				Instantiate (_exploCutter, _gcTransform.position, Quaternion.identity);
+				if (_siikaCounter > 9) {
+					_explosion.Fire ();
+					_siikaCounter = 0;
+				}
 			}
 
 

@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/zzzPyryTest2.unity
   - enabled: 1
     path: Assets/Scenes/PyryTest3.unity
+  - enabled: 1
+    path: Assets/Scenes/TestLevel1.unity
