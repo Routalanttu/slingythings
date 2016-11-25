@@ -31,6 +31,8 @@ namespace SlingySlugs {
 		private Vector3 _lastVelo;
 		private float _lastAngVelo;
 
+		private GameObject _scorcher;
+
 		private void Awake () {
 			_gcTransform = GetComponent<Transform> (); 
 			_rigidBody = GetComponent<Rigidbody2D> (); 
@@ -38,6 +40,10 @@ namespace SlingySlugs {
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_explosion = GetComponent<Explosion> (); 
 			_exploCutter = _explosion.GetCutter ();
+
+			if (_slug.GetSpecies () == 3) {
+				_scorcher = (GameObject)Instantiate(GameObject.FindGameObjectWithTag ("Scorcher"),_gcTransform.position,Quaternion.identity);
+			}
 		}
 
 		void Update () {
@@ -47,6 +53,12 @@ namespace SlingySlugs {
 
 			if (_soundCooldown > 0f) {
 				_soundCooldown -= Time.deltaTime;
+			}
+
+			_siikaCounter++;
+
+			if (_scorcher != null && _isArmed && _slug.GetSpecies () == 3) {
+				_scorcher.transform.position = _gcTransform.position;
 			}
 		}
 
@@ -60,6 +72,10 @@ namespace SlingySlugs {
 			GameManager.Instance.SlugSlunged (); 
 			_slug.ShowName (false);
 			_slug.ShowHealth (false); 
+			if (_slug.GetSpecies () == 3) {
+				_scorcher.SetActive (true);
+				_scorcher.transform.position = _gcTransform.position;
+			}
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {
@@ -85,6 +101,7 @@ namespace SlingySlugs {
 					} else {
 						_isSlung = false;
 						_isArmed = false;
+						_scorcher.SetActive (false);
 					}
 				}
 			} else {
@@ -119,13 +136,12 @@ namespace SlingySlugs {
 			} else {
 				_charAnim.SetToIdle ();
 			}
-
-			_siikaCounter++;
+				
 			if (_isArmed && _slug.GetSpecies() == 3) {
 				//Debug.Log ("meni läpi");
 				Instantiate (_exploCutter, _gcTransform.position, Quaternion.identity);
 				if (_siikaCounter > 9) {
-					_explosion.Fire ();
+					//_explosion.Fire ();
 					_siikaCounter = 0;
 				}
 			}
