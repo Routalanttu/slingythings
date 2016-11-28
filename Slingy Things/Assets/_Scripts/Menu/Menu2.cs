@@ -16,10 +16,15 @@ namespace SlingySlugs
 		public Animator _optionsMenuAnim;
 		public Animator _teamManagementAnim;
 
-		//public GameObject numberOfTeamsObjects;
+        public Slider loadingBar;
+        public GameObject loadingImage;
 
-		// Use this for initialization
-		void Start ()
+        private AsyncOperation async;
+
+        //public GameObject numberOfTeamsObjects;
+
+        // Use this for initialization
+        void Start ()
 		{
 
 		}
@@ -97,12 +102,27 @@ namespace SlingySlugs
 		}
 
 
-		public void OnLevelSelection (int level)
+		/*public void OnLevelSelection (int level)
 		{
 			SceneManager.LoadScene (level);
-		}
+		}*/
 
-		public void OnQuit ()
+        public void ClickAsync(int level) {
+            loadingImage.SetActive(true);
+            StartCoroutine(LoadLevelWithBar(level));
+        }
+
+        IEnumerator LoadLevelWithBar(int level) {
+            async = SceneManager.LoadSceneAsync(level);
+
+            while (!async.isDone) {
+                loadingBar.value = async.progress;
+                yield return null;
+            }
+        }
+
+
+        public void OnQuit ()
 		{
 			Application.Quit ();
 		}

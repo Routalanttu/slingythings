@@ -18,6 +18,6 @@ public class SplashScreenController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        animationEnded();
+        //animationEnded();
 	}
 }

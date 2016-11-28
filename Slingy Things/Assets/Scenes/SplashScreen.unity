@@ -186,6 +186,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1872333909}
   - 212: {fileID: 1872333908}
+  - 95: {fileID: 1872333910}
   - 114: {fileID: 1872333907}
   m_Layer: 0
   m_Name: logov00001png
@@ -202,10 +203,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1872333906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: debade914dcc05d4aae5b6e16a45bfd0, type: 3}
+  m_Script: {fileID: 11500000, guid: 1560ada4cef61ea49a63c2ee509498e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayTime: 5
+  _splashScreenAnim: {fileID: 1872333910}
 --- !u!212 &1872333908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -252,3 +253,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!95 &1872333910
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1872333906}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1459317183cdef44784ac6651a2e1ce2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
