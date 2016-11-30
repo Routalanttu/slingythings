@@ -68,7 +68,6 @@ namespace SlingySlugs {
 				// Sling if stretch is over minimum, otherwise cancel:
 				if (_stretchVector.magnitude >= _minPowerStretch) {
 					_slinger.Sling (_stretchVector);
-					SoundController.Instance.PlaySoundByIndex (3);
 				} else {
 					_charAnim.SetToIdle ();
 					SoundController.Instance.PlaySoundByIndex (1);

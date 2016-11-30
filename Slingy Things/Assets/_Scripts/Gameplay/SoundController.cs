@@ -61,7 +61,7 @@ public class SoundController : MonoBehaviour
 
 	public AudioClip[] GameSounds;
 	public float[] SoundVolumes = new float[10];
-	public float _defaultVolume = 0.5f;
+	public float _defaultVolume = 0.2f;
 	private int totalSounds;
 	private ArrayList soundObjectList;
 	private SoundObject tempSoundObj;

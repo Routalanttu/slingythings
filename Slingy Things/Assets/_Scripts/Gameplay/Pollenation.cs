@@ -19,8 +19,7 @@ namespace SlingySlugs {
 		public bool Fire(){
 			Vector2 xploPos = _gcTransform.position; 
 			Instantiate(_pollenAnimation, _gcTransform.position, Quaternion.identity);
-			// JOKU OMA ÄÄNI TÄLLE!
-			//SoundController.Instance.PlaySoundByIndex (0); 
+			SoundController.Instance.PlaySoundByIndex (20); 
 
 			Collider2D[] colliders = Physics2D.OverlapCircleAll(xploPos, radius);
 			foreach (Collider2D hit in colliders) {

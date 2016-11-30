@@ -146,7 +146,7 @@ namespace SlingySlugs
 			// PLACEHOLDERPURKKA PLS REMOVE
 			_guiManager.HideMessage ();
 
-
+            SoundController.Instance.PlaySoundByIndex(17); 
 			NextPlayerMove ();
 			_guiManager.UpdateTurnText (currentTeam); 
 
@@ -511,6 +511,7 @@ namespace SlingySlugs
 
 		public void GameOver (int winningTeamNumber)
 		{
+            SoundController.Instance.PlaySoundByIndex(16); 
 			GUIManager.GameOver (winningTeamNumber);
 			// Didn't want the TeamsAndAnimals scene loading immediately after the game ends so I decided to use a coroutine
 			StartCoroutine (SceneLoad ());

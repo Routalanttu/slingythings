@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000012026703480}
+  m_IsPrefabParent: 1
+--- !u!1 &1000012026703480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013104533142}
+  - 114: {fileID: 114000011963331190}
+  - 114: {fileID: 114000014046481038}
+  - 114: {fileID: 114000010883613668}
+  m_Layer: 0
+  m_Name: _GAME CONTROLLERS_
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000013104533142
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012026703480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.870682, y: 6.4760847, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &114000010883613668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012026703480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea8023e6d5074c379189580248d188d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameSounds:
+  - {fileID: 8300000, guid: 8f983011b34ceed47aae65b0991bffac, type: 3}
+  - {fileID: 8300000, guid: b177cd7c6d49e8d419734b5a5eb7a9f3, type: 3}
+  - {fileID: 8300000, guid: d0eb1b7cba633c14ea1d696f7a0269e7, type: 3}
+  - {fileID: 8300000, guid: e32c5cfd0fbfe274db440f46a180403f, type: 3}
+  - {fileID: 8300000, guid: 778fff74596c37941b76d9e933d6ab1f, type: 3}
+  - {fileID: 8300000, guid: 86678424ab331184cad2539689b8c616, type: 3}
+  - {fileID: 8300000, guid: 467abd7bacd2b34479fb9d988ba86f82, type: 3}
+  - {fileID: 8300000, guid: a9470398dede3574eab799b6111666c3, type: 3}
+  - {fileID: 8300000, guid: 75bcc5872ce5ae948a5353f0d8bdb0da, type: 3}
+  - {fileID: 8300000, guid: 6c607bdea89ca874483e29ea12432e17, type: 3}
+  - {fileID: 8300000, guid: a1bc1b2310d988543ae6de2e5e075fe9, type: 3}
+  - {fileID: 8300000, guid: 44084e3d702eea945942f6f8b5a3c3e9, type: 3}
+  - {fileID: 8300000, guid: aff0ef4fb478ee640b98637148b71d5c, type: 3}
+  - {fileID: 8300000, guid: f6adb223e8463914abd06691e23837ad, type: 3}
+  - {fileID: 8300000, guid: 07cac7c22df379a40885cf14ca7cb5e4, type: 3}
+  - {fileID: 8300000, guid: e32c5cfd0fbfe274db440f46a180403f, type: 3}
+  - {fileID: 8300000, guid: b81b0274fff8d2749955125aed19455e, type: 3}
+  - {fileID: 8300000, guid: 2c27083618c73f94484df144a42decf3, type: 3}
+  - {fileID: 8300000, guid: ac2a1119251a0dc489bbd29ccd0e702f, type: 3}
+  - {fileID: 8300000, guid: 625c65c1debef344d950ef4b9aba5f46, type: 3}
+  - {fileID: 8300000, guid: 9cd8a101fa137594288fef2ea3de5eca, type: 3}
+  SoundVolumes:
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0.8
+  _defaultVolume: 0.1
+  _soundsMuted: 0
+  _soundsOff: {fileID: 0}
+--- !u!114 &114000011963331190
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012026703480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c06e7a52426a48e8b881c9d59d5ed82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraController: {fileID: 0}
+  _team1Slugs: []
+  _team2Slugs: []
+  _team3Slugs: []
+  _team4Slugs: []
+  _allSlugRigidbodies: []
+--- !u!114 &114000014046481038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012026703480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0b97dc8dfff4960ab97277900f1426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: aebac393c2b79ea469aae2c6c1845e6a, type: 3}
+  _defaultVolume: 0.4
+  loopMusic: 1
+  _musicoff: {fileID: 0}

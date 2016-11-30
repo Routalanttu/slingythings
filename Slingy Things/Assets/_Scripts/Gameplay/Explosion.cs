@@ -22,8 +22,9 @@ namespace SlingySlugs {
 		}
 
 		public bool Fire(){
-			//_xploAnim.SetBool ("Blown", true);
-			Vector2 xploPos = _gcTransform.position; 
+            //_xploAnim.SetBool ("Blown", true);
+            SoundController.Instance.PlaySoundByIndex((int)Random.Range(3, 10));
+            Vector2 xploPos = _gcTransform.position; 
 			Instantiate(_explosionPrefab, _gcTransform.position, Quaternion.identity);
 			Instantiate(_explosionAnimation, _gcTransform.position, Quaternion.identity);
 			SoundController.Instance.PlaySoundByIndex (0); 

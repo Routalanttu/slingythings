@@ -101,8 +101,15 @@ namespace SlingySlugs
 
 		}
 
+        public void PlayButtonSoundByIndex(int index)
+        {
 
-		/*public void OnLevelSelection (int level)
+            SoundController.Instance.PlaySoundByIndex(index);
+
+        }
+
+
+        /*public void OnLevelSelection (int level)
 		{
 			SceneManager.LoadScene (level);
 		}*/

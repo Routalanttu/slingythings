@@ -63,6 +63,7 @@ namespace SlingySlugs {
 		}
 
 		public void Sling (Vector2 stretchVector) {
+            SoundController.Instance.PlaySoundByIndex((int)Random.Range(18, 20)); 
 			_rigidBody.AddForce (stretchVector * _forceMultiplier, ForceMode2D.Impulse);
 			_isSlung = true;
 			_isArmed = true;
@@ -79,6 +80,8 @@ namespace SlingySlugs {
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {
+
+           
 			_isSlung = false;
 
 			if (_isArmed && _slug.IsActive) {

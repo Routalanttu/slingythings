@@ -158,6 +158,11 @@ namespace SlingySlugs {
 		}
 
 		public void DecreaseHealth(int damageAmount) {
+
+            if (damageAmount >=1)
+            {
+                SoundController.Instance.PlaySoundByIndex((int)Random.Range(3, 10));
+            }
 			_health -= damageAmount;
 
 			// Take away the unnecessary (below-zero) damage from team counter:
@@ -187,6 +192,7 @@ namespace SlingySlugs {
 		}
 
 		public void Die(){
+            SoundController.Instance.PlaySoundByIndex((int)Random.Range(10, 14)); 
 			_dead = true;
 			Instantiate(_deathAnimation, _myTransform.position, Quaternion.identity);
 			GameManager.Instance.KillSlug ((int)_team, gameObject);
