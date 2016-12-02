@@ -101,7 +101,7 @@ GameObject:
   - 212: {fileID: 604666254}
   - 95: {fileID: 604666256}
   m_Layer: 0
-  m_Name: Layer 1
+  m_Name: FourPlayText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,13 +146,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 604666253}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.74, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.5277672, z: 0}
+  m_LocalScale: {x: 0.7321567, y: 0.73215675, z: 0.48810452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1872333909}
+  m_RootOrder: 0
 --- !u!95 &604666256
 Animator:
   serializedVersion: 3
@@ -269,7 +269,7 @@ GameObject:
   - 95: {fileID: 1872333910}
   - 114: {fileID: 1872333907}
   m_Layer: 0
-  m_Name: logov00001png
+  m_Name: FourPlayLogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.0487418, y: 2.0487416, z: 2.0487416}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 604666255}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!95 &1872333910

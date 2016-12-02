@@ -9,31 +9,37 @@ public class SplashScreenController : MonoBehaviour {
     private AsyncOperation async;
 
 
-    void Start() {
+    void Start() 
+    {
         ClickAsync();
         _splashScreenAnim.SetTrigger("Animate");
     }
 
-    void animationEnded() {
+    void animationEnded() 
+    {
         ActivateMenu();
     }
 
-    void Update() {
+    void Update() 
+    {
         if (Input.GetMouseButtonDown(0))
             ActivateMenu();
     }
 
-    public void ClickAsync() {
+    public void ClickAsync() 
+    {
         StartCoroutine(LoadMenuWithAnimation());
     }
 
-    IEnumerator LoadMenuWithAnimation() {
+    IEnumerator LoadMenuWithAnimation() 
+    {
         async = SceneManager.LoadSceneAsync("Menu");
         async.allowSceneActivation = false;
         yield return async;
     }
 
-    public void ActivateMenu() {
+    public void ActivateMenu() 
+    {
         async.allowSceneActivation = true;
     }
 

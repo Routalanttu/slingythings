@@ -108,26 +108,22 @@ namespace SlingySlugs
 
         }
 
-
-        /*public void OnLevelSelection (int level)
-		{
-			SceneManager.LoadScene (level);
-		}*/
-
-        public void ClickAsync(int level) {
+        public void ClickAsync(int level) 
+        {
             loadingImage.SetActive(true);
             StartCoroutine(LoadLevelWithBar(level));
         }
 
-        IEnumerator LoadLevelWithBar(int level) {
+        IEnumerator LoadLevelWithBar(int level) 
+        {
             async = SceneManager.LoadSceneAsync(level);
 
-            while (!async.isDone) {
+            while (!async.isDone) 
+            {
                 loadingBar.value = async.progress;
                 yield return null;
             }
         }
-
 
         public void OnQuit ()
 		{
