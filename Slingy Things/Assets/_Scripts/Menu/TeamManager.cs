@@ -11,6 +11,7 @@ namespace SlingySlugs{
 		ArrayList teamsList = new ArrayList(); 
 
 		//SLOT SPRITES
+		public Sprite _emptySlotSprite; 
 		public Sprite _redSlotSprite; 
 		public Sprite _blueSlotSprite; 
 		public Sprite _yellowSlotSprite; 
@@ -22,8 +23,6 @@ namespace SlingySlugs{
 		public Image[] _slotImages;
 
 		public GameObject _nextButtonGO; 
-		Button nextButton; 
-		Animator nextButtonAnimator;
 
 		private bool[] _teamsSelected = new bool[6];
 
@@ -80,6 +79,10 @@ namespace SlingySlugs{
 		public Text _team4Text; 
 		public Text _team5Text; 
 		public Text _team6Text; 
+		Button _teamsNextButton; 
+		Animator _teamsNextButtonAnimator;
+		Image _teamsNextButtonImage;
+		Color _teamsNextButtonColor;
 
 
 		// Use this for initialization
@@ -95,10 +98,13 @@ namespace SlingySlugs{
 
 			SetNamesAndClasses (); 
 
-			nextButton = _nextButtonGO.GetComponent<Button> (); 
-			nextButton.enabled = false; 
-			nextButtonAnimator = _nextButtonGO.GetComponent<Animator> ();
-			nextButtonAnimator.enabled = false; 
+
+			_teamsNextButton = _nextButtonGO.GetComponent<Button> (); 
+			_teamsNextButton.enabled = false; 
+			_teamsNextButtonAnimator = _nextButtonGO.GetComponent<Animator> ();
+			_teamsNextButtonAnimator.enabled = false; 
+			_teamsNextButtonImage = _nextButtonGO.GetComponent<Image> (); 
+			_teamsNextButtonColor = _teamsNextButtonImage.color; 
 
 		}
 			
@@ -563,19 +569,35 @@ namespace SlingySlugs{
 
 			if (_numberOfTeams >= 2) {
 
-				Image nextButtonImage = _nextButtonGO.GetComponent<Image> (); 
-				Color c = nextButtonImage.color; 
-				c.a = 255;
-				nextButtonImage.color = c; 
-
-				Button nextButton = _nextButtonGO.GetComponent<Button> (); 
-				nextButton.enabled = true; 
-
-				Animator nextButtonAnimator = _nextButtonGO.GetComponent<Animator> ();
-				nextButtonAnimator.enabled = true; 
+				Color c = _teamsNextButtonColor;
+				c.a = 1;
+				_teamsNextButtonImage.color = c; 
+				_teamsNextButton.enabled = true; 
+				_teamsNextButtonAnimator.enabled = true; 
 
 			}
 		
+
+		}
+
+		public void ResetTeams(){
+
+			_numberOfTeams = 0; 
+
+			for (int i = 0; i < _teamsSelected.Length; i++) {
+				_teamsSelected [i] = false; 
+			}
+
+			for (int i = 0; i < _slotImages.Length; i++) {
+				_slotImages [i].sprite = _emptySlotSprite; 
+			}
+				
+			Color c = _teamsNextButtonColor;
+			c.a = 0.5f;
+			_teamsNextButtonImage.color = c; 
+			_teamsNextButton.enabled = false; 
+			_teamsNextButtonAnimator.enabled = false; 
+
 
 		}
 			
