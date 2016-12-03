@@ -35,7 +35,7 @@ namespace SlingySlugs
         public Transform _target;
         Transform _transform;
 
-      
+		private float _startingZoomTimer; 
 
 
         // Use this for initialization
@@ -63,7 +63,7 @@ namespace SlingySlugs
             if (!GameManager.Instance.CharacterTouched)
             {
 
-                if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
+                if (Input.touchCount == 1)
                 {
                     MoveCamera();
                 }
@@ -71,7 +71,7 @@ namespace SlingySlugs
                 if (Input.touchCount == 2)
                 {
                     MoveCamera();
-                    PinchZoom();
+                    //PinchZoom();
                 }
             }
 
@@ -81,6 +81,8 @@ namespace SlingySlugs
             }
 
            CheckBorders();
+
+			StartingZoom (); 
 
         }
 
@@ -92,7 +94,17 @@ namespace SlingySlugs
                 _target = target;
             }
 
-        }
+		}
+
+		private void StartingZoom(){
+
+			if (_startingZoomTimer < 3) {
+				_gcCam.orthographicSize -= 0.08f; 
+				_startingZoomTimer += Time.deltaTime;  
+			}
+
+
+		}
 
         private void CheckBorders()
         {
