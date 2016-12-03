@@ -49,6 +49,13 @@ namespace SlingySlugs{
 		public InputField _teamInput; 
 		private string _teamName; 
 
+		public Button _nextTeamButton;
+		public Button _previousTeamButton; 
+		public Sprite[] _nextTeamButtonSprites; 
+		public Sprite[] _previousTeamButtonSprites; 
+		private Image _nextTeamButtonImage; 
+		private Image _previousTeamButtonImage; 
+
 		public Image[] _slugBGImages; 
 		public Sprite[] _slugBGSprites; 
 
@@ -102,7 +109,6 @@ namespace SlingySlugs{
 
 			SetNamesAndClasses (); 
 
-
 			_teamsNextButton = _nextButtonGO.GetComponent<Button> (); 
 			_teamsNextButton.enabled = false; 
 			_teamsNextButtonAnimator = _nextButtonGO.GetComponent<Animator> ();
@@ -110,6 +116,9 @@ namespace SlingySlugs{
 			_teamsNextButtonImage = _nextButtonGO.GetComponent<Image> (); 
 			_teamsNextButtonColor = _teamsNextButtonImage.color; 
 
+			_nextTeamButtonImage = _nextTeamButton.GetComponent<Image> (); 
+			_previousTeamButtonImage = _previousTeamButton.GetComponent<Image> (); 
+		
 		}
 			
 		private void UpdateTeamMenu(){
@@ -120,7 +129,6 @@ namespace SlingySlugs{
 			_team4Text.text = PlayerPrefs.GetString("team4Name"); 
 			_team5Text.text = PlayerPrefs.GetString("team5Name"); 
 			_team6Text.text = PlayerPrefs.GetString("team6Name"); 
-
 
 		}
 
@@ -330,6 +338,10 @@ namespace SlingySlugs{
 				_slugBGImages [i].sprite = _slugBGSprites [_teamSelected - 1]; 
 			}
 
+			_previousTeamButtonImage.sprite = _previousTeamButtonSprites [_teamSelected - 1];
+			_nextTeamButtonImage.sprite = _nextTeamButtonSprites [_teamSelected - 1];
+			
+
 			SetNamesAndClasses (); 
 
 		}
@@ -347,6 +359,9 @@ namespace SlingySlugs{
 			for (int i = 0; i < _slugBGImages.Length; i++) {
 				_slugBGImages [i].sprite = _slugBGSprites [_teamSelected - 1]; 
 			}
+
+			_previousTeamButtonImage.sprite = _previousTeamButtonSprites [_teamSelected - 1];
+			_nextTeamButtonImage.sprite = _nextTeamButtonSprites [_teamSelected - 1];
 
 			SetNamesAndClasses (); 
 
