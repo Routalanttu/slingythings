@@ -15,13 +15,7 @@ public class MusicController : MonoBehaviour {
 	private AudioSource source; 
 	private GameObject sourceGO; 
 
-	public GameObject _musicoff; 
-
 	void Awake(){
-
-		if (_musicoff == null) {
-			Debug.LogError ("_musicoff missing"); 
-		}
 
 	}
 
@@ -37,9 +31,8 @@ public class MusicController : MonoBehaviour {
 		source.volume = volume; 
 
 
-		if(PlayerPrefs.HasKey("mutemusic") && PlayerPrefs.GetInt("mutemusic") == 1){
+		if(PlayerPrefs.HasKey("mutesounds") && PlayerPrefs.GetInt("mutesounds") == 1){
 			source.mute = true; 
-			_musicoff.SetActive (true); 
 		}else{
 			volume = _defaultVolume; 
 		}
@@ -62,12 +55,8 @@ public class MusicController : MonoBehaviour {
 
 		if (source.mute) {
 			source.mute = false; 
-			PlayerPrefs.SetInt ("mutemusic", 0); 
-			_musicoff.SetActive (false); 
 		}else{
 			source.mute = true; 
-			PlayerPrefs.SetInt ("mutemusic", 1); 
-			_musicoff.SetActive (true); 
 		}
 
 		PlayerPrefs.Save (); 

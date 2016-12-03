@@ -21,7 +21,6 @@ namespace SlingySlugs{
 
 		//SLOT IMAGES
 		public Image[] _slotImages;
-
 		public GameObject _nextButtonGO; 
 
 		private bool[] _teamsSelected = new bool[6];
@@ -44,9 +43,14 @@ namespace SlingySlugs{
 
 		private bool _firstTimeLaunched; 
 
-		//TEAM INPUT AND NAME 
+		//TEAM BG, INPUT AND NAME 
+		public Image _teamNameBGImage; 
+		public Sprite[] _teamNameBGSprites; 
 		public InputField _teamInput; 
 		private string _teamName; 
+
+		public Image[] _slugBGImages; 
+		public Sprite[] _slugBGSprites; 
 
 		//NAME INPUT FIELDS FOR SLUGS
 		public InputField _slug1Input; 
@@ -320,6 +324,12 @@ namespace SlingySlugs{
 				_teamSelected = 1; 
 			}
 
+			_teamNameBGImage.sprite = _teamNameBGSprites [_teamSelected - 1]; 
+
+			for (int i = 0; i < _slugBGImages.Length; i++) {
+				_slugBGImages [i].sprite = _slugBGSprites [_teamSelected - 1]; 
+			}
+
 			SetNamesAndClasses (); 
 
 		}
@@ -330,6 +340,12 @@ namespace SlingySlugs{
 
 			if (_teamSelected < 1) {
 				_teamSelected = 6; 
+			}
+
+			_teamNameBGImage.sprite = _teamNameBGSprites [_teamSelected - 1]; 
+
+			for (int i = 0; i < _slugBGImages.Length; i++) {
+				_slugBGImages [i].sprite = _slugBGSprites [_teamSelected - 1]; 
 			}
 
 			SetNamesAndClasses (); 
