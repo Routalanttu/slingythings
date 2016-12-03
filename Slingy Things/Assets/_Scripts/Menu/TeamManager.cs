@@ -396,7 +396,7 @@ namespace SlingySlugs{
 					_classImage1.sprite = _octopusSprite; 
 					_slug1Class = "Octopus"; 
 				} else if (_slug1Class == "Octopus") {
-					_classImage1.sprite = _slugSprite; 
+					_classImage1.sprite = _siikaSprite; 
 					_slug1Class = "Siika"; 
 				} else if (_slug1Class == "Siika") {
 					_classImage1.sprite = _slugSprite; 
@@ -415,7 +415,7 @@ namespace SlingySlugs{
 					_classImage2.sprite = _octopusSprite; 
 					_slug2Class = "Octopus"; 
 				} else if (_slug2Class == "Octopus") {
-					_classImage2.sprite = _slugSprite; 
+					_classImage2.sprite = _siikaSprite; 
 					_slug2Class = "Siika"; 
 				}else if (_slug2Class == "Siika") {
 					_classImage2.sprite = _slugSprite; 
@@ -434,7 +434,7 @@ namespace SlingySlugs{
 					_classImage3.sprite = _octopusSprite; 
 					_slug3Class = "Octopus"; 
 				} else if (_slug3Class == "Octopus") {
-					_classImage3.sprite = _slugSprite; 
+					_classImage3.sprite = _siikaSprite; 
 					_slug3Class = "Siika"; 
 				} else if (_slug3Class == "Siika") {
 					_classImage3.sprite = _slugSprite; 
@@ -453,7 +453,7 @@ namespace SlingySlugs{
 					_classImage4.sprite = _octopusSprite; 
 					_slug4Class = "Octopus"; 
 				} else if (_slug4Class == "Octopus") {
-					_classImage4.sprite = _slugSprite; 
+					_classImage4.sprite = _siikaSprite; 
 					_slug4Class = "Siika"; 
 				} else if (_slug4Class == "Siika") {
 					_classImage4.sprite = _slugSprite; 
@@ -472,7 +472,7 @@ namespace SlingySlugs{
 					_classImage5.sprite = _octopusSprite; 
 					_slug5Class = "Octopus"; 
 				} else if (_slug5Class == "Octopus") {
-					_classImage5.sprite = _slugSprite; 
+					_classImage5.sprite = _siikaSprite; 
 					_slug5Class = "Siika"; 
 				}else if (_slug5Class == "Siika") {
 					_classImage5.sprite = _slugSprite; 
@@ -491,7 +491,7 @@ namespace SlingySlugs{
 					_classImage6.sprite = _octopusSprite; 
 					_slug6Class = "Octopus"; 
 				} else if (_slug6Class == "Octopus") {
-					_classImage6.sprite = _slugSprite; 
+					_classImage6.sprite = _siikaSprite; 
 					_slug6Class = "Siika";
 				}else if (_slug6Class == "Siika") {
 					_classImage6.sprite = _slugSprite; 
