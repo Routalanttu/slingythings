@@ -1747,6 +1747,47 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 329444155}
+--- !u!21 &398269885
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 2DxFX/Standard/WaterAndBackgroundDeluxe
+  m_Shader: {fileID: 4800000, guid: 65f9a3492788e6743bf744a6ec05dbbd, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: EValue
+      second: 1
+    - first:
+        name: Light
+      second: 3
+    - first:
+        name: _Alpha
+      second: 0
+    - first:
+        name: _Distortion
+      second: 3
+    - first:
+        name: _Speed
+      second: 0.4
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &410810615
 GameObject:
   m_ObjectHideFlags: 0
@@ -3260,6 +3301,7 @@ GameObject:
   - 81: {fileID: 1036201717}
   - 114: {fileID: 1036201722}
   - 114: {fileID: 1036201723}
+  - 114: {fileID: 1036201724}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3341,7 +3383,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1036201716}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd549b92fde00f54daa7548b01cbee42, type: 3}
   m_Name: 
@@ -3367,6 +3409,17 @@ MonoBehaviour:
   blurIterations: 1
   blurType: 0
   fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
+--- !u!114 &1036201724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1036201716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade537fc62d5c974cb84efe75fbc9f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1043245284
 GameObject:
   m_ObjectHideFlags: 0
