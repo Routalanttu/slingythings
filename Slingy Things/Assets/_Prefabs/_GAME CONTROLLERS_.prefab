@@ -99,7 +99,9 @@ MonoBehaviour:
   - 0.8
   _defaultVolume: 0.1
   _soundsMuted: 0
-  _soundsOff: {fileID: 0}
+  _soundButton: {fileID: 0}
+  _soundsOn: {fileID: 21300000, guid: e45d0e31adbc44c3e8172d825ff32e21, type: 3}
+  _soundsOff: {fileID: 21300000, guid: 632a9e8eef1d14fa591ef6ad42ce737d, type: 3}
 --- !u!114 &114000011963331190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -131,4 +133,3 @@ MonoBehaviour:
   music: {fileID: 8300000, guid: aebac393c2b79ea469aae2c6c1845e6a, type: 3}
   _defaultVolume: 0.4
   loopMusic: 1
-  _musicoff: {fileID: 0}
