@@ -6021,48 +6021,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 171232842}
   m_RootOrder: 14
---- !u!1001 &926972574
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4000013837935916, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -70.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013837935916, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 18.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013837935916, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013837935916, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013837935916, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013837935916, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013837935916, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013837935916, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &939890386
 GameObject:
   m_ObjectHideFlags: 0
@@ -6182,47 +6140,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!21 &1003522892
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 2DxFX/Standard/WaterAndBackgroundDeluxe
-  m_Shader: {fileID: 4800000, guid: 65f9a3492788e6743bf744a6ec05dbbd, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-    - first:
-        name: _MainTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - first:
-        name: EValue
-      second: 1
-    - first:
-        name: Light
-      second: 3
-    - first:
-        name: _Alpha
-      second: 0
-    - first:
-        name: _Distortion
-      second: 3
-    - first:
-        name: _Speed
-      second: 0.4
-    m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1036201716
 GameObject:
   m_ObjectHideFlags: 0
@@ -7356,6 +7273,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 171232842}
   m_RootOrder: 17
+--- !u!21 &1481903324
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 2DxFX/Standard/WaterAndBackgroundDeluxe
+  m_Shader: {fileID: 4800000, guid: 65f9a3492788e6743bf744a6ec05dbbd, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: EValue
+      second: 1
+    - first:
+        name: Light
+      second: 3
+    - first:
+        name: _Alpha
+      second: 0
+    - first:
+        name: _Distortion
+      second: 3
+    - first:
+        name: _Speed
+      second: 0.4
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1484757908
 GameObject:
   m_ObjectHideFlags: 0
