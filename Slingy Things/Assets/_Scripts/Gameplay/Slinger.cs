@@ -26,12 +26,11 @@ namespace SlingySlugs {
 
 		private ParticleSystem _exploCutter;
 
-
 		private Vector3 _lastPos;
 		private Vector3 _lastVelo;
 		private float _lastAngVelo;
 
-		private GameObject _scorcher;
+		//private GameObject _scorcher;
 
 		private void Awake () {
 			_gcTransform = GetComponent<Transform> (); 
