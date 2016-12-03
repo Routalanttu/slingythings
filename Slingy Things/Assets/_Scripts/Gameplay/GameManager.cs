@@ -302,7 +302,7 @@ namespace SlingySlugs
 		}
 
 		public void SlugSlunged(){
-			//slung slug has exploded
+			//slug is airborne
 			_slugSlunged = true; 
 		}
 
@@ -356,7 +356,7 @@ namespace SlingySlugs
 
 		}
 
-		public void DeactiveCircleColliders(){
+		public void DeactivateCircleColliders(){
 
 			foreach (var slug in _team1Slugs) {
 				slug.GetComponent<CircleCollider2D> ().enabled = false;

@@ -4,7 +4,7 @@ using System.Collections;
 namespace SlingySlugs {
 	public class Slinger : MonoBehaviour {
 
-		[SerializeField] private float _forceMultiplier;
+		[SerializeField] private float _forceMultiplier = 4f;
 
 		private Explosion _explosion; 
 
@@ -69,7 +69,7 @@ namespace SlingySlugs {
 			_isArmed = true;
 			_explosion.Arm ();
 			_snailBlowCounter = 0;
-			GameManager.Instance.DeactiveCircleColliders(); 
+			GameManager.Instance.DeactivateCircleColliders(); 
 			GameManager.Instance.SlugSlunged (); 
 			_slug.ShowName (false);
 			_slug.ShowHealth (false); 

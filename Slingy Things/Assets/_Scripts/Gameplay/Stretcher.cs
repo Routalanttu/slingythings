@@ -4,44 +4,28 @@ using System.Collections;
 namespace SlingySlugs {
 	public class Stretcher: MonoBehaviour {
 
-		// Puuttuvia toiminnallisuuksia (poista kun done):
-		// Stretchin sallinta vain kun on maassa
-		// Stretchin sallinta vain kun on aktiivi
-		// Vuoron heitto eteenpäin sitten kun sallittu heitto tehty (vasta Slingerissä?)
-
 		private Transform _gcTransform;
 		private Vector2 _slugPosition;
 		private Vector2 _mousePos;
 		private bool _clickedOn;
 
-		// These values might/should be determined by the character type.
-		// Can be done straight to the prefab though?
 		[SerializeField] private float _maxPowerStretch = 10.0f;
 		[SerializeField] private float _minPowerStretch = 0.5f;
 		private float _maxVisualStretch = 2.0f;
 		private float _minVisualStretch = 0.8f;
 		private Vector2 _stretchVector;
-		private Slinger _slinger;
 
 		private CharacterAnimator _charAnim;
 		private ArrowAnimator _arrowAnim;
 
-		// Onko Slug paras nimi tälle scriptille?
 		private CharacterInfo _slug;
 
 		private void Awake(){
 			_gcTransform = GetComponent<Transform> ();
-			_slinger = GetComponent<Slinger> ();
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_charAnim.SetToIdle ();
 			_arrowAnim = FindObjectOfType<ArrowAnimator> ();
 			_slug = GetComponent<CharacterInfo> ();
-
-			/*	Ehkä tällainen pitäis tehdä, ellei prefabissa vain määritä
-			 * _maxPowerStretch = //Hahmotyypin määrittämä maksimi
-			 * _minPowerStretch = //Hahmotyypin määrittämä minimi
-			 * 
-			 */
 		}
 			
 		void Update () {
@@ -67,7 +51,16 @@ namespace SlingySlugs {
 
 				// Sling if stretch is over minimum, otherwise cancel:
 				if (_stretchVector.magnitude >= _minPowerStretch) {
-					_slinger.Sling (_stretchVector);
+					// Determine which animal is in question and call the appropriate Sling:
+					if (_slug.GetSpecies() == 0) {
+						GetComponent<SlugSlinger> ().Sling (_stretchVector);
+					} else if (_slug.GetSpecies() == 1) {
+						GetComponent<SnailSlinger> ().Sling (_stretchVector);
+					} else if (_slug.GetSpecies() == 2) {
+						GetComponent<OctoSlinger> ().Sling (_stretchVector);
+					} else if (_slug.GetSpecies() == 3) {
+						GetComponent<SiikaSlinger> ().Sling (_stretchVector);
+					}
 				} else {
 					_charAnim.SetToIdle ();
 					SoundController.Instance.PlaySoundByIndex (1);

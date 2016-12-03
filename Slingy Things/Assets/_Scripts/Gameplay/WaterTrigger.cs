@@ -13,14 +13,33 @@ public class WaterTrigger : MonoBehaviour {
 		SoundController.Instance.PlaySoundByIndex (2); 
 
 		if (other.gameObject.CompareTag ("Slug")) {
-				// TOTAL PLACEHOLDER PLS REMOVE
-				if (other.gameObject.GetComponent<Slinger>().GetArmedState()) {
+			
+			if (other.gameObject.GetComponent<CharacterInfo> ().GetSpecies () == 0) {
+				if (other.gameObject.GetComponent<SlugSlinger>().GetArmedState()) {
 					GameManager.Instance.Drowned ();
 				}
+			}
 
-				other.gameObject.GetComponent<CharacterInfo> ().Die ();
-				 
+			if (other.gameObject.GetComponent<CharacterInfo> ().GetSpecies () == 1) {
+				if (other.gameObject.GetComponent<SnailSlinger>().GetArmedState()) {
+					GameManager.Instance.Drowned ();
+				}
+			}
 
+			if (other.gameObject.GetComponent<CharacterInfo> ().GetSpecies () == 2) {
+				if (other.gameObject.GetComponent<OctoSlinger>().GetArmedState()) {
+					GameManager.Instance.Drowned ();
+				}
+			}
+
+			if (other.gameObject.GetComponent<CharacterInfo> ().GetSpecies () == 3) {
+				if (other.gameObject.GetComponent<SiikaSlinger>().GetArmedState()) {
+					GameManager.Instance.Drowned ();
+				}
+			}
+			
+					
+			other.gameObject.GetComponent<CharacterInfo> ().Die ();
 		}
 		
 	}
