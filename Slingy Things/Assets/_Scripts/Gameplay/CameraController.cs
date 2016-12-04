@@ -110,9 +110,6 @@ namespace SlingySlugs
 
 			CheckBorders();
 
-			DEBUGTEXT.text = "FOLLOWING:" + _following;
-			DEBUGTEXT2.text = "Zoomingin " + _zooming + " Zoomouting " + _zoomOuting;
-
 		}
 
 		private void FollowTarget(){
