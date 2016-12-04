@@ -19,6 +19,8 @@ namespace SlingySlugs{
 		public Sprite _violetSlotSprite;
 		public Sprite _orangeSlotSprite;
 
+		public Sprite[] _badgeSprites; 
+
 		//SLOT IMAGES
 		public Image[] _slotImages;
 		public GameObject _nextButtonGO; 
@@ -48,6 +50,7 @@ namespace SlingySlugs{
 		public Sprite[] _teamNameBGSprites; 
 		public InputField _teamInput; 
 		private string _teamName; 
+		public Image _teamBadge; 
 
 		public Button _nextTeamButton;
 		public Button _previousTeamButton; 
@@ -118,6 +121,15 @@ namespace SlingySlugs{
 
 			_nextTeamButtonImage = _nextTeamButton.GetComponent<Image> (); 
 			_previousTeamButtonImage = _previousTeamButton.GetComponent<Image> (); 
+
+			_badgeSprites = new Sprite[] {
+				_redSlotSprite,
+				_blueSlotSprite,
+				_yellowSlotSprite,
+				_greenSlotSprite,
+				_violetSlotSprite,
+				_orangeSlotSprite
+			};
 		
 		}
 			
@@ -340,7 +352,8 @@ namespace SlingySlugs{
 
 			_previousTeamButtonImage.sprite = _previousTeamButtonSprites [_teamSelected - 1];
 			_nextTeamButtonImage.sprite = _nextTeamButtonSprites [_teamSelected - 1];
-			
+
+			_teamBadge.sprite = _badgeSprites [_teamSelected - 1];
 
 			SetNamesAndClasses (); 
 

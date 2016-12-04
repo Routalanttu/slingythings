@@ -6,6 +6,8 @@ namespace SlingySlugs
     public class CameraController : MonoBehaviour
     {
 
+		//CAMERA HAS TO BE SET AT ORIGO!! OTHERWISE BORDER CHECK FAILS
+
         public float _zoomSpeed = 0.02f;
         public float _swipeSpeed = 0.1F;
 
@@ -17,8 +19,8 @@ namespace SlingySlugs
         private float _defaultCamSizeY;
         private float _newCamSizeY;
 
-        private float _borderSettingX;
-        private float _borderSettingY;
+		private float _borderSettingX;
+		private float _borderSettingY;
 
         private Camera _gcCam;
         private Transform _gcTransform;
@@ -29,6 +31,12 @@ namespace SlingySlugs
         private float _posX;
         private float _posY;
         private float _posZ;
+
+		private float _defaultPosX;
+		private float _defaultPosY;
+		private float _defaultPosZ;
+
+		private bool _moveback; 
 
         //for following a target 
         public float dampingSpeed;
@@ -47,7 +55,9 @@ namespace SlingySlugs
 
             _aspectRatio = (float)_gcCam.pixelWidth / (float)_gcCam.pixelHeight;
             _defaultCamSizeX = _gcCam.orthographicSize * _aspectRatio;
-            _defaultCamSizeY = _gcCam.orthographicSize; //orthographic size is the camera Y size   
+            _defaultCamSizeY = _gcCam.orthographicSize; //orthographic size is the camera Y size 
+
+			_gcTransform.position = new Vector3 (0, 0, -10); 
 
         }
 
@@ -71,18 +81,18 @@ namespace SlingySlugs
                 if (Input.touchCount == 2)
                 {
                     MoveCamera();
-                    //PinchZoom();
+                    PinchZoom();
                 }
             }
 
             if (_target != null && GameManager.Instance.CharacterTouched)
             {
-                _transform.position = Vector3.Lerp(_transform.position, _target.position, dampingSpeed) + new Vector3(0, 0.0f, -10);
+              //  _transform.position = Vector3.Lerp(_transform.position, _target.position, dampingSpeed) + new Vector3(0, 0.0f, -10);
             }
 
-           CheckBorders();
-
 			StartingZoom (); 
+
+			CheckBorders();
 
         }
 
@@ -99,7 +109,8 @@ namespace SlingySlugs
 		private void StartingZoom(){
 
 			if (_startingZoomTimer < 3) {
-				_gcCam.orthographicSize -= 0.08f; 
+				_gcCam.orthographicSize -= Time.deltaTime*5; 
+				_gcCam.transform.Translate(Vector3.down * Time.deltaTime*3.5f);
 				_startingZoomTimer += Time.deltaTime;  
 			}
 
@@ -120,32 +131,38 @@ namespace SlingySlugs
             float borderChangeX = (_defaultCamSizeX - _newCamSizeX);
             float borderChangeY = (_defaultCamSizeY - _newCamSizeY);
 
-            _borderSettingX = borderChangeX;
-            _borderSettingY = borderChangeY;
-
+			_borderSettingX = borderChangeX;
+			_borderSettingY = borderChangeY;
 
             if (_posY < -_borderSettingY)
             {
                 _posY = -_borderSettingY;
+				_moveback = true; 
             }
 
             if (_posY > _borderSettingY)
             {
                 _posY = _borderSettingY;
+				_moveback = true; 
             }
 
             if (_posX < -_borderSettingX)
             {
                 _posX = -_borderSettingX;
+				_moveback = true; 
             }
 
             if (_posX > _borderSettingX)
             {
                 _posX = _borderSettingX;
+				_moveback = true; 
             }
 
             //if position goes over border, move back to border edges
-            _gcTransform.position = new Vector3(_posX, _posY, _posZ);
+			if (_moveback) {
+				_gcTransform.position = new Vector3(_posX, _posY, _posZ);
+			}
+            
         }
 
         void MoveCamera()
