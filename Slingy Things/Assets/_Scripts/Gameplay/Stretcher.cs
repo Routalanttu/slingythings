@@ -102,11 +102,5 @@ namespace SlingySlugs {
 				_charAnim.StretchFlip (false);
 			}
 		}
-
-		void OnCollisionStay2D(Collision2D coll) {
-			if (_clickedOn && _slug.IsActive && coll.gameObject.CompareTag("Slug")) {
-				Physics2D.IgnoreCollision (GetComponent<BoxCollider2D> (), coll.collider);
-			}
-		}
 	}
 }
