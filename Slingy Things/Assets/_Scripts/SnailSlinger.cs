@@ -4,15 +4,13 @@ using System.Collections;
 namespace SlingySlugs {
 	public class SnailSlinger : MonoBehaviour {
 
-		// Pyry
-		// Add cooldown to exploding to prevent flicker
-		// Avoid the bounce flicker also
-		// Should this have a separate Exploder?
-
 		[SerializeField] private float _forceMultiplier = 4f;
+		[SerializeField] private PhysicsMaterial2D _bouncy;
+		[SerializeField] private PhysicsMaterial2D _normo;
 
 		private Transform _gcTransform; 
 		private Rigidbody2D _rigidBody;
+		private BoxCollider2D _colli;
 		private CharacterInfo _snail;
 		private CharacterAnimator _charAnim;
 		private Explosion _explosion; 
@@ -30,12 +28,15 @@ namespace SlingySlugs {
 			_rigidBody = GetComponent<Rigidbody2D> (); 
 			_snail = GetComponent<CharacterInfo> ();
 			_charAnim = GetComponent<CharacterAnimator> ();
-			_explosion = GetComponent<Explosion> (); 
+			_explosion = GetComponent<Explosion> ();
+			_colli = GetComponent<BoxCollider2D> ();
+			_colli.sharedMaterial = _normo;
 		}
 
 		public void Sling (Vector2 stretchVector) {
 			SoundController.Instance.PlaySoundByIndex((int)Random.Range(18, 20)); 
 			_rigidBody.AddForce (stretchVector * _forceMultiplier, ForceMode2D.Impulse);
+			_colli.sharedMaterial = _bouncy;
 			_isArmed = true;
 			_explosion.Arm ();
 			_snailBlowCounter = 0;
@@ -54,7 +55,8 @@ namespace SlingySlugs {
 					_snailBlowCounter++;
 					_isArmed = true;
 				} else if (_snailBlowCounter >= 3) {
-					Invoke ("ShowNameAndHealth", 2); 
+					_colli.sharedMaterial = _normo;
+					Invoke ("ShowNameAndHealth", 2);
 					_isArmed = false;
 				}
 			} else {

@@ -4,11 +4,6 @@ using System.Collections;
 namespace SlingySlugs {
 	public class SiikaSlinger : MonoBehaviour {
 
-		// Pyry
-		// Make timed
-		// Collisioskippi ei tapahdu
-		// Make do damage
-
 		[SerializeField] private float _forceMultiplier = 4f;
 		[SerializeField] private GameObject _virtualShovel;
 		[SerializeField] private GameObject _auraFlame;
@@ -58,6 +53,9 @@ namespace SlingySlugs {
 				_gcTransform.position = _lastPos;
 				_rigidBody.velocity = _lastVelo;
 				_rigidBody.angularVelocity = _lastAngVelo;
+				if (coll.gameObject.CompareTag ("Slug")) {
+					coll.gameObject.GetComponent<CharacterInfo> ().DecreaseHealth (20);
+				}
 				Physics2D.IgnoreCollision (GetComponent<BoxCollider2D> (), coll.collider);
 			} else {
 				if (_soundCooldown <= 0f) {
