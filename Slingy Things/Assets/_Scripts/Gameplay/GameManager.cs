@@ -304,7 +304,7 @@ namespace SlingySlugs
 		public void SlugSlunged(){
 			//slug is airborne
 			_slugSlunged = true; 
-			_cameraController.ZoomOut (); 
+			_cameraController.StartZoomOut (); 
 		}
 
 		public void Drowned(){

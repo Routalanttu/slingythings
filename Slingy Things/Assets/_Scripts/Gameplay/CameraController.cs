@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI; 
 
 namespace SlingySlugs
 {
@@ -7,6 +8,8 @@ namespace SlingySlugs
     {
 
 		//CAMERA HAS TO BE SET AT ORIGO!! OTHERWISE BORDER CHECK FAILS
+
+		public Text DEBUGTEXT; 
 
         private float _aspectRatio;
 
@@ -50,6 +53,8 @@ namespace SlingySlugs
 		float oldTouchDistance;
 
 		private bool _zooming; 
+		private bool _zoomOuting; 
+		private bool _startedZoomIn;
 		private float _zoomPre; 
 		private float _zoomOutPre;
 		private float _zoomTarget = 20f; 
@@ -91,13 +96,15 @@ namespace SlingySlugs
 
 				if (_zooming) {
 					ZoomToTarget (); 
-				} else {
+				} else if(_zoomOuting) {
 					ZoomOut (); 
 				}
 
             }
 
 			CheckBorders();
+
+			DEBUGTEXT.text = "DEBUGGI: " + "FOLLOWING:" + _following;
 
         }
 
@@ -107,9 +114,22 @@ namespace SlingySlugs
 		}
 
 		private void ZoomToTarget(){
+			_zoomOuting = false; 
 			_startedZoomOut = false; 
+
+			if (!_startedZoomIn) {
+				_elapsed = 0; 
+				_startedZoomIn = true; 
+				_zoomPre = _gcCam.orthographicSize;
+			}
+
 			_elapsed += Time.deltaTime/2;
+
 			_gcCam.orthographicSize = Mathf.Lerp(_zoomPre, _zoomTarget, _elapsed);
+		}
+
+		public void StartZoomOut(){
+			_zoomOuting = true; 
 		}
 
 		//when slinged this method is called
@@ -197,7 +217,6 @@ namespace SlingySlugs
 
 			_following = true; 
 			_zooming = true; 
-			_elapsed = 0f; 
 
 			Debug.Log ("SET CAMERA TARGET"); 
 
