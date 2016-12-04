@@ -40,6 +40,7 @@ namespace SlingySlugs {
 				_charAnim.SetToStretch ();
 				SoundController.Instance.PlaySoundByIndex (1);
                 GameManager.Instance.CharacterTouched = true; 
+				GameManager.Instance.SetCameraTarget (_gcTransform); 
 			}
 		}
 

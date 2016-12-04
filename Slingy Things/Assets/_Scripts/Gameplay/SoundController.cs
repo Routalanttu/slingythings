@@ -73,7 +73,7 @@ namespace SlingySlugs
 		public Button _soundButton; 
 		public Sprite _soundsOn; 
 		public Sprite _soundsOff; 
-		private Image _soundButtonImage; 
+		public Image _soundButtonImage; 
 
 
 		public void Awake ()
@@ -110,7 +110,6 @@ namespace SlingySlugs
 		}
 
 		public void Start(){
-			_soundButtonImage = _soundButton.GetComponent<Image> (); 
 
 			if (PlayerPrefs.HasKey ("mutesounds") && PlayerPrefs.GetInt ("mutesounds") == 1) {
 				_soundButtonImage.sprite = _soundsOff;

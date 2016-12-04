@@ -1278,6 +1278,7 @@ MonoBehaviour:
   _soundButton: {fileID: 1388777621}
   _soundsOn: {fileID: 21300000, guid: e45d0e31adbc44c3e8172d825ff32e21, type: 3}
   _soundsOff: {fileID: 21300000, guid: 632a9e8eef1d14fa591ef6ad42ce737d, type: 3}
+  _soundButtonImage: {fileID: 1388777622}
 --- !u!114 &297472047
 MonoBehaviour:
   m_ObjectHideFlags: 0
