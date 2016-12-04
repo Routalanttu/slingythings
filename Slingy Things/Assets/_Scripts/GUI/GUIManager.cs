@@ -207,7 +207,7 @@ namespace SlingySlugs{
 
 		public void GameOver(int winningTeamNumber){
 
-			ShowMessage ("Team " + GameSessionController._instance._teams [winningTeamNumber - 1]._teamName + " Wins!"); 
+			ShowMessage (GameSessionController._instance._teams [winningTeamNumber - 1]._teamName + " wins!"); 
 			_message.color = GameSessionController._instance._teams [winningTeamNumber - 1]._teamUnityColor;
 
 		}

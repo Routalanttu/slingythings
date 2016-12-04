@@ -7,6 +7,7 @@ namespace SlingySlugs {
 		// Pyry
 		// Make timed
 		// Collisioskippi ei tapahdu
+		// Make do damage
 
 		[SerializeField] private float _forceMultiplier = 4f;
 		[SerializeField] private GameObject _virtualShovel;
@@ -63,6 +64,16 @@ namespace SlingySlugs {
 					SoundController.Instance.PlaySoundByIndex (1);
 					_soundCooldown = 1f;
 				}
+			}
+		}
+
+		// Allows tbe Siika to be thrown through the ground it's standing on without any first-frame bumps
+		void OnCollisionStay2D(Collision2D coll) {
+			if (_isArmed && _slug.IsActive) {
+				_gcTransform.position = _lastPos;
+				_rigidBody.velocity = _lastVelo;
+				_rigidBody.angularVelocity = _lastAngVelo;
+				Physics2D.IgnoreCollision (GetComponent<BoxCollider2D> (), coll.collider);
 			}
 		}
 

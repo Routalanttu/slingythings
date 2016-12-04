@@ -21,8 +21,9 @@ namespace SlingySlugs {
 		private bool _isSlung;
 
 		private float _soundCooldown = 1f;
+		private float _blowCooldown;
 
-		private int _snailBlowCounter = 2;
+		private int _snailBlowCounter;
 
 		private void Awake () {
 			_gcTransform = GetComponent<Transform> (); 
@@ -46,13 +47,14 @@ namespace SlingySlugs {
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			if (_isArmed && _snail.IsActive) {
-				Invoke ("ShowNameAndHealth", 2); 
-				_explosion.Fire ();
-				_soundCooldown = 1f;
-				if (_snailBlowCounter < 2) {
+				if (_snailBlowCounter < 3 && _blowCooldown <= 0f) {
+					_explosion.Fire ();
+					_blowCooldown = 0.02f;
+					_soundCooldown = 1f;
 					_snailBlowCounter++;
 					_isArmed = true;
-				} else {
+				} else if (_snailBlowCounter >= 3) {
+					Invoke ("ShowNameAndHealth", 2); 
 					_isArmed = false;
 				}
 			} else {
@@ -87,6 +89,10 @@ namespace SlingySlugs {
 
 			if (_soundCooldown > 0f) {
 				_soundCooldown -= Time.deltaTime;
+			}
+
+			if (_blowCooldown > 0f) {
+				_blowCooldown -= Time.deltaTime;
 			}
 		}
 
