@@ -9,9 +9,6 @@ namespace SlingySlugs
 
 		//CAMERA HAS TO BE SET AT ORIGO!! OTHERWISE BORDER CHECK FAILS
 
-		public Text DEBUGTEXT; 
-		public Text DEBUGTEXT2; 
-
         private float _aspectRatio;
 
         private float _defaultCamSizeX;
