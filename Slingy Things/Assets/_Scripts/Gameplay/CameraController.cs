@@ -10,6 +10,7 @@ namespace SlingySlugs
 		//CAMERA HAS TO BE SET AT ORIGO!! OTHERWISE BORDER CHECK FAILS
 
 		public Text DEBUGTEXT; 
+		public Text DEBUGTEXT2; 
 
         private float _aspectRatio;
 
@@ -57,9 +58,11 @@ namespace SlingySlugs
 		private bool _startedZoomIn;
 		private float _zoomPre; 
 		private float _zoomOutPre;
-		private float _zoomTarget = 20f; 
+		private float _zoomTargetIn = 20f; 
+		private float _zoomTargetOut = 25f;
 		private float _elapsed = 0f;
 		private bool _playerIsControllingCamera; 
+		private float _touchTimer;
 
         // Use this for initialization
         void Start()
@@ -79,34 +82,41 @@ namespace SlingySlugs
         // Update is called once per frame
         void Update()
         {
+			
+
+        }
+
+		void LateUpdate(){
+
 			StartingZoom (); 
 
-            if (!GameManager.Instance.CharacterTouched)
-            {
+			if (!GameManager.Instance.CharacterTouched)
+			{
 				TouchCam (); 
-			
-            }
+
+			}
 
 			if (_target != null && _startingZoomDone && !_playerIsControllingCamera)
-            {
+			{
 
 				if (_following) {
 					FollowTarget (); 
 				}
 
-				if (_zooming) {
+				if (_zooming && !_zoomOuting) {
 					ZoomToTarget (); 
-				} else if(_zoomOuting) {
+				} else if(_zoomOuting && !_zooming) {
 					ZoomOut (); 
 				}
 
-            }
+			}
 
 			CheckBorders();
 
-			DEBUGTEXT.text = "DEBUGGI: " + "FOLLOWING:" + _following;
+			DEBUGTEXT.text = "FOLLOWING:" + _following;
+			DEBUGTEXT2.text = "Zoomingin " + _zooming + " Zoomouting " + _zoomOuting;
 
-        }
+		}
 
 		private void FollowTarget(){
 			_gcTransform.position = Vector3.Lerp(_gcTransform.position, _target.position, _dampingSpeed) + new Vector3(0, 0.0f, -10);
@@ -125,11 +135,12 @@ namespace SlingySlugs
 
 			_elapsed += Time.deltaTime/2;
 
-			_gcCam.orthographicSize = Mathf.Lerp(_zoomPre, _zoomTarget, _elapsed);
+			_gcCam.orthographicSize = Mathf.Lerp(_zoomPre, _zoomTargetIn, _elapsed);
 		}
 
 		public void StartZoomOut(){
 			_zoomOuting = true; 
+			_zooming = false;
 		}
 
 		//when slinged this method is called
@@ -143,7 +154,7 @@ namespace SlingySlugs
 				_zoomOutPre = _gcCam.orthographicSize;
 			}
 			_elapsed += Time.deltaTime/2;
-			_gcCam.orthographicSize = Mathf.Lerp(_zoomOutPre, _zoomPre, _elapsed);
+			_gcCam.orthographicSize = Mathf.Lerp(_zoomOutPre, _zoomTargetOut, _elapsed);
 		}
 
 
@@ -152,10 +163,20 @@ namespace SlingySlugs
 				_playerIsControllingCamera = false; 
 				oldTouchPositions[0] = null;
 				oldTouchPositions[1] = null;
+				_touchTimer = 0; 
 			}
 			else if (Input.touchCount == 1) {
 				_playerIsControllingCamera = true; 
-				_following = false; 
+
+
+				//if player touches something else than a character for more than a second, he gains control of camera
+				_touchTimer += Time.deltaTime; 
+
+				if (!GameManager.Instance.CharacterTouched && _touchTimer>0.2f) {
+					_following = false; 
+				}
+
+
 				if (oldTouchPositions[0] == null || oldTouchPositions[1] != null) {
 					oldTouchPositions[0] = Input.GetTouch(0).position;
 					oldTouchPositions[1] = null;
@@ -195,7 +216,13 @@ namespace SlingySlugs
 					oldTouchVector = newTouchVector;
 					oldTouchDistance = newTouchDistance;
 
-					_zooming = false; 
+					//player gains control of zoom
+					if (!GameManager.Instance.CharacterTouched) {
+						_zooming = false; 
+						_zoomOuting = false; 
+						_startedZoomIn = false;
+						_startedZoomOut = false;
+					}
 				}
 			}
 
@@ -217,6 +244,9 @@ namespace SlingySlugs
 
 			_following = true; 
 			_zooming = true; 
+			_zoomOuting = false; 
+			_startedZoomIn = false;
+			_startedZoomOut = false; 
 
 			Debug.Log ("SET CAMERA TARGET"); 
 
