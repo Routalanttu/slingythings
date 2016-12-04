@@ -648,12 +648,12 @@ namespace SlingySlugs{
 
 		private void SetDefaultNamesAndClasses(){
 
-			PlayerPrefs.SetString ("team1Name", "Team1"); 
-			PlayerPrefs.SetString ("team2Name", "Team2"); 
-			PlayerPrefs.SetString ("team3Name", "Team3"); 
-			PlayerPrefs.SetString ("team4Name", "Team4"); 
-			PlayerPrefs.SetString ("team5Name", "Team5"); 
-			PlayerPrefs.SetString ("team6Name", "Team6"); 
+			PlayerPrefs.SetString ("team1Name", "PNRS IN SLIME"); 
+			PlayerPrefs.SetString ("team2Name", "STRTCHD CRTRS"); 
+			PlayerPrefs.SetString ("team3Name", "Bag of Slicks"); 
+			PlayerPrefs.SetString ("team4Name", "Pubiruusut"); 
+			PlayerPrefs.SetString ("team5Name", "Saunaseurue"); 
+			PlayerPrefs.SetString ("team6Name", "Politbyro"); 
 
 			PlayerPrefs.SetString ("team1Color", "Red"); 
 			PlayerPrefs.SetString ("team2Color", "Blue"); 
@@ -694,47 +694,47 @@ namespace SlingySlugs{
 				}
 			}
 
-			PlayerPrefs.SetString ("t1s1Name", "Shellboy"); 
-			PlayerPrefs.SetString ("t1s2Name", "Wartslug"); 
-			PlayerPrefs.SetString ("t1s3Name", "8-Feeler"); 
-			PlayerPrefs.SetString ("t1s4Name", "Crisu"); 
-			PlayerPrefs.SetString ("t1s5Name", "Kauno"); 
-			PlayerPrefs.SetString ("t1s6Name", "Leija"); 
+			PlayerPrefs.SetString ("t1s1Name", "Jiggler"); 
+			PlayerPrefs.SetString ("t1s2Name", "Wobbler"); 
+			PlayerPrefs.SetString ("t1s3Name", "Slipper"); 
+			PlayerPrefs.SetString ("t1s4Name", "Dripper"); 
+			PlayerPrefs.SetString ("t1s5Name", "Squisher"); 
+			PlayerPrefs.SetString ("t1s6Name", "Pusbag"); 
 
-			PlayerPrefs.SetString ("t2s1Name", "Mopsi"); 
-			PlayerPrefs.SetString ("t2s2Name", "TheMan"); 
-			PlayerPrefs.SetString ("t2s3Name", "Niska"); 
-			PlayerPrefs.SetString ("t2s4Name", "Kynis"); 
-			PlayerPrefs.SetString ("t2s5Name", "Rock"); 
-			PlayerPrefs.SetString ("t2s6Name", "Heidi"); 
+			PlayerPrefs.SetString ("t2s1Name", "Straggler"); 
+			PlayerPrefs.SetString ("t2s2Name", "Krabarbie"); 
+			PlayerPrefs.SetString ("t2s3Name", "Shellboy"); 
+			PlayerPrefs.SetString ("t2s4Name", "Wartslug"); 
+			PlayerPrefs.SetString ("t2s5Name", "8-Feeler"); 
+			PlayerPrefs.SetString ("t2s6Name", "4-Pounder"); 
 
-			PlayerPrefs.SetString ("t3s1Name", "Jesse"); 
-			PlayerPrefs.SetString ("t3s2Name", "Sister"); 
-			PlayerPrefs.SetString ("t3s3Name", "Jape"); 
-			PlayerPrefs.SetString ("t3s4Name", "Milli"); 
-			PlayerPrefs.SetString ("t3s5Name", "Tube"); 
-			PlayerPrefs.SetString ("t3s6Name", "Katri"); 
+			PlayerPrefs.SetString ("t3s1Name", "Pickle"); 
+			PlayerPrefs.SetString ("t3s2Name", "Thumper"); 
+			PlayerPrefs.SetString ("t3s3Name", "Wang"); 
+			PlayerPrefs.SetString ("t3s4Name", "Johnson"); 
+			PlayerPrefs.SetString ("t3s5Name", "Wood"); 
+			PlayerPrefs.SetString ("t3s6Name", "Dingus"); 
 
-			PlayerPrefs.SetString ("t4s1Name", "Charlie"); 
-			PlayerPrefs.SetString ("t4s2Name", "Juha"); 
-			PlayerPrefs.SetString ("t4s3Name", "Carl"); 
-			PlayerPrefs.SetString ("t4s4Name", "Mike"); 
-			PlayerPrefs.SetString ("t4s5Name", "Kevin"); 
-			PlayerPrefs.SetString ("t4s6Name", "Bum"); 
+			PlayerPrefs.SetString ("t4s1Name", "Irma"); 
+			PlayerPrefs.SetString ("t4s2Name", "Terttu"); 
+			PlayerPrefs.SetString ("t4s3Name", "Tuulikki"); 
+			PlayerPrefs.SetString ("t4s4Name", "Laila"); 
+			PlayerPrefs.SetString ("t4s5Name", "Marjatta"); 
+			PlayerPrefs.SetString ("t4s6Name", "Ritva"); 
 
-			PlayerPrefs.SetString ("t5s1Name", "Hardy"); 
-			PlayerPrefs.SetString ("t5s2Name", "Tank"); 
-			PlayerPrefs.SetString ("t5s3Name", "Snipah"); 
-			PlayerPrefs.SetString ("t5s4Name", "FatBoy"); 
-			PlayerPrefs.SetString ("t5s5Name", "Juba"); 
-			PlayerPrefs.SetString ("t5s6Name", "Teemu"); 
+			PlayerPrefs.SetString ("t5s1Name", "Jorma"); 
+			PlayerPrefs.SetString ("t5s2Name", "Pentti"); 
+			PlayerPrefs.SetString ("t5s3Name", "Olavi"); 
+			PlayerPrefs.SetString ("t5s4Name", "Kalervo"); 
+			PlayerPrefs.SetString ("t5s5Name", "Arvi"); 
+			PlayerPrefs.SetString ("t5s6Name", "Kustaa"); 
 
-			PlayerPrefs.SetString ("t6s1Name", "Nätti"); 
-			PlayerPrefs.SetString ("t6s2Name", "Nico"); 
-			PlayerPrefs.SetString ("t6s3Name", "Eero"); 
-			PlayerPrefs.SetString ("t6s4Name", "Kelli"); 
-			PlayerPrefs.SetString ("t6s5Name", "Lee"); 
-			PlayerPrefs.SetString ("t6s6Name", "Rotten"); 
+			PlayerPrefs.SetString ("t6s1Name", "Sipilä"); 
+			PlayerPrefs.SetString ("t6s2Name", "Soini"); 
+			PlayerPrefs.SetString ("t6s3Name", "Vanhanen"); 
+			PlayerPrefs.SetString ("t6s4Name", "Kekkonen"); 
+			PlayerPrefs.SetString ("t6s5Name", "Ryti"); 
+			PlayerPrefs.SetString ("t6s6Name", "Sasi"); 
 
 
 
