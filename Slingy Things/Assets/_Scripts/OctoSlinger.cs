@@ -4,9 +4,6 @@ using System.Collections;
 namespace SlingySlugs {
 	public class OctoSlinger : MonoBehaviour {
 
-		// Pyry
-		// Remove Explosion, make Pollenation do the same
-
 		[SerializeField] private float _forceMultiplier = 4f;
 
 		private Transform _gcTransform; 
