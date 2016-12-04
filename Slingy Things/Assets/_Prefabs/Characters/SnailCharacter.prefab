@@ -71,10 +71,10 @@ GameObject:
   - 114: {fileID: 114000012065033396}
   - 61: {fileID: 61000012439263882}
   - 58: {fileID: 58000010395096492}
-  - 114: {fileID: 114000013869960226}
   - 114: {fileID: 114000011585762124}
   - 114: {fileID: 114000010557070504}
   - 114: {fileID: 114000010319073526}
+  - 114: {fileID: 114000014234675906}
   m_Layer: 8
   m_Name: SnailCharacter
   m_TagString: Slug
@@ -412,7 +412,7 @@ MonoBehaviour:
   _stretchTailTransform: {fileID: 4000012566813330}
   _flightTransform: {fileID: 4000010609371146}
   _flight: {fileID: 212000011555749466}
---- !u!114 &114000013869960226
+--- !u!114 &114000014234675906
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011657167294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c59286cef2f864195c277aaf43ad0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 19b232c443673754689996c2260b40eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _forceMultiplier: 4

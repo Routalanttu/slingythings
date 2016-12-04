@@ -36,14 +36,14 @@ namespace SlingySlugs {
 			_slug = GetComponent<CharacterInfo> ();
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_auraInstance = (GameObject)Instantiate (_auraFlame, transform.position, Quaternion.identity, transform);
-			_flame = _auraFlame.GetComponent<SpriteRenderer> ();
+			_flame = _auraInstance.GetComponent<SpriteRenderer> ();
 			_flame.enabled = false;
 		}
 
 		public void Sling (Vector2 stretchVector) {
 			SoundController.Instance.PlaySoundByIndex((int)Random.Range(18, 20)); 
 			_rigidBody.AddForce (stretchVector * _forceMultiplier, ForceMode2D.Impulse);
-			_shovelCooldown = 5f;
+			_shovelCooldown = 2f;
 			_isArmed = true;
 			GameManager.Instance.DeactivateCircleColliders(); 
 			GameManager.Instance.SlugSlunged ();
@@ -54,9 +54,10 @@ namespace SlingySlugs {
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			if (_isArmed && _slug.IsActive) {
-				Invoke ("ShowNameAndHealth", 2); 
-				_soundCooldown = 1f;
-				_isArmed = false;
+				_gcTransform.position = _lastPos;
+				_rigidBody.velocity = _lastVelo;
+				_rigidBody.angularVelocity = _lastAngVelo;
+				Physics2D.IgnoreCollision (GetComponent<BoxCollider2D> (), coll.collider);
 			} else {
 				if (_soundCooldown <= 0f) {
 					SoundController.Instance.PlaySoundByIndex (1);
@@ -104,6 +105,7 @@ namespace SlingySlugs {
 			}
 
 			if (_isArmed && _shovelCooldown < 0f) {
+				Invoke ("ShowNameAndHealth", 2); 
 				_isArmed = false;
 				_flame.enabled = false;
 			}

@@ -56,11 +56,11 @@ GameObject:
   - 114: {fileID: 114000010949122934}
   - 61: {fileID: 61000010425336868}
   - 58: {fileID: 58000014032957718}
-  - 114: {fileID: 114000010084548142}
   - 114: {fileID: 114000011365606050}
   - 114: {fileID: 114000010714371476}
   - 114: {fileID: 114000013188627228}
   - 114: {fileID: 114000011338464536}
+  - 114: {fileID: 114000012905867546}
   m_Layer: 0
   m_Name: OctoCharacter
   m_TagString: Slug
@@ -338,18 +338,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010084548142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011518240616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c59286cef2f864195c277aaf43ad0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _forceMultiplier: 4
 --- !u!114 &114000010714371476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -421,6 +409,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxPowerStretch: 10
   _minPowerStretch: 1.2
+--- !u!114 &114000012905867546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011518240616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb511a6711823594f9cedbf4d856e45b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forceMultiplier: 4
 --- !u!114 &114000013188627228
 MonoBehaviour:
   m_ObjectHideFlags: 1

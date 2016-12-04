@@ -30,7 +30,7 @@ namespace SlingySlugs {
 		private Vector3 _lastVelo;
 		private float _lastAngVelo;
 
-		//private GameObject _scorcher;
+		private GameObject _scorcher;
 
 		private void Awake () {
 			_gcTransform = GetComponent<Transform> (); 

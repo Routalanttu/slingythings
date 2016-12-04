@@ -89,10 +89,10 @@ GameObject:
   - 114: {fileID: 114000013057567836}
   - 61: {fileID: 61000011299025254}
   - 58: {fileID: 58000014223585738}
-  - 114: {fileID: 114000010314121982}
   - 114: {fileID: 114000011915971566}
   - 114: {fileID: 114000011492689266}
   - 114: {fileID: 114000012888487996}
+  - 114: {fileID: 114000013124817172}
   m_Layer: 8
   m_Name: SiikaCharacter
   m_TagString: Slug
@@ -278,18 +278,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010314121982
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012614063800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c59286cef2f864195c277aaf43ad0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _forceMultiplier: 5
 --- !u!114 &114000011492689266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -365,6 +353,21 @@ MonoBehaviour:
   _stretchTailTransform: {fileID: 4000012289744980}
   _flightTransform: {fileID: 4000013776532670}
   _flight: {fileID: 212000013808204584}
+--- !u!114 &114000013124817172
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012614063800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a8c19e23e69eaf4a9e454bd249f869d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forceMultiplier: 4
+  _virtualShovel: {fileID: 1000011767262726, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
+    type: 2}
+  _auraFlame: {fileID: 1000012438451808, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
 --- !u!212 &212000011028240668
 SpriteRenderer:
   m_ObjectHideFlags: 1

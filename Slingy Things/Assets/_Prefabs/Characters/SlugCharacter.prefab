@@ -71,8 +71,8 @@ GameObject:
   - 114: {fileID: 114000012065033396}
   - 61: {fileID: 61000012439263882}
   - 58: {fileID: 58000011441289236}
-  - 114: {fileID: 114000013869960226}
   - 114: {fileID: 114000011585762124}
+  - 114: {fileID: 114000010183920334}
   - 114: {fileID: 114000010557070504}
   - 114: {fileID: 114000010319073526}
   m_Layer: 8
@@ -337,6 +337,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010183920334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011657167294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40dae12cbf602e4a83b86a26b37769a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _forceMultiplier: 4
 --- !u!114 &114000010319073526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -412,18 +424,6 @@ MonoBehaviour:
   _stretchTailTransform: {fileID: 4000012566813330}
   _flightTransform: {fileID: 4000010609371146}
   _flight: {fileID: 212000011555749466}
---- !u!114 &114000013869960226
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011657167294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c59286cef2f864195c277aaf43ad0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _forceMultiplier: 4
 --- !u!212 &212000010080645180
 SpriteRenderer:
   m_ObjectHideFlags: 1
