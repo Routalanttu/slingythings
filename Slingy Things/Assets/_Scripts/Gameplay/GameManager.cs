@@ -489,6 +489,13 @@ namespace SlingySlugs
 
 		public void RestartLevel ()
 		{
+			if (!_paused) {
+				Time.timeScale = 0; 
+				_paused = true; 
+			} else {
+				Time.timeScale = 1; 
+				_paused = false; 
+			}
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		}
 
