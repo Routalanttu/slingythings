@@ -424,6 +424,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceMultiplier: 4
+  _bouncy: {fileID: 6200000, guid: a652207a0d50eb4449564548a5a5df62, type: 2}
+  _normo: {fileID: 6200000, guid: c21fe6e1016862c49835b91334868813, type: 2}
 --- !u!212 &212000010080645180
 SpriteRenderer:
   m_ObjectHideFlags: 1
