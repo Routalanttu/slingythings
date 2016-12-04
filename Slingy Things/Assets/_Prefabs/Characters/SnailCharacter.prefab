@@ -350,7 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radius: 5
   _explosionForce: 10
-  _explosionDamageMultiplier: 2
+  _explosionDamageMultiplier: 10
   _explosionPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
     type: 2}
   _explosionAnimation: {fileID: 1000013754057660, guid: 00920ed2386b34bcb9b3cf66a9ea1ded,
