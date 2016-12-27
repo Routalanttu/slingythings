@@ -315,7 +315,6 @@ namespace SlingySlugs
 
 		public void NextPlayerMove ()
 		{
-			Debug.Log ("NEXTPLAYERMOVE"); 
 			currentTeam = GetNextTeam (); 
 			_guiManager.ChangeActiveTeam (currentTeam); 
 			ActivateTeam(); 

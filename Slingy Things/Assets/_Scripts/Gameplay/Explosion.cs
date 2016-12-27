@@ -10,19 +10,12 @@ namespace SlingySlugs {
 		[SerializeField] private ParticleSystem _explosionPrefab; 
 		[SerializeField] private GameObject _explosionAnimation; 
 		private Transform _gcTransform;
-		//private Animator _xploAnim;
 
 		void Awake () {
 			_gcTransform = GetComponent<Transform>(); 
-			//_xploAnim = _explosionAnimation.GetComponent<Animator> ();
-		}
-
-		public void Arm () {
-			//_xploAnim.SetBool ("Blown", false);
 		}
 
 		public bool Fire(){
-            //_xploAnim.SetBool ("Blown", true);
             SoundController.Instance.PlaySoundByIndex((int)Random.Range(3, 10));
             Vector2 xploPos = _gcTransform.position; 
 			Instantiate(_explosionPrefab, _gcTransform.position, Quaternion.identity);

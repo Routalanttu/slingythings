@@ -149,7 +149,6 @@ namespace SlingySlugs{
 				_nextUpAnim.enabled = true; 
 
 				if (!_triggered) {
-					Debug.Log ("TRIGGER SCALE UP!"); 
 					_nextUpAnim.SetTrigger ("TurnPanelScale"); 
 					_triggered = true; 
 				}

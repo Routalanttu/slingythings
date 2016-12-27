@@ -242,8 +242,6 @@ namespace SlingySlugs
 			_startedZoomIn = false;
 			_startedZoomOut = false; 
 
-			Debug.Log ("SET CAMERA TARGET"); 
-
 		}
 
 		private void StartingZoom(){
