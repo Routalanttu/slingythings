@@ -34,7 +34,7 @@ namespace SlingySlugs
 		private bool _moveback; 
 
         //for following a target 
-		public float _dampingSpeed = 0.02F; 
+		public float _dampingSpeed = 0.05F; 
         public Transform _target;
 		private bool _following; 
 
@@ -85,7 +85,10 @@ namespace SlingySlugs
 
 		void LateUpdate(){
 
-			StartingZoom (); 
+			if (!_startingZoomDone) {
+				StartingZoom (); 
+			}
+
 
 			if (!GameManager.Instance.CharacterTouched)
 			{
@@ -127,7 +130,7 @@ namespace SlingySlugs
 				_zoomPre = _gcCam.orthographicSize;
 			}
 
-			_elapsed += Time.deltaTime/2;
+			_elapsed += Time.deltaTime*2;
 
 			_gcCam.orthographicSize = Mathf.Lerp(_zoomPre, _zoomTargetIn, _elapsed);
 		}
@@ -140,7 +143,7 @@ namespace SlingySlugs
 		//when slinged this method is called
 		public void ZoomOut(){
 			_zooming = false; 
-			_following = true; 
+			//_following = true; 
 
 			if (!_startedZoomOut) {
 				_elapsed = 0; 
@@ -162,11 +165,10 @@ namespace SlingySlugs
 			else if (Input.touchCount == 1) {
 				_playerIsControllingCamera = true; 
 
-
-				//if player touches something else than a character for more than a second, he gains control of camera
+				//if player touches something else than a character for more than x time, he gains control of camera
 				_touchTimer += Time.deltaTime; 
 
-				if (!GameManager.Instance.CharacterTouched && _touchTimer>0.2f) {
+				if (!GameManager.Instance.CharacterTouched && _touchTimer>0.10f) {
 					_following = false; 
 				}
 
@@ -185,6 +187,15 @@ namespace SlingySlugs
 			}
 			else {
 				_playerIsControllingCamera = true; 
+				//player gains control of zoom
+				if (!GameManager.Instance.CharacterTouched) {
+					_following = false; 
+					_zooming = false; 
+					_zoomOuting = false; 
+					_startedZoomIn = false;
+					_startedZoomOut = false;
+				}
+					
 				if (oldTouchPositions[1] == null) {
 					oldTouchPositions[0] = Input.GetTouch(0).position;
 					oldTouchPositions[1] = Input.GetTouch(1).position;
@@ -210,13 +221,7 @@ namespace SlingySlugs
 					oldTouchVector = newTouchVector;
 					oldTouchDistance = newTouchDistance;
 
-					//player gains control of zoom
-					if (!GameManager.Instance.CharacterTouched) {
-						_zooming = false; 
-						_zoomOuting = false; 
-						_startedZoomIn = false;
-						_startedZoomOut = false;
-					}
+
 				}
 			}
 
@@ -246,9 +251,9 @@ namespace SlingySlugs
 
 		private void StartingZoom(){
 
-			if (_startingZoomTimer < 3) {
-				_gcCam.orthographicSize -= Time.deltaTime * 8; 
-				_gcCam.transform.Translate (Vector3.down * Time.deltaTime * 6f);
+			if (_startingZoomTimer < 2.5f) {
+				_gcCam.orthographicSize -= Time.deltaTime * 10; 
+				_gcCam.transform.Translate (Vector3.down * Time.deltaTime * 7f);
 				_startingZoomTimer += Time.deltaTime;  
 			} else if(!_startingZoomDone) {
 				_zoomPre = _gcCam.orthographicSize; 

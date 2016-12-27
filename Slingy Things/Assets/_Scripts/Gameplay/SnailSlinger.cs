@@ -20,6 +20,7 @@ namespace SlingySlugs {
 
 		public void Sling (Vector2 stretchVector) {
 			base.Sling (stretchVector); 
+			_colli.sharedMaterial = _bouncy; 
 			_snailBlowCounter = 0;
 		}
 

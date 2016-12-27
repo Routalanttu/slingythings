@@ -420,10 +420,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07de2375f7bd694c93d6768884d824e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 5
-  _explosionForce: 10
-  _explosionDamageMultiplier: 20
-  _explosionPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
+  _radius: 10
+  _explosionForce: 15
+  _explosionDamageMultiplier: 25
+  _explosionPrefab: {fileID: 198000010227536156, guid: eda6e194a65b9414aa7ec7d8aeda8d23,
     type: 2}
   _explosionAnimation: {fileID: 1000013754057660, guid: 00920ed2386b34bcb9b3cf66a9ea1ded,
     type: 2}
