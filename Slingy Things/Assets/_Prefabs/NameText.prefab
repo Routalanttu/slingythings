@@ -21,7 +21,6 @@ GameObject:
   - 4: {fileID: 4000013016337574}
   - 23: {fileID: 23000010576915954}
   - 102: {fileID: 102000013704210470}
-  - 114: {fileID: 114000013713636672}
   m_Layer: 0
   m_Name: NameText
   m_TagString: Untagged
@@ -92,18 +91,3 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!114 &114000013713636672
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010192472582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50648752d692aa14f98cbdeec2fde3d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pixelSize: 1
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  resolutionDependant: 0
-  doubleResolution: 1024

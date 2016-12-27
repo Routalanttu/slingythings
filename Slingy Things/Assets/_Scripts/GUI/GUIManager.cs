@@ -29,14 +29,7 @@ namespace SlingySlugs{
 		public Image _team4HealthFill; 
 
 		public GameObject _pauseMenu; 
-
-		//BLOOM FX
-		public GameObject MainCam;
-		private float _bloomMinimum = 0F;
-		private float _bloomMaximum =  0.5F;
-		private float t = 0.0f;
-		private bool _bloom; 
-		private bool _bloomingDown; 
+	
 
 		//HEALTH BAR SCALE
 		private Vector3 _scaleVectorMinimum;
@@ -112,8 +105,6 @@ namespace SlingySlugs{
 				_team4HealthObject.SetActive (false); 
 			}
 
-			MainCam.GetComponent<BloomOptimized> ().intensity = 0;
-
 			_scaleVectorMinimum = _team1HealthObject.transform.localScale; 
 			Vector3 temp = new Vector3 (0.1F, 0.1F, 0);
 			_scaleVectorMaximum = _team1HealthObject.transform.localScale + temp; 
@@ -124,11 +115,6 @@ namespace SlingySlugs{
 		
 		// Update is called once per frame
 		void Update () {
-
-
-			if (_bloom) {
-				Bloom (); 
-			}
 
 			LerpTeamNameScale (); 
 
@@ -239,43 +225,13 @@ namespace SlingySlugs{
 		void SetMenuValues(){
 
 		}
-
-		public void StartBloom(){
-
-			_bloom = true; 
-		}
+			
 
 		public void ChangeActiveTeam(int teamNumber){
 			_activeTeam = teamNumber; 
 			_lerpTime = 0f; 
 		}
-
-		void Bloom(){
-
-			MainCam.GetComponent<BloomOptimized> ().intensity = Mathf.Lerp (_bloomMinimum, _bloomMaximum, t); 
-			t += 1.4f*Time.deltaTime;
-
-			if (t > 1.0f && _bloomingDown) {
-				_bloom = false; 
-				MainCam.GetComponent<BloomOptimized> ().intensity = 0;
-				_bloomingDown = false; 
-				float temp = _bloomMaximum;
-				_bloomMaximum = _bloomMinimum;
-				_bloomMinimum = temp;
-				t = 0.0f;
-
-			}
-
-			if (t > 1.0f){
-				float temp = _bloomMaximum;
-				_bloomMaximum = _bloomMinimum;
-				_bloomMinimum = temp;
-				t = 0.0f;
-				_bloomingDown = true; 
-			}
-
-
-		}
+			
 
 			
 	}

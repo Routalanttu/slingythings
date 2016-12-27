@@ -225,7 +225,6 @@ namespace SlingySlugs
 			}
 
 			if ((_slugSlunged || _drowned) && _allSlugsStill && _stillTimer < 0) {
-				_guiManager.StartBloom (); 
 				_guiManager.UpdateTurnText (GetNextTeam()); 
 				Invoke ("NextPlayerMove", 1); 
 				_allSlugsStill = false;
