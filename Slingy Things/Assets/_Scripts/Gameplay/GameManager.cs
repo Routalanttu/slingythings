@@ -10,17 +10,6 @@ namespace SlingySlugs
 
 		public CameraController _cameraController;
 
-		//Gameplay states
-		enum State
-		{
-			_stateWaitForTurn,
-			_stateAim,
-			_stateInAir,
-			_stateExplode,
-			_stateCheckDamages}
-
-		;
-
 		private int numberOfTeams;
 
 		//TEAM VALUES
@@ -30,7 +19,6 @@ namespace SlingySlugs
 		public List<GameObject> _team4Slugs;
 
 		public List<Rigidbody2D> _allSlugRigidbodies;
-
 
 		private int _team1SlugAmount;
 		private int _team2SlugAmount;
@@ -155,10 +143,7 @@ namespace SlingySlugs
 
 		void Update ()
 		{
-
-			//UserInput (); 
 			CheckGameState (); 
-
 
 		}
 
@@ -166,21 +151,7 @@ namespace SlingySlugs
 		{
 			GUIManager.HideMessage (); 
 		}
-
-		void UserInput ()
-		{
-
-			if (Input.GetKeyDown (KeyCode.P) || Input.GetKeyDown (KeyCode.Escape)) {
-				Pause (); 
-			} 
-
-			if (Input.GetKeyDown (KeyCode.N)) {
-				if (!_gameStarted) {
-					StartGame (); 
-				}
-				NextPlayerMove (); 
-			}
-		}
+			
 
 		public void Pause ()
 		{
@@ -269,7 +240,6 @@ namespace SlingySlugs
 
 			Destroy (go);
 
-			//DO SOMETHING HERE
 			if (_team2SlugAmount <= 0 && _team3SlugAmount <=0 && _team4SlugAmount <= 0) {
 				GameOver (1);
 			} else if (_team1SlugAmount <= 0 && _team3SlugAmount <=0 && _team4SlugAmount <= 0) {
@@ -382,25 +352,21 @@ namespace SlingySlugs
 
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (true); 
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				}
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false); 
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team3Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team4Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
@@ -408,25 +374,21 @@ namespace SlingySlugs
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true;
-					//slug.GetComponent<CharacterInfo> ().ShowName (true);
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				}
 
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team3Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team4Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
@@ -434,25 +396,21 @@ namespace SlingySlugs
 
 				foreach (var slug in _team3Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true;
-					//slug.GetComponent<CharacterInfo> ().ShowName (true);
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				}
 
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team4Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
@@ -460,25 +418,21 @@ namespace SlingySlugs
 
 				foreach (var slug in _team4Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = true;
-					//slug.GetComponent<CharacterInfo> ().ShowName (true);
 					slug.GetComponent<CircleCollider2D> ().enabled = true;
 				}
 
 				foreach (var slug in _team1Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team2Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 
 				foreach (var slug in _team3Slugs) {
 					slug.GetComponent<CharacterInfo> ().IsActive = false; 
-					//slug.GetComponent<CharacterInfo> ().ShowName (false);
 					slug.GetComponent<CircleCollider2D> ().enabled = false;
 				}
 

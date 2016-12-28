@@ -366,7 +366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748d0dad9ece45a4cbeb7515f5c5c49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _team: 1
   _species: 1
   _health: 100
   _deathAnimation: {fileID: 1000013280099540, guid: ee7f2becf47208e4baeed99745b9b0e9,
@@ -386,8 +385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb839845c528ab45b110d5fe2cb0fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxPowerStretch: 10
-  _minPowerStretch: 0.5
 --- !u!114 &114000012065033396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -423,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b232c443673754689996c2260b40eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceMultiplier: 5
+  _forceMultiplier: 3
   _bouncy: {fileID: 6200000, guid: a652207a0d50eb4449564548a5a5df62, type: 2}
   _normo: {fileID: 6200000, guid: c21fe6e1016862c49835b91334868813, type: 2}
 --- !u!212 &212000010080645180

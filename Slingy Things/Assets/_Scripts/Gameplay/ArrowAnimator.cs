@@ -78,14 +78,14 @@ namespace SlingySlugs {
 
 			// Scale the arrow to match stretch volume:
 			_arrows [i].localScale = new Vector3 (
-				magnitude*(i+1)*0.6f,
-				magnitude*(i+1)*0.6f,
+				magnitude*(i+1)*0.15f,
+				magnitude*(i+1)*0.15f,
 				1f
 			);
 
 			// Increase distance from center:
 			_arrows [i].localPosition = new Vector3 (
-				0.5f + magnitude*(i+1)*0.6f,
+				0.5f + magnitude*(i+1)*1.3f,
 				_arrows[i].localPosition.y,
 				_arrows[i].localPosition.z
 			);

@@ -226,7 +226,7 @@ namespace SlingySlugs
 			}
 
 			//set max and min zoom 
-			_gcCam.orthographicSize = Mathf.Max(_gcCam.orthographicSize, _defaultCamSizeY / 3);
+			_gcCam.orthographicSize = Mathf.Max(_gcCam.orthographicSize, _defaultCamSizeY / 4);
 			_gcCam.orthographicSize = Mathf.Min(_gcCam.orthographicSize, _defaultCamSizeY);
 
 		}

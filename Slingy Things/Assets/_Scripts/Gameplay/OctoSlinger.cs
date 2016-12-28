@@ -4,7 +4,7 @@ using System.Collections;
 namespace SlingySlugs {
 	public class OctoSlinger : BaseSlinger {
 
-		[SerializeField] private float _forceMultiplier = 4f;
+		[SerializeField] private float _forceMultiplier = 3f;
 		private Pollenation _pollenation; 
 
 		private void Awake () {

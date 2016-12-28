@@ -72,9 +72,7 @@ namespace SlingySlugs {
 
 		void Start(){
 			_nameTempColor = _nameText.color; 
-			_healthTempColor = _healthText.color; 
-
-			Debug.Log ("this slug belongs to team" + _team); 
+			_healthTempColor = _healthText.color;
 		}
 
 		void Update(){

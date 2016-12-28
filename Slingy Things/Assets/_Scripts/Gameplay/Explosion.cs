@@ -30,11 +30,16 @@ namespace SlingySlugs {
 				Vector2 explosionDelta = hitPosition- xploPos; //Get vector between explosion and hit 
 				Vector2 explosionDir = Vector3.Normalize (explosionDelta); //normalize the vector to get direction only 
 				float deltaDistance = _radius - explosionDelta.magnitude; //get the effective blast magnitude
-				int explosionDamage = (int)deltaDistance * _explosionDamageMultiplier; 
+				int explosionDamage = (int)(deltaDistance * _explosionDamageMultiplier); 
+
+				if (explosionDamage < 0) {
+					explosionDamage = 0; 
+				}
 
 				if (rb != null && hit.gameObject.tag == "Slug" && rb!= this.gameObject.GetComponent<Rigidbody2D>()){
 					rb.AddForce (explosionDir * _explosionForce, ForceMode2D.Impulse);  
 					hit.GetComponent<CharacterInfo> ().DecreaseHealth (explosionDamage); 
+					Debug.Log ("damage amount " + explosionDamage); 
 				}
 			}
 

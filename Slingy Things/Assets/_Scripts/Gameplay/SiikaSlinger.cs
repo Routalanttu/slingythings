@@ -4,7 +4,7 @@ using System.Collections;
 namespace SlingySlugs {
 	public class SiikaSlinger : BaseSlinger {
 
-		[SerializeField] private float _forceMultiplier = 4f;
+		[SerializeField] private float _forceMultiplier = 3;
 		[SerializeField] private GameObject _virtualShovel;
 		[SerializeField] private GameObject _auraFlame;
 

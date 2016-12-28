@@ -9,8 +9,8 @@ namespace SlingySlugs {
 		private Vector2 _mousePos;
 		private bool _clickedOn;
 
-		[SerializeField] private float _maxPowerStretch = 10.0f;
-		[SerializeField] private float _minPowerStretch = 0.5f;
+		private float _maxPowerStretch = 20.0f;
+		private float _minPowerStretch = 0.8f;
 		private float _maxVisualStretch = 2.0f;
 		private float _minVisualStretch = 0.8f;
 		private Vector2 _stretchVector;
@@ -19,6 +19,8 @@ namespace SlingySlugs {
 		private ArrowAnimator _arrowAnim;
 
 		private CharacterInfo _slug;
+
+		private float _stretchTimer; 
 
 		private void Awake(){
 			_gcTransform = GetComponent<Transform> ();
@@ -31,6 +33,7 @@ namespace SlingySlugs {
 		void Update () {
 			if (_clickedOn) {
 				Stretch ();
+				_stretchTimer += Time.deltaTime; 
 			}
 		}
 
@@ -41,6 +44,7 @@ namespace SlingySlugs {
 				SoundController.Instance.PlaySoundByIndex (1);
                 GameManager.Instance.CharacterTouched = true; 
 				GameManager.Instance.SetCameraTarget (_gcTransform); 
+				_stretchTimer = 0; 
 			}
 		}
 
@@ -51,7 +55,7 @@ namespace SlingySlugs {
 				_arrowAnim.HideAll ();
 
 				// Sling if stretch is over minimum, otherwise cancel:
-				if (_stretchVector.magnitude >= _minPowerStretch) {
+				if (_stretchVector.magnitude >= _minPowerStretch && _stretchTimer >= 1.0f) {
 					// Determine which animal is in question and call the appropriate Sling:
 					if (_slug.GetSpecies() == 0) {
 						GetComponent<SlugSlinger> ().Sling (_stretchVector);
