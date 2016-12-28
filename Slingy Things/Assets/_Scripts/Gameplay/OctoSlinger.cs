@@ -5,16 +5,17 @@ namespace SlingySlugs {
 	public class OctoSlinger : BaseSlinger {
 
 		[SerializeField] private float _forceMultiplier = 4f;
+		private Pollenation _pollenation; 
 
 		private void Awake () {
 			Init (_forceMultiplier); 
+			_pollenation = GetComponent<Pollenation> (); 
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			if (_isArmed && _charInfo.IsActive) {
 				Invoke ("ShowNameAndHealth", 2); 
-				_explosion.Fire ();
-				GetComponent<Pollenation> ().Fire ();
+				_pollenation.Fire ();
 				_soundCooldown = 1f;
 				_isArmed = false;
 			} else {

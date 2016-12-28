@@ -57,7 +57,6 @@ GameObject:
   - 61: {fileID: 61000010425336868}
   - 58: {fileID: 58000014032957718}
   - 114: {fileID: 114000011365606050}
-  - 114: {fileID: 114000010714371476}
   - 114: {fileID: 114000013188627228}
   - 114: {fileID: 114000011338464536}
   - 114: {fileID: 114000012905867546}
@@ -338,24 +337,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010714371476
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011518240616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07de2375f7bd694c93d6768884d824e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _radius: 5
-  _explosionForce: 2
-  _explosionDamageMultiplier: 10
-  _explosionPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
-    type: 2}
-  _explosionAnimation: {fileID: 1000013754057660, guid: 00920ed2386b34bcb9b3cf66a9ea1ded,
-    type: 2}
 --- !u!114 &114000010949122934
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -391,8 +372,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3fdbd39529b954c80d61576a9e455d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
+  radius: 15
   _healAmountMultiplier: 10
+  _cutterPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
+    type: 2}
   _pollenAnimation: {fileID: 1000011630728468, guid: 2e866badd2030664b963de97234c3554,
     type: 2}
   _healPoof: {fileID: 1000012054113214, guid: f9fc806867149fc44b72f890e66165fb, type: 2}
@@ -420,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb511a6711823594f9cedbf4d856e45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceMultiplier: 4
+  _forceMultiplier: 5
 --- !u!114 &114000013188627228
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -348,12 +348,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07de2375f7bd694c93d6768884d824e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 5
+  _radius: 7
   _explosionForce: 10
-  _explosionDamageMultiplier: 10
+  _explosionDamageMultiplier: 11
   _explosionPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
     type: 2}
-  _explosionAnimation: {fileID: 1000013754057660, guid: 00920ed2386b34bcb9b3cf66a9ea1ded,
+  _explosionAnimation: {fileID: 1000013754057660, guid: 42217b01659ba4d25912eaaf6c37311f,
     type: 2}
 --- !u!114 &114000010557070504
 MonoBehaviour:
@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b232c443673754689996c2260b40eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceMultiplier: 4
+  _forceMultiplier: 5
   _bouncy: {fileID: 6200000, guid: a652207a0d50eb4449564548a5a5df62, type: 2}
   _normo: {fileID: 6200000, guid: c21fe6e1016862c49835b91334868813, type: 2}
 --- !u!212 &212000010080645180

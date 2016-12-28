@@ -6,19 +6,21 @@ namespace SlingySlugs {
 
 		[SerializeField] private float radius = 10.0f;
 		[SerializeField] private int _healAmountMultiplier = 2; 
+		[SerializeField] private ParticleSystem _cutterPrefab; 
 		[SerializeField] private GameObject _pollenAnimation; 
 		[SerializeField] private GameObject _healPoof;
 		private Transform _gcTransform;
 		private int _team;
 
-		void Awake () {
+		void Start(){
+			_team = GetComponent<CharacterInfo> ().Team;
 			_gcTransform = GetComponent<Transform>(); 
-			_team = GetComponent<CharacterInfo> ().GetTeam ();
 		}
 
 		public bool Fire(){
 			Vector2 xploPos = _gcTransform.position; 
 			Instantiate(_pollenAnimation, _gcTransform.position, Quaternion.identity);
+			Instantiate(_cutterPrefab, _gcTransform.position, Quaternion.identity);
 			SoundController.Instance.PlaySoundByIndex (20); 
 
 			Collider2D[] colliders = Physics2D.OverlapCircleAll(xploPos, radius);
@@ -32,11 +34,12 @@ namespace SlingySlugs {
 
 				if (rb != null && 
 					hit.gameObject.tag == "Slug" && 
-					hit.transform.GetComponent<CharacterInfo>().GetTeam() == _team &&
+					hit.transform.GetComponent<CharacterInfo>().Team == _team &&
 					rb != this.gameObject.GetComponent<Rigidbody2D>())
 				{  
 					hit.GetComponent<CharacterInfo> ().IncreaseHealth (healAmount);
 					Instantiate (_healPoof, hit.transform.position, Quaternion.identity);
+					Debug.Log ("Heal Heal Heal"); 
 				}
 			}
 

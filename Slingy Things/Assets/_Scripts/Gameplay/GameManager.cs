@@ -107,11 +107,11 @@ namespace SlingySlugs
 				Rigidbody2D rb2d = go.GetComponent<Rigidbody2D> (); 
 				_allSlugRigidbodies.Add (rb2d); 
 
-				if (go.GetComponent<CharacterInfo> ().GetTeam () == 1) {
+				if (go.GetComponent<CharacterInfo> ().Team == 1) {
 					_team1Slugs.Add (go); 
-				} else if (go.GetComponent<CharacterInfo> ().GetTeam () == 2) {
+				} else if (go.GetComponent<CharacterInfo> ().Team == 2) {
 					_team2Slugs.Add (go); 
-				} else if (go.GetComponent<CharacterInfo> ().GetTeam () == 3) {
+				} else if (go.GetComponent<CharacterInfo> ().Team == 3) {
 					_team3Slugs.Add (go); 
 				} else {
 					_team4Slugs.Add (go); 

@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40dae12cbf602e4a83b86a26b37769a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceMultiplier: 4
+  _forceMultiplier: 5
 --- !u!114 &114000010319073526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -420,9 +420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07de2375f7bd694c93d6768884d824e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 10
-  _explosionForce: 15
-  _explosionDamageMultiplier: 25
+  _radius: 8
+  _explosionForce: 12
+  _explosionDamageMultiplier: 15
   _explosionPrefab: {fileID: 198000010227536156, guid: eda6e194a65b9414aa7ec7d8aeda8d23,
     type: 2}
   _explosionAnimation: {fileID: 1000013754057660, guid: 00920ed2386b34bcb9b3cf66a9ea1ded,

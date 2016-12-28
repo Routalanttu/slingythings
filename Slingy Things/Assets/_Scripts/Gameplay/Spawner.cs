@@ -67,7 +67,7 @@ namespace SlingySlugs {
 					_indexesUsed [_index] = true;
 
 					GameObject spawnedSlug = (GameObject)Instantiate (tmpPrefab, _spawnPoints [_index].transform.position, Quaternion.identity);
-					spawnedSlug.GetComponent<CharacterInfo> ().SetTeam (i+1);
+					spawnedSlug.GetComponent<CharacterInfo> ().Team = i + 1; 
 					spawnedSlug.GetComponent<CharacterInfo> ().SetColor (_teams[i]._teamUnityColor);
 					spawnedSlug.GetComponent<CharacterInfo> ().SetName (_teams[i]._slugNames[j]);
 							
@@ -78,24 +78,7 @@ namespace SlingySlugs {
 			} //end outer for loop
 
 		} //end spawncharacters
-
-		void PyrynSpawneri(){   //DELETE THIS METHOD
 			
-			for (int i = 0; i < 12; i++) {
-				do {
-					_index = Random.Range (0, _spawnPoints.Length);
-				} while (_indexesUsed [_index] == true);
-				_indexesUsed [_index] = true;
-
-				GameObject blerg = (GameObject)Instantiate (_slugPrefab, _spawnPoints [_index].transform.position, Quaternion.identity);
-				if (i < 6) {
-					blerg.GetComponent<CharacterInfo> ().SetTeam (1);
-				} else if (i >= 6) {
-					blerg.GetComponent<CharacterInfo> ().SetTeam (2);
-				}
-			}
-
-		}
 	}
 
 }

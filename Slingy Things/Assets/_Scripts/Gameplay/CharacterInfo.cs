@@ -4,19 +4,15 @@ using System.Collections;
 namespace SlingySlugs {
 	public class CharacterInfo : MonoBehaviour {
 
-		public enum Team 
-		{
-			Team1 = 1, 
-			Team2 = 2, 
-			Team3 = 3,
-			Team4 = 4,
-		};
+		private int _team; 
 
-		[SerializeField] private Team _team = Team.Team1;
-
-		public int GetTeam () {
-			int mitavittua = (int)_team;
-			return mitavittua;
+		public int Team {
+			get{
+				return _team; 
+			}
+			set{
+				_team = value; 
+			}
 		}
 
 		private enum Species {
@@ -77,6 +73,8 @@ namespace SlingySlugs {
 		void Start(){
 			_nameTempColor = _nameText.color; 
 			_healthTempColor = _healthText.color; 
+
+			Debug.Log ("this slug belongs to team" + _team); 
 		}
 
 		void Update(){
@@ -169,7 +167,7 @@ namespace SlingySlugs {
 			if (_health < 0) {
 				damageAmount += _health;
 			}
-			GameManager.Instance.DecreaseTeamHealth ((int)_team, damageAmount); 
+			GameManager.Instance.DecreaseTeamHealth (_team, damageAmount); 
 
 			if(!_dead && _health <= 0) {
 				Die (); 
@@ -186,7 +184,7 @@ namespace SlingySlugs {
 				healAmount -= (_health - 100);
 				_health = 100;
 			}
-			GameManager.Instance.DecreaseTeamHealth ((int)_team, healAmount);
+			GameManager.Instance.DecreaseTeamHealth (_team, healAmount);
 
 			_healthText.GetComponent<TextMesh> ().text = _health.ToString();
 		}
@@ -195,16 +193,13 @@ namespace SlingySlugs {
             SoundController.Instance.PlaySoundByIndex((int)Random.Range(10, 14)); 
 			_dead = true;
 			Instantiate(_deathAnimation, _myTransform.position, Quaternion.identity);
-			GameManager.Instance.KillSlug ((int)_team, gameObject);
+			GameManager.Instance.KillSlug (_team, gameObject);
 		}
 
 		public int GetSpecies () {
 			return (int)_species;
 		}
-
-		public void SetTeam (int team) {
-			_team = (Team)team;
-		}
+			
 
 		public void SetColor(Color unityColor){
 

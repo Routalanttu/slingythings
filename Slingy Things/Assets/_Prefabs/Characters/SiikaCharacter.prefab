@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8c19e23e69eaf4a9e454bd249f869d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceMultiplier: 4
+  _forceMultiplier: 5
   _virtualShovel: {fileID: 1000011767262726, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
     type: 2}
   _auraFlame: {fileID: 1000012438451808, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
