@@ -55,7 +55,7 @@ namespace SlingySlugs {
 				_arrowAnim.HideAll ();
 
 				// Sling if stretch is over minimum, otherwise cancel:
-				if (_stretchVector.magnitude >= _minPowerStretch && _stretchTimer >= 1.0f) {
+				if (_stretchVector.magnitude >= _minPowerStretch && _stretchTimer >= 0.4f) {
 					// Determine which animal is in question and call the appropriate Sling:
 					if (_slug.GetSpecies() == 0) {
 						GetComponent<SlugSlinger> ().Sling (_stretchVector);

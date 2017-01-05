@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI; 
 
 namespace SlingySlugs {
 	public class CharacterInfo : MonoBehaviour {
@@ -27,8 +28,10 @@ namespace SlingySlugs {
 		[SerializeField] private GameObject _deathAnimation;
 		[SerializeField] private GameObject _healthTextObject;
 		[SerializeField] private GameObject _nameTextObject;
+		[SerializeField] private TextMesh _damageText; 
 		private TextMesh _healthText;
 		private TextMesh _nameText; 
+
 		private Transform _myTransform;
 
 		private string _characterName; 
@@ -49,6 +52,8 @@ namespace SlingySlugs {
 		private bool _makeNameHidden; 
 		private bool _makeHealthVisible; 
 		private bool _makeHealthHidden; 
+
+		private float _damageTimer; 
 
 		private void Awake () {
 			_myTransform = GetComponent<Transform> ();
@@ -159,7 +164,15 @@ namespace SlingySlugs {
             {
                 SoundController.Instance.PlaySoundByIndex((int)Random.Range(3, 10));
             }
+
+			if (damageAmount < 0) {
+				damageAmount = 0; 
+			}
 			_health -= damageAmount;
+
+			TextMesh tmpDamageText = (TextMesh)Instantiate(_damageText, _myTransform.position, _myTransform.rotation);
+			tmpDamageText.text = "-" + damageAmount; 
+			tmpDamageText.color = _healthText.color; 
 
 			// Take away the unnecessary (below-zero) damage from team counter:
 			if (_health < 0) {
@@ -172,9 +185,20 @@ namespace SlingySlugs {
 			}
 
 			_healthText.GetComponent<TextMesh> ().text = _health.ToString();
+
 		}
 
+
 		public void IncreaseHealth(int healAmount) {
+
+			if (healAmount < 0) {
+				healAmount = 0; 
+			}
+
+			TextMesh tmpDamageText = (TextMesh)Instantiate(_damageText, _myTransform.position, _myTransform.rotation);
+			tmpDamageText.text = "+" + healAmount; 
+			tmpDamageText.color = _healthText.color; 
+
 			_health += healAmount;
 
 			// Take away the excess health gain:
@@ -185,13 +209,54 @@ namespace SlingySlugs {
 			GameManager.Instance.DecreaseTeamHealth (_team, healAmount);
 
 			_healthText.GetComponent<TextMesh> ().text = _health.ToString();
+	
 		}
 
 		public void Die(){
+			TextMesh tmpDamageText = (TextMesh)Instantiate(_damageText, _myTransform.position, _myTransform.rotation);
+
+			string deathString; 
+
+			switch ((int)Random.Range (0, 8)) {
+			case 0:
+				deathString = "R.I.P 1"; 
+				break;
+			case 1:
+				deathString = "R.I.P 2"; 
+				break;
+			case 2:
+				deathString = "R.I.P 3"; 
+				break;
+			case 3:
+				deathString = "R.I.P 4"; 
+				break;
+			case 4:
+				deathString = "R.I.P 5"; 
+				break;
+			case 5:
+				deathString = "R.I.P 6"; 
+				break;
+			case 6:
+				deathString = "R.I.P 7"; 
+				break;
+			case 7:
+				deathString = "R.I.P 8 "; 
+				break;
+			case 8:
+				deathString = "R.I.P 9"; 
+				break;
+			default: 
+				deathString = "R.I.P default"; 
+				break; 
+			}
+
+			tmpDamageText.text = deathString + "\n" + _characterName; 
+			tmpDamageText.color = Color.gray;
             SoundController.Instance.PlaySoundByIndex((int)Random.Range(10, 14)); 
 			_dead = true;
 			Instantiate(_deathAnimation, _myTransform.position, Quaternion.identity);
 			GameManager.Instance.KillSlug (_team, gameObject);
+
 		}
 
 		public int GetSpecies () {

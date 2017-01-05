@@ -21,9 +21,10 @@ GameObject:
   - 4: {fileID: 4000010996450008}
   - 23: {fileID: 23000012894777772}
   - 102: {fileID: 102000013679081812}
-  - 114: {fileID: 114000013575037014}
+  - 114: {fileID: 114000012235993426}
+  - 114: {fileID: 114000010966221264}
   m_Layer: 0
-  m_Name: HealthText
+  m_Name: DamageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013682764038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.08, y: 32.06, z: 0}
+  m_LocalPosition: {x: -2.08, y: 32.06, z: 10}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -92,7 +93,7 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!114 &114000013575037014
+--- !u!114 &114000010966221264
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -107,3 +108,14 @@ MonoBehaviour:
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   resolutionDependant: 0
   doubleResolution: 1024
+--- !u!114 &114000012235993426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013682764038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b745c0ad9f75463a811feef5157e01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

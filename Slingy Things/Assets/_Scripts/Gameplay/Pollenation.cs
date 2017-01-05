@@ -51,7 +51,6 @@ namespace SlingySlugs {
 
 					hit.GetComponent<CharacterInfo> ().IncreaseHealth (healAmount);
 					Instantiate (_healPoof, hit.transform.position, Quaternion.identity);
-					Debug.Log ("heal amount " + healAmount); 
 				}
 
 				//Damage slugs from other teams
@@ -59,7 +58,6 @@ namespace SlingySlugs {
 					hit.GetComponent<CharacterInfo>().Team != _team && rb!= this.gameObject.GetComponent<Rigidbody2D>()){
 					hit.GetComponent<CharacterInfo> ().DecreaseHealth (explosionDamage); 
 					Instantiate (_healPoof, hit.transform.position, Quaternion.identity);
-					Debug.Log ("damage amount " + explosionDamage); 
 				}
 
 

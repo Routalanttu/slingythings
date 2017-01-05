@@ -39,7 +39,6 @@ namespace SlingySlugs {
 				if (rb != null && hit.gameObject.tag == "Slug" && rb!= this.gameObject.GetComponent<Rigidbody2D>()){
 					rb.AddForce (explosionDir * _explosionForce, ForceMode2D.Impulse);  
 					hit.GetComponent<CharacterInfo> ().DecreaseHealth (explosionDamage); 
-					Debug.Log ("damage amount " + explosionDamage); 
 				}
 			}
 

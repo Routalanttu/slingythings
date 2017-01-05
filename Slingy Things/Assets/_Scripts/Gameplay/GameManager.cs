@@ -131,7 +131,6 @@ namespace SlingySlugs
 			_team3SlugAmount = _team3Slugs.Count; 
 			_team4SlugAmount = _team4Slugs.Count; 
 
-			// PLACEHOLDERPURKKA PLS REMOVE
 			_guiManager.HideMessage ();
 
             SoundController.Instance.PlaySoundByIndex(17); 
@@ -144,6 +143,7 @@ namespace SlingySlugs
 		void Update ()
 		{
 			CheckGameState (); 
+			if (Input.GetKeyDown(KeyCode.Escape)) { Pause(); }
 
 		}
 
@@ -235,8 +235,6 @@ namespace SlingySlugs
 				_team4SlugAmount--; 
 				_team4Slugs.Remove (go); 
 			}
-
-			go.GetComponent<CharacterInfo> ().DecreaseHealth (100);
 
 			Destroy (go);
 

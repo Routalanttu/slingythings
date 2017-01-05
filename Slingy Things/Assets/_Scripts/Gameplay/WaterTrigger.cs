@@ -39,7 +39,7 @@ public class WaterTrigger : MonoBehaviour {
 			}
 			
 					
-			other.gameObject.GetComponent<CharacterInfo> ().Die ();
+				other.gameObject.GetComponent<CharacterInfo> ().DecreaseHealth (100); 
 		}
 		
 	}

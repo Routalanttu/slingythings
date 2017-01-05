@@ -19,6 +19,7 @@ namespace Destructible2D
 			EditorGUI.BeginChangeCheck();
 			{
 				sortingOrder = EditorGUILayout.IntField("Sorting Order", sortingOrder);
+
 			}
 			if (EditorGUI.EndChangeCheck() == true)
 			{

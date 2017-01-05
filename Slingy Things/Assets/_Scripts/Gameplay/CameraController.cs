@@ -154,7 +154,6 @@ namespace SlingySlugs
 			_gcCam.orthographicSize = Mathf.Lerp(_zoomOutPre, _zoomTargetOut, _elapsed);
 		}
 
-
 		private void TouchCam(){
 			if (Input.touchCount == 0) {
 				_playerIsControllingCamera = false; 
