@@ -297,7 +297,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1000011518240616}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a6820c96ff07aad4bb742324005ba73e, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0.2}
@@ -375,7 +375,7 @@ MonoBehaviour:
   radius: 15
   _healAmountMultiplier: 10
   _explosionDamageMultiplier: 4
-  _cutterPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
+  _cutterPrefab: {fileID: 1000011767262726, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
     type: 2}
   _pollenAnimation: {fileID: 1000011630728468, guid: 2e866badd2030664b963de97234c3554,
     type: 2}
