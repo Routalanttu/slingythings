@@ -238,7 +238,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1000012614063800}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 371d1a4fe3fad804e82814038c73e4c3, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0.2}
@@ -324,7 +324,7 @@ MonoBehaviour:
   _radius: 2
   _explosionForce: 3
   _explosionDamageMultiplier: 5
-  _explosionPrefab: {fileID: 198000010227536156, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
+  _explosionPrefab: {fileID: 1000011767262726, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
     type: 2}
   _explosionAnimation: {fileID: 1000013754057660, guid: 00920ed2386b34bcb9b3cf66a9ea1ded,
     type: 2}

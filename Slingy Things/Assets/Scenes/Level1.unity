@@ -1507,6 +1507,31 @@ Prefab:
       propertyPath: m_Name
       value: ArrowContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 212000012644268030, guid: 73d279ee32e774e32aaf0acfb12258f3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011801938546, guid: 73d279ee32e774e32aaf0acfb12258f3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000010762827600, guid: 73d279ee32e774e32aaf0acfb12258f3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000011790852698, guid: 73d279ee32e774e32aaf0acfb12258f3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000013477404686, guid: 73d279ee32e774e32aaf0acfb12258f3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73d279ee32e774e32aaf0acfb12258f3, type: 2}
   m_IsPrefabParent: 0
