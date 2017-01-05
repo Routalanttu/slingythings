@@ -422,6 +422,8 @@ MonoBehaviour:
     type: 2}
   _nameTextObject: {fileID: 1000010192472582, guid: b6eeecb5a16fe4fd4812959a233fb8ca,
     type: 2}
+  _damageText: {fileID: 102000013679081812, guid: a6ad8838196d94302a3cd94961034088,
+    type: 2}
 --- !u!212 &212000010219862790
 SpriteRenderer:
   m_ObjectHideFlags: 1
