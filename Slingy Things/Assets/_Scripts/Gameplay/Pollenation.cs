@@ -7,7 +7,7 @@ namespace SlingySlugs {
 		[SerializeField] private float radius = 10.0f;
 		[SerializeField] private int _healAmountMultiplier = 2; 
 		[SerializeField] private int _explosionDamageMultiplier = 2; 
-		[SerializeField] private ParticleSystem _cutterPrefab; 
+		[SerializeField] private GameObject _cutterPrefab; 
 		[SerializeField] private GameObject _pollenAnimation; 
 		[SerializeField] private GameObject _healPoof;
 		private Transform _gcTransform;

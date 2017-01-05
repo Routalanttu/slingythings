@@ -7,7 +7,7 @@ namespace SlingySlugs {
 		[SerializeField] private float _radius = 5.0F;
 		[SerializeField] private float _explosionForce = 10F;
 		[SerializeField] private int _explosionDamageMultiplier = 2; 
-		[SerializeField] private ParticleSystem _explosionPrefab; 
+		[SerializeField] private GameObject _explosionPrefab; 
 		[SerializeField] private GameObject _explosionAnimation; 
 		private Transform _gcTransform;
 
@@ -46,7 +46,7 @@ namespace SlingySlugs {
 			return false;
 		}
 
-		public ParticleSystem GetCutter() {
+		public GameObject GetCutter() {
 			return _explosionPrefab;
 		}
 			

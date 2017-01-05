@@ -14,6 +14,7 @@ namespace SlingySlugs {
 		private Vector3 _lastVelo;
 		private float _lastAngVelo;
 		private float _shovelCooldown;
+		private bool _shovelActivated;
 		private SpriteRenderer _flame;
 
 		private void Awake () {
@@ -45,6 +46,8 @@ namespace SlingySlugs {
 					_soundCooldown = 1f;
 				}
 			}
+
+			_shovelActivated = true;
 		}
 
 		// Allows tbe Siika to be thrown through the ground it's standing on without any first-frame bumps
@@ -55,6 +58,8 @@ namespace SlingySlugs {
 				_rigidBody.angularVelocity = _lastAngVelo;
 				Physics2D.IgnoreCollision (GetComponent<BoxCollider2D> (), coll.collider);
 			}
+
+
 		}
 
 		private void FixedUpdate () {
@@ -64,7 +69,7 @@ namespace SlingySlugs {
 				_charAnim.SetToIdle ();
 			}
 
-			if (_isArmed) {
+			if (_isArmed && _shovelActivated) {
 				Instantiate (_virtualShovel, _gcTransform.position, Quaternion.identity);
 			}
 
@@ -90,6 +95,7 @@ namespace SlingySlugs {
 				Invoke ("ShowNameAndHealth", 2); 
 				_isArmed = false;
 				_flame.enabled = false;
+				_shovelActivated = false;
 			}
 
 			RotateAuraFlame (_rigidBody.velocity);
