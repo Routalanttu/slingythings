@@ -28,6 +28,7 @@ namespace SlingySlugs {
 			base.Sling (stretchVector); 
 			_shovelCooldown = 2f;
 			_flame.enabled = true;
+			Instantiate (_virtualShovel, _gcTransform.position, Quaternion.identity, _gcTransform);
 		}
 
 		void OnCollisionEnter2D(Collision2D coll) {
@@ -64,10 +65,6 @@ namespace SlingySlugs {
 				SetToSlung ();
 			} else {
 				_charAnim.SetToIdle ();
-			}
-
-			if (_isArmed) {
-				Instantiate (_virtualShovel, _gcTransform.position, Quaternion.identity);
 			}
 
 			_lastPos = _gcTransform.position;

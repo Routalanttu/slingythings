@@ -91,7 +91,6 @@ GameObject:
   - 58: {fileID: 58000014223585738}
   - 114: {fileID: 114000011915971566}
   - 114: {fileID: 114000011492689266}
-  - 114: {fileID: 114000012888487996}
   - 114: {fileID: 114000013124817172}
   m_Layer: 8
   m_Name: SiikaCharacter
@@ -310,24 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bb839845c528ab45b110d5fe2cb0fe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000012888487996
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012614063800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07de2375f7bd694c93d6768884d824e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _radius: 2
-  _explosionForce: 3
-  _explosionDamageMultiplier: 5
-  _explosionPrefab: {fileID: 1000011367076070, guid: 6c43bb99d045b534e955d4128562cbc5,
-    type: 2}
-  _explosionAnimation: {fileID: 1000013754057660, guid: 00920ed2386b34bcb9b3cf66a9ea1ded,
-    type: 2}
 --- !u!114 &114000013057567836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceMultiplier: 3
-  _virtualShovel: {fileID: 1000011367076070, guid: 6c43bb99d045b534e955d4128562cbc5,
+  _virtualShovel: {fileID: 1000013287123748, guid: d3fb89cd6c351fa4ca4125b1d05c8027,
     type: 2}
   _auraFlame: {fileID: 1000012438451808, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
 --- !u!212 &212000011028240668
