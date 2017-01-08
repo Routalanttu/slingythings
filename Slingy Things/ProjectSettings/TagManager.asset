@@ -9,6 +9,7 @@ TagManager:
   - Explosion
   - slug
   - Scorcher
+  - Circle
   layers:
   - Default
   - TransparentFX

@@ -22,18 +22,33 @@ namespace SlingySlugs {
 
 		private float _stretchTimer; 
 
+		private GameObject _circle;
+		private SpriteRenderer _circleRenderer;
+
+		private Color _tempCircleColor = Color.white;
+
 		private void Awake(){
 			_gcTransform = GetComponent<Transform> ();
 			_charAnim = GetComponent<CharacterAnimator> ();
 			_charAnim.SetToIdle ();
 			_arrowAnim = FindObjectOfType<ArrowAnimator> ();
 			_slug = GetComponent<CharacterInfo> ();
+			_circle = GameObject.FindGameObjectWithTag ("Circle");
+			_circleRenderer = _circle.GetComponent<SpriteRenderer> ();
+			_circleRenderer.enabled = false;
 		}
 			
 		void Update () {
 			if (_clickedOn) {
 				Stretch ();
-				_stretchTimer += Time.deltaTime; 
+				if (_stretchTimer < 1f) {
+					_stretchTimer += Time.deltaTime;
+				}
+				//_tempCircleColor.g = _stretchTimer;
+				//_tempCircleColor.b = _stretchTimer;
+				_tempCircleColor.a = _stretchTimer;
+				_circleRenderer.color = _tempCircleColor;
+				_circle.transform.localScale = new Vector3((1f - _stretchTimer),(1f - _stretchTimer),1f);
 			}
 		}
 
@@ -45,6 +60,8 @@ namespace SlingySlugs {
                 GameManager.Instance.CharacterTouched = true; 
 				GameManager.Instance.SetCameraTarget (_gcTransform); 
 				_stretchTimer = 0; 
+				_circle.transform.position = _gcTransform.position;
+				_circleRenderer.enabled = true;
 			}
 		}
 
@@ -70,6 +87,10 @@ namespace SlingySlugs {
 					_charAnim.SetToIdle ();
 					SoundController.Instance.PlaySoundByIndex (1);
 				}
+
+				_circle.transform.localScale = new Vector3 (1f, 1f, 1f);
+				_circleRenderer.color = Color.white;
+				_circleRenderer.enabled = false;
 			}
 
 		}
@@ -98,6 +119,9 @@ namespace SlingySlugs {
 			} else {
 				_charAnim.ScaleTail (_minVisualStretch);
 				_arrowAnim.HideAll ();
+				if (_stretchTimer >= 0.3f) {
+					_stretchTimer = Mathf.Lerp (_stretchTimer, 0.3f, 0.1f);
+				}
 			}
 
 			// Flip the character sprites to match the pointing direction:
