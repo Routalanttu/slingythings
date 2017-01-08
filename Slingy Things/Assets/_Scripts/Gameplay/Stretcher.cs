@@ -44,8 +44,8 @@ namespace SlingySlugs {
 				if (_stretchTimer < 1f) {
 					_stretchTimer += Time.deltaTime;
 				}
-				//_tempCircleColor.g = _stretchTimer;
-				//_tempCircleColor.b = _stretchTimer;
+				_tempCircleColor.g = _stretchTimer;
+				_tempCircleColor.b = _stretchTimer;
 				_tempCircleColor.a = _stretchTimer;
 				_circleRenderer.color = _tempCircleColor;
 				_circle.transform.localScale = new Vector3((1f - _stretchTimer),(1f - _stretchTimer),1f);
