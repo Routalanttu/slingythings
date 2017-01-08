@@ -423,7 +423,7 @@ MonoBehaviour:
   _radius: 8
   _explosionForce: 12
   _explosionDamageMultiplier: 15
-  _explosionPrefab: {fileID: 1000011767262726, guid: eda6e194a65b9414aa7ec7d8aeda8d23,
+  _explosionPrefab: {fileID: 1000012538120766, guid: 18b99c6a4958d8f47b61c35d146a25ee,
     type: 2}
   _explosionAnimation: {fileID: 1000013754057660, guid: 00920ed2386b34bcb9b3cf66a9ea1ded,
     type: 2}

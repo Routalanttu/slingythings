@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 1000012581416410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.18, y: -0.14, z: 0}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000012821215462}
@@ -324,7 +324,7 @@ MonoBehaviour:
   _radius: 2
   _explosionForce: 3
   _explosionDamageMultiplier: 5
-  _explosionPrefab: {fileID: 1000011767262726, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
+  _explosionPrefab: {fileID: 1000011367076070, guid: 6c43bb99d045b534e955d4128562cbc5,
     type: 2}
   _explosionAnimation: {fileID: 1000013754057660, guid: 00920ed2386b34bcb9b3cf66a9ea1ded,
     type: 2}
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceMultiplier: 3
-  _virtualShovel: {fileID: 1000011767262726, guid: 3dbcf602a1d0fa84bb3050cb8d9825d1,
+  _virtualShovel: {fileID: 1000011367076070, guid: 6c43bb99d045b534e955d4128562cbc5,
     type: 2}
   _auraFlame: {fileID: 1000012438451808, guid: e0b71cb76165749468705aae5c01e0bf, type: 2}
 --- !u!212 &212000011028240668
