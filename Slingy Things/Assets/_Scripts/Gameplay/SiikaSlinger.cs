@@ -89,6 +89,7 @@ namespace SlingySlugs {
 				Invoke ("ShowNameAndHealth", 2); 
 				_isArmed = false;
 				_flame.enabled = false;
+				_explosion.Fire ();
 			}
 
 			RotateAuraFlame (_rigidBody.velocity);

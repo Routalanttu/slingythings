@@ -92,6 +92,7 @@ GameObject:
   - 114: {fileID: 114000011915971566}
   - 114: {fileID: 114000011492689266}
   - 114: {fileID: 114000013124817172}
+  - 114: {fileID: 114000011503277606}
   m_Layer: 8
   m_Name: SiikaCharacter
   m_TagString: Slug
@@ -297,6 +298,24 @@ MonoBehaviour:
   _nameTextObject: {fileID: 1000010192472582, guid: b6eeecb5a16fe4fd4812959a233fb8ca,
     type: 2}
   _damageText: {fileID: 102000013679081812, guid: a6ad8838196d94302a3cd94961034088,
+    type: 2}
+--- !u!114 &114000011503277606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012614063800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07de2375f7bd694c93d6768884d824e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 5
+  _explosionForce: 5
+  _explosionDamageMultiplier: 5
+  _explosionPrefab: {fileID: 1000011367076070, guid: 6c43bb99d045b534e955d4128562cbc5,
+    type: 2}
+  _explosionAnimation: {fileID: 1000013754057660, guid: 42217b01659ba4d25912eaaf6c37311f,
     type: 2}
 --- !u!114 &114000011915971566
 MonoBehaviour:

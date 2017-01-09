@@ -10,7 +10,7 @@ namespace SlingySlugs {
 		private bool _clickedOn;
 
 		private float _maxPowerStretch = 20.0f;
-		private float _minPowerStretch = 0.8f;
+		private float _minPowerStretch = 2f;
 		private float _maxVisualStretch = 2.0f;
 		private float _minVisualStretch = 0.8f;
 		private Vector2 _stretchVector;
@@ -24,6 +24,7 @@ namespace SlingySlugs {
 
 		private GameObject _circle;
 		private SpriteRenderer _circleRenderer;
+		private Vector3 _circleOriginalSize;
 
 		private Color _tempCircleColor = Color.white;
 
@@ -36,6 +37,7 @@ namespace SlingySlugs {
 			_circle = GameObject.FindGameObjectWithTag ("Circle");
 			_circleRenderer = _circle.GetComponent<SpriteRenderer> ();
 			_circleRenderer.enabled = false;
+			_circleOriginalSize = _circle.transform.localScale;
 		}
 			
 		void Update () {
@@ -44,11 +46,15 @@ namespace SlingySlugs {
 				if (_stretchTimer < 1f) {
 					_stretchTimer += Time.deltaTime;
 				}
-				_tempCircleColor.g = _stretchTimer;
-				_tempCircleColor.b = _stretchTimer;
+				//_tempCircleColor.g = _stretchTimer;
+				//_tempCircleColor.b = _stretchTimer;
 				_tempCircleColor.a = _stretchTimer;
 				_circleRenderer.color = _tempCircleColor;
-				_circle.transform.localScale = new Vector3((1f - _stretchTimer),(1f - _stretchTimer),1f);
+				_circle.transform.localScale = new Vector3(
+					(1f - _stretchTimer)*_circleOriginalSize.x,
+					(1f - _stretchTimer)*_circleOriginalSize.y,
+					1f*_circleOriginalSize.z
+				);
 			}
 		}
 
@@ -88,7 +94,11 @@ namespace SlingySlugs {
 					SoundController.Instance.PlaySoundByIndex (1);
 				}
 
-				_circle.transform.localScale = new Vector3 (1f, 1f, 1f);
+				_circle.transform.localScale = new Vector3 (
+					_circleOriginalSize.x,
+					_circleOriginalSize.y,
+					_circleOriginalSize.z
+				);
 				_circleRenderer.color = Color.white;
 				_circleRenderer.enabled = false;
 			}
