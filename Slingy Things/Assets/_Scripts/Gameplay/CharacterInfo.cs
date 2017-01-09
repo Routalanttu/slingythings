@@ -173,9 +173,13 @@ namespace SlingySlugs {
 			}
 			_health -= damageAmount;
 
-			TextMesh tmpDamageText = (TextMesh)Instantiate(_damageText, _myTransform.position, _myTransform.rotation);
-			tmpDamageText.text = "-" + damageAmount; 
-			tmpDamageText.color = _healthText.color; 
+
+			if (damageAmount != 0) {
+				TextMesh tmpDamageText = (TextMesh)Instantiate(_damageText, _myTransform.position, _myTransform.rotation);
+				tmpDamageText.text = "-" + damageAmount; 
+				tmpDamageText.color = _healthText.color; 
+			}
+
 
 			// Take away the unnecessary (below-zero) damage from team counter:
 			if (_health < 0) {
@@ -198,9 +202,11 @@ namespace SlingySlugs {
 				healAmount = 0; 
 			}
 
-			TextMesh tmpDamageText = (TextMesh)Instantiate(_damageText, _myTransform.position, _myTransform.rotation);
-			tmpDamageText.text = "+" + healAmount; 
-			tmpDamageText.color = _healthText.color; 
+			if (healAmount != 0) {
+				TextMesh tmpDamageText = (TextMesh)Instantiate(_damageText, _myTransform.position, _myTransform.rotation);
+				tmpDamageText.text = "+" + healAmount; 
+				tmpDamageText.color = _healthText.color; 
+			}
 
 			_health += healAmount;
 
@@ -209,7 +215,7 @@ namespace SlingySlugs {
 				healAmount -= (_health - 100);
 				_health = 100;
 			}
-			GameManager.Instance.DecreaseTeamHealth (_team, healAmount);
+			GameManager.Instance.IncreaseTeamHealth (_team, healAmount);
 
 			_healthText.GetComponent<TextMesh> ().text = _health.ToString();
 	

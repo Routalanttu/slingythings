@@ -196,15 +196,29 @@ namespace SlingySlugs{
 			_message.gameObject.SetActive (false); 
 		}
 
-		public void GameOver(int winningTeamNumber){
+		//Hide health bars from teams that have been destroyed
+		public void HideHealthObject(int teamNumber){
+			if (teamNumber == 1) {
+				_team1HealthObject.SetActive (false); 
+			}else if (teamNumber == 2) {
+				_team2HealthObject.SetActive (false); 
+			}else if (teamNumber == 3) {
+				_team3HealthObject.SetActive (false); 
+			}else{
+				_team4HealthObject.SetActive (false); 
+			}
+		}
 
-			_team1HealthSlider.value = 0;
-			_team2HealthSlider.value = 0; 
-			_team3HealthSlider.value = 0; 
-			_team4HealthSlider.value = 0; 
+		public void GameOver(int winningTeamNumber){ 
 
-			ShowMessage (GameSessionController._instance._teams [winningTeamNumber - 1]._teamName + " wins!"); 
-			_message.color = GameSessionController._instance._teams [winningTeamNumber - 1]._teamUnityColor;
+			if (winningTeamNumber != 5) {
+				ShowMessage (GameSessionController._instance._teams [winningTeamNumber - 1]._teamName + " wins!"); 
+				_message.color = GameSessionController._instance._teams [winningTeamNumber - 1]._teamUnityColor;
+			} else if (winningTeamNumber == 5) {
+				ShowMessage ("It's a DRAW"); 
+				_message.color = Color.black; 
+			}
+
 
 		}
 

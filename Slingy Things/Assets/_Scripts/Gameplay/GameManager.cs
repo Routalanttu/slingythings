@@ -10,7 +10,7 @@ namespace SlingySlugs
 
 		public CameraController _cameraController;
 
-		private int numberOfTeams;
+		private int _numberOfTeams;
 
 		//TEAM VALUES
 		public List<GameObject> _team1Slugs;
@@ -25,6 +25,11 @@ namespace SlingySlugs
 		private int _team3SlugAmount;
 		private int _team4SlugAmount;
 
+		private bool _team1Destroyed; 
+		private bool _team2Destroyed; 
+		private bool _team3Destroyed; 
+		private bool _team4Destroyed; 
+
 		private int _team1Health;
 		private int _team2Health;
 		private int _team3Health;
@@ -35,6 +40,7 @@ namespace SlingySlugs
 		private int currentTeam = 0;
 
 		private bool _gameStarted;
+		private bool _gameOver; 
 
 		private bool _slugSlunged; 
 		private bool _allSlugsStill; 
@@ -81,7 +87,7 @@ namespace SlingySlugs
 		void Start ()
 		{
 
-			numberOfTeams = GameSessionController._instance._numberOfTeams; 
+			_numberOfTeams = GameSessionController._instance._numberOfTeams; 
 
 			_team1Slugs = new List<GameObject> (); 
 			_team2Slugs = new List<GameObject> (); 
@@ -240,14 +246,34 @@ namespace SlingySlugs
 
 			Destroy (go);
 
-			if (_team2SlugAmount <= 0 && _team3SlugAmount <=0 && _team4SlugAmount <= 0) {
+			if (_team1SlugAmount <= 0 && !_team1Destroyed) {
+				_guiManager.HideHealthObject (1); 
+				_team1Destroyed = true; 
+			}
+			if (_team2SlugAmount <= 0 && !_team2Destroyed) {
+				_guiManager.HideHealthObject (2); 
+				_team2Destroyed = true;
+			}
+			if (_team3SlugAmount <= 0 && !_team3Destroyed) {
+				_guiManager.HideHealthObject (3); 
+				_team3Destroyed = true;
+			}
+			if (_team4SlugAmount <= 0 && !_team4Destroyed) {
+				_guiManager.HideHealthObject (4); 
+				_team4Destroyed = true;
+			}
+
+
+			if (_team2Destroyed && _team3Destroyed && _team4Destroyed ) {
 				GameOver (1);
-			} else if (_team1SlugAmount <= 0 && _team3SlugAmount <=0 && _team4SlugAmount <= 0) {
+			} else if (_team1Destroyed && _team3Destroyed && _team4Destroyed) {
 				GameOver (2); 
-			}else if (_team1SlugAmount <= 0 && _team2SlugAmount <=0 && _team4SlugAmount <= 0) {
+			}else if (_team1Destroyed && _team2Destroyed && _team4Destroyed) {
 				GameOver (3); 
-			}else if (_team1SlugAmount <= 0 && _team2SlugAmount <=0 && _team3SlugAmount <= 0) {
+			}else if (_team1Destroyed && _team2Destroyed && _team3Destroyed) {
 				GameOver (4); 
+			}else if(_team1Destroyed && _team2Destroyed && _team3Destroyed && _team4Destroyed){
+				GameOver(5); 
 			}
 
 		}
@@ -270,6 +296,23 @@ namespace SlingySlugs
 
 		}
 
+		public void IncreaseTeamHealth (int teamNumber, int healAmount)
+		{
+
+			if (teamNumber == 1) {
+				_team1Health += healAmount; 
+			} else if (teamNumber == 2) {
+				_team2Health += healAmount; 
+			} else if (teamNumber == 3) {
+				_team3Health += healAmount; 
+			} else if (teamNumber == 4) {
+				_team4Health += healAmount; 
+			}
+
+			GUIManager.UpdateHealth (_team1Health, _team2Health, _team3Health, _team4Health); 
+
+		}
+
 		public void SlugSlunged(){
 			//slug is airborne
 			_slugSlunged = true; 
@@ -284,44 +327,88 @@ namespace SlingySlugs
 
 		public void NextPlayerMove ()
 		{
-			currentTeam = GetNextTeam (); 
-			_guiManager.ChangeActiveTeam (currentTeam); 
-			ActivateTeam(); 
+			if (!_gameOver) {
+				currentTeam = GetNextTeam (); 
+				_guiManager.ChangeActiveTeam (currentTeam); 
+				ActivateTeam(); 
+			}
+
 		}
 
 		public int GetNextTeam(){
 			
-			if (numberOfTeams == 2) {
+			if (_numberOfTeams  == 2) {
 				if (currentTeam == 1) {
-					return 2; 
+					if (!_team2Destroyed) {
+						return 2; 
+					}
 				} else {
 					return 1; 
 				}
 			}
 
-			if (numberOfTeams == 3) {
+			if (_numberOfTeams  == 3) {
 				if (currentTeam == 1) {
-					return 2; 
+					if (!_team2Destroyed) {
+						return 2; 
+					} else {
+						return 3; 
+					}
 				} else if (currentTeam == 2) {
-					return 3; 
+					if (!_team3Destroyed) {
+						return 3; 
+					} else {
+						return 1; 
+					}
 				} else {
-					return 1; 
+					if (!_team1Destroyed) {
+						return 1; 
+					} else {
+						return 2; 
+					}
 				}
 			}
 
-			if (numberOfTeams == 4) {
+			if (_numberOfTeams  == 4) {
 				if (currentTeam == 1) {
-					return 2; 
+					if (!_team2Destroyed) {
+						return 2; 
+					} else if (!_team3Destroyed) {
+						return 3;
+					} else {
+						return 4; 
+					}
+
 				} else if (currentTeam == 2) {
-					return 3; 
+					if (!_team3Destroyed) {
+						return 3; 
+					} else if (!_team4Destroyed) {
+						return 4; 
+					} else {
+						return 1; 
+					}
+
 				} else if (currentTeam == 3) {
-					return 4; 
+					if (!_team4Destroyed) {
+						return 4; 
+					} else if (!_team1Destroyed) {
+						return 1; 
+					} else {
+						return 2; 
+					}
+
 				} else {
-					return 1; 
+					if (!_team1Destroyed) {
+						return 1; 
+					} else if (!_team2Destroyed) {
+						return 2; 
+					} else {
+						return 3; 
+					}
 				}
 			}
 
-			return currentTeam; // redundant but needed
+			return currentTeam; 
 
 		}
 
@@ -473,6 +560,7 @@ namespace SlingySlugs
 
 		public void GameOver (int winningTeamNumber)
 		{
+			_gameOver = true; 
             SoundController.Instance.PlaySoundByIndex(16); 
 			GUIManager.GameOver (winningTeamNumber);
 			// Didn't want the TeamsAndAnimals scene loading immediately after the game ends so I decided to use a coroutine
