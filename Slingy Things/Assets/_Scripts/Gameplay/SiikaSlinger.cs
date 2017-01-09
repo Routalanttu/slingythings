@@ -8,7 +8,7 @@ namespace SlingySlugs {
 		[SerializeField] private GameObject _virtualShovel;
 		[SerializeField] private GameObject _auraFlame;
 
-		private GameObject _auraInstance;
+		private GameObject _flameObject;
 
 		private Vector3 _lastPos;
 		private Vector3 _lastVelo;
@@ -19,8 +19,8 @@ namespace SlingySlugs {
 		private void Awake () {
 			//Initialize base slinger class
 			Init (_forceMultiplier); 
-			_auraInstance = (GameObject)Instantiate (_auraFlame, transform.position, Quaternion.identity, transform);
-			_flame = _auraInstance.GetComponent<SpriteRenderer> ();
+			_flameObject = (GameObject)Instantiate (_auraFlame, transform.position, Quaternion.identity, transform);
+			_flame = _flameObject.GetComponent<SpriteRenderer> ();
 			_flame.enabled = false;
 		}
 
@@ -33,6 +33,7 @@ namespace SlingySlugs {
 
 		void OnCollisionEnter2D(Collision2D coll) {
 			if (_isArmed && _charInfo.IsActive) {
+				// Ignores collisions with ground when "shoveling":
 				_gcTransform.position = _lastPos;
 				_rigidBody.velocity = _lastVelo;
 				_rigidBody.angularVelocity = _lastAngVelo;
@@ -67,6 +68,7 @@ namespace SlingySlugs {
 				_charAnim.SetToIdle ();
 			}
 
+			// Stores the positions and velocities from the previous frame:
 			_lastPos = _gcTransform.position;
 			_lastVelo = _rigidBody.velocity;
 			_lastAngVelo = _rigidBody.angularVelocity;
@@ -97,7 +99,7 @@ namespace SlingySlugs {
 
 		public void RotateAuraFlame (Vector2 curVelo) {
 			float flightAngle = Mathf.Atan2 (curVelo.y, curVelo.x) * Mathf.Rad2Deg;
-			_auraInstance.transform.localRotation = Quaternion.AngleAxis (flightAngle, Vector3.forward);
+			_flameObject.transform.localRotation = Quaternion.AngleAxis (flightAngle, Vector3.forward);
 		}
 	}
 }

@@ -45,7 +45,7 @@ namespace SlingySlugs {
 					explosionDamage = 0; 
 				}
 
-				// Heals animals from own team.
+				// Heals teammates.
 				if (rb != null && hit.gameObject.tag == "Slug" && 
 					hit.GetComponent<CharacterInfo>().Team == _team &&
 					rb != this.gameObject.GetComponent<Rigidbody2D>()){  
@@ -54,7 +54,7 @@ namespace SlingySlugs {
 					Instantiate (_healPoof, hit.transform.position, Quaternion.identity);
 				}
 
-				// Damages animals from other teams.
+				// Damages enemies.
 				if (rb != null && hit.gameObject.tag == "Slug" && 
 					hit.GetComponent<CharacterInfo>().Team != _team && rb!= this.gameObject.GetComponent<Rigidbody2D>()){
 					hit.GetComponent<CharacterInfo> ().DecreaseHealth (explosionDamage); 

@@ -7,12 +7,11 @@ namespace SlingySlugs {
 		[SerializeField] private float _forceMultiplier = 3f;
 
 		private void Awake () {
-			
 			//Initialize Base Slinger class
 			Init (_forceMultiplier); 
 		}
 
-		//Activate explosion when slug hits terrain after being slung
+		// Activate explosion when slug hits terrain after being slung
 		void OnCollisionEnter2D(Collision2D coll) {
 			if (_isArmed && _charInfo.IsActive) {
 				Invoke ("ShowNameAndHealth", 2); 

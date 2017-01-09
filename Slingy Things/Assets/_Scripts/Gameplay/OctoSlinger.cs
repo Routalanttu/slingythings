@@ -12,7 +12,7 @@ namespace SlingySlugs {
 			_pollenation = GetComponent<Pollenation> (); 
 		}
 
-		//When slug collides with terrain after being slung, activate pollenation
+		// When octopus collides with terrain after being slung, activate pollenation
 		void OnCollisionEnter2D(Collision2D coll) {
 			if (_isArmed && _charInfo.IsActive) {
 				Invoke ("ShowNameAndHealth", 2); 

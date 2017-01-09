@@ -28,13 +28,11 @@ namespace SlingySlugs {
 			_teams = GameSessionController._instance._teams; 
 
 			SpawnCharacters (); 
-
-			//PyrynSpawneri (); DELETE THIS
 		}
 
 		void Start(){
 
-			//test game session controller at the start of game to ensure it has persisted from menu
+			// Test game session controller at the start of game to ensure it has persisted from menu
 			GameSessionController._instance.TestLog (); 
 
 		}
@@ -42,13 +40,13 @@ namespace SlingySlugs {
 		//Spawn characters to spawnpoints and set team and character parametres
 		void SpawnCharacters (){
 
-			// Note: there needs to be more spawnpoints than characters spawned
+			// There needs to be as many spawnpoints as there are characters to be spawned
 
 			GameObject tmpPrefab;
 
-			//iterate teams
+			// Go through teams:
 			for (int i = 0; i < _numberOfTeams; i++) {
-
+				// Go through teammembers:
 				for (int j = 0; j < 6; j++) {
 
 					if (_teams [i]._slugClasses [j] == "Slug") {
@@ -61,7 +59,7 @@ namespace SlingySlugs {
 						tmpPrefab = _siikaPrefab; 
 					}
 	
-					//loop spawnpoints to find a free random spawnpoint 
+					// Loop through spawnpoints until a free one is found:
 					do {
 						_index = Random.Range (0, _spawnPoints.Length);
 					} while (_indexesUsed [_index]);
@@ -72,14 +70,8 @@ namespace SlingySlugs {
 					spawnedSlug.GetComponent<CharacterInfo> ().SetColor (_teams[i]._teamUnityColor);
 					spawnedSlug.GetComponent<CharacterInfo> ().SetName (_teams[i]._slugNames[j]);
 							
-				} //end inner for loop
-
-
-
-			} //end outer for loop
-
-		} //end spawncharacters
-			
+				}
+			}
+		}
 	}
-
 }

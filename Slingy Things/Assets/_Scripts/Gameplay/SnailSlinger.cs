@@ -24,7 +24,7 @@ namespace SlingySlugs {
 			_snailBlowCounter = 0;
 		}
 
-		//Activate explosion when snail hits terrain after being slung
+		// Activates explosion when snail hits terrain after being slung
 		void OnCollisionEnter2D(Collision2D coll) {
 			if (_isArmed && _charInfo.IsActive) {
 				if (_snailBlowCounter < 3 && _blowCooldown <= 0f) {
@@ -33,6 +33,7 @@ namespace SlingySlugs {
 					_soundCooldown = 1f;
 					_snailBlowCounter++;
 					_isArmed = true;
+				// After all 3 bounces have happened, stop exploding and bouncing:
 				} else if (_snailBlowCounter >= 3) {
 					_colli.sharedMaterial = _normo;
 					Invoke ("ShowNameAndHealth", 2);
