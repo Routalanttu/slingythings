@@ -376,6 +376,8 @@ namespace SlingySlugs{
 			_previousTeamButtonImage.sprite = _previousTeamButtonSprites [_teamSelected - 1];
 			_nextTeamButtonImage.sprite = _nextTeamButtonSprites [_teamSelected - 1];
 
+			_teamBadge.sprite = _badgeSprites [_teamSelected - 1];
+
 			SetNamesAndClasses (); 
 
 		}

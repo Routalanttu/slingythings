@@ -29,7 +29,7 @@ namespace SlingySlugs{
 		public Image _team4HealthFill; 
 
 		public GameObject _pauseMenu; 
-	
+		public Button _pauseButton; 
 
 		//HEALTH BAR SCALE
 		private Vector3 _scaleVectorMinimum;
@@ -125,9 +125,13 @@ namespace SlingySlugs{
 		void NextUpPanel(){
 			if (_showNextUpPanel) {
 				_nextUpTimer += Time.deltaTime; 
+				_pauseButton.enabled = false; 
+				Color c = _pauseButton.image.color; 
+				c.a = 0.8f; 
+				_pauseButton.image.color = c; 
 			}
 
-			if (_showNextUpPanel && _nextUpTimer < 1f) {
+			if (_showNextUpPanel && _nextUpTimer < 1f && !_nextUpPanel.activeSelf) {
 
 				_nextUpPanel.SetActive (true); 
 				_nextUpAnim.enabled = true; 
@@ -151,7 +155,10 @@ namespace SlingySlugs{
 				_nextUpPanel.SetActive (false); 
 				_showNextUpPanel = false; 
 				_nextUpTimer = 0; 
-				_showNextUpPanel = false; 
+				_pauseButton.enabled = true; 
+				Color c = _pauseButton.image.color; 
+				c.a = 1f; 
+				_pauseButton.image.color = c; 
 			}
 		}
 
@@ -189,6 +196,11 @@ namespace SlingySlugs{
 		}
 
 		public void GameOver(int winningTeamNumber){
+
+			_team1HealthSlider.value = 0;
+			_team2HealthSlider.value = 0; 
+			_team3HealthSlider.value = 0; 
+			_team4HealthSlider.value = 0; 
 
 			ShowMessage (GameSessionController._instance._teams [winningTeamNumber - 1]._teamName + " wins!"); 
 			_message.color = GameSessionController._instance._teams [winningTeamNumber - 1]._teamUnityColor;
