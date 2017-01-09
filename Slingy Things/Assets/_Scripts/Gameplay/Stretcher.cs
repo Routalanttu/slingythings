@@ -21,11 +21,9 @@ namespace SlingySlugs {
 		private CharacterInfo _slug;
 
 		private float _stretchTimer; 
-
 		private GameObject _circle;
 		private SpriteRenderer _circleRenderer;
 		private Vector3 _circleOriginalSize;
-
 		private Color _tempCircleColor = Color.white;
 
 		private void Awake(){
@@ -46,15 +44,15 @@ namespace SlingySlugs {
 				if (_stretchTimer < 1f) {
 					_stretchTimer += Time.deltaTime;
 				}
-				//_tempCircleColor.g = _stretchTimer;
-				//_tempCircleColor.b = _stretchTimer;
-				_tempCircleColor.a = _stretchTimer;
-				_circleRenderer.color = _tempCircleColor;
+				// Indicates the touch time with an inwards-moving circle:
 				_circle.transform.localScale = new Vector3(
 					(1f - _stretchTimer)*_circleOriginalSize.x,
 					(1f - _stretchTimer)*_circleOriginalSize.y,
 					1f*_circleOriginalSize.z
 				);
+				// Makes the circle more visible as touch time increases:
+				_tempCircleColor.a = _stretchTimer;
+				_circleRenderer.color = _tempCircleColor;
 			}
 		}
 
