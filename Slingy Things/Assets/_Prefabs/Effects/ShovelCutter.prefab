@@ -20,11 +20,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013644146698}
   - 199: {fileID: 199000011045408060}
-  - 114: {fileID: 114000012195623044}
-  - 114: {fileID: 114000012068254432}
-  - 114: {fileID: 114000010580969408}
-  - 114: {fileID: 114000013986116438}
   - 114: {fileID: 114000010542603920}
+  - 114: {fileID: 114000013986116438}
   m_Layer: 0
   m_Name: ShovelCutter
   m_TagString: Untagged
@@ -63,53 +60,6 @@ MonoBehaviour:
   Size: {x: 5, y: 5}
   Hardness: 1
   Delay: 0.01
---- !u!114 &114000010580969408
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013287123748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 694dd02f24b737247a594ec9a2714315, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Shake: 0.25
---- !u!114 &114000012068254432
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013287123748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2b21ed79dd7394689a94432ca9a131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  Stamp: 1
-  StampTex: {fileID: 2800000, guid: 0a39a77219cd8c5459151093d7f5d2dd, type: 3}
-  StampSize: {x: 5, y: 5}
-  StampHardness: 1
-  StampRandomDirection: 1
-  Raycast: 1
-  RaycastRadius: 1
-  RaycastCount: 32
-  ForcePerRay: 0
-  DamagePerRay: 1
---- !u!114 &114000012195623044
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013287123748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee68f30327e7b8c49b456ba022e81845, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000013986116438
 MonoBehaviour:
   m_ObjectHideFlags: 1
