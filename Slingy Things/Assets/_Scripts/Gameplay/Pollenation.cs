@@ -17,8 +17,8 @@ namespace SlingySlugs {
 			_team = GetComponent<CharacterInfo> ().Team;
 			_gcTransform = GetComponent<Transform>(); 
 		}
-
-		//When Octopus hits terrain, pollenate: heal allies and damage enemies. 
+			
+		// Heals allies and damages enemies within the blast radius.
 		public bool Fire(){
 			Vector2 xploPos = _gcTransform.position; 
 			Instantiate(_pollenAnimation, _gcTransform.position, Quaternion.identity);
@@ -35,17 +35,17 @@ namespace SlingySlugs {
 				int healAmount = (int)(deltaDistance * _healAmountMultiplier); 
 				int explosionDamage = (int)(deltaDistance * _explosionDamageMultiplier);
 
-				//so that healing doesn't actually decrease health if 'too close' 
+				// Prevents negative healing.
 				if (healAmount < 0) {
 					healAmount = 0; 
 				}
 
-				//so that damaging doesn't actually increase health if 'too close'
+				// Prevents positive damaging.
 				if (explosionDamage < 0) {
 					explosionDamage = 0; 
 				}
 
-				//Heal slugs from own team
+				// Heals animals from own team.
 				if (rb != null && hit.gameObject.tag == "Slug" && 
 					hit.GetComponent<CharacterInfo>().Team == _team &&
 					rb != this.gameObject.GetComponent<Rigidbody2D>()){  
@@ -54,17 +54,13 @@ namespace SlingySlugs {
 					Instantiate (_healPoof, hit.transform.position, Quaternion.identity);
 				}
 
-				//Damage slugs from other teams
+				// Damages animals from other teams.
 				if (rb != null && hit.gameObject.tag == "Slug" && 
 					hit.GetComponent<CharacterInfo>().Team != _team && rb!= this.gameObject.GetComponent<Rigidbody2D>()){
 					hit.GetComponent<CharacterInfo> ().DecreaseHealth (explosionDamage); 
 					Instantiate (_healPoof, hit.transform.position, Quaternion.identity);
 				}
-
-
 			}
-
-			// Joku Invoke sen kadotettavan objektin tappamiselle?
 
 			return false;
 		}

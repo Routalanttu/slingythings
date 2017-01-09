@@ -26,7 +26,10 @@ namespace SlingySlugs {
 		}
 
 		void Update () {
+			// Moves the water from left to right.
 			_posX += Time.deltaTime * _waterSpeed;
+
+			// Makes the water wavily bob up and down.
 			if (_bobAngle < Mathf.PI*2) {
 				_bobAngle += Time.deltaTime * _waterSpeed;
 			} else {
@@ -36,6 +39,7 @@ namespace SlingySlugs {
 
 			_gcTransform.position = new Vector2 (_posX, _posY); 
 
+			// Resets the water object's position.
 			if (_posX > (_startPosX + _objectWidth)) {
 				_posX = _startPosX; 
 			}
