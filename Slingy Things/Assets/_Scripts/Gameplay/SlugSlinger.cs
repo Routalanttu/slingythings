@@ -12,6 +12,7 @@ namespace SlingySlugs {
 			Init (_forceMultiplier); 
 		}
 
+		//Activate explosion when slug hits terrain after being slung
 		void OnCollisionEnter2D(Collision2D coll) {
 			if (_isArmed && _charInfo.IsActive) {
 				Invoke ("ShowNameAndHealth", 2); 

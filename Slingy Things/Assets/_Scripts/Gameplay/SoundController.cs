@@ -86,7 +86,7 @@ namespace SlingySlugs
 
 			soundObjectList = new ArrayList (); 
 
-
+			//Create sound sound objects from audio clips and add to array 
 			foreach (AudioClip theSound in GameSounds) {
 
 				if (SoundVolumes.Length >= GameSounds.Length) {
@@ -128,6 +128,7 @@ namespace SlingySlugs
 			}
 		}
 
+		//Plays sound by index 
 		public void PlaySoundByIndex (int anIndexNumber)
 		{
 
@@ -141,7 +142,7 @@ namespace SlingySlugs
 			tempSoundObj.PlaySound (); 
 
 		}
-
+			
 		public void StopSoundByIndex (int anIndexNumber)
 		{
 
@@ -156,6 +157,7 @@ namespace SlingySlugs
 
 		}
 
+		//Mutes and unmutes all sounds
 		public void ToggleMute ()
 		{
 

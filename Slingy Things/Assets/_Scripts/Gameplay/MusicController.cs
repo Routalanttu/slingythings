@@ -19,6 +19,7 @@ public class MusicController : MonoBehaviour {
 
 	}
 
+	//Create music sound source and loop music audio clip. 
 	void Start()
 	{
 		volume = _defaultVolume; 

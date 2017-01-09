@@ -6,34 +6,26 @@ namespace SlingySlugs
 {
     public class CameraController : MonoBehaviour
     {
-
-		//CAMERA HAS TO BE SET AT ORIGO!! OTHERWISE BORDER CHECK FAILS
-
+		//CAMERA 
         private float _aspectRatio;
-
         private float _defaultCamSizeX;
         private float _newCamSizeX;
-
         private float _defaultCamSizeY;
         private float _newCamSizeY;
-
 		private float _borderSettingX;
 		private float _borderSettingY;
-
         private Camera _gcCam;
         private Transform _gcTransform;
-
         private float _posX;
         private float _posY;
         private float _posZ;
-
 		private float _defaultPosX;
 		private float _defaultPosY;
 		private float _defaultPosZ;
 
 		private bool _moveback; 
 
-        //for following a target 
+        //FOLLOW TARGET 
 		public float _dampingSpeed = 0.05F; 
         public Transform _target;
 		private bool _following; 
@@ -42,14 +34,13 @@ namespace SlingySlugs
 		private bool _startingZoomDone; 
 		private bool _startedZoomOut; 
 
-		//zoom stuff
-		Vector2?[] oldTouchPositions = {
+		//ZOOMING
+		Vector2?[] _oldTouchPositions = {
 			null,
 			null
 		};
-		Vector2 oldTouchVector;
-		float oldTouchDistance;
-
+		Vector2 _oldTouchVector;
+		float _oldTouchDistance;
 		private bool _zooming; 
 		private bool _zoomOuting; 
 		private bool _startedZoomIn;
@@ -67,22 +58,14 @@ namespace SlingySlugs
 
             _gcCam = GetComponent<Camera>();
             _gcTransform = GetComponent<Transform>();
-
             _aspectRatio = (float)_gcCam.pixelWidth / (float)_gcCam.pixelHeight;
             _defaultCamSizeX = _gcCam.orthographicSize * _aspectRatio;
             _defaultCamSizeY = _gcCam.orthographicSize; //orthographic size is the camera Y size 
-
 			_gcTransform.position = new Vector3 (0, 0, -10); 
 
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-			
-
-        }
-
+		//Late update for smooth camera movement
 		void LateUpdate(){
 
 			if (!_startingZoomDone) {
@@ -93,7 +76,6 @@ namespace SlingySlugs
 			if (!GameManager.Instance.CharacterTouched)
 			{
 				TouchCam (); 
-
 			}
 
 			if (_target != null && _startingZoomDone && !_playerIsControllingCamera)
@@ -110,16 +92,18 @@ namespace SlingySlugs
 				}
 
 			}
-
+				
 			CheckBorders();
 
 		}
 
+		//Camera follows active character 
 		private void FollowTarget(){
 			_gcTransform.position = Vector3.Lerp(_gcTransform.position, _target.position, _dampingSpeed) + new Vector3(0, 0.0f, -10);
 
 		}
 
+		//Camera zooms in to active character 
 		private void ZoomToTarget(){
 			_zoomOuting = false; 
 			_startedZoomOut = false; 
@@ -140,7 +124,7 @@ namespace SlingySlugs
 			_zooming = false;
 		}
 
-		//when slinged this method is called
+		//When character is slinged, camera zooms out
 		public void ZoomOut(){
 			_zooming = false; 
 			//_following = true; 
@@ -154,17 +138,18 @@ namespace SlingySlugs
 			_gcCam.orthographicSize = Mathf.Lerp(_zoomOutPre, _zoomTargetOut, _elapsed);
 		}
 
+		//User controlled camera 
 		private void TouchCam(){
 			if (Input.touchCount == 0) {
 				_playerIsControllingCamera = false; 
-				oldTouchPositions[0] = null;
-				oldTouchPositions[1] = null;
+				_oldTouchPositions[0] = null;
+				_oldTouchPositions[1] = null;
 				_touchTimer = 0; 
 			}
 			else if (Input.touchCount == 1) {
 				_playerIsControllingCamera = true; 
 
-				//if player touches something else than a character for more than x time, he gains control of camera
+				//if player touches something else than a character for more than x time, player gains control of camera
 				_touchTimer += Time.deltaTime; 
 
 				if (!GameManager.Instance.CharacterTouched && _touchTimer>0.10f) {
@@ -172,16 +157,16 @@ namespace SlingySlugs
 				}
 
 
-				if (oldTouchPositions[0] == null || oldTouchPositions[1] != null) {
-					oldTouchPositions[0] = Input.GetTouch(0).position;
-					oldTouchPositions[1] = null;
+				if (_oldTouchPositions[0] == null || _oldTouchPositions[1] != null) {
+					_oldTouchPositions[0] = Input.GetTouch(0).position;
+					_oldTouchPositions[1] = null;
 				}
 				else {
 					Vector2 newTouchPosition = Input.GetTouch(0).position;
 
-					transform.position += _gcTransform.TransformDirection((Vector3)((oldTouchPositions[0] - newTouchPosition) * _gcCam.orthographicSize / _gcCam.pixelHeight * 2f));
+					transform.position += _gcTransform.TransformDirection((Vector3)((_oldTouchPositions[0] - newTouchPosition) * _gcCam.orthographicSize / _gcCam.pixelHeight * 2f));
 
-					oldTouchPositions[0] = newTouchPosition;
+					_oldTouchPositions[0] = newTouchPosition;
 				}
 			}
 			else {
@@ -195,11 +180,11 @@ namespace SlingySlugs
 					_startedZoomOut = false;
 				}
 					
-				if (oldTouchPositions[1] == null) {
-					oldTouchPositions[0] = Input.GetTouch(0).position;
-					oldTouchPositions[1] = Input.GetTouch(1).position;
-					oldTouchVector = (Vector2)(oldTouchPositions[0] - oldTouchPositions[1]);
-					oldTouchDistance = oldTouchVector.magnitude;
+				if (_oldTouchPositions[1] == null) {
+					_oldTouchPositions[0] = Input.GetTouch(0).position;
+					_oldTouchPositions[1] = Input.GetTouch(1).position;
+					_oldTouchVector = (Vector2)(_oldTouchPositions[0] - _oldTouchPositions[1]);
+					_oldTouchDistance = _oldTouchVector.magnitude;
 				}
 				else {
 					Vector2 screen = new Vector2(_gcCam.pixelWidth, _gcCam.pixelHeight);
@@ -211,14 +196,14 @@ namespace SlingySlugs
 					Vector2 newTouchVector = newTouchPositions[0] - newTouchPositions[1];
 					float newTouchDistance = newTouchVector.magnitude;
 
-					_gcTransform.position += _gcTransform.TransformDirection((Vector3)((oldTouchPositions[0] + oldTouchPositions[1] - screen) * _gcCam.orthographicSize / screen.y));
-					_gcCam.orthographicSize *= oldTouchDistance / newTouchDistance;
+					_gcTransform.position += _gcTransform.TransformDirection((Vector3)((_oldTouchPositions[0] + _oldTouchPositions[1] - screen) * _gcCam.orthographicSize / screen.y));
+					_gcCam.orthographicSize *= _oldTouchDistance / newTouchDistance;
 					_gcTransform.position -= _gcTransform.TransformDirection((newTouchPositions[0] + newTouchPositions[1] - screen) * _gcCam.orthographicSize / screen.y);
 
-					oldTouchPositions[0] = newTouchPositions[0];
-					oldTouchPositions[1] = newTouchPositions[1];
-					oldTouchVector = newTouchVector;
-					oldTouchDistance = newTouchDistance;
+					_oldTouchPositions[0] = newTouchPositions[0];
+					_oldTouchPositions[1] = newTouchPositions[1];
+					_oldTouchVector = newTouchVector;
+					_oldTouchDistance = newTouchDistance;
 
 
 				}
@@ -230,6 +215,7 @@ namespace SlingySlugs
 
 		}
 
+		//Set new target for camera follow
         public void SetCameraTarget(Transform target)
         {
 
@@ -248,6 +234,7 @@ namespace SlingySlugs
 
 		}
 
+		//Camera zooms in to level at the start of the game
 		private void StartingZoom(){
 
 			if (_startingZoomTimer < 2.5f) {
@@ -262,6 +249,7 @@ namespace SlingySlugs
 
 		}
 
+		//Restrict camera movement
         private void CheckBorders()
         {
             //Get current position

@@ -3,10 +3,12 @@ using System.Collections;
 
 namespace SlingySlugs{
 
+	//CLASS HOLDS TEAM COMPOSITION AND NAMES INFORMATION FROM MENUS TO GAME
+	//SEE TEAM CLASS FOR TEAM AND SLUG PARAMETRES
 	public class GameSessionController : MonoBehaviour {
 
 		public int _numberOfTeams;
-		public Team[] _teams;   //setted in teammanaager / choose team
+		public Team[] _teams;   //set in teammanager / choose team
 
 		public static GameSessionController _instance; 
 

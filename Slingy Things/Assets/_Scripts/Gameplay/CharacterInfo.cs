@@ -87,6 +87,7 @@ namespace SlingySlugs {
 
 		}
 
+		//Lerp name visibility during character sling 
 		void NameVisibility(){
 
 			if (_makeNameVisible && _nameText.color.a < 1) {
@@ -115,6 +116,7 @@ namespace SlingySlugs {
 
 		}
 
+		//Lerp health visibility during character sling 
 		void HealthVisibility(){
 
 			if (_makeHealthVisible && _healthText.color.a < 1) {
@@ -158,6 +160,7 @@ namespace SlingySlugs {
 			_nameText.GetComponent<TextMesh> ().text = _characterName; 
 		}
 
+		//Decrease character health by damage amount
 		public void DecreaseHealth(int damageAmount) {
 
             if (damageAmount >=1)
@@ -188,7 +191,7 @@ namespace SlingySlugs {
 
 		}
 
-
+		//Increase character health by heal amount
 		public void IncreaseHealth(int healAmount) {
 
 			if (healAmount < 0) {
@@ -212,6 +215,7 @@ namespace SlingySlugs {
 	
 		}
 
+		//Remove character and apply effects
 		public void Die(){
 			TextMesh tmpDamageText = (TextMesh)Instantiate(_damageText, _myTransform.position, _myTransform.rotation); 
 
@@ -256,6 +260,7 @@ namespace SlingySlugs {
 			_dead = true;
 		}
 
+		//Display memoir text for deceased character
 		private string RandomizeDeathText() {
 			string deathMessage;
 

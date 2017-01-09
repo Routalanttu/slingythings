@@ -18,6 +18,7 @@ namespace SlingySlugs {
 			_gcTransform = GetComponent<Transform>(); 
 		}
 
+		//When Octopus hits terrain, pollenate: heal allies and damage enemies. 
 		public bool Fire(){
 			Vector2 xploPos = _gcTransform.position; 
 			Instantiate(_pollenAnimation, _gcTransform.position, Quaternion.identity);

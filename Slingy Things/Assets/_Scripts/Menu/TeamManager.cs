@@ -144,6 +144,7 @@ namespace SlingySlugs{
 
 		}
 
+		//Set character names and classes from playerprefs
 		private void SetNamesAndClasses(){
 
 			//GET TEAM AND SLUG NAMES BY STORED TEAM NUMBER
@@ -336,6 +337,7 @@ namespace SlingySlugs{
 				
 		}
 
+		//Change team menu sprites according to team selected
 		public void NextTeam(){
 
 			_teamSelected++; 
@@ -359,6 +361,7 @@ namespace SlingySlugs{
 
 		}
 
+		//Change team menu sprites according to team selected
 		public void PreviousTeam(){
 
 			_teamSelected--; 
@@ -382,6 +385,7 @@ namespace SlingySlugs{
 
 		}
 
+		//Change name of team
 		public void SetTeamName(){
 			_teamName = _teamInput.text; 
 			PlayerPrefs.SetString ("team" + _teamSelected + "Name", _teamName); 
@@ -389,6 +393,7 @@ namespace SlingySlugs{
 			UpdateTeamMenu (); 
 		}
 
+		//Change name of slugs
 		public void SetSlugName(int slugNumber){
 
 			switch (slugNumber) {
@@ -430,6 +435,7 @@ namespace SlingySlugs{
 			PlayerPrefs.Save (); 
 		}
 
+		//Change slug class
 		public void ChangeClass(int slugNumber){
 
 
@@ -563,6 +569,7 @@ namespace SlingySlugs{
 			GameSessionController._instance._numberOfTeams = _numberOfTeams; 
 		}
 
+		//Choose team menu page
 		public void ChooseTeams(int teamNumber){
 
 			if (!_teamsSelected[teamNumber-1] && _numberOfTeams < 4) {
@@ -647,7 +654,7 @@ namespace SlingySlugs{
 
 		}
 			
-
+		//Set default names for teams and slugs when game is played the first time
 		private void SetDefaultNamesAndClasses(){
 
 			PlayerPrefs.SetString ("team1Name", "PNRS IN SLIME"); 
