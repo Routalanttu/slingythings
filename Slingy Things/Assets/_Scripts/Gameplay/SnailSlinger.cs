@@ -24,6 +24,7 @@ namespace SlingySlugs {
 			_snailBlowCounter = 0;
 		}
 
+		//Activate explosion when snail hits terrain after being slung
 		void OnCollisionEnter2D(Collision2D coll) {
 			if (_isArmed && _charInfo.IsActive) {
 				if (_snailBlowCounter < 3 && _blowCooldown <= 0f) {

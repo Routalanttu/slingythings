@@ -122,6 +122,7 @@ namespace SlingySlugs{
 
 		}
 
+		//Shows and animates the next up turn text
 		void NextUpPanel(){
 			if (_showNextUpPanel) {
 				_nextUpTimer += Time.deltaTime; 

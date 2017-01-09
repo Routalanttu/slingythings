@@ -39,6 +39,7 @@ namespace SlingySlugs {
 
 		}
 
+		//Spawn characters to spawnpoints and set team and character parametres
 		void SpawnCharacters (){
 
 			// Note: there needs to be more spawnpoints than characters spawned

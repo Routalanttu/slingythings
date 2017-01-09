@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace SlingySlugs
 {
+	//Base Slinger class where different slinger scripts are derived from
 	public class BaseSlinger : MonoBehaviour
 	{
 		protected Transform _gcTransform; 
@@ -26,6 +27,7 @@ namespace SlingySlugs
 			_forceMP = forceMultiplier; 
 		}
 
+		//Sling character into air. Stretch amount defines sling force. 
 		public void Sling (Vector2 stretchVector) {
 			if (Random.Range (0f, 10f) < 2f) {
 				SoundController.Instance.PlaySoundByIndex (21);
@@ -46,6 +48,7 @@ namespace SlingySlugs
 			_charInfo.ShowHealth (true); 
 		}
 
+		//Character is in air
 		public void SetToSlung () {
 			_isSlung = true;
 			_charAnim.SetToFlight ();

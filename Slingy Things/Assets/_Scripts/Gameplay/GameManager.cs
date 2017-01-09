@@ -168,6 +168,7 @@ namespace SlingySlugs
 			}
 		}
 
+		//Check whether slugs are still moving and interracting with others. After this change turn
 		void CheckGameState ()
 		{
 			if (_slugSlunged || _drowned) {
@@ -211,6 +212,7 @@ namespace SlingySlugs
 			_cameraController.SetCameraTarget (target); 
 		}
 
+		//Remove slug from active slug arrays
 		public void KillSlug (int teamNumber, GameObject go)
 		{
 
@@ -323,6 +325,7 @@ namespace SlingySlugs
 
 		}
 
+		//Deactivate all character stretchers after slug is slung
 		public void DeactivateCircleColliders(){
 
 			foreach (var slug in _team1Slugs) {
@@ -343,6 +346,7 @@ namespace SlingySlugs
 
 		}
 
+		//Activate slugs for the active team
 		public void ActivateTeam ()
 		{
 
