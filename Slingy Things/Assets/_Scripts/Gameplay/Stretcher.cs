@@ -55,7 +55,10 @@ namespace SlingySlugs {
 				_circleRenderer.color = _tempCircleColor;
 			}
 		}
-
+			
+		/// <summary>
+		/// Sets the animal to stretching state.
+		/// </summary>
 		void OnMouseDown(){
 			if (_slug.IsActive) {
 				_clickedOn = true;
@@ -69,6 +72,9 @@ namespace SlingySlugs {
 			}
 		}
 
+		/// <summary>
+		/// Releases the animal from the stretching state.
+		/// </summary>
 		void OnMouseUp(){
 			if (_clickedOn) {
                 GameManager.Instance.CharacterTouched = false; 
@@ -77,7 +83,7 @@ namespace SlingySlugs {
 
 				// Sling if stretch is over minimum, otherwise cancel:
 				if (_stretchVector.magnitude >= _minPowerStretch && _stretchTimer >= 0.4f) {
-					// Determine which animal is in question and call the appropriate Sling:
+					// Determine which animal is in question and call the appropriate Slinger:
 					if (_slug.GetSpecies() == 0) {
 						GetComponent<SlugSlinger> ().Sling (_stretchVector);
 					} else if (_slug.GetSpecies() == 1) {
@@ -92,6 +98,7 @@ namespace SlingySlugs {
 					SoundController.Instance.PlaySoundByIndex (1);
 				}
 
+				// Reset the touch circle to invisible and original state.
 				_circle.transform.localScale = new Vector3 (
 					_circleOriginalSize.x,
 					_circleOriginalSize.y,
@@ -103,11 +110,13 @@ namespace SlingySlugs {
 
 		}
 
+		/// <summary>
+		/// Stretches the animal's tail according to input.
+		/// </summary>
 		void Stretch(){
 			_charAnim.SetToStretch ();
 
 			_mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition); 
-			// Get Vector2 value from the character's position:
 			_slugPosition = _gcTransform.position;
 
 			_stretchVector = _slugPosition - _mousePos; 
@@ -118,6 +127,7 @@ namespace SlingySlugs {
 			_charAnim.RotateTail (tailRotation);
 			_arrowAnim.Rotate (tailRotation, _slugPosition);
 
+			// Scales the visual stretch within the boundaries determined by the maximum and minimum stretch values:
 			float scaledStretch = _minVisualStretch + _stretchVector.magnitude * ((_maxVisualStretch - _minVisualStretch) / _maxPowerStretch);
 
 			// Stretch tail by player input, but disallow excessive shrinkage:
@@ -127,12 +137,13 @@ namespace SlingySlugs {
 			} else {
 				_charAnim.ScaleTail (_minVisualStretch);
 				_arrowAnim.HideAll ();
+				// Pops up the touch circle to indicate that more stretch is needed to sling:
 				if (_stretchTimer >= 0.3f) {
 					_stretchTimer = Mathf.Lerp (_stretchTimer, 0.3f, 0.1f);
 				}
 			}
 
-			// Flip the character sprites to match the pointing direction:
+			// Flips the character sprites to match the pointing direction:
 			if (_stretchVector.x < 0f) {
 				_charAnim.StretchFlip (true);
 			} else if (_stretchVector.x > 0f) {
