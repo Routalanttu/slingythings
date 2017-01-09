@@ -15,7 +15,7 @@ namespace SlingySlugs {
 			_gcTransform = GetComponent<Transform>(); 
 		}
 
-		//When slung character collides with terrain, get colliders of the blast radius and apply damage and force
+		// Instantiates audiovisual explosion and applies force and damage to animals within the blast radius.
 		public bool Fire(){
             SoundController.Instance.PlaySoundByIndex((int)Random.Range(3, 10));
             Vector2 xploPos = _gcTransform.position; 
@@ -44,11 +44,6 @@ namespace SlingySlugs {
 			}
 
 			return false;
-		}
-
-		public GameObject GetCutter() {
-			return _explosionPrefab;
-		}
-			
+		}			
 	}
 }

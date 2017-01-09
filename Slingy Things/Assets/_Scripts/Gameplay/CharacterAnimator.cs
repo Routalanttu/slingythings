@@ -23,42 +23,51 @@ namespace SlingySlugs {
 			_char = GetComponent<CharacterInfo> ();
 		}
 
+		/// <summary>
+		/// Sets the character parts needed for idling visible, hiding others.
+		/// </summary>
 		public void SetToIdle () {
 			_head.enabled = true;
 			_idleTail.enabled = true;
 			_stretchTail.enabled = false;
 			_counterPiece.enabled = false;
 			_flight.enabled = false;
-
-			SetFaceToStretched (false);
 		}
 
+		/// <summary>
+		/// Sets the character parts needed for stretching visible, hiding others.
+		/// </summary>
 		public void SetToStretch () {
 			_head.enabled = true;
 			_idleTail.enabled = false;
 			_stretchTail.enabled = true;
 			_counterPiece.enabled = true;
 			_flight.enabled = false;
-
-			SetFaceToStretched (true);
 		}
 
+		/// <summary>
+		/// Sets the character parts needed for flying visible, hiding others.
+		/// </summary>
 		public void SetToFlight () {
 			_head.enabled = false;
 			_idleTail.enabled = false;
 			_stretchTail.enabled = false;
 			_counterPiece.enabled = false;
 			_flight.enabled = true;
-
-			SetFaceToStretched (false);
 		}
 			
+		/// <summary>
+		/// Rotates the object that the tail is parented to.
+		/// </summary>
+		/// <param name="rotation">Rotation from the stretching.</param>
 		public void RotateTail (Quaternion rotation) {
 			_counterPieceTransform.rotation = rotation;
-			// If StretchTail wouldn't be parented to CounterPiece:
-			//_stretchTailTransorm.rotation = q;
 		}
 
+		/// <summary>
+		/// Rotates the flying animal to face the direction it's heading.
+		/// </summary>
+		/// <param name="curVelo">Object velocity.</param>
 		public void RotateFlight (Vector2 curVelo) {
 			float flightAngle = Mathf.Atan2 (curVelo.y, curVelo.x) * Mathf.Rad2Deg;
 			_flightTransform.localRotation = Quaternion.AngleAxis (flightAngle, Vector3.forward);
@@ -70,31 +79,30 @@ namespace SlingySlugs {
 			}
 		}
 
+		/// <summary>
+		/// Stretches the tail according to input.
+		/// </summary>
+		/// <param name="stretch">The stretch amount from input.</param>
 		public void ScaleTail (float stretch) {
 			_stretchTailTransform.localScale = new Vector3 (stretch / 1.25f, 1f, 1f);
 		}
 
+		/// <summary>
+		/// Flips the facing direction of the stretched animal.
+		/// </summary>
+		/// <param name="state">The desired boolean value for flipping.</param>
 		public void StretchFlip (bool state) {
 			_head.flipX = state;
 			_idleTail.flipX = state;
 			_stretchTail.flipY = state;
 		}
 
+		/// <summary>
+		/// Prevents the flying animal from being upside down when flying left.
+		/// </summary>
+		/// <param name="state">The desired boolean value for flipping.</param>
 		private void FlightFlip (bool state) {
 			_flight.flipY = state;
-		}
-
-		public void SetFaceToStretched (bool stretched) {
-			_headAnimator.SetBool ("isStretched", stretched);
-		}
-
-		public void SetHealthFace (int health) {
-			_headAnimator.SetInteger ("slugHealth", health);
-		}
-			
-		// Temp
-		private void Update() {
-			SetHealthFace (_char.Health);
 		}
 	}
 }
