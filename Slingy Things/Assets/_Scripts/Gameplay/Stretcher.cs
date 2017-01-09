@@ -10,7 +10,7 @@ namespace SlingySlugs {
 		private bool _clickedOn;
 
 		private float _maxPowerStretch = 20.0f;
-		private float _minPowerStretch = 2f;
+		private float _minPowerStretch = 4.0f;
 		private float _maxVisualStretch = 2.0f;
 		private float _minVisualStretch = 0.8f;
 		private Vector2 _stretchVector;
