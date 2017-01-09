@@ -27,7 +27,12 @@ namespace SlingySlugs
 		}
 
 		public void Sling (Vector2 stretchVector) {
-			SoundController.Instance.PlaySoundByIndex((int)Random.Range(18, 20)); 
+			if (Random.Range (0f, 10f) < 2f) {
+				SoundController.Instance.PlaySoundByIndex (21);
+			}else{
+				SoundController.Instance.PlaySoundByIndex((int)Random.Range(18, 20)); 
+			}
+
 			_rigidBody.AddForce (stretchVector * _forceMP, ForceMode2D.Impulse);
 			_isArmed = true;
 			GameManager.Instance.DeactivateCircleColliders(); 

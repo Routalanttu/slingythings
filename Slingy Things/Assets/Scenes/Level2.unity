@@ -4991,14 +4991,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e32c5cfd0fbfe274db440f46a180403f, type: 3}
   - {fileID: 8300000, guid: b81b0274fff8d2749955125aed19455e, type: 3}
   - {fileID: 8300000, guid: 2c27083618c73f94484df144a42decf3, type: 3}
-  - {fileID: 8300000, guid: 5eed50852edc89548b902e0076e6a051, type: 3}
+  - {fileID: 8300000, guid: ac2a1119251a0dc489bbd29ccd0e702f, type: 3}
   - {fileID: 8300000, guid: 625c65c1debef344d950ef4b9aba5f46, type: 3}
   - {fileID: 8300000, guid: 9cd8a101fa137594288fef2ea3de5eca, type: 3}
+  - {fileID: 8300000, guid: 5eed50852edc89548b902e0076e6a051, type: 3}
   SoundVolumes:
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
   - 0
   - 0
   - 0
@@ -5013,9 +5010,14 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 0.3
   - 0
-  - 0.8
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0.08
   _defaultVolume: 0.1
   _soundsMuted: 0
   _soundButton: {fileID: 0}
