@@ -4,18 +4,15 @@ using System.Collections;
 namespace SlingySlugs {
 	public class ArrowAnimator : MonoBehaviour {
 
-		// Juttuja joita ei vielä ole:
-		// Sijainnin vaihto
-		// Pitäiskö tän olla joku Instance/singleton/whatever?
-		// Nuolien välisen välimatkan kasvu venytyksen mukaan
+		private Transform _gcTransform;
 
-		private Transform _myTransform;
 		[SerializeField] private Transform _arrowOne;
 		[SerializeField] private Transform _arrowTwo;
 		[SerializeField] private Transform _arrowThree;
 		[SerializeField] private Transform _arrowFour;
 		[SerializeField] private Transform _arrowFive;
 		private Transform[] _arrows;
+
 		private SpriteRenderer _arrowOneSprite;
 		private SpriteRenderer _arrowTwoSprite;
 		private SpriteRenderer _arrowThreeSprite;
@@ -24,7 +21,7 @@ namespace SlingySlugs {
 		private SpriteRenderer[] _arrowSprites;
 
 		private void Awake() {
-			_myTransform = GetComponent<Transform> ();
+			_gcTransform = GetComponent<Transform> ();
 			_arrowOneSprite = _arrowOne.GetComponent<SpriteRenderer> ();
 			_arrowTwoSprite = _arrowTwo.GetComponent<SpriteRenderer> ();
 			_arrowThreeSprite = _arrowThree.GetComponent<SpriteRenderer> ();
@@ -42,13 +39,19 @@ namespace SlingySlugs {
 			_arrowSprites [2] = _arrowThreeSprite;
 			_arrowSprites [3] = _arrowFourSprite;
 			_arrowSprites [4] = _arrowFiveSprite;
-
 		}
 
+		/// <summary>
+		/// Sets the arrow visibility to match stretch amount smoothly.
+		/// </summary>
+		/// <param name="magnitude">Stretch vector magnitude.</param>
+		/// <param name="min">Minimum stretch.</param>
+		/// <param name="max">Maximum stretch.</param>
 		public void SetArrowVisibility (float magnitude, float min, float max) {
-
 			for (int i = 0; i < _arrowSprites.Length; i++) {
+				// Check if stretch is enough to allow arrow's visibility:
 				if (magnitude > (min+(i*(max-min)/5f))) {
+					// Tune arrow's visibility up according to stretch amount:
 					_arrowSprites[i].enabled = true;
 					Color tmp = _arrowSprites[i].color;
 					tmp.a = (magnitude - (min+(i*(max-min)/5f)))*5f;
@@ -70,12 +73,11 @@ namespace SlingySlugs {
 		}
 
 		public void Rotate (Quaternion rotation, Vector3 slugPosition) {
-			_myTransform.position = slugPosition;
-			_myTransform.rotation = rotation;
+			_gcTransform.position = slugPosition;
+			_gcTransform.rotation = rotation;
 		}
 
 		private void Expand (int i, float magnitude) {
-
 			// Scale the arrow to match stretch volume:
 			_arrows [i].localScale = new Vector3 (
 				magnitude*(i+1)*0.15f,
@@ -83,7 +85,7 @@ namespace SlingySlugs {
 				1f
 			);
 
-			// Increase distance from center:
+			// Increase distance from stretch center:
 			_arrows [i].localPosition = new Vector3 (
 				0.5f + magnitude*(i+1)*1.3f,
 				_arrows[i].localPosition.y,

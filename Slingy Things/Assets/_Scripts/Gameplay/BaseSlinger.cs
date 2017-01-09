@@ -27,11 +27,11 @@ namespace SlingySlugs
 			_forceMP = forceMultiplier; 
 		}
 
-		//Sling character into air. Stretch amount defines sling force. 
+		// Slings character into air. Stretch amount defines sling force. 
 		public void Sling (Vector2 stretchVector) {
 			if (Random.Range (0f, 10f) < 2f) {
 				SoundController.Instance.PlaySoundByIndex (21);
-			}else{
+			} else {
 				SoundController.Instance.PlaySoundByIndex((int)Random.Range(18, 20)); 
 			}
 
@@ -48,7 +48,7 @@ namespace SlingySlugs
 			_charInfo.ShowHealth (true); 
 		}
 
-		//Character is in air
+		// Sets the character to airborne state.
 		public void SetToSlung () {
 			_isSlung = true;
 			_charAnim.SetToFlight ();
